@@ -147,7 +147,7 @@ href="https://dahs.hostingpy.shop/home"><img src="https://files.catbox.moe/lr92z
 
 ### **`🌟 Colaboradores`**
 ><img src="https://github.com/EnderJs-CreatorGL.png" width="100" height="100" alt="
-ⁱᵃᵐ|𝔇ĕ𝐬†𝓻⊙γ𒆜"/></a>>
+ⁱᵃᵐ|𝔇ĕ𝐬†𝓻⊙γ𒆜"/></a>
 
 ### **`👑 Propietario`**
 <a
