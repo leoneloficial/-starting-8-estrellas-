@@ -152,7 +152,7 @@ href="https://dahs.hostingpy.shop/home"><img src="https://files.catbox.moe/lr92z
 
 ### **`👑 Propietario`**
 <a
-href="https://github.com/leoneloficial"><img src="https://github.com/leoneloficial".png" width="130" height="130" alt="
+href="https://github.com/leoneloficial"><img src="https://github.com/leoneloficial.png" width="130" height="130" alt="
 ⁱᵃᵐ|𝔇ĕ𝐬†𝓻⊙γ𒆜"/></a>
 
 ### **`🍂 Créditos`**
