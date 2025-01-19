@@ -146,8 +146,8 @@ href="https://dahs.hostingpy.shop/home"><img src="https://files.catbox.moe/lr92z
 ---
 
 ### **`🌟 Colaboradores`**
-<a href="https://github.com/EnderJs-CreatorGL/Lobo-Bot-Lite/graphs/contributors">
-<img src="https://contrib.rocks/image?repo=EnderJs-CreatorGL/Lobo-Bot-Lite" /> 
+<a href="https://github.com/leoneloficial/sumi-zakurazawa/graphs/contributors">
+<img src="https://contrib.rocks/image?repo=leoneloficial/sumi-zakurazawa" /> 
 </a>
 
 ### **`👑 Propietario`**
