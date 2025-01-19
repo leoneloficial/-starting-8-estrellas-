@@ -152,12 +152,12 @@ href="https://dahs.hostingpy.shop/home"><img src="https://files.catbox.moe/lr92z
 
 ### **`👑 Propietario`**
 <a
-href="https://github.com/The-King-Destroy"><img src="https://github.com/The-King-Destroy.png" width="130" height="130" alt="
+href="https://github.com/leoneloficial"><img src="https://github.com/leoneloficial".png" width="130" height="130" alt="
 ⁱᵃᵐ|𝔇ĕ𝐬†𝓻⊙γ𒆜"/></a>
 
 ### **`🍂 Créditos`**
-<a href="https://github.com/OfcKing" style="display:inline-block; margin-right: 10px; text-decoration: none;">
-    <img src="https://github.com/OfcKing.png" width="130" height="130" alt="OfcKing" style="border-radius: 50%;"/>
+<a href="https://github.com/EnderJs-CreatorGL" style="display:inline-block; margin-right: 10px; text-decoration: none;">
+    <img src="https://github.com/EnderJs-CreatorGL.png" width="130" height="130" alt="OfcKing" style="border-radius: 50%;"/>
 </a>
 <a href="https://github.com/David-Chian" style="display:inline-block; text-decoration: none;">
     <img src="https://github.com/David-Chian.png" width="130" height="130" alt="David-Chian" style="border-radius: 50%;"/>
