@@ -170,7 +170,7 @@ clear
 echo -e "\e[36m
 ┏━━━━━━━━━⪩
 ┃˚₊ · ͟͟͞͞➳❥ INFORMACÍON
-┃⏤͟͟͞͞YUKI-BOT
+┃⏤͟͟͞͞Staling 
 ┗━━━━━━━━━⪩
 
 ✰ Mode by:
