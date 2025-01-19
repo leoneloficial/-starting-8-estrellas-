@@ -11,7 +11,7 @@ let handler = async (m, { conn, usedPrefix, text, args, command }) => {
   let name = await conn.getName(who);
 
   await sendContactArray(conn, m.chat, [
-    [`${nomorown}`,`👑 Propietario`, `☁️ ⁱᵃᵐ|𝔇ĕ𝐬†𝓻⊙γ𒆜`, dev, 'thekingdestroy507@gmail.com', `🇻🇪 Venezuela`, `https://github.com/The-King-Destroy`, bio],
+    [`${nomorown}`, `👑 Propietario`, `☁️ ⁱᵃᵐ|𝔇ĕ𝐬†𝓻⊙γ𒆜`, dev, 'thekingdestroy507@gmail.com', `🇻🇪 Venezuela`, `https://github.com/The-King-Destroy`, bio],
     [`${conn.user.jid.split('@')[0]}`, `Es Un Bot 🍬`, `${packname}`, `📵 No Hacer Spam`, 'moisesmusic04@gmail.com', `🇨🇴 Colombia`, `https://github.com/The-King-Destroy/Yuki_Suou-Bot`, biobot]
   ], m);
 };
