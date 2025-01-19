@@ -146,9 +146,8 @@ href="https://dahs.hostingpy.shop/home"><img src="https://files.catbox.moe/lr92z
 ---
 
 ### **`🌟 Colaboradores`**
-<a href="https://github.com/leoneloficial/sumi-zakurazawa">
-<img src="https://github.com/leoneloficial/repo=leoneloficial/sumi-zakurazawa" /> 
-</a>
+href="https://github.com/EnderJs-CreatorGL"><img src="https://github.com/EnderJs-CreatorGL.png" width="100" height="100" alt="
+ⁱᵃᵐ|𝔇ĕ𝐬†𝓻⊙γ𒆜"/></a>>
 
 ### **`👑 Propietario`**
 <a
