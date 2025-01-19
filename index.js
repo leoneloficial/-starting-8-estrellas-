@@ -23,7 +23,7 @@ font: 'chrome',
 align: 'center',
 colors: ['redBright']
 });
-say(`Developed By • The-King-Destroy`, {
+say(`Developed By • LeonelOFC`, {
 font: 'console',
 align: 'center',
 colors: ['blueBright']
