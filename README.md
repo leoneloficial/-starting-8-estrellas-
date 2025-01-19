@@ -146,7 +146,7 @@ href="https://dahs.hostingpy.shop/home"><img src="https://files.catbox.moe/lr92z
 ---
 
 ### **`🌟 Colaboradores`**
-<a href="https://github.com/leoneloficial/sumi-zakurazawa/graphs/contributors">
+<a href="https://github.com/leoneloficial/sumi-zakurazawa">
 <img src="https://contrib.rocks/image?repo=leoneloficial/sumi-zakurazawa" /> 
 </a>
 
