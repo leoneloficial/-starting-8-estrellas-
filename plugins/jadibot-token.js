@@ -1,4 +1,4 @@
-import fs from 'fs'
+/*import fs from 'fs'
 
 async function handler(m, {usedPrefix}) {
 
@@ -18,4 +18,4 @@ handler.command = ['token']
 handler.tags = ['serbot']
 handler.private = true
 
-export default handler 
+export default handler*/
