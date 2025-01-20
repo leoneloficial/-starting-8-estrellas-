@@ -17,9 +17,9 @@ let handler = async (m, { conn, args }) => {
 
 🍃 *Colaboradores:*
 
-
+✴️ EnderJs-CreatorGL
 🔖 *Rol:* Developer
-👾 *GitHub:
+👾 *GitHub:https://github.com/EnderJs-CreatorGL/Lobo-Bot-Lite
 
 🍍 
 🔖 *Rol:* Developer
