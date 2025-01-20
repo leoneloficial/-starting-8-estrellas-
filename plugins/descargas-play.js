@@ -1,172 +1,57 @@
-import axios from 'axios';
-import cheerio from 'cheerio';
-import qs from 'qs';
+import fetch from "node-fetch";
+import yts from "yt-search";
 
-let handler = async (m, { conn, text, usedPrefix, command }) => {
-  if (!text) {
-    return m.reply(`Ejemplo de uso: ${usedPrefix + command} _Rojo_ - _27_ \n_By `);
-  }
+let handler = async (m, { conn, text }) => {
+if (!text) {
+return m.reply("🍬 Ingresa el texto de lo que quieres buscar.")
+}
 
-  const appleMusic = {
-    search: async (query) => {
-      const url = `https://music.apple.com/us/search?term=${query}`;
-      try {
-        const { data } = await axios.get(url);
-        const $ = cheerio.load(data);
-        const results = [];
-        $('.desktop-search-page .section[data-testid="section-container"] .grid-item').each((index, element) => {
-          const title = $(element).find('.top-search-lockup__primary__title').text().trim();
-          const subtitle = $(element).find('.top-search-lockup__secondary').text().trim();
-          const link = $(element).find('.click-action').attr('href');
-          results.push({ title, subtitle, link });
-        });
-        return results;
-      } catch (error) {
-        console.error("Error en búsqueda de Apple Music:", error.message);
-        return [];
-      }
-    }
-  };
+let ytres = await yts(text)
+let video = ytres.videos[0]
+  
+if (!video) {
+return m.reply("🍭 No se encontraron resultados...")
+}
 
-  const appledown = {
-    getData: async (urls) => {
-      const url = `https://aaplmusicdownloader.com/api/applesearch.php?url=${urls}`;
-      try {
-        const response = await axios.get(url, {
-          headers: {
-            'Accept': 'application/json, text/javascript, */*; q=0.01',
-            'X-Requested-With': 'XMLHttpRequest',
-            'User-Agent': 'MyApp/1.0',
-            'Referer': 'https://aaplmusicdownloader.com/'
-          }
-        });
-        return response.data;
-      } catch (error) {
-        console.error("Error obteniendo datos de Apple Music Downloader:", error.message);
-        return null;
-      }
-    },
-    getAudio: async (trackName, artist, urlMusic, token) => {
-      const url = 'https://aaplmusicdownloader.com/api/composer/swd.php';
-      const data = {
-        song_name: trackName,
-        artist_name: artist,
-        url: urlMusic,
-        token: token
-      };
-      const headers = {
-        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-        'Accept': 'application/json, text/javascript, */*; q=0.01',
-        'X-Requested-With': 'XMLHttpRequest',
-        'User-Agent': 'MyApp/1.0',
-        'Referer': 'https://aaplmusicdownloader.com/song.php#'
-      };
-      try {
-        const response = await axios.post(url, qs.stringify(data), { headers });
-        return response.data.dlink;
-      } catch (error) {
-        console.error("Error obteniendo audio de Apple Music:", error.message);
-        return null;
-      }
-    },
-    download: async (urls) => {
-      const musicData = await appledown.getData(urls);
-      if (!musicData || !musicData.name) {
-        return { success: false, message: "No se encontraron datos de música." };
-      }
+let { title, thumbnail, timestamp, views, ago, url } = video
 
-      const encodedData = encodeURIComponent(JSON.stringify([
-        musicData.name,
-        musicData.albumname,
-        musicData.artist,
-        musicData.thumb,
-        musicData.duration,
-        musicData.url
-      ]));
-      const url = 'https://aaplmusicdownloader.com/song.php';
-      const headers = {
-        'authority': 'aaplmusicdownloader.com',
-        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-        'content-type': 'application/x-www-form-urlencoded',
-        'origin': 'https://aaplmusicdownloader.com',
-        'referer': 'https://aaplmusicdownloader.com/',
-        'user-agent': 'MyApp/1.0'
-      };
+let vistas = parseInt(views).toLocaleString("es-ES") + " vistas"
 
-      try {
-        const response = await axios.post(url, `data=${encodedData}`, { headers });
-        const $ = cheerio.load(response.data);
-        const trackName = $('td:contains("Track Name:")').next().text();
-        const albumName = $('td:contains("Album:")').next().text();
-        const artist = $('td:contains("Artist:")').next().text();
-        const thumb = $('figure.image img').attr('src');
-        const urlMusic = urls;
-        const token = $('a#download_btn').attr('token');
-        const downloadLink = await appledown.getAudio(trackName, artist, urlMusic, token);
+let HS = `🎬 Título: *${title}*
+*°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°*
+> 🕒 Duración: *${timestamp}*
+*°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°*
+> 👀 Vistas: *${vistas}*
+*°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°*
+> 🍬 Canal *${author.name || 'Desconocido'}*
+*°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°*
+> 📆 Publicado *${ago}*
+*°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°*
+> 🔗 Enlace: ${url}`
 
-        return {
-          success: true,
-          name: trackName,
-          albumname: albumName,
-          artist: artist,
-          thumb: thumb,
-          duration: $('td:contains("Duration:")').next().text(),
-          download: downloadLink
-        };
-      } catch (error) {
-        console.error("Error descargando música de Apple Music:", error.message);
-        return { success: false, message: error.message };
-      }
-    }
-  };
+let thumb = (await conn.getFile(thumbnail))?.data;
 
-  conn.sendMessage(m.chat, { react: { text: "🕒", key: m.key } });
+let JT = {
+contextInfo: {
+externalAdReply: {
+title: title, body: "",
+mediaType: 1, previewType: 0,
+mediaUrl: url, sourceUrl: url,
+thumbnail: thumb, renderLargerThumbnail: true,
+}}}
 
-  const searchResults = await appleMusic.search(text);
-  if (!searchResults.length) {
-    return m.reply("No se encontraron resultados para tu búsqueda.");
-  }
+await conn.reply(m.chat, HS, m, JT)
 
-  const firstResult = searchResults[0];
-  const songDetails = await appledown.getData(firstResult.link);
+try {
+let api = await fetch(`https://api.vreden.web.id/api/ytplaymp3?query=https://youtu.be/MoN9ql6Yymw${url}`);
+let json = await api.json()
+let { download } = json.result
 
-  if (!songDetails || !songDetails.name || !songDetails.artist || !songDetails.duration) {
-    return m.reply("No se pudo obtener la información completa de la canción.");
-  }
+await conn.sendMessage(m.chat, { audio: { url: download.url }, caption: ``, mimetype: "audio/mpeg", }, { quoted: m })
+} catch (error) {
+console.error(error)    
+}}
 
-  const songInfoMessage = `✧ Nombre: ${songDetails.name}\n✧ Artista: ${songDetails.artist}\n✧ Duración: ${songDetails.duration}`;
-  await conn.sendMessage(m.chat, { text: songInfoMessage }, { quoted: m });
+handler.command = ['play']
 
-  const musicData = await appledown.download(firstResult.link);
-  if (!musicData.success) {
-    return m.reply(`Error: ${musicData.message}`);
-  }
-
-  const { name, albumname, artist, url, thumb, duration, download } = musicData;
-
-  const doc = {
-    audio: { url: download },
-    mimetype: 'audio/mp4',
-    fileName: `${name}.mp3`,
-    contextInfo: {
-      externalAdReply: {
-        showAdAttribution: true,
-        mediaType: 2,
-        mediaUrl: url,
-        title: name,
-        sourceUrl: url,
-        thumbnail: await (await conn.getFile(thumb)).data
-      }
-    }
-  };
-
-  await conn.sendMessage(m.chat, doc, { quoted: m });
-  await conn.sendMessage(m.chat, { react: { text: '✅', key: m.key } });
-};
-
-handler.help = ['play'];
-handler.tags = ['downloader'];
-
-handler.command = ['play'];
-
-export default handler;
+export default handler
