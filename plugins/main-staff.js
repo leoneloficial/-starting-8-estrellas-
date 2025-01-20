@@ -11,7 +11,7 @@ let handler = async (m, { conn, args }) => {
 
 🪐 *Creador:*
 
-☁️ 
+☁️ ৎ୭࠭͢𓆩𝕷͢𝖊𝖔፝֟፝֟፝֟፝֟፝֟፝֟𝖓𝖊𝖑𓆪͟͞ '
 🔖 *Rol:* Creador
 👾 *GitHub:* 
 
