@@ -3,7 +3,7 @@
 
 import fs from 'fs';
 
-const directoryPath = `./${jadiBot}/`;
+const directoryPath = `./${jadi}/`;
 const sanSessionPath = `./${sessions}/`;
 
 function cleanSubbotDirectories() {
