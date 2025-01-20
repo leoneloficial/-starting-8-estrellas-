@@ -91,10 +91,10 @@ global.gp1 = 'https://chat.whatsapp.com/DouO0ZzbGyC3yqbeqpbVIp'
 global.gp2 = 'https://chat.whatsapp.com/Ecz881bBgqPIWjDOaKkp7E'
 global.comunidad1 = 'https://chat.whatsapp.com/EwrwcGvpLf1BnMhP3B4axD'
 global.channel = 'https://whatsapp.com/channel/0029Vagdmfv1SWt5nfdR4z3w'
-global.channel2 = 'https://whatsapp.com/channel/0029VavzewJLikg78gILRn1o'
+global.channel2 = 'https://whatsapp.com/channel/0029Vagdmfv1SWt5nfdR4z3w'
 global.md = 'https://github.com/leoneloficial/-starting-8-estrellas-'
 global.correo = 'thekingdestroy507@gmail.com'
-global.cn ='https://whatsapp.com/channel/0029VapSIvR5EjxsD1B7hU3T';
+global.cn ='https://whatsapp.com/channel/0029Vagdmfv1SWt5nfdR4z3w';
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
