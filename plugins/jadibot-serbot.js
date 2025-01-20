@@ -62,6 +62,7 @@ global.db.data.users[m.sender].Subs = new Date * 1
 } 
 handler.help = ['serbot', 'serbot code']
 handler.tags = ['serbot']
+handler.tags = ['owner']
 handler.command = ['jadibot', 'serbot']
 export default handler 
 
