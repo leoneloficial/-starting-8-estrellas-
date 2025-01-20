@@ -11,32 +11,31 @@ let handler = async (m, { conn, args }) => {
 
 🪐 *Creador:*
 
-☁️ ⁱᵃᵐ|𝔇ĕ𝐬†𝓻⊙γ𒆜
+☁️ 
 🔖 *Rol:* Creador
-👾 *GitHub:* https://github.com/The-King-Destroy
+👾 *GitHub:* 
 
 🍃 *Colaboradores:*
 
-🫧 𝓔𝓶𝓶𝓪 𝓥𝓲𝓸𝓵𝓮𝓽𝓼 𝓥𝓮𝓻𝓼𝓲ó𝓷 
-🔖 *Rol:* Developer
-👾 *GitHub:* https://github.com/Elpapiema
 
-🍍 Niño Piña
 🔖 *Rol:* Developer
-👾 *GitHub:* https://github.com/WillZek
+👾 *GitHub:
 
-⚡ ☆꧁༒ĹєǤ𝒆𝐧𝐃༒꧂☆
+🍍 
 🔖 *Rol:* Developer
-👾 *GitHub:* https://github.com/Diomar-s
+👾 *Github:
 
-☘️ I'm Fz' (Tesis)
+⚡ 
 🔖 *Rol:* Developer
-👾 *GitHub:* https://github.com/FzTeis
+👾 *GitHub:
 
-🌪️ 𝓛𝓮𝓰𝓷𝓪
+☘️ 
+🔖 *Rol:* Developer
+👾 *GitHub:
+
+
 🔖 *Rol:* Moderador 
-👾 *GitHub:* https://github.com/Legna-chan
-  `.trim();
+👾 *GitHub:* `.trim();
 
   await conn.sendMessage(m.chat, { 
       text: staff,
