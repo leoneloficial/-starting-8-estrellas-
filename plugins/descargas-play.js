@@ -42,7 +42,7 @@ thumbnail: thumb, renderLargerThumbnail: true,
 await conn.reply(m.chat, HS, m, JT)
 
 try {
-let api = await fetch(`https://restapi.apibotwa.biz.id/api/ytmp3?url=https://youtu.be/syFZfO_wfMQ?si={url}`);
+let api = await fetch(`https://restapi.apibotwa.biz.id/api/ytmp3?url=${url}`);
 let json = await api.json()
 let { download } = json.result
 
