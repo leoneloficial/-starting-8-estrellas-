@@ -57,7 +57,7 @@ global.textbot = 'Yυƙι-Sυσυ-Bσƚ • Powered By ৎ୭࠭͢𓆩𝕷͢𝖊
 global.moneda = 'Yenes'
 global.welcom1 = 'Edita Con #setwelcome'
 global.welcom2 = 'Edita Con #setbye'
-global.banner = 'https://tinyurl.com/27d7rnhu'
+global.banner = 'https://qu.ax/mCKbi.jpg'
 global.catalogo = 'https://tinyurl.com/25ru293g'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
