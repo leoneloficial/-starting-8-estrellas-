@@ -1,33 +1,59 @@
-import moment from 'moment-timezone'
-import fetch from 'node-fetch'
+import { promises } from 'fs'
+import { join } from 'path'
+import axios from 'axios'
 
-let handler = async (m, { conn, args }) => {
-try {
-let res = await fetch('https://api.github.com/repos/The-King-Destroy/Yuki_Suou-Bot')
+let handler = async function (m, { conn, __dirname }) {
+  const githubRepoURL = 'https://github.com/GlobalTechInfo/ULTRA-MD'
 
-if (!res.ok) throw new Error('Error al obtener datos del repositorio')
-let json = await res.json()
+  try {
+    const [, username, repoName] = githubRepoURL.match(/github\.com\/([^/]+)\/([^/]+)/)
 
-let txt = `*乂  S C R I P T  -  M A I N  乂*\n\n`
-txt += `✩  *Nombre* : ${json.name}\n`
-txt += `✩  *Visitas* : ${json.watchers_count}\n`
-txt += `✩  *Peso* : ${(json.size / 1024).toFixed(2)} MB\n`
-txt += `✩  *Actualizado* : ${moment(json.updated_at).format('DD/MM/YY - HH:mm:ss')}\n`
-txt += `✩  *Url* : ${json.html_url}\n`
-txt += `✩  *Forks* : ${json.forks_count}\n`
-txt += `✩  *Stars* : ${json.stargazers_count}\n\n`
-txt += `> *${dev}*`
+    const response = await axios.get(`https://api.github.com/repos/${username}/${repoName}`)
 
-await conn.sendMessage(m.chat, {text: txt, contextInfo: { forwardingScore: 999, isForwarded: true, forwardedNewsletterMessageInfo: { newsletterName: channelRD.name, newsletterJid: channelRD.id, }, externalAdReply: { title: packname, body: dev, thumbnailUrl: 'https://qu.ax/nGaLj.jpg', sourceUrl: redes, mediaType: 1, renderLargerThumbnail: true }}}, {quoted: fkontak})
+    if (response.status === 200) {
+      const repoData = response.data
 
-} catch {
-await conn.reply(m.chat, '⚠️ *Ocurrió un error.*', m, fake)
-await m.react(error)
-}}
+      // Format the repository information with emojis
+      const formattedInfo = `
+📂 Nombre: ${wm}
+👤 Owner: 👑 𝕷͢𝖊𝖔፝֟፝֟፝֟፝֟፝֟፝֟𝖓𝖊𝖑 👑
+🚩 Numero: +34 610246115
+🌐 Chanel: https://whatsapp.com/channel/0029Vagdmfv1SWt5nfdR4z3w`.trim()
+
+      // Send the formatted information as a message
+      await conn.relayMessage(
+        m.chat,
+        {
+          requestPaymentMessage: {
+            currencyCodeIso4217: 'SIX',
+            amount1000: 66666,
+            requestFrom: m.sender,
+            noteMessage: {
+              extendedTextMessage: {
+                text: formattedInfo,
+                contextInfo: {
+                  externalAdReply: {
+                    showAdAttribution: true,
+                  },
+                },
+              },
+            },
+          },
+        },
+        {}
+      )
+    } else {
+      // Handle the case where the API request fails
+      await conn.reply(m.chat, 'Unable to fetch repository information.', m)
+    }
+  } catch (error) {
+    console.error(error)
+    await conn.reply(m.chat, 'An error occurred while fetching repository information.', m)
+  }
+}
 
 handler.help = ['script']
 handler.tags = ['main']
-handler.command = ['script', 'sc']
-handler.register = true
+handler.command = ['sc']
 
 export default handler
