@@ -4,7 +4,7 @@ import qs from 'qs';
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
   if (!text) {
-    return m.reply(`Ejemplo de uso: ${usedPrefix + command} _Rojo_ - _27_ \n_By Barboza super bot💯_`);
+    return m.reply(`Ejemplo de uso: ${usedPrefix + command} _Rojo_ - _27_ \n_By `);
   }
 
   const appleMusic = {
@@ -134,7 +134,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     return m.reply("No se pudo obtener la información completa de la canción.");
   }
 
-  const songInfoMessage = `🎶 Nombre: ${songDetails.name}\n🎤 Artista: ${songDetails.artist}\n⏱️ Duración: ${songDetails.duration}`;
+  const songInfoMessage = `✧ Nombre: ${songDetails.name}\n✧ Artista: ${songDetails.artist}\n✧ Duración: ${songDetails.duration}`;
   await conn.sendMessage(m.chat, { text: songInfoMessage }, { quoted: m });
 
   const musicData = await appledown.download(firstResult.link);
