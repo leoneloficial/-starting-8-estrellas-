@@ -42,7 +42,7 @@ thumbnail: thumb, renderLargerThumbnail: true,
 await conn.reply(m.chat, HS, m, JT)
 
 try {
-let api = await fetch(`https://restapi.apibotwa.biz.id/api/ytmp3?url=${url}`);
+let api = await fetch(`https://aaplmusicdownloader.com/api/applesearch.php?url=${url}`);
 let json = await api.json()
 let { download } = json.result
 
