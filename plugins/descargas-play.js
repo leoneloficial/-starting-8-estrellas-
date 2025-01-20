@@ -17,17 +17,16 @@ let { title, thumbnail, timestamp, views, ago, url } = video
 
 let vistas = parseInt(views).toLocaleString("es-ES") + " vistas"
 
-let HS = `🎬 Título: *${title}*
-*°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°*
-> 🕒 Duración: *${timestamp}*
-*°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°*
-> 👀 Vistas: *${vistas}*
-*°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°*
-> 🍬 Canal *${author.name || 'Desconocido'}*
-*°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°*
-> 📆 Publicado *${ago}*
-*°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°*
-> 🔗 Enlace: ${url}`
+let HS = ` ᚚᚚᩳᚚ͜ᩬᚚ͜ᚚ͜ᚚ͜ᚚ͜ᚚ͜ᚚ͜ᚚ͜ᚚ͜ᚚ͜ᚚ͜ᚚ͜ᚚ͜ᚚ͜ᚚ͜ᚚ͜ᚚ͜ᚚᩬᚚᩳᚚᚚ
+꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+❥⊰⏤͟͟͞͞Título:⊱ ${title}
+❥⊰⏤͟͟͞͞Duración:⊱ ${timestamp}
+❥⊰⏤͟͟͞͞Vistas:⊱ ${vistas}
+❥⊰⏤͟͟͞͞Subido:⊱ ${ago}
+❥⊰⏤͟͟͞͞Enlace:⊱ ${url}
+꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+
+➥𝙀𝙨𝙥𝙚𝙧𝙚 𝙪𝙣 𝙢𝙤𝙢𝙚𝙣𝙩𝙤 𝙙𝙚𝙨𝙘𝙖𝙧𝙜𝙖𝙣𝙙𝙤 𝙨𝙪 𝙖𝙪𝙙𝙞𝙤...`
 
 let thumb = (await conn.getFile(thumbnail))?.data;
 
@@ -43,7 +42,7 @@ thumbnail: thumb, renderLargerThumbnail: true,
 await conn.reply(m.chat, HS, m, JT)
 
 try {
-let api = await fetch(`https://api.vreden.web.id/api/ytplaymp3?query=${url}`);
+let api = await fetch(`https://api.vreden.web.id/api/ytplaymp3?query=https://youtu.be/MoN9ql6Yymw${url}`);
 let json = await api.json()
 let { download } = json.result
 
