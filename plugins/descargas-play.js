@@ -1,3 +1,6 @@
+/*codigo principal play de Starling by zaphkiel*/
+
+
 import fetch from "node-fetch";
 import yts from 'yt-search';
 import axios from "axios";
