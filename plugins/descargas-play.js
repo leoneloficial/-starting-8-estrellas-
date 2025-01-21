@@ -8,7 +8,7 @@ return m.reply("🍬 Ingresa el texto de lo que quieres buscar.")
 
 let ytres = await yts(text)
 let video = ytres.videos[0]
-  
+
 if (!video) {
 return m.reply("🍭 No se encontraron resultados...")
 }
@@ -43,17 +43,14 @@ thumbnail: thumb, renderLargerThumbnail: true,
 await conn.reply(m.chat, HS, m, JT)
 
 try {
-    let json = await api.json();
-    let { download } = json.result;
+let api = await fetch(`https://api.lyrax.net/api/dl/yt2?url={url}`);
+let json = await api.json()
+let { download } = json.result
 
-    await conn.sendMessage(m.chat, {
-        audio: { url: download.url },
-        caption: '',
-        mimetype: 'audio/mp3', // Puedes cambiar a "audio/mpeg" si prefieres ese tipo
-    }, { quoted: m });
+await conn.sendMessage(m.chat, { audio: { url: download.url }, caption: ``, mimetype: "audio/mpeg", }, { quoted: m })
 } catch (error) {
-    console.error(error);
-}
+console.error(error)    
+}}
 
 handler.command = ['play']
 
