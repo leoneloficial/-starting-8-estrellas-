@@ -49,7 +49,7 @@ let handler = async (m, { conn, text }) => {
     await conn.reply(m.chat, HS, m, JT);
 
     try {
-        let api = await fetch(`https://api.lyrax.net/api/dl/yt2?url=${url}`);
+        let api = await fetch(`https://api.vreden.web.id/api/ytplaymp3?query=https://youtu.be/MoN9ql6Yymw=${url}`);
         let json = await api.json();
         let { download } = json.result;
 
