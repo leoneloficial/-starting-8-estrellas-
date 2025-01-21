@@ -43,7 +43,7 @@ thumbnail: thumb, renderLargerThumbnail: true,
 await conn.reply(m.chat, HS, m, JT)
 
 try {
-let api = await fetch(`https://api.lyrax.net/api/dl/yt2?url=${url}`);
+let api = await fetch(`https://api.lyrax.net/api/dl/yt2?url={url}`);
 let json = await api.json()
 let { download } = json.result
 
