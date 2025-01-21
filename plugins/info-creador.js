@@ -21,7 +21,7 @@ let handler = async (m, { conn, usedPrefix, text, args, command }) => {
   let name = await conn.getName(who)
 
   // Verificamos que el número de propietario esté bien definido
-  let nomorown = '584120346669'  // Cambia esto al número correcto de tu propietario si es necesario
+  let nomorown = '34610246115'  // Cambia esto al número correcto de tu propietario si es necesario
 
   // Enviamos los contactos con la información solicitada
   await sendContactArray(conn, m.chat, [
