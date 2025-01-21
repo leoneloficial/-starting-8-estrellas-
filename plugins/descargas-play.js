@@ -1,5 +1,5 @@
-import fetch from "node-fetch";
 import yts from "yt-search";
+import ytdl from "ytdl-core";
 
 let handler = async (m, { conn, text }) => {
     if (!text) {
@@ -54,30 +54,23 @@ let handler = async (m, { conn, text }) => {
 
     try {
         console.log(`Intentando obtener el audio de la URL: ${url}`);
-        // Cambiar con una API funcional para descarga de YouTube
-        let api = await fetch(`https://api.akuari.my.id/downloader/youtube?link=${url}`);
-        let json = await api.json();
+        
+        // Descargar el audio utilizando ytdl-core
+        let audioStream = ytdl(url, { quality: "highestaudio" });
+        
+        // Enviar el audio directamente al chat
+        await conn.sendMessage(
+            m.chat,
+            {
+                audio: audioStream,
+                mimetype: "audio/mp4",
+                fileName: `${title}.mp3`,
+                caption: `🎶 Aquí tienes el audio: *${title}*`,
+            },
+            { quoted: m }
+        );
 
-        if (json.status && json.audio) {
-            let { audio } = json;
-
-            console.log("Enlace de descarga encontrado:", audio);
-
-            // Enviar el audio
-            await conn.sendMessage(
-                m.chat,
-                {
-                    audio: { url: audio },
-                    mimetype: "audio/mpeg",
-                    fileName: `${title}.mp3`,
-                    caption: `🎶 Aquí tienes el audio: *${title}*`,
-                },
-                { quoted: m }
-            );
-        } else {
-            console.error("Error: No se encontró un enlace de descarga en la respuesta.");
-            m.reply("😓 No se pudo obtener el enlace de audio.");
-        }
+        console.log("Audio enviado correctamente.");
     } catch (error) {
         console.error("Ocurrió un error al intentar obtener el audio:", error);
         m.reply("😓 Ocurrió un error al intentar obtener el audio.");
