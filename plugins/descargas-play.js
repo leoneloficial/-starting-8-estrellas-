@@ -54,20 +54,20 @@ let handler = async (m, { conn, text }) => {
 
     try {
         console.log(`Intentando obtener el audio de la URL: ${url}`);
-        // Reemplazar con la API que utilices para descargar audio
-        let api = await fetch(`https://api.lyrax.net/api/dl/yt2?url=${url}`);
+        // Cambiar con una API funcional para descarga de YouTube
+        let api = await fetch(`https://api.akuari.my.id/downloader/youtube?link=${url}`);
         let json = await api.json();
 
-        if (json.result && json.result.download) {
-            let { download } = json.result;
+        if (json.status && json.audio) {
+            let { audio } = json;
 
-            console.log("Enlace de descarga encontrado:", download.url);
+            console.log("Enlace de descarga encontrado:", audio);
 
             // Enviar el audio
             await conn.sendMessage(
                 m.chat,
                 {
-                    audio: { url: download.url },
+                    audio: { url: audio },
                     mimetype: "audio/mpeg",
                     fileName: `${title}.mp3`,
                     caption: `🎶 Aquí tienes el audio: *${title}*`,
