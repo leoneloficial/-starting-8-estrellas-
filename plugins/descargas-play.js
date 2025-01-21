@@ -43,7 +43,7 @@ thumbnail: thumb, renderLargerThumbnail: true,
 await conn.reply(m.chat, HS, m, JT)
 
 try {
-let api = await fetch(`const apiUrl = `https://delirius-apiofc.vercel.app/download/ytmp4?url={encodeURIComponent(yt_play[0]${url}`);
+let api = await fetch(`https://api.vreden.web.id/api/ytplaymp3?query=https://youtu.be/MoN9ql6Yymw${url}`);
 let json = await api.json()
 let { download } = json.result
 
