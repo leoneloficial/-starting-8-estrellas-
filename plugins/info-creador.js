@@ -24,8 +24,8 @@ let handler = async (m, { conn, usedPrefix, text, args, command }) => {
   let nomorown = '34610246115'  // Cambia esto al número correcto de tu propietario si es necesario
 
   await sendContactArray(conn, m.chat, [
-    [`${nomorown}`, `👑 Owner chip`, `☁️ ⁱᵃᵐLeonel𒆜`, 'leoneloficial@gmail.com', `🏴 Pirata`, `https://github.com/leoneloficial/-starting-8-estrellas-`, bio],
-    [`${conn.user.jid.split('@')[0]}`, `Es el bot 🍬`, `${packname}`, `📵 No Hacer Spam`, 'leoneloficial@gmail.com', `🏴 Pirata`, `https://github.com/leoneloficial/-starting-8-estrellas-`, biobot]
+    [`${nomorown}`, `👑 Staff Owner`, `☁️ ⁱᵃᵐLeonel𒆜`, 'leoneloficial@gmail.com', `🏴 Pirata`, `https://github.com/leoneloficial/-starting-8-estrellas-`, bio],
+    [`${conn.user.jid.split('@')[0]}`, `Es el bot 🍓`, `${packname}`, `📵 No Hacer Spam`, 'leoneloficial@gmail.com', `🏴 Pirata`, `https://github.com/leoneloficial/-starting-8-estrellas-`, biobot]
   ], m)
 }
 
