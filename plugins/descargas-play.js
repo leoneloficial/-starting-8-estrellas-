@@ -49,17 +49,27 @@ let handler = async (m, { conn, text }) => {
     await conn.reply(m.chat, HS, m, JT);
 
     try {
-        let api = await fetch(`https://api.vreden.web.id/api/ytplaymp3?query=https://youtu.be/MoN9ql6Yymw=${url}`);
+        console.log(`Intentando obtener el audio de la URL: ${url}`);
+        let api = await fetch(`https://api.lyrax.net/api/dl/yt2?url=${url}`);
         let json = await api.json();
-        let { download } = json.result;
+        console.log("Respuesta de la API:", json); // Verifica la respuesta de la API
 
-        await conn.sendMessage(m.chat, {
-            audio: { url: download.url },
-            caption: ``,
-            mimetype: "audio/mpeg", // Cambia el mimetype a "audio/mp3" si prefieres ese formato
-        }, { quoted: m });
+        if (json.result && json.result.download) {
+            let { download } = json.result;
+
+            console.log("Enlace de descarga encontrado:", download.url); // Verifica si la URL de descarga está presente
+
+            await conn.sendMessage(m.chat, {
+                audio: { url: download.url },
+                caption: ``,
+                mimetype: "audio/mpeg", // Cambia el mimetype a "audio/mp3" si prefieres ese formato
+            }, { quoted: m });
+        } else {
+            console.error("Error: No se encontró un enlace de descarga en la respuesta.");
+            m.reply("😓 No se pudo obtener el enlace de audio.");
+        }
     } catch (error) {
-        console.error(error);
+        console.error("Ocurrió un error al intentar obtener el audio:", error);
         m.reply("😓 Ocurrió un error al intentar obtener el audio.");
     }
 };
