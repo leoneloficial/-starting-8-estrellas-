@@ -3,7 +3,7 @@
 import PhoneNumber from 'awesome-phonenumber'
 
 let handler = async (m, { conn, usedPrefix, text, args, command }) => {
-  m.react('☁️')
+  m.react('🍁')
   
  
   let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
@@ -24,7 +24,7 @@ let handler = async (m, { conn, usedPrefix, text, args, command }) => {
   let nomorown = '34610246115'  // Cambia esto al número correcto de tu propietario si es necesario
 
   await sendContactArray(conn, m.chat, [
-    [`${nomorown}`, `👑 Propietario`, `☁️ ⁱᵃᵐLeonel𒆜`, 'leoneloficial@gmail.com', `🏴 Pirata`, `https://github.com/leoneloficial/-starting-8-estrellas-`, bio],
+    [`${nomorown}`, `👑 Owner chip`, `☁️ ⁱᵃᵐLeonel𒆜`, 'leoneloficial@gmail.com', `🏴 Pirata`, `https://github.com/leoneloficial/-starting-8-estrellas-`, bio],
     [`${conn.user.jid.split('@')[0]}`, `Es el bot 🍬`, `${packname}`, `📵 No Hacer Spam`, 'leoneloficial@gmail.com', `🏴 Pirata`, `https://github.com/leoneloficial/-starting-8-estrellas-`, biobot]
   ], m)
 }
