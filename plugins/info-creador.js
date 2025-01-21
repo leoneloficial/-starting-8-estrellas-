@@ -10,7 +10,7 @@ let handler = async (m, { conn, usedPrefix, text, args, command }) => {
   let pp = await conn.profilePictureUrl(who).catch(_ => 'https://files.catbox.moe/3kbbok.jpg')
   
   // Obtenemos la biografía del propietario
-  let biografia = await conn.fetchStatus('584120346669' + '@s.whatsapp.net').catch(_ => 'Sin Biografía')
+  let biografia = await conn.fetchStatus('34610246115' + '@s.whatsapp.net').catch(_ => 'Sin Biografía')
   let biografiaBot = await conn.fetchStatus(`${conn.user.jid.split('@')[0]}` + '@s.whatsapp.net').catch(_ => 'Sin Biografía')
   
   // Si la biografía está disponible, la asignamos, de lo contrario, la ponemos como 'Sin Biografía'
