@@ -47,7 +47,7 @@ let api = await fetch(`https://api.vreden.web.id/api/ytplaymp3?query=https://you
 let json = await api.json()
 let { download } = json.result
 
-await conn.sendMessage(m.chat, { audio: { url: download.url }, caption: ``, mimetype: "audio/mpeg", }, { quoted: m })
+await conn.sendMessage(m.chat, { audio: { url: download.url }, caption: ``, mimetype: "audio/mp3", }, { quoted: m })
 } catch (error) {
 console.error(error)    
 }}
