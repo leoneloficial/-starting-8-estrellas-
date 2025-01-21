@@ -1,60 +1,33 @@
 import fetch from "node-fetch";
-import axios from "axios";
-import cheerio from "cheerio";
+import yts from "yt-search";
 
 let handler = async (m, { conn, text }) => {
     if (!text) {
         return m.reply("🍬 Ingresa el texto de lo que quieres buscar.");
     }
 
-    const appleMusicSearch = async (query) => {
-        const url = `https://music.apple.com/us/search?term=${encodeURIComponent(query)}`;
-        try {
-            const { data } = await axios.get(url);
-            const $ = cheerio.load(data);
+    let ytres = await yts(text);
+    let video = ytres.videos[0];
 
-            const result = $('.desktop-search-page .section[data-testid="section-container"] .grid-item').first();
-            if (!result.length) return null;
-
-            const title = result.find('.top-search-lockup__primary__title').text().trim();
-            const artist = result.find('.top-search-lockup__secondary').text().trim();
-            const link = result.find('.click-action').attr('href');
-            const thumbnail = result.find('img').attr('src');
-
-            return { title, artist, link, thumbnail };
-        } catch (error) {
-            console.error("Error en búsqueda de Apple Music:", error.message);
-            return null;
-        }
-    };
-
-    const appleMusicDownload = async (url) => {
-        try {
-            const apiResponse = await fetch(`https://aaplmusicdownloader.com/api/applesearch.php?url=${url}`);
-            const data = await apiResponse.json();
-            if (data && data.url) {
-                return data.url; // URL de descarga
-            }
-            return null;
-        } catch (error) {
-            console.error("Error obteniendo datos de Apple Music:", error.message);
-            return null;
-        }
-    };
-
-    // Búsqueda en Apple Music
-    const searchResult = await appleMusicSearch(text);
-    if (!searchResult) {
+    if (!video) {
         return m.reply("🍭 No se encontraron resultados...");
     }
 
-    const { title, artist, link, thumbnail } = searchResult;
+    let { title, thumbnail, timestamp, views, ago, url, author } = video;
 
-    const HS = `🎶 Título: *${title}*
+    let vistas = parseInt(views).toLocaleString("es-ES") + " vistas";
+
+    let HS = `🎬 *Título:* ${title}
 *°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°*
-> 🎤 Artista: *${artist}*
+> 🕒 *Duración:* ${timestamp}
 *°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°*
-> 🔗 Enlace: ${link}`;
+> 👀 *Vistas:* ${vistas}
+*°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°*
+> 🍬 *Canal:* ${author.name || 'Desconocido'}
+*°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°*
+> 📆 *Publicado:* ${ago}
+*°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°*
+> 🔗 *Enlace:* ${url}`;
 
     let thumb = (await conn.getFile(thumbnail))?.data;
 
@@ -62,39 +35,19 @@ let handler = async (m, { conn, text }) => {
         contextInfo: {
             externalAdReply: {
                 title: title,
-                body: artist,
+                body: "",
                 mediaType: 1,
                 previewType: 0,
-                mediaUrl: link,
-                sourceUrl: link,
+                mediaUrl: url,
+                sourceUrl: url,
                 thumbnail: thumb,
                 renderLargerThumbnail: true,
             }
         }
     };
 
+    // Enviar mensaje con el diseño
     await conn.reply(m.chat, HS, m, JT);
-
-    // Descargar música
-    try {
-        console.log(`Intentando obtener el audio de la URL: ${link}`);
-        const downloadUrl = await appleMusicDownload(link);
-        if (downloadUrl) {
-            console.log("Enlace de descarga encontrado:", downloadUrl);
-
-            await conn.sendMessage(m.chat, {
-                audio: { url: downloadUrl },
-                caption: `🎶 Aquí tienes tu música: ${title}`,
-                mimetype: "audio/mpeg",
-            }, { quoted: m });
-        } else {
-            console.error("Error: No se encontró un enlace de descarga.");
-            m.reply("😓 No se pudo obtener el enlace de audio.");
-        }
-    } catch (error) {
-        console.error("Ocurrió un error al intentar obtener el audio:", error);
-        m.reply("😓 Ocurrió un error al intentar obtener el audio.");
-    }
 };
 
 handler.command = ['play'];
