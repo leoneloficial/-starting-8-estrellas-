@@ -23,11 +23,11 @@ let HS = `🎬 Título: *${title}*
 *°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°*
 > 👀 Vistas: *${vistas}*
 *°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°*
-> 🍬 Canal *${author.name || 'Desconocido'}*
+> 🍬 Canal *${author?.name || 'Desconocido'}*  // Uso de optional chaining para evitar errores si 'author' es undefined
 *°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°*
 > 📆 Publicado *${ago}*
 *°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°*
-> 🔗 Enlace: ${url}`
+> 🔗 Enlace: ${url}`;
 
 let thumb = (await conn.getFile(thumbnail))?.data;
 
