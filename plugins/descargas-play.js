@@ -43,14 +43,17 @@ thumbnail: thumb, renderLargerThumbnail: true,
 await conn.reply(m.chat, HS, m, JT)
 
 try {
-let api = await fetch(`https://api.vreden.web.id/api/ytplaymp3?query=https://youtu.be/MoN9ql6Yymw${url}`);
-let json = await api.json()
-let { download } = json.result
+    let json = await api.json();
+    let { download } = json.result;
 
-await conn.sendMessage(m.chat, { audio: { url: download.url }, caption: ``, mimetype: "audio/mp3", }, { quoted: m })
+    await conn.sendMessage(m.chat, {
+        audio: { url: download.url },
+        caption: '',
+        mimetype: 'audio/mp3', // Puedes cambiar a "audio/mpeg" si prefieres ese tipo
+    }, { quoted: m });
 } catch (error) {
-console.error(error)    
-}}
+    console.error(error);
+}
 
 handler.command = ['play']
 
