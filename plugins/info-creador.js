@@ -1,7 +1,7 @@
 import PhoneNumber from 'awesome-phonenumber'
 
 let handler = async (m, { conn, usedPrefix, text, args, command }) => {
-  m.react('☁️')
+  m.react('☁️')  // Reacción con el emoji de la nube
   
   // Determinamos quién es el destinatario o el remitente si no se menciona a nadie.
   let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
@@ -10,7 +10,7 @@ let handler = async (m, { conn, usedPrefix, text, args, command }) => {
   let pp = await conn.profilePictureUrl(who).catch(_ => 'https://files.catbox.moe/3kbbok.jpg')
   
   // Obtenemos la biografía del propietario
-  let biografia = await conn.fetchStatus('34610246115' + '@s.whatsapp.net').catch(_ => 'Sin Biografía')
+  let biografia = await conn.fetchStatus('584120346669' + '@s.whatsapp.net').catch(_ => 'Sin Biografía')
   let biografiaBot = await conn.fetchStatus(`${conn.user.jid.split('@')[0]}` + '@s.whatsapp.net').catch(_ => 'Sin Biografía')
   
   // Si la biografía está disponible, la asignamos, de lo contrario, la ponemos como 'Sin Biografía'
@@ -19,6 +19,9 @@ let handler = async (m, { conn, usedPrefix, text, args, command }) => {
   
   // Obtenemos el nombre del destinatario o remitente
   let name = await conn.getName(who)
+
+  // Verificamos que el número de propietario esté bien definido
+  let nomorown = '584120346669'  // Cambia esto al número correcto de tu propietario si es necesario
 
   // Enviamos los contactos con la información solicitada
   await sendContactArray(conn, m.chat, [
@@ -59,16 +62,21 @@ item4.URL:${isi4}
 item4.X-ABLabel:Website
 item5.X-ABLabel:${isi5}
 END:VCARD`.trim()
+
     contacts.push({ vcard, displayName: name })
   }
   
-  return await conn.sendMessage(jid, {
-    contacts: {
-      displayName: (contacts.length > 1 ? `2013 kontak` : contacts[0].displayName) || null,
-      contacts,
-    }
-  }, {
-    quoted,
-    ...options
-  })
+  try {
+    return await conn.sendMessage(jid, {
+      contacts: {
+        displayName: (contacts.length > 1 ? `2013 kontak` : contacts[0].displayName) || null,
+        contacts,
+      }
+    }, {
+      quoted,
+      ...options
+    })
+  } catch (error) {
+    console.error("Error al enviar contactos:", error)
+  }
 }
