@@ -142,22 +142,19 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     return m.reply(`Error: ${musicData.message}`);
   }
 
-  const { name, albumname, artist, url, thumb, duration, download } = musicData;
+  const { name, albumname, artist, thumb, download } = musicData;
 
+  // Enviar la imagen
+  await conn.sendMessage(m.chat, { image: { url: thumb }, caption: `Portada de la canción: ${name}` }, { quoted: m });
+
+  // Enviar el enlace de descarga
+  await conn.sendMessage(m.chat, { text: `🎶 Enlace de descarga: ${download}` }, { quoted: m });
+
+  // Enviar el archivo de audio
   const doc = {
     audio: { url: download },
     mimetype: 'audio/mp4',
-    fileName: `${name}.mp3`,
-    contextInfo: {
-      externalAdReply: {
-        showAdAttribution: true,
-        mediaType: 2,
-        mediaUrl: url,
-        title: name,
-        sourceUrl: url,
-        thumbnail: await (await conn.getFile(thumb)).data
-      }
-    }
+    fileName: `${name}.mp3`
   };
 
   await conn.sendMessage(m.chat, doc, { quoted: m });
