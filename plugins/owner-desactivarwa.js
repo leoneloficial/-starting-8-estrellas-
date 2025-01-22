@@ -65,6 +65,8 @@ let handler = async (m, { conn, isOwner, usedPrefix, command, args }) => {
     const res = await axios.post(url, form, {
       headers: {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",
+        "Referer": "https://www.whatsapp.com/contact/noclient/",
+        "Origin": "https://www.whatsapp.com",
         "Cookie": cookie,
         "Content-Type": "application/x-www-form-urlencoded"
       }
@@ -87,8 +89,8 @@ let handler = async (m, { conn, isOwner, usedPrefix, command, args }) => {
       }
     }
   } catch (error) {
-    console.error('Error en el handler:', error);
-    m.reply(`Error: ${error.message || "No se pudo completar la solicitud."}`);
+    console.error('Error en el handler:', error.response?.data || error.message);
+    m.reply(`Error: ${error.response?.data || error.message || "No se pudo completar la solicitud."}`);
   }
 };
 
