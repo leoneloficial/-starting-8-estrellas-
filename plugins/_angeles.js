@@ -1,4 +1,9 @@
-// Mapeo de comandos a ángeles y sus emojis
+const { MessageType } = require('@adiwajshing/baileys');
+
+// ID del propietario (debes reemplazarlo con tu número de WhatsApp en formato internacional)
+const OWNER_ID = '573001234567';  // Reemplázalo con tu número de teléfono de WhatsApp
+
+// Mapeo de comandos a ángeles y emojis
 const angeles = {
     '#angel1': { nombre: 'Zaphkiel', emoji: '😇' },
     '#angel2': { nombre: 'Michael', emoji: '👼' },
@@ -9,16 +14,26 @@ const angeles = {
     '#angel7': { nombre: 'Jophiel', emoji: '🌸' }
 };
 
-// Función para responder al comando
-function responderComando(comando) {
+// Manejador de mensajes
+async function handleMessage(message, conn) {
+    // Verificar si el mensaje proviene del propietario
+    const sender = message.key.remoteJid;  // Obtener el remitente
+    const senderId = sender.split('@')[0];  // Extraer el ID del remitente
+
+    if (senderId !== OWNER_ID) {
+        // Si no es el propietario, responder con un mensaje de error
+        await conn.sendMessage(sender, 'Solo el propietario puede usar este comando.', MessageType.text);
+        return;
+    }
+
+    // Verificar si el mensaje es un comando para el ángel
+    const comando = message.message.conversation.trim();
     if (angeles[comando]) {
         const angel = angeles[comando];
-        console.log(`El ángel es ${angel.nombre} ${angel.emoji}`);
+        await conn.sendMessage(sender, `El ángel es ${angel.nombre} ${angel.emoji}`, MessageType.text);
     } else {
-        console.log('Comando no reconocido.');
+        await conn.sendMessage(sender, 'Comando no reconocido.', MessageType.text);
     }
 }
 
-// Ejemplo de uso
-responderComando('#angel1'); // Esto responderá con "El ángel es Zaphkiel 😇"
-responderComando('#angel3'); // Esto responderá con "El ángel es Gabriel 🕊️"
+module.exports = handleMessage;
