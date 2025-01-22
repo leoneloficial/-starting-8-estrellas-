@@ -1,7 +1,6 @@
 const { MessageType } = require('@adiwajshing/baileys');
 
-// ID del propietario (debes reemplazarlo con tu número de WhatsApp en formato internacional)
-const OWNER_ID = '573001234567';  // Reemplázalo con tu número de teléfono de WhatsApp
+const OWNER_ID = '50558124470';  // Reemplázalo con tu número de teléfono de WhatsApp
 
 // Mapeo de comandos a ángeles y emojis
 const angeles = {
