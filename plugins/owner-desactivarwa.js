@@ -78,5 +78,6 @@ let handler = async (m, { conn, isOwner, usedPrefix, command, args }) => {
 
 handler.command = /^(supportwa|swa|soporte|support|desactivarwa|mandsupport)$/i;
 handler.rowner = true;
+handler.tags = ['owner']; // Añadir el tag 'owner' para que solo los propietarios puedan usarlo.
 
 export default handler;
