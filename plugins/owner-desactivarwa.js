@@ -6,13 +6,15 @@ let handler = async (m, { conn, isOwner, usedPrefix, command, args }) => {
   const q = args.join(" ");
   
   // Validación de entrada
-  if (!q || !args[0]) throw '*[❗] 𝙸𝙽𝙶𝚁𝙴𝚂𝙴 𝙴𝙻 𝙽𝚄𝙼𝙴𝚁𝙾 𝚀𝚄𝙴 𝙳𝙴𝚂𝙴𝙴 𝙳𝙴𝚂𝙰𝙲𝚃𝙸𝚅𝙰𝚁 𝙴𝙽 𝙵𝙾𝚁𝙼𝙰𝚃𝙾 𝙸𝙽𝚃𝙴𝚁𝙽𝙰𝙲𝙸𝙾𝙽𝙰𝙻, 𝙴𝙹𝙴𝙼𝙿𝙻𝙾: +𝟷 (𝟺𝟻0) 555-555*';
+  if (!q || !args[0]) throw '*[❗] INGRESE EL NÚMERO QUE DESEE DESACTIVAR EN FORMATO INTERNACIONAL, EJEMPLO: +1 (450) 555-555*';
   
   // Obteniendo los datos de la página de contacto de WhatsApp
   let ntah;
   try {
     ntah = await axios.get("https://www.whatsapp.com/contact/noclient/");
+    console.log('Datos de la página de contacto obtenidos correctamente.');
   } catch (error) {
+    console.error('Error al obtener la página de contacto:', error);
     throw 'Error al obtener datos de la página de contacto de WhatsApp.';
   }
 
@@ -20,20 +22,33 @@ let handler = async (m, { conn, isOwner, usedPrefix, command, args }) => {
   let email;
   try {
     email = await axios.get("https://www.1secmail.com/api/v1/?action=genRandomMailbox&count=10");
+    console.log('Correo aleatorio generado:', email.data);
+    if (!email.data || email.data.length === 0) throw new Error('No se generaron correos.');
   } catch (error) {
+    console.error('Error al generar correo aleatorio:', error);
     throw 'Error al generar un correo aleatorio.';
   }
 
   // Extrayendo las cookies y el formulario de la página
-  let cookie = ntah.headers["set-cookie"].join("; ");
+  let cookie = ntah.headers["set-cookie"]?.join("; ");
+  if (!cookie) throw 'Error: No se pudieron obtener las cookies.';
   let $ = cheerio.load(ntah.data);
   let $form = $("form");
+  if (!$form.length) throw 'Error: No se encontró el formulario en la página.';
   let url = new URL($form.attr("action"), "https://www.whatsapp.com").href;
+
+  // Validar campos del formulario
+  let jazoest = $form.find("input[name=jazoest]").val();
+  let lsd = $form.find("input[name=lsd]").val();
+  if (!jazoest || !lsd) {
+    console.error('Valores del formulario no encontrados:', { jazoest, lsd });
+    throw 'Error: No se pudieron obtener los valores ocultos del formulario.';
+  }
 
   // Preparando los datos para enviar el formulario
   let form = new URLSearchParams();
-  form.append("jazoest", $form.find("input[name=jazoest]").val());
-  form.append("lsd", $form.find("input[name=lsd]").val());
+  form.append("jazoest", jazoest);
+  form.append("lsd", lsd);
   form.append("step", "submit");
   form.append("country_selector", "ID");
   form.append("phone_number", q);
@@ -51,11 +66,15 @@ let handler = async (m, { conn, isOwner, usedPrefix, command, args }) => {
   form.append("__rev", "1006630858");
   form.append("__comment_req", "0");
 
+  console.log('Datos del formulario listos:', form.toString());
+
   // Realizando la petición POST con los datos del formulario
   let res;
   try {
     res = await axios({ url, method: "POST", data: form, headers: { cookie } });
+    console.log('Respuesta del servidor:', res.data);
   } catch (error) {
+    console.error('Error al enviar la solicitud de desactivación:', error);
     throw 'Error al enviar la solicitud de desactivación.';
   }
 
@@ -71,6 +90,7 @@ let handler = async (m, { conn, isOwner, usedPrefix, command, args }) => {
       const parsedData = JSON.parse(res.data.replace("for (;;);", ""));
       m.reply(util.format(parsedData));
     } catch (e) {
+      console.error('Error al procesar la respuesta:', res.data);
       m.reply('Hubo un error al procesar la respuesta de WhatsApp.');
     }
   }
@@ -78,6 +98,6 @@ let handler = async (m, { conn, isOwner, usedPrefix, command, args }) => {
 
 handler.command = /^(supportwa|swa|soporte|support|desactivarwa|mandsupport)$/i;
 handler.rowner = true;
-handler.tags = ['owner']; // Añadir el tag 'owner' para que solo los propietarios puedan usarlo.
+handler.tags = ['owner'];
 
 export default handler;
