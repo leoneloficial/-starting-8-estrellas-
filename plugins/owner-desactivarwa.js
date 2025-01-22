@@ -1,3 +1,6 @@
+/*codigo adaptado pero no funcional por restricciones de whatsapp*/
+
+
 import cheerio from "cheerio";
 import axios from "axios";
 import util from "util";
