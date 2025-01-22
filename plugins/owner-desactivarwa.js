@@ -9,7 +9,7 @@ let handler = async (m, { conn, isOwner, usedPrefix, command, args }) => {
   const q = args.join(" ");
   
   if (!q || !args[0]) {
-    m.reply('*[❗] INGRESE EL NÚMERO QUE DESEE DESACTIVAR EN FORMATO INTERNACIONAL, EJEMPLO: +1 (450) 555-555*');
+    m.reply('*[🍀] INGRESE EL NÚMERO QUE DESEE DESACTIVAR EN FORMATO INTERNACIONAL, EJEMPLO: +1 (450) 555-555*');
     return;
   }
   
