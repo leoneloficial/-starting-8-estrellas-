@@ -5,7 +5,6 @@ import util from "util";
 let handler = async (m, { conn, isOwner, usedPrefix, command, args }) => {
   const q = args.join(" ");
   
-  // Validación de entrada
   if (!q || !args[0]) {
     m.reply('*[❗] INGRESE EL NÚMERO QUE DESEE DESACTIVAR EN FORMATO INTERNACIONAL, EJEMPLO: +1 (450) 555-555*');
     return;
@@ -13,7 +12,12 @@ let handler = async (m, { conn, isOwner, usedPrefix, command, args }) => {
   
   try {
     // Obteniendo los datos de la página de contacto de WhatsApp
-    const ntah = await axios.get("https://www.whatsapp.com/contact/noclient/");
+    const ntah = await axios.get("https://www.whatsapp.com/contact/noclient/", {
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
+      }
+    });
+
     const cookie = ntah.headers["set-cookie"]?.join("; ");
     if (!cookie) throw new Error("No se pudieron obtener las cookies.");
 
@@ -58,7 +62,13 @@ let handler = async (m, { conn, isOwner, usedPrefix, command, args }) => {
     });
 
     // Realizando la petición POST
-    const res = await axios.post(url, form, { headers: { cookie } });
+    const res = await axios.post(url, form, {
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",
+        "Cookie": cookie,
+        "Content-Type": "application/x-www-form-urlencoded"
+      }
+    });
 
     // Procesando la respuesta
     const payload = String(res.data);
