@@ -24,7 +24,7 @@ if (/webp/g.test(mime)) out = await webp2png(img)
 else if (/image/g.test(mime)) out = await uploadImage(img)
 else if (/video/g.test(mime)) out = await uploadFile(img)
 if (typeof out !== 'string') out = await uploadImage(img)
-stiker = await sticker(false, out, global.packsticker, `━━━━━━━━♾\𖤓⏤͟͟͞͞вσт мαƒια 𓆩✝︎𓆪 ʝαρσηєѕα⏤͟͟͞͞𖤓\n${m.pushName}\n⇝ ${moment.tz('America/Los_Angeles').format('DD/MM/YY')}\n⇝ ${moment.tz('America/Los_Angeles').format('HH:mm:ss')} \n°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°\n\nѕτιϲκєя ϐγ: Starting`)
+stiker = await sticker(false, out, global.packsticker, `━━━━━━━━♾\вσт мαƒια\n${m.pushName}\n⇝ ${moment.tz('America/Los_Angeles').format('DD/MM/YY')}\n⇝ ${moment.tz('America/Los_Angeles').format('HH:mm:ss')} \n°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°\n\nѕτιϲκєя ϐγ: Starting`)
 }}
 } else if (args[0]) {
 if (isUrl(args[0])) stiker = await sticker(false, args[0], global.packsticker, `━━━━━━━━♾\𖤓⏤͟͟͞͞вσт мαƒια 𓆩✝︎𓆪 ʝαρσηєѕα⏤͟͟͞͞𖤓\n${m.pushName}\n⇝ ${moment.tz('America/Los_Angeles').format('DD/MM/YY')}\n⇝ ${moment.tz('America/Los_Angeles').format('HH:mm:ss')} \n°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°\n\nѕτιϲκєя ϐγ: Starting`)
