@@ -15,7 +15,7 @@ if (!img) return conn.reply(m.chat, `⚠️ *_La conversión ha fallado, intenta
 
 let out
 try {
-stiker = await sticker(img, false, global.packsticker, `━━━━━━━━♾\𖤓⏤͟͟͞͞вσт мαƒια 𓆩✝︎𓆪 ʝαρσηєѕα⏤͟͟͞͞𖤓\n${m.pushName}\n⇝ ${moment.tz('America/Los_Angeles').format('DD/MM/YY')}\n⇝ ${moment.tz('America/Los_Angeles').format('HH:mm:ss')} \n°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°\n\nѕτιϲκєя ϐγ: Starting`)
+stiker = await sticker(img, false, global.packsticker, `━━━━━━━━♾\вσт мαƒια ʝαρσηєѕα\n${m.pushName}\n⇝ ${moment.tz('America/Los_Angeles').format('DD/MM/YY')}\n⇝ ${moment.tz('America/Los_Angeles').format('HH:mm:ss')} \n°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°\n\nѕτιϲκєя ϐγ: Starting`)
 } catch (e) {
 console.error(e)
 } finally {
