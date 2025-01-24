@@ -10,7 +10,7 @@ try {
 let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || q.mediaType || ''
 if (/webp|image|video/g.test(mime)) {
-if (/video/g.test(mime)) if ((q.msg || q).seconds > 15) return m.reply(`🍭 ¡El video no puede durar más de 15 segundos!...`)
+if (/video/g.test(mime)) if ((q.msg || q).seconds > 8) return m.reply(`🍭 ¡El video no puede durar más de 10 segundos!...`)
 let img = await q.download?.()
 
 if (!img) return conn.reply(m.chat, `🍬 Por favor, envia una imagen o video para hacer un sticker.`, m, rcanal)
@@ -31,7 +31,7 @@ stiker = await sticker(false, out, global.packsticker, global.author)
 } else if (args[0]) {
 if (isUrl(args[0])) stiker = await sticker(false, args[0], global.packsticker, global.author)
 
-else return m.reply(`🍭 El url es incorrecto...`)
+else return m.reply(`🍭 El url es incorrecto....`)
 
 }
 } catch (e) {
@@ -42,7 +42,6 @@ if (stiker) conn.sendFile(m.chat, stiker, 'sticker.webp', '',m, true, { contextI
 
 else return conn.reply(m.chat, '🍬 Por favor, envia una imagen o video para hacer un sticker.', m, rcanal)
 
-
 }}
 handler.help = ['stiker <img>', 'sticker <url>']
 handler.tags = ['sticker']
@@ -50,7 +49,7 @@ handler.group = true;
 handler.register = false
 handler.command = ['s', 'sticker', 'stiker']
 
-export default handler
+export default handler;
 
 const isUrl = (text) => {
 return text.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)(jpe?g|gif|png)/, 'gi'))}
