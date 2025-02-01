@@ -12,7 +12,7 @@ let handler = async (m, { conn, usedPrefix, text, args, command }) => {
   let pp = await conn.profilePictureUrl(who).catch(_ => 'https://files.catbox.moe/3kbbok.jpg')
   
 
-  let biografia = await conn.fetchStatus('34610246115' + '@s.whatsapp.net').catch(_ => 'Sin Biografía')
+  let biografia = await conn.fetchStatus('584164137403' + '@s.whatsapp.net').catch(_ => 'Sin Biografía')
   let biografiaBot = await conn.fetchStatus(`${conn.user.jid.split('@')[0]}` + '@s.whatsapp.net').catch(_ => 'Sin Biografía')
   
   let bio = biografia.status?.toString() || 'Sin Biografía'
@@ -21,7 +21,7 @@ let handler = async (m, { conn, usedPrefix, text, args, command }) => {
 
   let name = await conn.getName(who)
 
-  let nomorown = '34610246115'  // Cambia esto al número correcto de tu propietario si es necesario
+  let nomorown = '584164137403'  // Cambia esto al número correcto de tu propietario si es necesario
 
   await sendContactArray(conn, m.chat, [
     [`${nomorown}`, `👑 Staff Owner`, `☁️ ⁱᵃᵐLeonel𒆜`, 'leoneloficial@gmail.com', `🏴 Pirata`, `https://github.com/leoneloficial/-starting-8-estrellas-`, bio],
