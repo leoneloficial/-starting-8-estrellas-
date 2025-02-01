@@ -144,10 +144,10 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   const infoMessage = {
     image: { url: thumb },
     caption: `𖤓⏤͟͟͞͞𝙏𝙚𝙖𝙢 𝙨𝙩𝙖𝙧𝙩𝙞𝙣𝙜 8 𝙚𝙨𝙩𝙧𝙚𝙡𝙡𝙖 𝙨⏤͟͟͞͞𖤓\n\n` +
-      `❥⏤͟͟͞͞Nombre⏤͟͟͞͞❥: ${name}\n` +
-      `❥⏤͟͟͞͞Álbum⏤͟͟͞͞❥: ${albumname}\n` +
-      `❥⏤͟͟͞͞Artista⏤͟͟͞͞❥: ${artist}\n` +
-      `❥⏤͟͟͞͞Duración⏤͟͟͞͞❥: ${duration}\n`,
+      `❥⏤͟͟͞͞𝙉𝙤𝙢𝙗𝙧𝙚⏤͟͟͞͞❥: ${name}\n` +
+      `❥⏤͟͟͞͞𝘼𝙡𝙗𝙪𝙢⏤͟͟͞͞❥: ${albumname}\n` +
+      `❥⏤͟͟͞͞𝘼𝙧𝙩𝙞𝙨𝙩𝙖⏤͟͟͞͞❥: ${artist}\n` +
+      `❥⏤͟͟͞͞𝘿𝙪𝙧𝙖𝙘𝙞𝙤𝙣⏤͟͟͞͞❥: ${duration}\n`,
     contextInfo: {
       externalAdReply: {
         title: name,
