@@ -143,7 +143,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   // Enviar información detallada con una miniatura
   const infoMessage = {
     image: { url: thumb },
-    caption: `𖤓⏤͟͟͞͞team starting⏤͟͟͞͞𖤓\n\n` +
+    caption: `𖤓⏤͟͟͞͞𝙏𝙚𝙖𝙢 𝙨𝙩𝙖𝙧𝙩𝙞𝙣𝙜 8 𝙚𝙨𝙩𝙧𝙚𝙡𝙡𝙖 𝙨⏤͟͟͞͞𖤓\n\n` +
       `❥⏤͟͟͞͞Nombre⏤͟͟͞͞❥: ${name}\n` +
       `❥⏤͟͟͞͞Álbum⏤͟͟͞͞❥: ${albumname}\n` +
       `❥⏤͟͟͞͞Artista⏤͟͟͞͞❥: ${artist}\n` +
