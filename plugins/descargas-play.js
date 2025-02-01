@@ -143,11 +143,11 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   // Enviar información detallada con una miniatura
   const infoMessage = {
     image: { url: thumb },
-    caption: `🎵 *Información del Audio:*\n\n` +
-      `📌 *Nombre:* ${name}\n` +
-      `💿 *Álbum:* ${albumname}\n` +
-      `🎤 *Artista:* ${artist}\n` +
-      `⏱️ *Duración:* ${duration}\n`,
+    caption: `𖤓⏤͟͟͞͞team starting⏤͟͟͞͞𖤓\n\n` +
+      `❥⏤͟͟͞͞Nombre⏤͟͟͞͞❥: ${name}\n` +
+      `❥⏤͟͟͞͞Álbum⏤͟͟͞͞❥: ${albumname}\n` +
+      `❥⏤͟͟͞͞Artista⏤͟͟͞͞❥: ${artist}\n` +
+      `❥⏤͟͟͞͞Duración⏤͟͟͞͞❥: ${duration}\n`,
     contextInfo: {
       externalAdReply: {
         title: name,
