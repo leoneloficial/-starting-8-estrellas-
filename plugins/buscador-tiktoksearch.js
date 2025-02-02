@@ -1,63 +1,108 @@
-import axios from 'axios'
-const {proto, generateWAMessageFromContent, prepareWAMessageMedia, generateWAMessageContent, getDevice} = (await import("@whiskeysockets/baileys")).default
 
-let handler = async (message, { conn, text, usedPrefix, command }) => {
-if (!text) return conn.reply(message.chat, '🍬 Por favor, ingrese lo que desea buscar en tiktok.', message, rcanal)
-async function createVideoMessage(url) {
-const { videoMessage } = await generateWAMessageContent({ video: { url } }, { upload: conn.waUploadToServer })
-return videoMessage
-}
-async function shuffleArray(array) {
-for (let i = array.length - 1; i > 0; i--) {
-const j = Math.floor(Math.random() * (i + 1));
-[array[i], array[j]] = [array[j], array[i]]
-}
-}
+
+// *— ★! TIKTOK - SEARCH*
+import axios from 'axios'
+
+let HS = async (m, { conn, text }) => {
+if (!text)  return conn.reply(m.chat, `❀ Ingresa el texto de lo que quieras buscar`, m)
+    
 try {
-await message.react(rwait)
-conn.reply(message.chat, '🍭 Descargando Su Video, espere un momento...', message, {
-contextInfo: { externalAdReply :{ mediaUrl: null, mediaType: 1, showAdAttribution: true,
-title: packname,
-body: dev,
-previewType: 0, thumbnail: icons,
-sourceUrl: channel }}})
-let results = []
-let { data: response } = await axios.get('https://apis-starlights-team.koyeb.app/starlight/tiktoksearch?text=' + text)
-let searchResults = response.data
-shuffleArray(searchResults)
-let selectedResults = searchResults.splice(0, 7)
-for (let result of selectedResults) {
-results.push({
-body: proto.Message.InteractiveMessage.Body.fromObject({ text: null }),
-footer: proto.Message.InteractiveMessage.Footer.fromObject({ text: dev }),
-header: proto.Message.InteractiveMessage.Header.fromObject({
-title: '' + result.title,
-hasMediaAttachment: true,
-videoMessage: await createVideoMessage(result.nowm)
-}),
-nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.fromObject({ buttons: [] })})}
-const responseMessage = generateWAMessageFromContent(message.chat, {
-viewOnceMessage: {
-message: {
-messageContextInfo: {
-deviceListMetadata: {},
-deviceListMetadataVersion: 2
-},
-interactiveMessage: proto.Message.InteractiveMessage.fromObject({
-body: proto.Message.InteractiveMessage.Body.create({ text: '🍬 Resultado de: ' + text }),
-footer: proto.Message.InteractiveMessage.Footer.create({ text: '⪛✰ Tiktok - Busquedas ✰⪜' }),
-header: proto.Message.InteractiveMessage.Header.create({ hasMediaAttachment: false }),
-carouselMessage: proto.Message.InteractiveMessage.CarouselMessage.fromObject({ cards: [...results] })})}}
-}, { quoted: message })
-await message.react(done)
-await conn.relayMessage(message.chat, responseMessage.message, { messageId: responseMessage.key.id })
+let info = await tiktok.search(text)
+let randomvid = Math.floor(Math.random() * info.length)
+let { metadata, estadisticas, audio, author, media } = info[randomvid]
+let HS =  `*[ INFO - VIDEO ]*
+- *Titulo :* ${metadata.titulo}
+- *Duracion :* ${metadata.duracion} segundos
+- *Creado :* ${metadata.creado}
+
+*[ INFO - ESTADISTICAS ]*
+- *Reproducciones :* ${estadisticas.reproducciones}
+- *Likes :* ${estadisticas.likes}
+- *Comentarios :* ${estadisticas.comentarios}
+- *Compartidos :* ${estadisticas.compartidos}
+- *Descargas :* ${estadisticas.descargas}
+
+*[ INFO - AUTHOR ]*
+- *name :* ${author.name}
+- *username :* ${author.username}`
+
+
+await conn.sendFile(m.chat, media.no_watermark, 'HasumiBotFreeCodes.mp4', HS, m)
 } catch (error) {
-await conn.reply(message.chat, error.toString(), message)
+console.error(error)    
 }}
 
-handler.help = ['tiktoksearch <txt>']
-handler.coin = 1
-handler.register = true
-handler.tags = ['buscador']
-handler.command = ['tiktoksearch', 'ttss', 'tiktoks']
-export default handler
+HS.command = ['tiktoksearch']
+
+export default HS
+
+const tiktok = {
+  search: async function (q) {
+    try {
+      const data = {
+        count: 20,
+        cursor: 0,
+        web: 1,
+        hd: 1,
+        keywords: q,
+      };
+
+      const config = {
+        method: "post",
+        url: "https://tikwm.com/api/feed/search",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+          Accept: "application/json, text/javascript, /; q=0.01",
+          "X-Requested-With": "XMLHttpRequest",
+          "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Mobile Safari/537.36",
+          Referer: "https://tikwm.com/",
+        },
+        data: data,
+      }
+
+const response = await axios(config)
+
+if (response.data.data) {
+return response.data.data.videos.map((a) => ({
+metadata: {
+titulo: a.title,
+duracion: a.duration,
+region: a.region,
+video_id: a.video_id,
+imagen: "https://tikwm.com" + a.cover,
+creado: new Date(a.create_time * 1000).toLocaleString("es-AR", {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    hour12: false 
+}),
+},
+estadisticas: {
+reproducciones: Number(a.play_count).toLocaleString(),
+likes: Number(a.digg_count).toLocaleString(),
+comentarios: Number(a.comment_count).toLocaleString(),
+compartidos: Number(a.share_count).toLocaleString(),
+descargas: Number(a.download_count).toLocaleString(),
+},
+music: a.music_info,
+author: {
+name: a.author.nickname,
+username: "@" + a.author.unique_id,
+avatar: "https://tikwm.com" + a.author.avatar,
+},
+media: {
+no_watermark: "https://tikwm.com" + a.play,
+watermark: "https://tikwm.com" + a.wmplay,
+audio: "https://tikwm.com" + a.music,
+}
+}));
+} else {
+throw new Error('sin informacion disponible')
+}
+} catch (error) {
+throw new Error('TIKTOK SEARCH ERROR ' + error)
+}}}
