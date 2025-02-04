@@ -816,8 +816,23 @@
         "status": "Libre",
         "votes": 0
     },
-    {
+
+
+{
         "id": "44",
+        "name": "May(Guilty Gear",
+        "gender": "Mujer",
+        "value": "2000",
+        "source": "Guilte Gear X",
+        "img": [ "https://qu.ax/Fbwjs.jpg"
+       
+        ],
+        "user": null,
+        "status": "Libre",
+        "votes": 0
+},
+    {
+        "id": "45",
         "name": "Yui",
         "gender": "Mujer",
         "value": "100",
