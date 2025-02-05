@@ -37,8 +37,8 @@ user.lastmiming = new Date * 1
 handler.help = ['minar']
 handler.tags = ['economy']
 handler.command = ['minar', 'miming', 'mine'] 
-handler.register = false 
-handler.group = true
+handler.register = true
+handler.group = false
 export default handler
 
 function pickRandom(list) {
