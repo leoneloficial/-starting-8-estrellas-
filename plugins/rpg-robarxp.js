@@ -1,7 +1,7 @@
 const ro = 3000;
 const handler = async (m, {conn, usedPrefix, command}) => {
-  const time = global.db.data.users[m.sender].lastrob + 7200000;
-  if (new Date - global.db.data.users[m.sender].lastrob < 7200000) {
+  const time = global.db.data.users[m.sender].lastrob + 1200000;
+  if (new Date - global.db.data.users[m.sender].lastrob < 1200000) {
   conn.reply(m.chat, `🍬 Debes esperar ${msToTime(time - new Date())} para usar #robxp de nuevo.`, m, rcanal);
   return;
   }
