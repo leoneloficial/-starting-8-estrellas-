@@ -2,7 +2,7 @@ let cooldowns = {}
 
 let handler = async (m, { conn, isPrems }) => {
 let user = global.db.data.users[m.sender]
-let tiempo = 5 * 60
+let tiempo = 2 * 60
 if (cooldowns[m.sender] && Date.now() - cooldowns[m.sender] < tiempo * 1000) {
 const tiempo2 = segundosAHMS(Math.ceil((cooldowns[m.sender] + tiempo * 1000 - Date.now()) / 1000))
 conn.reply(m.chat, `🍬 Debes esperar *${tiempo2}* para usar *#w* de nuevo.`, m, rcanal)
