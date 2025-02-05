@@ -37,7 +37,7 @@ user.lastmiming = new Date * 1
 handler.help = ['minar']
 handler.tags = ['economy']
 handler.command = ['minar', 'miming', 'mine'] 
-handler.register = true 
+handler.register = false 
 handler.group = true
 export default handler
 
