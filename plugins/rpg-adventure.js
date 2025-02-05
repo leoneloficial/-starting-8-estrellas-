@@ -8,8 +8,8 @@ let handler = async (m, { conn }) => {
     if (user.health < 80) {
         return conn.reply(m.chat, '💔 No tienes suficiente salud para aventurarte. Usa el comando .heal para curarte.', m);
     }
-    if (user.lastAdventure && new Date() - user.lastAdventure <= 1500000) {
-        let timeLeft = 1500000 - (new Date() - user.lastAdventure);
+    if (user.lastAdventure && new Date() - user.lastAdventure <= 1000000) {
+        let timeLeft = 1000000 - (new Date() - user.lastAdventure);
         return conn.reply(m.chat, `⏳ Debés esperar. ${msToTime(timeLeft)} antes de aventurarte de nuevo.`, m);
     }
     let kingdoms = [
@@ -63,7 +63,7 @@ let handler = async (m, { conn }) => {
 handler.help = ['aventura', 'adventure'];
 handler.tags = ['rpg'];
 handler.command = ['adventure', 'aventura']
-handler.cooldown = 1500000;
+handler.cooldown = 1000000;
 
 export default handler;
 
