@@ -8,8 +8,8 @@ let handler = async (m, { conn }) => {
     if (user.health < 80) {
         return conn.reply(m.chat, '💔 No tienes suficiente salud para aventurarte. Usa el comando .heal para curarte.', m);
     }
-    if (user.lastAdventure && new Date() - user.lastAdventure <= 1000000) {
-        let timeLeft = 1000000 - (new Date() - user.lastAdventure);
+    if (user.lastAdventure && new Date() - user.lastAdventure <= 100000) {
+        let timeLeft = 100000 - (new Date() - user.lastAdventure);
         return conn.reply(m.chat, `⏳ Debés esperar. ${msToTime(timeLeft)} antes de aventurarte de nuevo.`, m);
     }
     let kingdoms = [
@@ -72,7 +72,7 @@ function pickRandom(list) {
 }
 
 function msToTime(duration) {
-    let minutes = Math.floor((duration / (1000 * 60)) % 10);
+    let minutes = Math.floor((duration / (1000 * 60)) % 5);
     let seconds = Math.floor((duration / 1000) % 20);
     return `${minutes} m y ${seconds} s`;
 }
