@@ -63,7 +63,7 @@ let handler = async (m, { conn }) => {
             await saveCharacters(characters);
 
             await conn.reply(m.chat, `✦ Has reclamado a *${character.name}* con éxito.`, m);
-            cooldowns[userId] = now + 30 * 60 * 1000;
+            cooldowns[userId] = now + 10 * 60 * 1000;
 
         } catch (error) {
             await conn.reply(m.chat, `✘ Error al reclamar el personaje: ${error.message}`, m);
