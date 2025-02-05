@@ -63,7 +63,7 @@ let handler = async (m, { conn }) => {
 handler.help = ['aventura', 'adventure'];
 handler.tags = ['rpg'];
 handler.command = ['adventure', 'aventura']
-handler.cooldown = 1000000;
+handler.cooldown = 100000;
 
 export default handler;
 
