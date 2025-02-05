@@ -72,7 +72,7 @@ function pickRandom(list) {
 }
 
 function msToTime(duration) {
-    let minutes = Math.floor((duration / (1000 * 60)) % 5);
+    let minutes = Math.floor((duration / (1000 * 60)) % 3);
     let seconds = Math.floor((duration / 1000) % 20);
     return `${minutes} m y ${seconds} s`;
 }
