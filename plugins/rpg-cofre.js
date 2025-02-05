@@ -4,7 +4,7 @@ const handler = async (m, { isPrems, conn }) => {
   }
 
   const lastCofreTime = global.db.data.users[m.sender].lastcofre;
-  const timeToNextCofre = lastCofreTime + 86400000;
+  const timeToNextCofre = lastCofreTime + 28800000; // 8 horas
 
   if (Date.now() < timeToNextCofre) {
     const tiempoRestante = timeToNextCofre - Date.now();
@@ -32,7 +32,7 @@ const handler = async (m, { isPrems, conn }) => {
 ╰━━━━━━━━━━━━⬣
 
 ╭━〔 Nυҽʋσʂ Rҽƈυɾʂσʂ 〕⬣
-┃ *${dia} ${moneda}* 💸
+┃ *${dia} Monedas* 💸
 ┃ *${tok} Tokens* ⚜️
 ┃ *${ai} Diamantes* 💎
 ┃ *${expp} Exp* ✨
@@ -55,14 +55,13 @@ handler.register = true;
 export default handler;
 
 function msToTime(duration) {
-  const milliseconds = parseInt((duration % 1000) / 100);
   let seconds = Math.floor((duration / 1000) % 60);
   let minutes = Math.floor((duration / (1000 * 60)) % 60);
-  let hours = Math.floor((duration / (1000 * 60 * 60)) % 10);
+  let hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
 
-  hours = (hours < 10) ? '0' + hours : hours;
-  minutes = (minutes < 10) ? '0' + minutes : minutes;
-  seconds = (seconds < 10) ? '0' + seconds : seconds;
+  hours = hours < 10 ? '0' + hours : hours;
+  minutes = minutes < 10 ? '0' + minutes : minutes;
+  seconds = seconds < 10 ? '0' + seconds : seconds;
 
   return `${hours} Horas ${minutes} Minutos`;
 }
