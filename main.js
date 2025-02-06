@@ -79,6 +79,8 @@ global.db.chain = chain(global.db.data)
 }
 loadDatabase()
 
+global.session = './sessions';
+
 const {state, saveState, saveCreds} = await useMultiFileAuthState(global.sessions)
 const msgRetryCounterMap = (MessageRetryMap) => { };
 const msgRetryCounterCache = new NodeCache()
