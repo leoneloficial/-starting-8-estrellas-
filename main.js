@@ -311,9 +311,9 @@ global.rutaJadiBot = join(__dirname, './JadiBots')
 if (global.yukiJadibts) {
 if (!existsSync(global.rutaJadiBot)) {
 mkdirSync(global.rutaJadiBot, { recursive: true }) 
-console.log(chalk.bold.cyan(`La carpeta: ${jadiBots} se creó correctamente.`))
+console.log(chalk.bold.cyan(`La carpeta:Jadibots se creó correctamente.`))
 } else {
-console.log(chalk.bold.cyan(`La carpeta: ${jadiBots} ya está creada.`)) 
+console.log(chalk.bold.cyan(`La carpeta: jadibots ya está creada.`)) 
 }
 
 const readRutaJadiBot = readdirSync(rutaJadiBot)
