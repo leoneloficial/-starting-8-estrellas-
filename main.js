@@ -79,7 +79,6 @@ global.db.chain = chain(global.db.data)
 }
 loadDatabase()
 
-global.sessions:
 
 global.sessions = './sessions';
 
