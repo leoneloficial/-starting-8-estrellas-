@@ -2,28 +2,42 @@ import uploadFile from '../lib/uploadFile.js'
 import uploadImage from '../lib/uploadImage.js'
 import fetch from 'node-fetch'
 
-let handler = async (m) => {
+let handler = async (m, { conn }) => {
   let q = m.quoted ? m.quoted : m
   let mime = (q.msg || q).mimetype || ''
-  if (!mime) return conn.reply(m.chat, '🍬 Por favor, responda a una *Imagen* o *Vídeo.*', m, rcanal)
-  await m.react(rwait)
+  
+  if (!mime) return conn.reply(m.chat, '🍬 Por favor, responde a una *Imagen* o *Vídeo.*', m)
+  
   try {
-  let media = await q.download()
-  let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime)
-  let link = await (isTele ? uploadImage : uploadFile)(media)
-  let img = await (await fetch(`${link}`)).buffer()
-  let txt = `乂  *L I N K - E N L A C E*  乂\n\n`
-      txt += `*» Enlace* : ${link}\n`
-      txt += `*» Acortado* : ${await shortUrl(link)}\n`
-      txt += `*» Tamaño* : ${formatBytes(media.length)}\n`
-      txt += `*» Expiración* : ${isTele ? 'No expira' : 'Desconocido'}\n\n`
-      txt += `> *${dev}*`
+    await conn.sendMessage(m.chat, { react: { text: '⏳', key: m.key } }) // Reacción de espera
+    
+    let media = await q.download()
+    if (!media) return conn.reply(m.chat, '⚠️ Error al descargar el archivo.', m)
+    
+    let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime)
+    let link = await (isTele ? uploadImage : uploadFile)(media)
+    
+    if (!link) return conn.reply(m.chat, '⚠️ Error al subir el archivo.', m)
+    
+    let shortLink = await shortUrl(link).catch(() => link) // Usa el link original si falla el acortador
+    
+    let txt = `乂  *L I N K - E N L A C E*  乂\n\n`
+        txt += `*» Enlace* : ${link}\n`
+        txt += `*» Acortado* : ${shortLink}\n`
+        txt += `*» Tamaño* : ${formatBytes(media.length)}\n`
+        txt += `*» Expiración* : ${isTele ? 'No expira' : 'Desconocido'}\n\n`
+    
+    await conn.sendMessage(m.chat, { image: { url: link }, caption: txt }, { quoted: m })
+    
+    await conn.sendMessage(m.chat, { react: { text: '✅', key: m.key } }) // Reacción de éxito
+    
+  } catch (e) {
+    console.error(e)
+    await conn.sendMessage(m.chat, { react: { text: '❌', key: m.key } }) // Reacción de error
+    conn.reply(m.chat, '⚠️ Ocurrió un error.', m)
+  }
+}
 
-await conn.sendFile(m.chat, img, 'thumbnail.jpg', txt, m, fkontak, rcanal)
-await m.react(done)
-} catch {
-await m.react(error)
-}}
 handler.help = ['tourl']
 handler.tags = ['transformador']
 handler.register = true
@@ -31,15 +45,13 @@ handler.command = ['tourl', 'upload']
 export default handler
 
 function formatBytes(bytes) {
-  if (bytes === 0) {
-    return '0 B';
-  }
+  if (bytes === 0) return '0 B'
   const sizes = ['B', 'KB', 'MB', 'GB', 'TB']
   const i = Math.floor(Math.log(bytes) / Math.log(1024))
-  return `${(bytes / 1024 ** i).toFixed(2)} ${sizes[i]}`;
+  return `${(bytes / 1024 ** i).toFixed(2)} ${sizes[i]}`
 }
 
 async function shortUrl(url) {
-        let res = await fetch(`https://tinyurl.com/api-create.php?url=${url}`)
-        return await res.text()
+  let res = await fetch(`https://tinyurl.com/api-create.php?url=${url}`)
+  return await res.text()
 }
