@@ -69,8 +69,9 @@ let handler = async (m, { conn, args }) => {
 handler.help = ['play *<texto>*'];
 handler.tags = ['dl'];
 handler.command = ['play'];
-handler.register = true
 handler.coin = 200;
+handler.register = true
+
 
 export default handler;
 
