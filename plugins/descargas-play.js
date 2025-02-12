@@ -70,6 +70,7 @@ handler.help = ['play *<texto>*'];
 handler.tags = ['dl'];
 handler.command = ['play'];
 handler.register = true
+handler.coin = 200;
 
 export default handler;
 
