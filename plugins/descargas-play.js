@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 import yts from 'yt-search';
 
 let handler = async (m, { conn, args }) => {
-  if (!args[0]) return conn.reply(m.chat, '*\`Ingresa el nombre de lo que quieres buscar\`*', m, rcanal);
+  if (!args[0]) return conn.reply(m.chat, '*\`🪄 Ingresa el nombre de la musica que quieres buscar\`*', m, rcanal);
 
   await m.react('❤️‍🔥');
   let attempts = 0;
@@ -28,7 +28,7 @@ let handler = async (m, { conn, args }) => {
   }
 
   let img = await (await fetch(video.image)).buffer();
-  let txt = `*\`【Y O U T U B E - P L A Y】\`*\n\n`;
+  let txt = `*\`【Y O U T U B E】\`*\n\n`;
   txt += `• *\`Título:\`* ${video.title}\n`;
   txt += `• *\`Duración:\`* ${secondString(video.duration.seconds)}\n`;
   txt += `• *\`Publicado:\`* ${eYear(video.ago)}\n`;
