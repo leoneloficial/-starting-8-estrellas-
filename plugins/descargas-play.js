@@ -45,18 +45,21 @@ let handler = async (m, { conn, args }) => {
         buttonText: {
           displayText: '˙˚ʚ₍ ᐢ. ̫ .ᐢ ₎ɞ˚ 𝗔𝗨𝗗𝗜𝗢 ',
         },
+        type: 1
       },
       {
         buttonId: `.ytmp4 https://youtu.be/${video.videoId}`,
         buttonText: {
           displayText: '˙˚ʚ₍ ᐢ. ̫ .ᐢ ₎ɞ˚ 𝗩𝗜𝗗𝗘𝗢',
         },
+        type: 1
       },
       {
         buttonId: `.ytmp4doc https://youtu.be/${video.videoId}`,
         buttonText: {
           displayText: '🔥 𝗩𝗜𝗗𝗘𝗢 (𝗗𝗼𝗰)',
         },
+        type: 1
       },
     ],
     viewOnce: true,
@@ -66,12 +69,23 @@ let handler = async (m, { conn, args }) => {
   await m.react('❤️‍🔥');
 };
 
+// Escucha cuando el usuario responde con un botón y reacciona según la opción
+conn.on('message', async (msg) => {
+  let selected = msg.message?.buttonsResponseMessage?.selectedButtonId;
+  if (!selected) return;
+
+  if (selected.startsWith('.ytmp3')) {
+    await msg.react('🎵');
+  } else if (selected.startsWith('.ytmp4')) {
+    await msg.react('❤️‍🔥');
+  }
+});
+
 handler.help = ['play *<texto>*'];
 handler.tags = ['dl'];
 handler.command = ['play'];
 handler.coin = 200;
-handler.register = true
-
+handler.register = true;
 
 export default handler;
 
