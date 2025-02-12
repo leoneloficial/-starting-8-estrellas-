@@ -66,12 +66,21 @@ let handler = async (m, { conn, args }) => {
   await m.react('❤️‍🔥');
 };
 
+// Escucha cuando el usuario elige una opción
+conn.on('message', async (m) => {
+  let selected = m.text || m.message?.buttonsResponseMessage?.selectedButtonId;
+  if (!selected) return;
+
+  if (selected.startsWith('.ytmp3') || selected.startsWith('.ytmp4')) {
+    await m.react('❤️‍🔥');  // Reacción para ambas opciones
+  }
+});
+
 handler.help = ['play *<texto>*'];
 handler.tags = ['dl'];
 handler.command = ['play'];
 handler.coin = 200;
-handler.register = true
-
+handler.register = true;
 
 export default handler;
 
