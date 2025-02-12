@@ -37,7 +37,7 @@ const handler = async (m, { conn, args }) => {
     await m.reply('✅ *¡Video enviado con éxito!*');
 
   } catch (error) {
-    console.error('Error en el comando ytmp4:', error.message);
+    console.error('Error en el comando :', error.message);
     m.reply('⚠️ *Ocurrió un error al procesar tu solicitud.* Por favor, intenta nuevamente más tarde.');
   }
 };
