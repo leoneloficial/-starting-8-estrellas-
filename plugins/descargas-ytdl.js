@@ -1,79 +1,49 @@
-import fetch from "node-fetch";
-import yts from "yt-search";
+import axios from 'axios';
 
-// API en formato Base64
-const encodedApi = "aHR0cHM6Ly9hcGkudnJlZGVuLndlYi5pZC9hcGkveXRtcDM=";
-
-// Función para decodificar la URL de la API
-const getApiUrl = () => Buffer.from(encodedApi, "base64").toString("utf-8");
-
-// Función para obtener datos de la API con reintentos
-const fetchWithRetries = async (url, maxRetries = 2) => {
-  for (let attempt = 0; attempt <= maxRetries; attempt++) {
-    try {
-      const response = await fetch(url);
-      const data = await response.json();
-      if (data?.status === 200 && data.result?.download?.url) {
-        return data.result;
-      }
-    } catch (error) {
-      console.error(`Intento ${attempt + 1} fallido:`, error.message);
-    }
-  }
-  throw new Error("No se pudo obtener la música después de varios intentos.");
-};
-
-// Handler principal
-let handler = async (m, { conn, text }) => {
-  if (!text || !text.trim()) {
-    return conn.sendMessage(m.chat, {
-      text: "❗ *Ingresa un término de búsqueda para encontrar música.*\n\n*Ejemplo:* `.play No llores más`",
-    });
-  }
-
+const handler = async (m, { conn, args }) => {
   try {
-    // Reaccionar al mensaje inicial con 🕒
-    await conn.sendMessage(m.chat, { react: { text: "🕒", key: m.key } });
+    const query = args[0];
+    if (!query) return m.reply('🤍 *Ejemplo:* .ytmp4 <URL de YouTube>');
 
-    // Buscar en YouTube
-    const searchResults = await yts(text.trim());
-    const video = searchResults.videos[0];
-    if (!video) throw new Error("No se encontraron resultados.");
+    // Notificar al usuario que se está obteniendo el video
+    await m.reply('🔍 *Obteniendo detalles del video...*');
 
-    // Obtener datos de descarga
-    const apiUrl = `${getApiUrl()}?url=${encodeURIComponent(video.url)}`;
-    const apiData = await fetchWithRetries(apiUrl);
+    // URL de la API para descargar el video
+    const apiUrl = `https://api.davidcyriltech.my.id/download/ytmp4?url=${encodeURIComponent(query)}`;
+    const response = await axios.get(apiUrl);
 
-    // Enviar información del video con miniatura
+    // Comprobar si los datos de respuesta contienen download_url
+    if (!response.data?.result?.download_url) {
+      return m.reply('🚫 *Error al obtener el video.* Verifica la URL o intenta nuevamente más tarde.');
+    }
+
+    // Extraer detalles del video
+    const { title, quality, thumbnail, download_url } = response.data.result;
+
+    // Preparar el texto para el mensaje del video
+    const caption = `🔥 *\`Título:\`* ${title}
+🤍 *\`Calidad:\`* ${quality}
+🚩 *\`Miniatura:\`* (${thumbnail})
+🌩 *\`Descargar el video:\`* ${download_url}`;
+
+    // Enviar el video y el texto
     await conn.sendMessage(m.chat, {
-      image: { url: video.thumbnail },
-      caption: `🎵 *Título:* ${video.title}\n👁️ *Vistas:* ${video.views}\n⏳ *Duración:* ${video.timestamp}\n✍️ *Autor:* ${video.author.name}`,
-    });
+      video: { url: download_url },
+      caption: caption,
+      thumbnail: { url: thumbnail },
+    }, { quoted: m });
 
-    // Enviar solo el audio
-    const audioMessage = {
-      audio: { url: apiData.download.url },
-      mimetype: "audio/mpeg",
-      fileName: `${video.title}.mp3`,
-    };
+    // Notificar al usuario sobre la finalización exitosa
+    await m.reply('✅ *¡Video enviado con éxito!*');
 
-    await conn.sendMessage(m.chat, audioMessage, { quoted: m });
-
-    // Reaccionar al mensaje original con ✅
-    await conn.sendMessage(m.chat, { react: { text: "✅", key: m.key } });
   } catch (error) {
-    console.error("Error:", error);
-
-    // Reaccionar al mensaje original con ❌
-    await conn.sendMessage(m.chat, { react: { text: "❌", key: m.key } });
-
-    await conn.sendMessage(m.chat, {
-      text: `❌ *Error al procesar tu solicitud:*\n${error.message || "Error desconocido"}`,
-    });
+    console.error('Error en el comando ytmp4:', error.message);
+    m.reply('⚠️ *Ocurrió un error al procesar tu solicitud.* Por favor, intenta nuevamente más tarde.');
   }
 };
 
-// Cambia el Regex para que reconozca ".play"
-handler.command = /^playyt$/i;
+handler.help = ['test2'];
+handler.tags = ['descargar'];
+handler.command = /^test2$/i;
 
 export default handler;
