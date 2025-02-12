@@ -29,8 +29,7 @@ let handler = async (m, { conn, args }) => {
 
   let img = await (await fetch(video.image)).buffer();
   let txt = `𖤓⏤͟͟͞͞【𝙎𝙩𝙖𝙧𝙩𝙞𝙣𝙜 8 𝙚𝙨𝙩𝙧𝙚𝙡𝙡𝙖𝙨】⏤͟͟͞͞𖤓
-⊱ ─────── {.⋅ ♫ ⋅.} ────── ⊰
-\n\n`;
+⊱ ────────────────────── ⊰\n\n`;
   txt += `• *\`Título:\`* ${video.title}\n`;
   txt += `• *\`Duración:\`* ${secondString(video.duration.seconds)}\n`;
   txt += `• *\`Publicado:\`* ${eYear(video.ago)}\n`;
