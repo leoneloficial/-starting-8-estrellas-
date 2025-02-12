@@ -38,7 +38,7 @@ let handler = async (m, { conn }) => {
 
 handler.help = ["creador", "owner"];
 handler.tags = ["info"];
-handler.command = ['contactos', 'owner'];
+handler.command = ['contactosp', 'owner'];
 
 export default handler;
 
