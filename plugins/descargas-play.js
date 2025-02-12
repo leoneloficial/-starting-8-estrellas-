@@ -32,7 +32,7 @@ let handler = async (m, { conn, args }) => {
 ⊱ ─────── {.⋅ ♫ ⋅.} ────── ⊰
 
 
-*\n\n`;
+\n\n`;
   txt += `• *\`Título:\`* ${video.title}\n`;
   txt += `• *\`Duración:\`* ${secondString(video.duration.seconds)}\n`;
   txt += `• *\`Publicado:\`* ${eYear(video.ago)}\n`;
