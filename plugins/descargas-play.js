@@ -23,7 +23,7 @@ let handler = async (m, { conn, args }) => {
   }
 
   if (!video) {
-    await m.react('✖️');
+    await m.react('⚠️');
     return conn.reply(m.chat, '*\`No se encontraron videos tras varios intentos.\`*', m);
   }
 
