@@ -4,33 +4,20 @@ let handler = async (m, { conn }) => {
   await m.react('🍁');
 
   let ownerContacts = [
-    { name: '👑 Staff Owner', number: '584164137403', bio: await getBio(conn, '584164137403') },
-    { name: '🤖 Bot Oficial', number: conn.user.jid.split('@')[0], bio: await getBio(conn, conn.user.jid.split('@')[0]) }
+    { name: '👑 Staff Owner', number: '584164137403' },
+    { name: '🤖 Bot Oficial', number: conn.user.jid.split('@')[0] }
   ];
 
-  let contactsArray = ownerContacts.map(contact => [
-    contact.number,
-    contact.name,
-    '🏴 Pirata',
-    '📵 No Hacer Spam',
-    'leoneloficial@gmail.com',
-    '🏴 Pirata',
-    'https://github.com/leoneloficial/-starting-8-estrellas-',
-    contact.bio
-  ]);
+  let buttons = [
+    { buttonId: `.ownerinfo 1`, buttonText: { displayText: `📞 Contactar Owner` } },
+    { buttonId: `.ownerinfo 2`, buttonText: { displayText: `🤖 Contactar Bot` } }
+  ];
 
-  await sendContactArray(conn, m.chat, contactsArray, m);
-
-  let buttons = ownerContacts.map(contact => ({
-    buttonId: `.contact ${contact.number}`,
-    buttonText: { displayText: `📞 ${contact.name}` }
-  }));
-
-  let text = `🌟 *Owners del Bot* 🌟\n\nPuedes contactar a los dueños del bot seleccionando una opción:\n\n`;
+  let text = `🌟 *Owners del Bot* 🌟\n\nSelecciona una opción para ver los detalles de contacto:\n`;
 
   await conn.sendMessage(m.chat, {
     text,
-    footer: '✨ Seleccione un contacto',
+    footer: '✨ Elige una opción',
     buttons,
     headerType: 1
   }, { quoted: m });
@@ -38,9 +25,29 @@ let handler = async (m, { conn }) => {
 
 handler.help = ["creador", "owner"];
 handler.tags = ["info"];
-handler.command = ['contactosp', 'owner'];
+handler.command = ['creador','contactosp', 'owner'];
 
 export default handler;
+
+// Handler para mostrar la info cuando se elige un botón
+let infoHandler = async (m, { conn, args }) => {
+  let option = args[0];
+  
+  let contactsArray = [];
+  if (option === '1') {
+    let bio = await getBio(conn, '584164137403');
+    contactsArray.push(['584164137403', '👑 Staff Owner', '🏴 Pirata', '📵 No Hacer Spam', 'leoneloficial@gmail.com', '🏴 Pirata', 'https://github.com/leoneloficial/-starting-8-estrellas-', bio]);
+  } else if (option === '2') {
+    contactsArray.push([conn.user.jid.split('@')[0], '🤖 Bot Oficial', '🏴 Pirata', '📵 No Hacer Spam', 'leoneloficial@gmail.com', '🏴 Pirata', 'https://github.com/leoneloficial/-starting-8-estrellas-', '']);
+  } else {
+    return conn.reply(m.chat, '❌ Opción inválida. Usa 1 o 2.', m);
+  }
+
+  await sendContactArray(conn, m.chat, contactsArray, m);
+};
+
+handler.command = ['ownerinfo'];
+export { infoHandler as ownerinfo };
 
 async function getBio(conn, number) {
   let bioData = await conn.fetchStatus(number + '@s.whatsapp.net').catch(() => 'Sin Biografía');
@@ -79,7 +86,7 @@ END:VCARD`.trim();
   try {
     return await conn.sendMessage(jid, {
       contacts: {
-        displayName: (contacts.length > 1 ? `2013 kontak` : contacts[0].displayName) || null,
+        displayName: (contacts.length > 1 ? `Contactos` : contacts[0].displayName) || null,
         contacts,
       }
     }, {
