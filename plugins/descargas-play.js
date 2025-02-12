@@ -55,7 +55,7 @@ let handler = async (m, { conn, args }) => {
       {
         buttonId: `.ytmp4doc https://youtu.be/${video.videoId}`,
         buttonText: {
-          displayText: '🔥 𝗩𝗜𝗗𝗘𝗢 (𝗗𝗼𝗰)',
+          displayText: '🔥˙˚ʚ₍ ᐢ. ̫ .ᐢ ₎ɞ˚ 𝗩𝗜𝗗𝗘𝗢 (𝗗𝗼𝗰)',
         },
       },
     ],
