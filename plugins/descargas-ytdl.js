@@ -3,7 +3,7 @@ import axios from 'axios';
 const handler = async (m, { conn, args }) => {
   try {
     const query = args[0];
-    if (!query) return m.reply('🤍 *Ejemplo:* .ytmp4 <URL de YouTube>');
+    if (!query) return m.reply('🤍 *Ejemplo:*  <URL de YouTube>');
 
     // Notificar al usuario que se está obteniendo el video
     await m.reply('🔍 *Obteniendo detalles del video...*');
