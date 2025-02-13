@@ -26,6 +26,6 @@ export async function before(m) {
    // await conn.sendPresenceUpdate('composing', m.chat);
   } else {
    const comando = m.text.trim().split(' ')[0];
-   await m.reply(`🔕 *${comando}* No esta usa:\n» *#help*`);
+   await m.reply(`🍬 El prefijo *${comando}* No esta, use:\n» *#help*`);
   }
 }
