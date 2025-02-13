@@ -1,86 +1,62 @@
-import fetch from "node-fetch";
-import yts from "yt-search";
 
-// API en formato Base64
-const encodedApi = "aHR0cHM6Ly9hcGkudnJlZGVuLndlYi5pZC9hcGkveXRtcDM=";
+// *𓍯𓂃𓏧♡  PLAY (audio - video)*
 
-// Función para decodificar la URL de la API
-const getApiUrl = () => Buffer.from(encodedApi, "base64").toString("utf-8");
+import fetch from 'node-fetch'
+import yts from 'yt-search'
 
-// Función para obtener datos de la API con reintentos
-const fetchWithRetries = async (url, maxRetries = 2) => {
-  for (let attempt = 0; attempt <= maxRetries; attempt++) {
-    try {
-      const response = await fetch(url);
-      const data = await response.json();
-      if (data?.status === 200 && data.result?.download?.url) {
-        return data.result;
-      }
-    } catch (error) {
-      console.error(`Intento ${attempt + 1} fallido:`, error.message);
-    }
-  }
-  throw new Error("No se pudo obtener la música después de varios intentos.");
-};
-
-// Handler principal
-let handler = async (m, { conn, text }) => {
-  if (!text || !text.trim()) {
-    return conn.sendMessage(m.chat, {
-      text: "❗ *Ingresa un término de búsqueda para encontrar música.*\n\n*Ejemplo:* `.play No llores más`",
-    });
-  }
-
-  try {
-    // Reaccionar al mensaje inicial con 🕒
-    await conn.sendMessage(m.chat, { react: { text: "🕒", key: m.key } });
-
-    // Buscar en YouTube
-    const searchResults = await yts(text.trim());
-    const video = searchResults.videos[0];
-    if (!video) throw new Error("No se encontraron resultados.");
-
-    // Obtener datos de descarga
-    const apiUrl = `${getApiUrl()}?url=${encodeURIComponent(video.url)}`;
-    const apiData = await fetchWithRetries(apiUrl);
-
-    // Enviar información del video con miniatura
-    await conn.sendMessage(m.chat, {
-      image: { url: video.thumbnail },
-      caption: `⊱ ─────── {.⋅ ♫ ⋅.} ────── ⊰
-
-•❥⏤͟͟͞͞Título⏤͟͟͞͞❥: ${video.title}\n •❥⏤͟͟͞͞Vistas⏤͟͟͞͞❥: ${video.views}\n •❥⏤͟͟͞͞Duración⏤͟͟͞͞❥: ${video.timestamp}\n •❥⏤͟͟͞͞Autor⏤͟͟͞͞❥: ${video.author.name}
-
-✎﹏𝘿𝙚𝙨𝙘𝙖𝙧𝙜𝙖𝙣𝙙𝙤 𝙖𝙪𝙙𝙞𝙤 𝙚𝙨𝙥𝙚𝙧𝙚 𝙪𝙣 𝙢𝙤𝙢𝙚𝙣𝙩𝙤...`,
-    });
-
-    // Enviar solo el audio
-    const audioMessage = {
-      audio: { url: apiData.download.url },
-      mimetype: "audio/mpeg",
-      fileName: `${video.title}.mp3`,
-    };
-
-    await conn.sendMessage(m.chat, audioMessage, { quoted: m });
-
-    // Reaccionar al mensaje original con ✅
-    await conn.sendMessage(m.chat, { react: { text: "✅", key: m.key } });
-  } catch (error) {
-    console.error("Error:", error);
-
-    // Reaccionar al mensaje original con ❌
-    await conn.sendMessage(m.chat, { react: { text: "❌", key: m.key } });
-
-    await conn.sendMessage(m.chat, {
-      text: `❌ *Error al procesar tu solicitud:*\n${error.message || "Error desconocido"}`,
-    });
-  }
-};
-
-// Cambia el Regex para que reconozca ".play"
-handler.command = /^play$/i;
-handler.register = true
-handler.group = true
+let handler = async (m, { conn, text, args }) => {
+if (!text)  return conn.reply(m.chat, `❀ Ingresa el nombre de lo que quieres buscar`, m)
 
 
-export default handler;
+try {
+let res = await search(args.join(" "))
+
+let apiAud = await fetch(`https://api.agungny.my.id/api/youtube-audio?url=${'https://youtu.be/' + res[0].videoId}`)
+let dataAud = await apiAud.json()
+let apiVid = await fetch(`https://api.agungny.my.id/api/youtube-video?url=${'https://youtu.be/' + res[0].videoId}`)
+let dataVid = await apiVid.json()
+
+
+let txt = `*◆ [ YOUTUBE - PLAY ] ◆*
+- *Titulo:* ${res[0].title}
+- *Duracion:* ${res[0].timestamp}
+- *Visitas:* ${res[0].views}
+- *Subido:* ${res[0].ago}
+
+◆────────────────◆
+
+Responde a este mensaje dependiendo lo que quieras :
+
+1 : Audio
+2 : Video`
+
+let SM = await conn.sendFile(m.chat, res[0].thumbnail, 'HasumiBotFreeCodes.jpg', txt, m)
+conn.ev.on("messages.upsert", async (upsertedMessage) => {
+let RM = upsertedMessage.messages[0];
+if (!RM.message) return
+
+const UR = RM.message.conversation || RM.message.extendedTextMessage?.text
+let UC = RM.key.remoteJid
+
+if (RM.message.extendedTextMessage?.contextInfo?.stanzaId === SM.key.id) {
+
+if (UR === '1') {
+  await conn.sendMessage(UC, { audio: { url: dataAud.result.downloadUrl }, mimetype: "audio/mpeg", caption: null }, { quoted: RM })
+} else if (UR === '2') {
+  await conn.sendMessage(m.chat, { video: { url: dataVid.result.downloadUrl }, caption: ``, mimetype: 'video/mp4', fileName: `${res[0].title}` + `.mp4`}, {quoted: m })
+} else {
+await conn.sendMessage(UC, { text: "Opcion invalida, responde con 1 *(audio)* o 2 *(video)*." }, { quoted: RM })
+}}})
+
+} catch (error) {
+console.error(error)
+}}
+
+handler.command = ["play"]
+
+export default handler
+
+async function search(query, options = {}) {
+  let search = await yts.search({ query, hl: "es", gl: "ES", ...options })
+  return search.videos
+}
