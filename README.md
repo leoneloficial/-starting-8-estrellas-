@@ -1,4 +1,4 @@
-<h1 align="center">✦ Prueba ✦</h1>
+<h1 align="center">✨ Starting Mafia</h1>
 
  <img src= "https://qu.ax/rdtsA.jpg">
     </p>
