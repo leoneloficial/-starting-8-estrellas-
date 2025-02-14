@@ -1,3 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido al Repositorio</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .text {
+            font-size: 2em;
+            font-weight: bold;
+            white-space: nowrap;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <span class="text">Bienvenido al Repositorio</span>
+</div>
+
+<script>
+    const text = document.querySelector('.text');
+    let posX = 0;
+    let direction = 1;
+
+    function animateText() {
+        posX += direction * 2;
+        if (posX > window.innerWidth - text.clientWidth || posX < 0) {
+            direction *= -1;
+        }
+        text.style.transform = `translateX(${posX}px)`;
+        requestAnimationFrame(animateText);
+    }
+
+    animateText();
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <h1 align="center">✨ Starting Mafia</h1>
 
  <img src= "https://qu.ax/rdtsA.jpg">
