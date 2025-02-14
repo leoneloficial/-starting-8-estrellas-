@@ -1,27 +1,3 @@
-<svg width="400" height="100" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
-  <rect width="100%" height="100%" fill="black"/>
-  <text x="100%" y="100%" font-size="30" font-family="Arial" text-anchor="middle" dominant-baseline="middle">
-    <tspan fill="blue">B</tspan>
-    <tspan fill="cyan">i</tspan>
-    <tspan fill="blue">e</tspan>
-    <tspan fill="cyan">n</tspan>
-    <tspan fill="blue"> </tspan>
-    <tspan fill="cyan">v</tspan>
-    <tspan fill="blue">e</tspan>
-    <tspan fill="cyan">n</tspan>
-    <tspan fill="blue">i</tspan>
-    <tspan fill="cyan">d</tspan>
-    <tspan fill="blue">o</tspan>
-  </text>
-</svg>
-
-
-
-
-
-
-
-
 <h1 align="center">✨ Starting Mafia</h1>
 
  <img src= "https://qu.ax/rdtsA.jpg">
