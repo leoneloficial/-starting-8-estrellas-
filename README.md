@@ -45,16 +45,16 @@
 <details>
  <summary><b> 🍭 Grupos Oficiales </b></summary>
 
- * Canal Oficial  [`¡Click aquí!`](https://whatsapp.com/channel/0029VapSIvR5EjxsD1B7hU3T)
-* Grupo Oficial [`¡Click aquí!`](https://chat.whatsapp.com/Ecz881bBgqPIWjDOaKkp7E)
-* Comunidad Oficial [`¡Click aquí!`](https://chat.whatsapp.com/EwrwcGvpLf1BnMhP3B4axD)
+ * Canal Oficial Mafia ⭐ [`¡Click aquí!`](https://whatsapp.com/channel/0029Vagdmfv1SWt5nfdR4z3w)
+* Grupo Oficial Mafia ✨ [`¡Click aquí!`](https://chat.whatsapp.com/G6knC0f7kCZIG39iTZOTJw)
+* Grupo sumi ✨ [`¡Click aquí!`](https://chat.whatsapp.com/D9hmosKv0924sPqyXeu1CU)
 </details>
 
 <details>
-<summary><b> 💭 Contáctos</b></summary>
+<summary><b> 💭 Contáctos de staff</b></summary>
 
-* WhatsApp: [`Aquí`](https:/Wa.me/584120346669)
-* Correo: [`Aquí`](thekingdestroy507@gmail.com)
+* WhatsApp: [`Aquí`](https:/Wa.me/50558124470)
+* Correo: [`Aquí`](enderjosueasevedotorrez@gmail.com)
 
 </details>
 
@@ -70,10 +70,7 @@ href="https://dash.skyultraplus.com/home"><img src="https://qu.ax/zFzXF.png" hei
 
 * Dashboard  [`Dash`](https://dash.skyultraplus.com)
 * Panel [`Panel`](https://panel.skyultraplus.com)
-* Canal de WhatsApp [`Canal Sky`](https://whatsapp.com/channel/0029VakUvreFHWpyWUr4Jr0g)
-* Comunidad  [`Aquí`](https://chat.whatsapp.com/JPwcXvPEUwlEOyjI3BpYys)
-* Contacto(s) [`Gata Dios`](https://wa.me/message/B3KTM5XN2JMRD1) / [`Russell`](https://api.whatsapp.com/send/?phone=15167096032&text&type=phone_number&app_absent=0) / [`elrebelde21`](https://facebook.com/elrebelde21)
-* Discord [`SkyUltraPlus`](https://discord.gg/Ph4eWsZ8)
+
 
 </details>
 
@@ -87,9 +84,7 @@ href="https://dash.skyultraplus.com/home"><img src="https://qu.ax/zFzXF.png" hei
 
 * Dashboard: [`Dash`](https://bronxyshost.com)
 * Panel: [`Panel`](https://bronxyshost.com)
-* Canal de WhatsApp: [`Canal Bronxy`](https://whatsapp.com/channel/0029Va9l48kHbFV6SQFKz93B)
-* Grupo Oficial: [`Aquí`](https://chat.whatsapp.com/GVQsAe6CAjoJLuotkpnAqq)
-* Grupo Soporte: [`Soporte`](https://wa.me/message/OMZQOH4YZ765K1) 
+
 
 </details>
 
@@ -103,9 +98,7 @@ href="https://dash.skyultraplus.com/home"><img src="https://qu.ax/zFzXF.png" hei
 
 * Dashboard: [`Dash`](https://dash.masha-host.shop)
 * Panel: [`Panel`](https://panel.masha-host.shop)
-* Canal de WhatsApp: [`Canal Masha`](https://whatsapp.com/channel/0029VaoyLfA0LKZKjEh5Yh1J)
-* Comunidad: [`Aquí`](https://chat.whatsapp.com/Fz9rCXegzos1Yh0qHkxGhD)
-* Contacto(s): [`Masha`](https://wa.me/595976230899) / [`Legend`](https://wa.me/584148256527) / [`Tesis`](https://wa.me/522431268546)
+
 
 </details>
 
@@ -119,9 +112,7 @@ href="https://dash.skyultraplus.com/home"><img src="https://qu.ax/zFzXF.png" hei
 
 * Dashboard: [`Dash`](https://dash.tk-joanhost.com)
 * Panel: [`Panel`](https://panel.tk-joanhost.com)
-* Canal de WhatsApp: [`Canal TK`](https://chat.whatsapp.com/EyoFXnaNujs53FBeqj2NM3)
-* Grupo Soporte: [`Aquí`](https://chat.whatsapp.com/CxyUKH5ElNdHAWiJpx7D0E)
-* Contacto(s): [`Soporte`](https://wa.me/51910234457)
+
 
 </details>
 
@@ -137,9 +128,7 @@ href="https://dahs.hostingpy.shop/home"><img src="https://files.catbox.moe/lr92z
 
 * Dashboard  [`Dash`](https://dahs.hostingpy.shop)
 * Panel [`Panel`](https://panel.hostingpy.shop)
-* Canal de WhatsApp [`Canal Py`](https://whatsapp.com/channel/0029Vak4e1R4NVifmh8Tvi3q)
-* Comunidad  [`Aquí`](https://chat.whatsapp.com/HT9YFbWTuqO0DQrq6Xxhvx)
-* Contacto(s) [`Soporte`](https://wa.me/595976126756)
+
 
 </details>
 
@@ -147,7 +136,7 @@ href="https://dahs.hostingpy.shop/home"><img src="https://files.catbox.moe/lr92z
 
 ### **`🌟 Colaboradores`**
 ><img src="https://github.com/EnderJs-CreatorGL.png" width="70" height="70" alt="
-ⁱᵃᵐ|𝔇ĕ𝐬†𝓻⊙γ𒆜"/></a>
+ⁱᵃᵐ|Staff𒆜"/></a>
 
 ### **`👑 Propietario`**
 <a
