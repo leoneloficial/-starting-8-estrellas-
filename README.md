@@ -1,19 +1,4 @@
-<svg width="400" height="100" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
-  <rect width="100%" height="100%" fill="black"/>
-  <text x="50%" y="50%" font-size="30" font-family="Arial" fill="blue" text-anchor="middle" dominant-baseline="middle">
-    <tspan id="moving-text">Bienvenido</tspan>
-  </text>
-  <style>
-    @keyframes move {
-      0% { transform: translateX(-50px); fill: #4A90E2; }
-      50% { transform: translateX(50px); fill: #0057b7; }
-      100% { transform: translateX(-50px); fill: #4A90E2; }
-    }
-    #moving-text {
-      animation: move 2s infinite alternate ease-in-out;
-    }
-  </style>
-</svg>
+
 
 
 
