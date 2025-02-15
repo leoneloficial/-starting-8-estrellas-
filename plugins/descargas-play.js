@@ -21,10 +21,18 @@ const ddownr = {
 
     try {
       const response = await axios.request(config);
+
       if (response.data && response.data.success) {
-        const { id } = response.data;
+        const { id, title, info } = response.data;
+        const { image } = info;
         const downloadUrl = await ddownr.cekProgress(id);
-        return downloadUrl;
+
+        return {
+          id: id,
+          image: image,
+          title: title,
+          downloadUrl: downloadUrl
+        };
       } else {
         throw new Error('Fallo al obtener los detalles del video.');
       }
@@ -45,10 +53,11 @@ const ddownr = {
     try {
       while (true) {
         const response = await axios.request(config);
+
         if (response.data && response.data.success && response.data.progress === 1000) {
           return response.data.download_url;
         }
-        await new Promise(resolve => setTimeout(resolve, 3000));
+        await new Promise(resolve => setTimeout(resolve, 5000));
       }
     } catch (error) {
       console.error('Error:', error);
@@ -91,51 +100,44 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
 
     await conn.reply(m.chat, infoMessage, m, JT);
 
-    if (command === 'playdoc' || command === 'ytmp3doc' || command == 'play3') {
-      const downloadUrl = await ddownr.download(url, 'mp3');
-      await conn.sendMessage(m.chat, {
-        document: { url: downloadUrl },
-        fileName: `${title}.mp3`,
-        mimetype: "audio/mpeg"
-      }, { quoted: m });
+    if (command === 'play' || command === 'yta' || command === 'ytmp3') {
+        const api = await ddownr.download(url, 'mp3');
+        const result = api.downloadUrl;
+        await conn.sendMessage(m.chat, { audio: { url: result }, mimetype: "audio/mpeg" }, { quoted: m });
 
-    } else if (command === 'playdoc2' || command === 'ytmp4doc' || command == 'play4') {
-      const sources = [
+    } else if (command === 'play2' || command === 'ytv' || command === 'ytmp4') {
+      let sources = [
         `https://api.siputzx.my.id/api/d/ytmp4?url=${url}`,
+        `https://api.zenkey.my.id/api/download/ytmp4?apikey=zenkey&url=${url}`,
+        `https://axeel.my.id/api/download/video?url=${encodeURIComponent(url)}`,
         `https://delirius-apiofc.vercel.app/download/ytmp4?url=${url}`
       ];
 
-      let downloadPromises = sources.map(source =>
-        fetch(source)
-          .then(res => {
-            if (!res.ok) throw new Error('Error en la respuesta de la API');
-            return res.json();
-          })
-          .then(({ data }) => data?.dl || data?.download?.url)
-          .catch(err => {
-            console.error('Error al obtener la URL de descarga:', err);
-            return null;
-          })
-      );
+      let success = false;
+      for (let source of sources) {
+        try {
+          const res = await fetch(source);
+          const { data, result, downloads } = await res.json();
+          let downloadUrl = data?.dl || result?.download?.url || downloads?.url || data?.download?.url;
 
-      try {
-        const downloadUrls = await Promise.all(downloadPromises);
-        const validUrl = downloadUrls.find(url => url);
-
-        if (validUrl) {
-          await conn.sendMessage(m.chat, {
-            document: { url: validUrl },
-            fileName: `${title}.mp4`,
-            mimetype: 'video/mp4',
-            caption: `${e} Aqui tienes ฅ^•ﻌ•^ฅ.`,
-            thumbnail: thumb
-          }, { quoted: m });
-        } else {
-          return m.reply(`${e} *No se pudo descargar el video:* No se encontró un enlace de descarga válido.`);
+          if (downloadUrl) {
+            success = true;
+            await conn.sendMessage(m.chat, {
+              video: { url: downloadUrl },
+              fileName: `${title}.mp4`,
+              mimetype: 'video/mp4',
+              caption: `${e} Aqui tienes ฅ^•ﻌ•^ฅ.`,
+              thumbnail: thumb
+            }, { quoted: m });
+            break;
+          }
+        } catch (e) {
+          console.error(`Error con la fuente ${source}:`, e.message);
         }
-      } catch (error) {
-        console.error('Error al obtener las URL de descarga:', error);
-        return m.reply(`${e} *Error al intentar descargar el video:* ${error.message}`);
+      }
+
+      if (!success) {
+        return m.reply(`${e} *No se pudo descargar el video:* No se encontró un enlace de descarga válido.`);
       }
     } else {
       throw "Comando no reconocido.";
@@ -145,7 +147,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
   }
 };
 
-handler.command = handler.help = ['playdoc', 'playdoc2', 'ytmp4doc', 'ytmp3doc', 'play3', 'play4'];
+handler.command = handler.help = ['play', 'play2', 'ytmp3', 'yta', 'ytmp4', 'ytv'];
 handler.tags = ['downloader'];
 handler.group = true
 
