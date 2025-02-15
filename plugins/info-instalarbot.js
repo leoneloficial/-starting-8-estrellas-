@@ -10,7 +10,7 @@ let texto = `╭─────────────┈⊷
 ╰┬────────────┈⊷
 ┌┤ *REQUISITOS PARA LAS INSTALACION*
 ┌┤➳ _Dudas: wa.me/50558124470
-┌┤➳ _Tutoríal: https://youtu.be/qRb9ElGT8mM_
+┌┤➳ _Tutoríal: No disponible de momento .
 ┌┤➳ _1 GB de almacenamiento_
 ┌┤➳ _Termux: https://www.mediafire.com/file/3hsvi3xkpq3a64o/termux_118.apk/file_
 ┌┤➳ _GitHub: https://github.com/leonelficial/-starting-8-estrellas_
