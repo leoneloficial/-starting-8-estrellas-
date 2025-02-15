@@ -5,53 +5,21 @@ import axios from "axios";
 const formatAudio = ['mp3', 'm4a', 'webm', 'aac', 'flac', 'opus', 'ogg', 'wav'];
 const formatVideo = ['360', '480', '720', '1080', '1440', '2160'];
 
-const ddownr = {
-  download: async (url, format) => {
-    if (!formatAudio.includes(format) && !formatVideo.includes(format)) {
-      throw new Error('Formato no soportado. Verifica la lista de formatos disponibles.');
+// Función para obtener el enlace de descarga utilizando la API de Apowersoft
+const getDownloadLink = async (url, format) => {
+  try {
+    const apiUrl = `https://www.apowersoft.es/api/video-downloader?url=${encodeURIComponent(url)}`;
+    const response = await axios.get(apiUrl);
+    const { data } = response;
+
+    if (data && data.download_url) {
+      return data.download_url;
+    } else {
+      throw new Error('No se pudo obtener el enlace de descarga.');
     }
-
-    const apiUrl = `https://p.oceansaver.in/ajax/download.php?format=${format}&url=${encodeURIComponent(url)}&api=dfcb6d76f2f6a9894gjkege8a4ab232222`;
-
-    try {
-      const { data } = await axios.get(apiUrl, {
-        headers: { 'User-Agent': 'Mozilla/5.0' }
-      });
-
-      if (data?.success) {
-        const { id, title, info } = data;
-        const downloadUrl = await ddownr.cekProgress(id);
-
-        return { id, title, image: info.image, downloadUrl };
-      } else {
-        throw new Error('Fallo al obtener detalles del video.');
-      }
-    } catch (error) {
-      console.error('Error en descarga:', error);
-      throw new Error('Error en la descarga. Inténtalo de nuevo más tarde.');
-    }
-  },
-
-  cekProgress: async (id) => {
-    const apiUrl = `https://p.oceansaver.in/ajax/progress.php?id=${id}`;
-    let attempts = 0, maxAttempts = 20;
-
-    while (attempts < maxAttempts) {
-      try {
-        const { data } = await axios.get(apiUrl, { headers: { 'User-Agent': 'Mozilla/5.0' } });
-
-        if (data?.success && data.progress === 1000) {
-          return data.download_url;
-        }
-      } catch (error) {
-        console.error('Error al verificar progreso:', error);
-      }
-
-      await new Promise(resolve => setTimeout(resolve, 5000));
-      attempts++;
-    }
-
-    throw new Error('Tiempo de espera agotado para la descarga.');
+  } catch (error) {
+    console.error('Error al obtener el enlace de descarga:', error);
+    throw new Error('Error en la descarga. Inténtalo de nuevo más tarde.');
   }
 };
 
@@ -69,7 +37,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
     const videoInfo = search.all[0];
     const { title, thumbnail, timestamp, views, ago, url, author } = videoInfo;
     const vistas = formatViews(views);
-    
+
     const infoMessage = `🎬 *${title}*\n⏳ *Duración:* ${timestamp}\n👀 *Vistas:* ${vistas}\n📌 *Canal:* ${author?.name || 'Desconocido'}\n📆 *Publicado:* ${ago}\n🔗 *Enlace:* ${url}`;
     const thumb = (await conn.getFile(thumbnail))?.data;
 
@@ -89,43 +57,18 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
     });
 
     if (['play', 'yta', 'ytmp3'].includes(command)) {
-      const { downloadUrl } = await ddownr.download(url, 'mp3');
+      const downloadUrl = await getDownloadLink(url, 'mp3');
       await conn.sendMessage(m.chat, { audio: { url: downloadUrl }, mimetype: "audio/mpeg" }, { quoted: m });
 
     } else if (['play2', 'ytv', 'ytmp4'].includes(command)) {
-      const sources = [
-        `https://api.siputzx.my.id/api/d/ytmp4?url=${url}`,
-        `https://api.zenkey.my.id/api/download/ytmp4?apikey=zenkey&url=${url}`,
-        `https://axeel.my.id/api/download/video?url=${encodeURIComponent(url)}`,
-        `https://delirius-apiofc.vercel.app/download/ytmp4?url=${url}`
-      ];
-
-      let success = false;
-      for (const source of sources) {
-        try {
-          const res = await fetch(source);
-          const json = await res.json();
-          const downloadUrl = json?.data?.dl || json?.result?.download?.url || json?.downloads?.url || json?.data?.download?.url;
-
-          if (downloadUrl) {
-            success = true;
-            await conn.sendMessage(m.chat, {
-              video: { url: downloadUrl },
-              fileName: `${title}.mp4`,
-              mimetype: 'video/mp4',
-              caption: '🎥 Aquí tienes tu video.',
-              thumbnail: thumb
-            }, { quoted: m });
-            break;
-          }
-        } catch (err) {
-          console.error(`Error con la fuente ${source}:`, err.message);
-        }
-      }
-
-      if (!success) {
-        return await conn.reply(m.chat, '❌ No se pudo descargar el video.', m);
-      }
+      const downloadUrl = await getDownloadLink(url, 'mp4');
+      await conn.sendMessage(m.chat, {
+        video: { url: downloadUrl },
+        fileName: `${title}.mp4`,
+        mimetype: 'video/mp4',
+        caption: '🎥 Aquí tienes tu video.',
+        thumbnail: thumb
+      }, { quoted: m });
     } else {
       throw new Error("Comando no reconocido.");
     }
