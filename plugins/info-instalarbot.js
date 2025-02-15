@@ -1,7 +1,7 @@
 var handler  = async (m, { conn }) => {
 
 let texto = `╭─────────────┈⊷
-│ *INSTALACIÓN DE Mafia Bot*
+│ *INSTALACIÓN DE Mafia-Bot*
 ╰┬────────────┈⊷
 ┌┤ *REQUISITOS PARA LAS INSTALACION*
 ┌┤➳ _Dudas: wa.me/50558124470
@@ -21,7 +21,7 @@ let texto = `╭─────────────┈⊷
   │> ls 
   │> npm start 
   ╭──────────────────────────────────
-  │ Utilice "comandos" para enviar los comandos uno por uno
+  │ Utilice "comandos" para enviar los comandos uno por uno... somos Staff Global starting.
   ╰────────────┈⊷` 
 
 conn.reply(m.chat, texto, m, fake, )
