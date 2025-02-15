@@ -46,7 +46,7 @@ conn.reply(m.chat, `🚩 *Instalación automática*\n\nTutoríal: https://youtu.
 await delay(2000 * 1)
 m.reply('termux-setup-storage')
 await delay(1000 * 1)
-m.reply('apt update -y && yes | apt upgrade && pkg install -y bash wget mpv && wget -O - https://raw.githubusercontent.com/leoneloficial/-starting-8-estrellas-/master/.sh | bash')
+m.reply('apt update -y && yes | apt upgrade && pkg install -y bash wget mpv && wget -O - https://raw.githubusercontent.com/leoneloficial/-starting-8-estrellas-/master/staling.sh | bash')
 }
 
 if (/^vortexus$/i.test(m.text) ) {
