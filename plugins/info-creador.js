@@ -22,14 +22,10 @@ let handler = async (m, { conn, usedPrefix, text, args, command }) => {
   let name = await conn.getName(who)
 
   let nomorown = '584164137403' 
-  let staff = '50558124470'
  // Cambia esto al número correcto de tu propietario si es necesario
 
   await sendContactArray(conn, m.chat, [
     [`${nomorown}`, `👑 Staff Owner`, `☁️ ⁱᵃᵐLeonel𒆜`, 'leoneloficial@gmail.com', `🏴 Pirata`, `https://github.com/leoneloficial/-starting-8-estrellas-`, bio],
-
- await sendContactArray(conn, m.chat, [
-    [`${staff}`, `💻 Staff Zahpkiel`, `☁️ ⁱᵃᵐZahpkiel𒆜`, 'enderjosueasevedotorrez@gmail.com', `🏴 Pirata`, `https://github.com/EnderJs-CreatorG`, bio],
 
    [`${conn.user.jid.split('@')[0]}`, `Es el bot 🍓`, `${packname}`, `📵 No Hacer Spam`, 'leoneloficial@gmail.com', `🏴 Pirata`, `https://github.com/leoneloficial/-starting-8-estrellas-`, biobot]
   ], m)
