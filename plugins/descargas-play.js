@@ -6,14 +6,14 @@ const handler = async (m, { conn, text, usedPrefix: prefijo }) => {
     const device = await getDevice(m.key.id);
 
     if (!text) return conn.reply(m.chat, '🤍 Ingresa el nombre de una musica de YouTube', m, rcanal);
-    m.react('🕓');
+    m.react('🌟');
 
     if (device !== 'desktop' && device !== 'web') {
         const results = await yts(text);
         const videos = results.videos.slice(0, 20);
         const randomIndex = Math.floor(Math.random() * videos.length);
         const randomVideo = videos[randomIndex];
-m.react('✅');
+m.react('🎶');
         const messa = await prepareWAMessageMedia({ image: { url: randomVideo.thumbnail }}, { upload: conn.waUploadToServer });
         const interactiveMessage = {
             body: {
