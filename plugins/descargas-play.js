@@ -1,88 +1,61 @@
-import fetch from "node-fetch";
-import yts from 'yt-search';
-import axios from "axios";
+// *𓍯𓂃𓏧♡  PLAY (audio - video)*
 
-const formatAudio = ['mp3', 'm4a', 'webm', 'aac', 'flac', 'opus', 'ogg', 'wav'];
-const formatVideo = ['360', '480', '720', '1080', '1440', '2160'];
+import fetch from 'node-fetch'
+import yts from 'yt-search'
 
-// Función para obtener el enlace de descarga utilizando la API de Apowersoft
-const getDownloadLink = async (url, format) => {
-  try {
-    const apiUrl = `https://www.apowersoft.es/api/video-downloader?url=${encodeURIComponent(url)}`;
-    const response = await axios.get(apiUrl);
-    const { data } = response;
+let handler = async (m, { conn, text, args }) => {
+if (!text)  return conn.reply(m.chat, `❀ Ingresa el nombre de lo que quieres buscar`, m)
 
-    if (data && data.download_url) {
-      return data.download_url;
-    } else {
-      throw new Error('No se pudo obtener el enlace de descarga.');
-    }
-  } catch (error) {
-    console.error('Error al obtener el enlace de descarga:', error);
-    throw new Error('Error en la descarga. Inténtalo de nuevo más tarde.');
-  }
-};
 
-const handler = async (m, { conn, text, usedPrefix, command }) => {
-  try {
-    if (!text?.trim()) {
-      return await conn.reply(m.chat, '⚠️ Ingresa el nombre de la música a descargar.', m);
-    }
+try {
+let res = await search(args.join(" "))
 
-    const search = await yts(text);
-    if (!search.all?.length) {
-      return await conn.reply(m.chat, '❌ No se encontraron resultados para tu búsqueda.', m);
-    }
+let apiAud = await fetch(`https://api.agungny.my.id/api/youtube-audio?url=${'https://youtu.be/' + res[0].videoId}`)
+let dataAud = await apiAud.json()
+let apiVid = await fetch(`https://api.agungny.my.id/api/youtube-video?url=${'https://youtu.be/' + res[0].videoId}`)
+let dataVid = await apiVid.json()
 
-    const videoInfo = search.all[0];
-    const { title, thumbnail, timestamp, views, ago, url, author } = videoInfo;
-    const vistas = formatViews(views);
 
-    const infoMessage = `🎬 *${title}*\n⏳ *Duración:* ${timestamp}\n👀 *Vistas:* ${vistas}\n📌 *Canal:* ${author?.name || 'Desconocido'}\n📆 *Publicado:* ${ago}\n🔗 *Enlace:* ${url}`;
-    const thumb = (await conn.getFile(thumbnail))?.data;
+let txt = `*◆ [ YOUTUBE - PLAY ] ◆*
+- *Titulo:* ${res[0].title}
+- *Duracion:* ${res[0].timestamp}
+- *Visitas:* ${res[0].views}
+- *Subido:* ${res[0].ago}
 
-    await conn.reply(m.chat, infoMessage, m, {
-      contextInfo: {
-        externalAdReply: {
-          title: "Descargador de YouTube",
-          body: "by tu_bot",
-          mediaType: 1,
-          previewType: 0,
-          mediaUrl: url,
-          sourceUrl: url,
-          thumbnail: thumb,
-          renderLargerThumbnail: true,
-        },
-      },
-    });
+◆────────────────◆
 
-    if (['play', 'yta', 'ytmp3'].includes(command)) {
-      const downloadUrl = await getDownloadLink(url, 'mp3');
-      await conn.sendMessage(m.chat, { audio: { url: downloadUrl }, mimetype: "audio/mpeg" }, { quoted: m });
+Responde a este mensaje dependiendo lo que quieras :
 
-    } else if (['play2', 'ytv', 'ytmp4'].includes(command)) {
-      const downloadUrl = await getDownloadLink(url, 'mp4');
-      await conn.sendMessage(m.chat, {
-        video: { url: downloadUrl },
-        fileName: `${title}.mp4`,
-        mimetype: 'video/mp4',
-        caption: '🎥 Aquí tienes tu video.',
-        thumbnail: thumb
-      }, { quoted: m });
-    } else {
-      throw new Error("Comando no reconocido.");
-    }
-  } catch (error) {
-    await conn.reply(m.chat, `⚠️ Error: ${error.message}`, m);
-  }
-};
+1 : Audio
+2 : Video`
 
-handler.command = ['play', 'play2', 'ytmp3', 'yta', 'ytmp4', 'ytv'];
-handler.tags = ['downloader'];
-handler.group = true;
+let SM = await conn.sendFile(m.chat, res[0].thumbnail, 'HasumiBotFreeCodes.jpg', txt, m)
+conn.ev.on("messages.upsert", async (upsertedMessage) => {
+let RM = upsertedMessage.messages[0];
+if (!RM.message) return
 
-export default handler;
+const UR = RM.message.conversation || RM.message.extendedTextMessage?.text
+let UC = RM.key.remoteJid
 
-function formatViews(views) {
-  return views >= 1000 ? `${(views / 1000).toFixed(1)}k (${views.toLocaleString()})` : views.toString();
+if (RM.message.extendedTextMessage?.contextInfo?.stanzaId === SM.key.id) {
+
+if (UR === '1') {
+  await conn.sendMessage(UC, { audio: { url: dataAud.result.downloadUrl }, mimetype: "audio/mpeg", caption: null }, { quoted: RM })
+} else if (UR === '2') {
+  await conn.sendMessage(m.chat, { video: { url: dataVid.result.downloadUrl }, caption: ``, mimetype: 'video/mp4', fileName: `${res[0].title}` + `.mp4`}, {quoted: m })
+} else {
+await conn.sendMessage(UC, { text: "Opcion invalida, responde con 1 *(audio)* o 2 *(video)*." }, { quoted: RM })
+}}})
+
+} catch (error) {
+console.error(error)
+}}
+
+handler.command = ["play"]
+
+export default handler
+
+async function search(query, options = {}) {
+  let search = await yts.search({ query, hl: "es", gl: "ES", ...options })
+  return search.videos
 }
