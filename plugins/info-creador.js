@@ -4,30 +4,25 @@ import PhoneNumber from 'awesome-phonenumber'
 
 let handler = async (m, { conn, usedPrefix, text, args, command }) => {
   m.react('🍁')
-  
- 
+
   let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
-  
-
   let pp = await conn.profilePictureUrl(who).catch(_ => 'https://files.catbox.moe/3kbbok.jpg')
-  
 
-  let biografia = await conn.fetchStatus('584164137403' + '@s.whatsapp.net').catch(_ => 'Sin Biografía')
-  let biografiaBot = await conn.fetchStatus(`${conn.user.jid.split('@')[0]}` + '@s.whatsapp.net').catch(_ => 'Sin Biografía')
-  
-  let bio = biografia.status?.toString() || 'Sin Biografía'
+  let biografia1 = await conn.fetchStatus('584164137403@s.whatsapp.net').catch(_ => 'Sin Biografía')
+  let biografia2 = await conn.fetchStatus('50558124470@s.whatsapp.net').catch(_ => 'Sin Biografía') // Reemplazado aquí
+  let biografiaBot = await conn.fetchStatus(`${conn.user.jid.split('@')[0]}@s.whatsapp.net`).catch(_ => 'Sin Biografía')
+
+  let bio1 = biografia1.status?.toString() || 'Sin Biografía'
+  let bio2 = biografia2.status?.toString() || 'Sin Biografía'
   let biobot = biografiaBot.status?.toString() || 'Sin Biografía'
-  
 
-  let name = await conn.getName(who)
-
-  let nomorown = '584164137403' 
- // Cambia esto al número correcto de tu propietario si es necesario
+  let nomorown1 = '584164137403'
+  let nomorown2 = '50558124470' // Reemplazado aquí
 
   await sendContactArray(conn, m.chat, [
-    [`${nomorown}`, `👑 Staff Owner`, `☁️ ⁱᵃᵐLeonel𒆜`, 'leoneloficial@gmail.com', `🏴 Pirata`, `https://github.com/leoneloficial/-starting-8-estrellas-`, bio],
-
-   [`${conn.user.jid.split('@')[0]}`, `Es el bot 🍓`, `${packname}`, `📵 No Hacer Spam`, 'leoneloficial@gmail.com', `🏴 Pirata`, `https://github.com/leoneloficial/-starting-8-estrellas-`, biobot]
+    [`${nomorown1}`, `👑 Staff Owner`, `☁️ ⁱᵃᵐLeonel𒆜`, 'leoneloficial@gmail.com', `🏴 Pirata`, `https://github.com/leoneloficial/-starting-8-estrellas-`, bio1],
+    [`${nomorown2}`, `💻 Staff Zahpkiel`, `ⁱᵃᵐzahpkiel𒆜`, 'enderjosueasevedotorrez@gmail.com', `🏴 Pirata`, `https://github.com/EnderJs-CreatorGL`, bio2],
+    [`${conn.user.jid.split('@')[0]}`, `Es el bot 🍓`, `${packname}`, `📵 No Hacer Spam`, 'leoneloficial@gmail.com', `🏴 Pirata`, `https://github.com/leoneloficial/-starting-8-estrellas-`, biobot]
   ], m)
 }
 
@@ -38,13 +33,13 @@ export default handler
 
 async function sendContactArray(conn, jid, data, quoted, options) {
   if (!Array.isArray(data[0]) && typeof data[0] === 'string') data = [data]
-  
+
   let contacts = []
   for (let [number, name, isi, isi1, isi2, isi3, isi4, isi5] of data) {
     number = number.replace(/[^0-9]/g, '')
     let njid = number + '@s.whatsapp.net'
     let biz = await conn.getBusinessProfile(njid).catch(_ => null) || {}
-    
+
     let vcard = `
 BEGIN:VCARD
 VERSION:3.0
@@ -65,11 +60,11 @@ END:VCARD`.trim()
 
     contacts.push({ vcard, displayName: name })
   }
-  
+
   try {
     return await conn.sendMessage(jid, {
       contacts: {
-        displayName: (contacts.length > 1 ? `2013 kontak` : contacts[0].displayName) || null,
+        displayName: (contacts.length > 1 ? `${contacts.length} contactos` : contacts[0].displayName) || null,
         contacts,
       }
     }, {
