@@ -1,61 +1,82 @@
-// *𓍯𓂃𓏧♡  PLAY (audio - video)*
+import { prepareWAMessageMedia, generateWAMessageFromContent, getDevice } from '@whiskeysockets/baileys';
+import yts from 'yt-search';
+import fs from 'fs';
 
-import fetch from 'node-fetch'
-import yts from 'yt-search'
+const handler = async (m, { conn, text, usedPrefix: prefijo }) => {
+    const device = await getDevice(m.key.id);
 
-let handler = async (m, { conn, text, args }) => {
-if (!text)  return conn.reply(m.chat, `❀ Ingresa el nombre de lo que quieres buscar`, m)
+    if (!text) return conn.reply(m.chat, '🤍 Ingresa el nombre de una musica de YouTube', m, rcanal);
+    m.react('🕓');
 
+    if (device !== 'desktop' && device !== 'web') {
+        const results = await yts(text);
+        const videos = results.videos.slice(0, 20);
+        const randomIndex = Math.floor(Math.random() * videos.length);
+        const randomVideo = videos[randomIndex];
+m.react('✅');
+        const messa = await prepareWAMessageMedia({ image: { url: randomVideo.thumbnail }}, { upload: conn.waUploadToServer });
+        const interactiveMessage = {
+            body: {
+                text: `乂  Y O U T U B E  -  P L A Y\n\n» *Título:* ${randomVideo.title}\n» *Duración:* ${randomVideo.duration.timestamp}\n» *Autor:* ${randomVideo.author.name || 'Desconocido'}\n» *Publicado:* ${randomVideo.ago}\n» *Enlace:* ${randomVideo.url}\n`
+            },
+            footer: { text: `${global.dev}`.trim() },
+            header: {
+                title: `*🍇 Búsqueda de Video 🍇*\n`,
+                hasMediaAttachment: true,
+                imageMessage: messa.imageMessage,
+            },
+            nativeFlowMessage: {
+                buttons: [
+                    {
+                        name: 'single_select',
+                        buttonParamsJson: JSON.stringify({
+                            title: 'OPCIONES DE DESCARGA',
+                            sections: videos.map((video) => ({
+                                title: video.title,
+                                rows: [
+                                    { header: video.title, title: video.author.name, description: 'Descargar MP3 (Audio)', id: `${prefijo}ytmp3 ${video.url}` },
+                                    { header: video.title, title: video.author.name, description: 'Descargar MP4 (Video)', id: `${prefijo}test2 ${video.url}` },
+                                    { header: video.title, title: video.author.name, description: 'Descargar MP3 como Documento', id: `${prefijo}play4 ${video.url}` },
+                                    { header: video.title, title: video.author.name, description: 'Descargar MP4 como Documento', id: `${prefijo}ytmp4doc ${video.url}` }
+                                ]
+                            }))
+                        })
+                    }
+                ],
+                messageParamsJson: ''
+            }
+        };
 
-try {
-let res = await search(args.join(" "))
+        let msg = generateWAMessageFromContent(m.chat, {
+            viewOnceMessage: {
+                message: {
+                    interactiveMessage,
+                },
+            },
+        }, { userJid: conn.user.jid, quoted: null });
+        conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id });
 
-let apiAud = await fetch(`https://api.agungny.my.id/api/youtube-audio?url=${'https://youtu.be/' + res[0].videoId}`)
-let dataAud = await apiAud.json()
-let apiVid = await fetch(`https://api.agungny.my.id/api/youtube-video?url=${'https://youtu.be/' + res[0].videoId}`)
-let dataVid = await apiVid.json()
+    } else {
+        const idioma = global.db.data.users[m.sender].language;
+        const _translate = JSON.parse(fs.readFileSync(`./language/${idioma}.json`));
+        const traductor = _translate.plugins.buscador_yts;
+        const results = await yts(text);
+        const tes = results.all;
+        const teks = results.all.map((v) => {
+            if (v.type === 'video') return `
+° *_${v.title}_*
+↳ 🫐 *_Enlace :_* ${v.url}
+↳ 🕒 *_Duración :_* ${v.timestamp}
+↳ 📥 *_Subido :_* ${v.ago}
+↳ 👁 *_Vistas :_* ${v.views}`;
+        }).filter(v => v).join('\n\n◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦\n\n');
+        conn.sendFile(m.chat, tes[0].thumbnail, 'error.jpg', teks.trim(), m);
+    }
+};
 
+handler.help = ['play *<texto>*'];
+handler.tags = ['dl'];
+handler.command = ['play', 'play2'];
+handler.register = true;
 
-let txt = `*◆ [ YOUTUBE - PLAY ] ◆*
-- *Titulo:* ${res[0].title}
-- *Duracion:* ${res[0].timestamp}
-- *Visitas:* ${res[0].views}
-- *Subido:* ${res[0].ago}
-
-◆────────────────◆
-
-Responde a este mensaje dependiendo lo que quieras :
-
-1 : Audio
-2 : Video`
-
-let SM = await conn.sendFile(m.chat, res[0].thumbnail, 'HasumiBotFreeCodes.jpg', txt, m)
-conn.ev.on("messages.upsert", async (upsertedMessage) => {
-let RM = upsertedMessage.messages[0];
-if (!RM.message) return
-
-const UR = RM.message.conversation || RM.message.extendedTextMessage?.text
-let UC = RM.key.remoteJid
-
-if (RM.message.extendedTextMessage?.contextInfo?.stanzaId === SM.key.id) {
-
-if (UR === '1') {
-  await conn.sendMessage(UC, { audio: { url: dataAud.result.downloadUrl }, mimetype: "audio/mpeg", caption: null }, { quoted: RM })
-} else if (UR === '2') {
-  await conn.sendMessage(m.chat, { video: { url: dataVid.result.downloadUrl }, caption: ``, mimetype: 'video/mp4', fileName: `${res[0].title}` + `.mp4`}, {quoted: m })
-} else {
-await conn.sendMessage(UC, { text: "Opcion invalida, responde con 1 *(audio)* o 2 *(video)*." }, { quoted: RM })
-}}})
-
-} catch (error) {
-console.error(error)
-}}
-
-handler.command = ["play"]
-
-export default handler
-
-async function search(query, options = {}) {
-  let search = await yts.search({ query, hl: "es", gl: "ES", ...options })
-  return search.videos
-}
+export default handler;
