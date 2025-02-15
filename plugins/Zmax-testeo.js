@@ -26,7 +26,7 @@ m.react('🎶');
             },
             footer: { text: `${global.dev}`.trim() },
             header: {
-                title: `> ✨ Búsqueda de Video ✨\n`,
+                title: `> ✨ 𖤓⏤͟͟͞͞【𝙎𝙩𝙖𝙧𝙩𝙞𝙣𝙜 8 𝙚𝙨𝙩𝙧𝙚𝙡𝙡𝙖𝙨 】⏤͟͟͞͞𖤓✨\n`,
                 hasMediaAttachment: true,
                 imageMessage: messa.imageMessage,
             },
