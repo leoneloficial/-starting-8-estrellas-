@@ -1,62 +1,56 @@
+import fetch from "node-fetch";
+import yts from "yt-search";
 
-// *𓍯𓂃𓏧♡  PLAY (audio - video)*
+let handler = async (m, { conn, text }) => {
+if (!text) {
+return m.reply("🍬 Ingresa el texto de lo que quieres buscar.")
+}
 
-import fetch from 'node-fetch'
-import yts from 'yt-search'
+let ytres = await yts(text)
+let video = ytres.videos[0]
+  
+if (!video) {
+return m.reply("🍭 No se encontraron resultados...")
+}
 
-let handler = async (m, { conn, text, args }) => {
-if (!text)  return conn.reply(m.chat, `❀ Ingresa el nombre de lo que quieres buscar`, m)
+let { title, thumbnail, timestamp, views, ago, url } = video
 
+let vistas = parseInt(views).toLocaleString("es-ES") + " vistas"
+
+let HS = ` ᚚᚚᩳᚚ͜ᩬᚚ͜ᚚ͜ᚚ͜ᚚ͜ᚚ͜ᚚ͜ᚚ͜ᚚ͜ᚚ͜ᚚ͜ᚚ͜ᚚ͜ᚚ͜ᚚ͜ᚚ͜ᚚ͜ᚚᩬᚚᩳᚚᚚ
+꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+❥⊰⏤͟͟͞͞Título:⊱ ${title}
+❥⊰⏤͟͟͞͞Duración:⊱ ${timestamp}
+❥⊰⏤͟͟͞͞Vistas:⊱ ${vistas}
+❥⊰⏤͟͟͞͞Subido:⊱ ${ago}
+❥⊰⏤͟͟͞͞Enlace:⊱ ${url}
+꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦꒷꒦
+
+➥𝙀𝙨𝙥𝙚𝙧𝙚 𝙪𝙣 𝙢𝙤𝙢𝙚𝙣𝙩𝙤 𝙙𝙚𝙨𝙘𝙖𝙧𝙜𝙖𝙣𝙙𝙤 𝙨𝙪 𝙖𝙪𝙙𝙞𝙤...`
+
+let thumb = (await conn.getFile(thumbnail))?.data;
+
+let JT = {
+contextInfo: {
+externalAdReply: {
+title: title, body: "",
+mediaType: 1, previewType: 0,
+mediaUrl: url, sourceUrl: url,
+thumbnail: thumb, renderLargerThumbnail: true,
+}}}
+
+await conn.reply(m.chat, HS, m, JT)
 
 try {
-let res = await search(args.join(" "))
+let api = await fetch(`https://api.vreden.web.id/api/ytplaymp3?query=https://youtu.be/MoN9ql6Yymw${url}`);
+let json = await api.json()
+let { download } = json.result
 
-let apiAud = await fetch(`https://api.agungny.my.id/api/youtube-audio?url=${'https://youtu.be/' + res[0].videoId}`)
-let dataAud = await apiAud.json()
-let apiVid = await fetch(`https://api.agungny.my.id/api/youtube-video?url=${'https://youtu.be/' + res[0].videoId}`)
-let dataVid = await apiVid.json()
-
-
-let txt = `*◆ [ YOUTUBE - PLAY ] ◆*
-- *Titulo:* ${res[0].title}
-- *Duracion:* ${res[0].timestamp}
-- *Visitas:* ${res[0].views}
-- *Subido:* ${res[0].ago}
-
-◆────────────────◆
-
-Responde a este mensaje dependiendo lo que quieras :
-
-1 : Audio
-2 : Video`
-
-let SM = await conn.sendFile(m.chat, res[0].thumbnail, 'HasumiBotFreeCodes.jpg', txt, m)
-conn.ev.on("messages.upsert", async (upsertedMessage) => {
-let RM = upsertedMessage.messages[0];
-if (!RM.message) return
-
-const UR = RM.message.conversation || RM.message.extendedTextMessage?.text
-let UC = RM.key.remoteJid
-
-if (RM.message.extendedTextMessage?.contextInfo?.stanzaId === SM.key.id) {
-
-if (UR === '1') {
-  await conn.sendMessage(UC, { audio: { url: dataAud.result.downloadUrl }, mimetype: "audio/mpeg", caption: null }, { quoted: RM })
-} else if (UR === '2') {
-  await conn.sendMessage(m.chat, { video: { url: dataVid.result.downloadUrl }, caption: ``, mimetype: 'video/mp4', fileName: `${res[0].title}` + `.mp4`}, {quoted: m })
-} else {
-await conn.sendMessage(UC, { text: "Opcion invalida, responde con 1 *(audio)* o 2 *(video)*." }, { quoted: RM })
-}}})
-
+await conn.sendMessage(m.chat, { audio: { url: download.url }, caption: ``, mimetype: "audio/mpeg", }, { quoted: m })
 } catch (error) {
-console.error(error)
+console.error(error)    
 }}
 
-handler.command = ["play"]
+handler.command = ['play']
 
 export default handler
-
-async function search(query, options = {}) {
-  let search = await yts.search({ query, hl: "es", gl: "ES", ...options })
-  return search.videos
-}
