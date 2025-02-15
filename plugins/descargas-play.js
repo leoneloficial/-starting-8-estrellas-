@@ -21,7 +21,7 @@ m.react('✅');
             },
             footer: { text: `${global.dev}`.trim() },
             header: {
-                title: `*🍇 Búsqueda de Video 🍇*\n`,
+                title: `> ✨ Búsqueda de Video ✨\n`,
                 hasMediaAttachment: true,
                 imageMessage: messa.imageMessage,
             },
@@ -30,7 +30,7 @@ m.react('✅');
                     {
                         name: 'single_select',
                         buttonParamsJson: JSON.stringify({
-                            title: 'OPCIONES DE DESCARGA',
+                            title: '> OPCIONES DE DESCARGA',
                             sections: videos.map((video) => ({
                                 title: video.title,
                                 rows: [
