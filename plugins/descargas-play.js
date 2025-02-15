@@ -30,7 +30,7 @@ m.react('🎶');
                     {
                         name: 'single_select',
                         buttonParamsJson: JSON.stringify({
-                            title: '> OPCIONES DE DESCARGA',
+                            title: '🎶 Elije una opcion',
                             sections: videos.map((video) => ({
                                 title: video.title,
                                 rows: [
