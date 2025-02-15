@@ -5,7 +5,7 @@ import fs from 'fs';
 const handler = async (m, { conn, text, usedPrefix: prefijo }) => {
     const device = await getDevice(m.key.id);
 
-    if (!text) return conn.reply(m.chat, '🤍 Ingresa el nombre de una musica de YouTube', m, rcanal);
+    if (!text) return conn.reply(m.chat, '❤️‍🔥 Ingresa el nombre de una musica de YouTube', m, rcanal);
     m.react('🌟');
 
     if (device !== 'desktop' && device !== 'web') {
