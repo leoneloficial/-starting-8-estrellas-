@@ -39,8 +39,6 @@ const handler = async (m, { conn, usedPrefix }) => {
   conn.sendMessage(m.chat, { text: menu }, { quoted: m });
 };
 
-handler.command = ["menu", "help"];
-export default handler;
 
 
   let txt = `
