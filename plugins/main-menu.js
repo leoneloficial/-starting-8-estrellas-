@@ -22,6 +22,26 @@ const handler = async (m, { conn, usedPrefix }) => {
     await new Promise(resolve => setTimeout(resolve, 500)); // Espera de 500ms entre cada mensaje
   }
 
+  let menu = `
+*🌟 BIENVENIDO ${sender} 🌟*
+
+📌 *Menú de Comandos* 📌
+🔹 *${usedPrefix}info* - Información del bot
+🔹 *${usedPrefix}ping* - Latencia del bot
+🔹 *${usedPrefix}owner* - Contacto del creador
+🔹 *${usedPrefix}help* - Lista de comandos
+🔹 *${usedPrefix}sticker* - Crea stickers
+🔹 *${usedPrefix}play* - Descarga música/videos
+
+✨ Disfruta de tu experiencia con el bot!
+  `.trim();
+
+  conn.sendMessage(m.chat, { text: menu }, { quoted: m });
+};
+
+handler.command = ["menu", "help"];
+export default handler;
+
 
   let txt = `
 һ᥆ᥣᥲ! s᥆ᥡ *${botname}*
