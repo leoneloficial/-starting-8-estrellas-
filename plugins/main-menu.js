@@ -13,6 +13,16 @@ let handler = async (m, { conn, args }) => {
 
   let perfil = await conn.profilePictureUrl(userId, 'image').catch(_ => 'https://files.catbox.moe/xr2m6u.jpg');
 
+const handler = async (m, { conn, usedPrefix }) => {
+  let sender = m.sender.split("@")[0];
+  let porcentajes = ["10%", "25%", "50%", "75%", "100%"];
+  
+  for (let porcentaje of porcentajes) {
+    await conn.sendMessage(m.chat, { text: `Cargando... ${porcentaje}` }, { quoted: m });
+    await new Promise(resolve => setTimeout(resolve, 500)); // Espera de 500ms entre cada mensaje
+  }
+
+
   let txt = `
 һ᥆ᥣᥲ! s᥆ᥡ *${botname}*
 ᥲ𝗊ᥙí 𝗍іᥱᥒᥱs ᥣᥲ ᥣіs𝗍ᥲ ძᥱ ᥴ᥆mᥲᥒძ᥆s
