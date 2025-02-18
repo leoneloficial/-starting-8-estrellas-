@@ -13,7 +13,7 @@ var handler = async (m, { conn }) => {
     let timeRemaining = user.halloween + cooldown - currentDate.getTime();
 
     if (!isOctober) {
-        return m.reply(`🎃 ¡Solo puedes reclamar tu regalo de Halloween en octubre! Vuelve en octubre de ${currentYear}.`);
+        return m.reply(`✧ ¡Solo puedes reclamar tu regalo de Halloween en octubre! Vuelve en octubre de ${currentYear}.`);
     }
 
     if (timeRemaining > 0) {
