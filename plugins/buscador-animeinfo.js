@@ -62,7 +62,7 @@ async function getAnimeEpisodes(url) {
 
 let handler = async (m, { conn, command, args, text, usedPrefix }) => {
     if (!args[0]) {
-        return conn.reply(m.chat, `🍬 Por favor, ingresa el link del anime para obtener información.`, m);
+        return conn.reply(m.chat, `✎ Por favor, ingresa el link del anime para obtener información.`, m);
     }
 
     let data = await getAnimeEpisodes(args[0]);
