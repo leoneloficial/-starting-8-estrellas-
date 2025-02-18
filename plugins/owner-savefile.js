@@ -1,6 +1,6 @@
 import fs from 'fs'
 let handler = async (m, { text, usedPrefix, command }) => {
-if (!text) return m.reply(`🍭 Ingresa la Ruta y el nombre del Archivo junto al comando.`)
+if (!text) return m.reply(`✎ Ingresa la Ruta y el nombre del Archivo junto al comando.`)
 try {
 if (!m.quoted.text) return m.reply(`Responde al mensaje.`)
 let path = `${text}.js`
