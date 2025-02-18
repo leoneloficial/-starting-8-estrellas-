@@ -16,10 +16,10 @@ const handler = async (m, { conn, text }) => {
         who = m.chat;
     }
     
-    if (!who) return m.reply('*🍬 Por favor, menciona al usuario o cita un mensaje.*');
+    if (!who) return m.reply('*✎ Por favor, menciona al usuario o cita un mensaje.*');
 
     const txt = text.replace('@' + who.split`@`[0], '').trim();
-    if (!txt) return m.reply('*🍬 Ingresa la cantidad de experiencia (XP) que deseas añadir.*');
+    if (!txt) return m.reply('*✎ Ingresa la cantidad de experiencia (XP) que deseas añadir.*');
     if (isNaN(txt)) return m.reply('🍭 *Solo números son permitidos.*');
     
     const xp = parseInt(txt);
@@ -27,7 +27,7 @@ const handler = async (m, { conn, text }) => {
     const pjk = Math.ceil(xp * pajak);
     exp += pjk;
     
-    if (exp < 1) return m.reply('🍬 El mínimo de experiencia (XP) para añadir es *1*.');
+    if (exp < 1) return m.reply('✎ El mínimo de experiencia (XP) para añadir es *1*.');
     
     const users = global.db.data.users;
     users[who].exp += xp;
