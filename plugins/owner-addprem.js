@@ -2,7 +2,7 @@ const handler = async (m, {conn, text, usedPrefix, command}) => {
   let who;
   if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : false;
   else who = m.chat;
-  const textpremERROR = `🍬 Ingrese el tag del usuario que quieras agregar como user premium.`;
+  const textpremERROR = `✎ Ingrese el tag del usuario que quieras agregar como user premium.`;
   if (!who) return m.reply(textpremERROR, null, {mentions: conn.parseMention(textpremERROR)});
 
   const user = global.db.data.users[who];
