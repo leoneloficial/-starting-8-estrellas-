@@ -3,7 +3,7 @@
 import axios from 'axios'
 
 let HS = async (m, { conn, text }) => {
-if (!text) return conn.reply(m.chat, `❀ Ingresa un texto para buscar en pinterest`, m)
+if (!text) return conn.reply(m.chat, `✎ Ingresa un texto para buscar en pinterest`, m)
   
 try {
 let api = await axios.get(`https://api.siputzx.my.id/api/s/pinterest?query=${text}`)
