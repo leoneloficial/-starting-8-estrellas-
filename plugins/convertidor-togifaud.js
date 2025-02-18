@@ -1,5 +1,5 @@
 let handler = async (m, { conn, usedPrefix, command }) => {
-if (!m.quoted) return conn.reply(m.chat, `🍬 Por favor, responde a un *Video.*`, m, rcanal)
+if (!m.quoted) return conn.reply(m.chat, `✎ Por favor, responde a un *Video.*`, m, rcanal)
 conn.reply(m.chat, global.wait, m, {
 contextInfo: { externalAdReply :{ mediaUrl: null, mediaType: 1, showAdAttribution: true,
 title: packname,
@@ -8,10 +8,10 @@ previewType: 0, thumbnail: icons,
 sourceUrl: channel }}})
 const q = m.quoted || m
 let mime = (q.msg || q).mimetype || ''
-if (!/(mp4)/.test(mime)) return conn.reply(m.chat, `🍬 Por favor, responde a un *Video.*`, m, rcanal)
+if (!/(mp4)/.test(mime)) return conn.reply(m.chat, `✎ Por favor, responde a un *Video.*`, m, rcanal)
 await m.react(rwait)
 let media = await q.download()
-let listo = '🍬 Aqui tienes ฅ^•ﻌ•^ฅ.'
+let listo = '✎ Aqui tienes ฅ^•ﻌ•^ฅ.'
 conn.sendMessage(m.chat, { video: media, gifPlayback: true, caption: listo }, { quoted: fkontak })
 await m.react(done)
 }
