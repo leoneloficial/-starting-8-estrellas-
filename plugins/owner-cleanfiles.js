@@ -25,7 +25,7 @@ const _0xcleanTempFiles = async () => {
 };
 
 let _0xhandler = async (m, { conn, isOwner }) => {
-    if (!isOwner) return conn.reply(m.chat, '🍬 Solo el propietario puede usar este comando.', m);
+    if (!isOwner) return conn.reply(m.chat, '✧ Solo el propietario puede usar este comando.', m);
 
     try {
         const _0xresult = await _0xcleanTempFiles();
