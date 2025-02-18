@@ -31,17 +31,17 @@ console.log(`Error : ${e}`)
 global.creador = 'Wa.me/584120346669'
 global.ofcbot = `${conn.user.jid.split('@')[0]}`
 global.asistencia = 'Wa.me/584120346669'
-global.namechannel = '𖤓⏤͟͟͞͞【𓆩チャンネル桜沢𓆪】⏤͟͟͞͞𖤓'
+global.namechannel = '𖤓⏤͟͟͞͞【𝙎𝙩𝙖𝙧𝙩𝙞𝙣𝙜 8 𝙚𝙨𝙩𝙧𝙚𝙡𝙡𝙖𝙨 】⏤͟͟͞͞𖤓'
 global.namechannel2 = '𖤓⏤͟͟͞͞【𝙩𝙚𝙖𝙢 𝙨𝙩𝙖𝙧𝙩𝙞𝙣𝙜 8 𝙚𝙨𝙩𝙧𝙚𝙡𝙡𝙖𝙨】⏤͟͟͞͞𖤓"'
 global.namegrupo = 'gяυρσ ∂єℓ вσт'
 global.namecomu = '¢αηαℓ ∂єℓ вσт'
-global.listo = '🍬 *Aquí tienes ฅ^•ﻌ•^ฅ*'
+global.listo = '✎ *Aquí tienes ฅ^•ﻌ•^ฅ*'
 global.fotoperfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://files.catbox.moe/xr2m6u.jpg')
 
 //Ids channel
 global.idchannel = '120363324350463849@newsletter'
 global.canalIdM = ["120363324350463849@newsletter", "120363324350463849@newsletter"]
-global.canalNombreM = ["𖤓⏤͟͟͞͞【𓆩チャンネル桜沢𓆪】⏤͟͟͞͞𖤓", "𖤓⏤͟͟͞͞【𝙩𝙚𝙖𝙢 𝙨𝙩𝙖𝙧𝙩𝙞𝙣𝙜 8 𝙚𝙨𝙩𝙧𝙚𝙡𝙡𝙖𝙨】⏤͟͟͞͞𖤓 "]
+global.canalNombreM = ["𖤓⏤͟͟͞͞【𝙎𝙩𝙖𝙧𝙩𝙞𝙣𝙜 8 𝙚𝙨𝙩𝙧𝙚𝙡𝙡𝙖𝙨 】⏤͟͟͞͞𖤓", "𖤓⏤͟͟͞͞【𝙩𝙚𝙖𝙢 𝙨𝙩𝙖𝙧𝙩𝙞𝙣𝙜 8 𝙚𝙨𝙩𝙧𝙚𝙡𝙡𝙖𝙨】⏤͟͟͞͞𖤓 "]
 global.channelRD = await getRandomChannel()
 
 //fechas
