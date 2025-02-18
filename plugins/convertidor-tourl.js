@@ -7,7 +7,7 @@ let handler = async (m, { conn }) => {
   let mime = (q.msg || q).mimetype || ''
   
   if (!mime) {
-    return conn.reply(m.chat, '🍬 Por favor, responde a una *Imagen* o *Vídeo.*', m)
+    return conn.reply(m.chat, '✎ Por favor, responde a una *Imagen* o *Vídeo.*', m)
   }
 
   try {
