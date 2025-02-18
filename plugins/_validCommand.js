@@ -27,6 +27,6 @@ export async function before(m) {
 await conn.sendPresenceUpdate('composing', m.chat);
   } else {
    const comando = m.text.trim().split(' ')[0];
-   await m.reply(`> 🍬 El comando *${comando}* no existe.`);
+   await m.reply(`✧ El comando *${comando}* no existe.\nPara ver la lista de comandos usa:\n» *#help`);
   }
 }
