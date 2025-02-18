@@ -1,7 +1,7 @@
 import fs from 'fs'
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-await m.reply(`❮🍬❯ » *Enviando base de datos de ${wm}...*`)
+await m.reply(`❮✦❯ » *Enviando base de datos de ${wm}...*`)
 try {
 await m.react(rwait)
 let d = new Date
