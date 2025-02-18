@@ -23,15 +23,15 @@ fechaBio = biografia[0].setAt ? new Date(biografia[0].setAt).toLocaleDateString(
   let pp = await conn.profilePictureUrl(who, 'image').catch((_) => 'https://files.catbox.moe/2udrof.jpg')
   let user = global.db.data.users[m.sender]
   let name2 = conn.getName(m.sender)
-  if (user.registered === true) return m.reply(`🍭 Ya estás registrado.\n\n*¿Quiere volver a registrarse?*\n\nUse este comando para eliminar su registro.\n*${usedPrefix}unreg*`)
-  if (!Reg.test(text)) return m.reply(`🍭 Formato incorrecto.\n\nUso del comamdo: *${usedPrefix + command} nombre.edad*\nEjemplo : *${usedPrefix + command} ${name2}.18*`)
+  if (user.registered === true) return m.reply(`✧ Ya estás registrado.\n\n*¿Quiere volver a registrarse?*\n\nUse este comando para eliminar su registro.\n*${usedPrefix}unreg*`)
+  if (!Reg.test(text)) return m.reply(`✧ Formato incorrecto.\n\nUso del comamdo: *${usedPrefix + command} nombre.edad*\nEjemplo : *${usedPrefix + command} ${name2}.18*`)
   let [_, name, splitter, age] = text.match(Reg)
-  if (!name) return m.reply('🍭 El nombre no puede estar vacío.')
-  if (!age) return m.reply('🍭 La edad no puede estar vacía.')
+  if (!name) return m.reply('✧ El nombre no puede estar vacío.')
+  if (!age) return m.reply('✧ La edad no puede estar vacía.')
   if (name.length >= 100) return m.reply('🍭 El nombre es demasiado largo.' )
   age = parseInt(age)
-  if (age > 1000) return m.reply('🍬 Wow el abuelo quiere jugar al bot.')
-  if (age < 5) return m.reply('🍬 hay un abuelo bebé jsjsj. ')
+  if (age > 1000) return m.reply('✧ Wow el abuelo quiere jugar al bot.')
+  if (age < 5) return m.reply('✧ hay un abuelo bebé jsjsj. ')
   user.name = name + '✓'.trim()
   user.age = age
   user.descripcion = bio 
