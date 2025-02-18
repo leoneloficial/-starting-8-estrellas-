@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 
 let handler = async (m, { text }) => {
   if (!text) {
-    m.reply('🍬 Por favor, proporciona el termino de búsqueda que deseas realizar a *Google*.');
+    m.reply('✎ Por favor, proporciona el termino de búsqueda que deseas realizar a *Google*.');
     return;
   }
 
@@ -17,7 +17,7 @@ let handler = async (m, { text }) => {
       return;
     }
 
-    let replyMessage = '🍭 Resultados de la búsqueda:\n\n';
+    let replyMessage = '✎Resultados de la búsqueda:\n\n';
     result.data.slice(0, 1).forEach((item, index) => {
       replyMessage += `☁️ *${index + 1}. ${item.title}*\n`;
       replyMessage += `📰 *${item.description}*\n`;
