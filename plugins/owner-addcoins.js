@@ -16,7 +16,7 @@ let handler = async (m, { conn, text }) => {
         who = m.chat;
     }
     
-    if (!who) return m.reply('*🍬 Por favor, menciona al usuario o cita un mensaje.*');
+    if (!who) return m.reply('*✧ Por favor, menciona al usuario o cita un mensaje.*');
     
     let txt = text.replace('@' + who.split`@`[0], '').trim();
     if (!txt) return m.reply('*🍬 Por favor, ingresa la cantidad que deseas añadir.*');
