@@ -24,7 +24,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     let suggestionText = rest.join(' ');
 
     if (!suggestionText) {
-        return m.reply(`🍬 Debes agregar un texto después de seleccionar la categoría.\nEjemplo: ${usedPrefix + command} a Mi solicitud es...`);
+        return m.reply(`✎ Debes agregar un texto después de seleccionar la categoría.\nEjemplo: ${usedPrefix + command} a Mi solicitud es...`);
     }
 
     let categories = {
@@ -43,7 +43,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         return m.reply('🍭 Opción inválida. Elige una categoría correcta: a, b, c o d.');
     }
 
-    m.reply(`🍬 Tu Publicación ha sido enviada a los administradores para su revisión.`);
+    m.reply(`✎ Tu Publicación ha sido enviada a los administradores para su revisión.`);
 
     let groupMetadata = await conn.groupMetadata(idgroup);
     let groupAdmins = groupMetadata.participants.filter(p => p.admin);
@@ -146,7 +146,7 @@ renderLargerThumbnail: false
 
 await conn.sendMessage(idchannel, { text: approvedText, contextInfo: options.contextInfo }, { quoted: null });
 
-await conn.reply(sender, `🍬 Solicitud aceptada, Grupo:\n${gp4}`);
+await conn.reply(sender, `✦ Solicitud aceptada, Grupo:\n${gp4}`);
 delete suggestionQueue[suggestionId];
 }};
 handler.command = ['sugerencia', 'enviarmensaje', 'solicitud', 'enviarsolicitud'];
