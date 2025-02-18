@@ -59,7 +59,7 @@ global.textbot = 'ᯓ᮫݃͜ᮨ🐉ܾ݉ᢥGohanᯓᯧ • Powered By ৎ୭࠭͢
 global.moneda = 'Yenes'
 global.welcom1 = 'Edita Con #setwelcome'
 global.welcom2 = 'Edita Con #setbye'
-global.banner = 'https://qu.ax/iSoJG.jpg'
+global.banner = 'https://qu.ax/pzcbe.jpg'
 global.catalogo = 'https://tinyurl.com/25ru293g'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
