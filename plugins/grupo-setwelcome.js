@@ -3,7 +3,7 @@ let handler = async (m, { conn, text, isRowner }) => {
 
   global.welcom1 = text.trim();
   
-  m.reply(`🍬 La bienvenida del bot ha sido cambiado a: ${global.welcom1}`);
+  m.reply(`✎ La bienvenida del bot ha sido cambiado a: ${global.welcom1}`);
 };
 
 handler.help = ['setwelcome'];
