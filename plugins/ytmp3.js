@@ -4,7 +4,7 @@
 import axios from 'axios'
 
 let HS = async (m, { conn, text }) => {
-if (!text)  return conn.reply(m.chat, `❀ Ingresa un link de youtube`, m)
+if (!text)  return conn.reply(m.chat, `✎ Ingresa un link de youtube`, m)
 
 try {
 let api = await axios.get(`https://api.agungny.my.id/api/youtube-audio?url=${text}`)
