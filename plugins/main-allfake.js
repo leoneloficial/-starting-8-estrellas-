@@ -110,8 +110,8 @@ global.icono = [
 'https://qu.ax/hqUfr.jpg',
 'https://qu.ax/hqUfr.jpg',
 'https://qu.ax/RLnAs.jpg',
-'https://qu.ax/uEtca.jpg',
-'https://qu.ax/XYenX.jpg',
+'https://qu.ax/wwpEX.jpg',
+'https://qu.ax/LoNGO.jpg',
 'https://qu.ax/kvAZP.jpg'
 ].getRandom()
 
