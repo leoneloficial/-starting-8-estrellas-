@@ -1,5 +1,5 @@
 let handler = async (m, { conn, text }) => {
-if (!text) return m.reply('🍬 Ingresa un nombre para el grupo.')
+if (!text) return m.reply('✧ Ingresa un nombre para el grupo.')
 try{
 m.reply('🍭 Creando grupo...')
 let group = await conn.groupCreate(text, [m.sender])
