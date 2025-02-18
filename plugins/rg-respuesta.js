@@ -1,5 +1,5 @@
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-    if (!text) throw m.reply(`*🍬 Ejemplo:*\n\n${usedPrefix + command} <id> <mensaje>\n\n*🍭 Uso:* ${usedPrefix + command} 1234 Gracias por tu confesión.`);
+    if (!text) throw m.reply(`*✎ Ejemplo:*\n\n${usedPrefix + command} <id> <mensaje>\n\n*🍭 Uso:* ${usedPrefix + command} 1234 Gracias por tu confesión.`);
     
     let split = text.trim().split(/ (.+)/); 
     let id = split[0]; 
