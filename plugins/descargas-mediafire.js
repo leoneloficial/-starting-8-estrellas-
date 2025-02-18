@@ -3,7 +3,7 @@ import axios from 'axios'
 import fetch from 'node-fetch'
 import cheerio from 'cheerio'
 let handler = async (m, { conn, args, usedPrefix, command }) => {
-if (!args[0]) throw `🧧 Ingrese un enlace de mediafire.\n*Ejemplo:* ${usedPrefix}mediafire https://www.mediafire.com/file/nb63btgjr0dsn4z/COMDELIGHT_v1.1.apk/file`
+if (!args[0]) throw `✎ Ingrese un enlace de mediafire.\n*Ejemplo:* ${usedPrefix}mediafire https://www.mediafire.com/file/nb63btgjr0dsn4z/COMDELIGHT_v1.1.apk/file`
 try {  
 let res = await mediafireDl(args[0])
 let { name, size, date, mime, link } = res
