@@ -50,11 +50,11 @@ global.packsticker2 = `━━━━━━━━━♾\
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
 global.packname = `【Team 𓆩✝︎𓆪 starting】`
-global.botname = '𖤓⏤͟͟͞͞вσт мαƒια 𓆩✝︎𓆪 ʝαρσηєѕα⏤͟͟͞͞𖤓'
-global.wm = '𖤓⏤͟͟͞͞вσт мαƒια 𓆩✝︎𓆪 ʝαρσηєѕα⏤͟͟͞͞𖤓'
+global.botname = 'ᯓ᮫݃͜ᮨ🐉ܾ݉ᢥGohanᯓᯧ • starting team'
+global.wm = 'ᯓ᮫݃͜ᮨ🐉ܾ݉ᢥGohanᯓᯧ • starting team '
 global.author = 'Made By ৎ୭࠭͢𓆩𝕷͢𝖊𝖔፝֟፝֟፝֟፝֟፝֟፝֟𝖓𝖊𝖑𓆪͟͞ '
 global.dev = '© ⍴᥆ᥕᥱrᥱძ ᑲᥡ ৎ୭࠭͢𓆩𝕷͢𝖊𝖔፝֟፝֟፝֟፝֟፝֟፝֟𝖓𝖊𝖑𓆪͟͞  '
-global.textbot = 'Bσƚ - ʝαρσɳҽ́ʂ • Powered By ৎ୭࠭͢𓆩𝕷͢𝖊𝖔፝֟፝֟፝֟፝֟፝֟፝֟𝖓𝖊𝖑𓆪͟͞ '
+global.textbot = 'ᯓ᮫݃͜ᮨ🐉ܾ݉ᢥGohanᯓᯧ • Powered By ৎ୭࠭͢𓆩𝕷͢𝖊𝖔፝֟፝֟፝֟፝֟፝֟፝֟𝖓𝖊𝖑𓆪͟͞ '
 
 global.moneda = 'Yenes'
 global.welcom1 = 'Edita Con #setwelcome'
