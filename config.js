@@ -50,16 +50,16 @@ global.packsticker2 = `━━━━━━━━━♾\
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
 global.packname = `【Team 𓆩✝︎𓆪 starting】`
-global.botname = 'ᯓ᮫݃͜ᮨ🐉ܾ݉ᢥGohanᯓᯧ'
-global.wm = 'ᯓ᮫݃͜ᮨ🐉ܾ݉ᢥGohanᯓᯧ • starting team '
+global.botname = 'ᯓ᮫݃͜ᮨ🌸ᢥsumi sakurazawa'
+global.wm = '🌸sumi sakurazawa🌸 • starting team '
 global.author = 'Made By ৎ୭࠭͢𓆩𝕷͢𝖊𝖔፝֟፝֟፝֟፝֟፝֟፝֟𝖓𝖊𝖑𓆪͟͞ '
 global.dev = '© ⍴᥆ᥕᥱrᥱძ ᑲᥡ ৎ୭࠭͢𓆩𝕷͢𝖊𝖔፝֟፝֟፝֟፝֟፝֟፝֟𝖓𝖊𝖑𓆪͟͞  '
-global.textbot = 'ᯓ᮫݃͜ᮨ🐉ܾ݉ᢥGohanᯓᯧ • Powered By ৎ୭࠭͢𓆩𝕷͢𝖊𝖔፝֟፝֟፝֟፝֟፝֟፝֟𝖓𝖊𝖑𓆪͟͞ '
+global.textbot = '🌸sumi sakurazawa🌸 • Powered By ৎ୭࠭͢𓆩𝕷͢𝖊𝖔፝֟፝֟፝֟፝֟፝֟፝֟𝖓𝖊𝖑𓆪͟͞ '
 
 global.moneda = 'Yenes'
 global.welcom1 = 'Edita Con #setwelcome'
 global.welcom2 = 'Edita Con #setbye'
-global.banner = 'https://qu.ax/fNlps.jpg'
+global.banner = 'https://qu.ax/OkyBW.jpg'
 global.catalogo = 'https://tinyurl.com/25ru293g'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
