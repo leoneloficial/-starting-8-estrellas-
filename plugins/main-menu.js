@@ -33,11 +33,11 @@ const handler = async (m, { conn, usedPrefix }) => {
 һ᥆ᥣᥲ! s᥆ᥡ *${botname}*
 ᥲ𝗊ᥙí 𝗍іᥱᥒᥱs ᥣᥲ ᥣіs𝗍ᥲ ძᥱ ᥴ᥆mᥲᥒძ᥆s
 ╭┈ ↷
-│👑 Cliente » @${userId.split('@')[0]}
-│💸 ${moneda} » ${coins}
-│✨ Experiencia » ${exp.toLocaleString()}
-│🌟 Nivel » ${nivel}
-│⚜️ Rango » ${role}
+│✰ Cliente » @${userId.split('@')[0]}
+│⛁ ${moneda} » ${coins}
+│☆ Experiencia » ${exp.toLocaleString()}
+│❖ Nivel » ${nivel}
+│✎ Rango » ${role}
 │ ${dev}
 ╰─────────────────
 
