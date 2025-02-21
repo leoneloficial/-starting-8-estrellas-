@@ -15,9 +15,9 @@ var handler = async (m, { conn }) => {
     conn.reply(m.chat, `✎ *Recompensa Diaria*
 
 Recursos:
-✨ Xp : *+${exp}*
-💎 Diamantes : *+${d}*
-💸 ${moneda} : *+${coin}*`, m);
+✰ Xp : *+${exp}*
+✦ Diamantes : *+${d}*
+⛁ ${moneda} : *+${coin}*`, m);
 
     global.db.data.users[m.sender].lastclaim = Date.now();
 }
