@@ -12,8 +12,8 @@ let info = `✎ *Te has adentrando en lo profundo de las cuevas*
 
 > *✎ Obtuviste estos recursos*
 
-✨ *Exp*: ${hasil}
-💸 *${moneda}*: ${coin}
+✩ *Exp*: ${hasil}
+⛁ *${moneda}*: ${coin}
 ♦️ *Esmeralda*: ${emerald}
 🔩 *Hierro*: ${iron}
 🏅 *Oro*: ${gold}
