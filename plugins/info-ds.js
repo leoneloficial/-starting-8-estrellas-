@@ -30,7 +30,7 @@ conn.reply(m.chat, `✎ *¡Hola! ¿logras verme?*`, m, rcanal, )
 }
 } catch (err) {
 console.error('Error al leer la carpeta o los archivos de sesión:', err)
-await conn.reply(m.chat, '✎ *Hola Soy ᯓ᮫݃͜ᮨ🐉ܾ݉ᢥGohanᯓᯧ, sigue El Canal y apoyano By Staff global*', m, rcanal, )
+await conn.reply(m.chat, '✎ *Hola Soy 🌸sumi sakurazawa🌸, sigue El Canal y apoyano By Staff global*', m, rcanal, )
 }
 
 }
