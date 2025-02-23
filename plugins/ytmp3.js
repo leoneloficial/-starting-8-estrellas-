@@ -52,8 +52,6 @@ let handler = async (m, { conn, text, usedPrefix }) => {
     const { title, duration, views, author, url: videoUrl } = metadata;
     const { url: downloadUrl } = download;
 
-    // Descripción personalizada para el archivo encontrado
-    const description =
 
     // Actualizar mensaje inicial con la información específica del video
     await conn.sendMessage(m.chat, { text: description, edit: key });
