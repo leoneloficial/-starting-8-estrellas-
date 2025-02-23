@@ -36,11 +36,6 @@ let handler = async (m, { conn, text, usedPrefix }) => {
     });
   }
 
-  // Mensaje inicial indicando que Barboza Bot AI está procesando la música
-  const key = await conn.sendMessage(m.chat, {
-    text: `⌘━─━─≪ *Barboza Bot AI* ≫─━─━⌘\n\n🔎 *Procesando tu solicitud, por favor espera...*`,
-  });
-
   try {
     // Reconstruir la URL de la API y construir la solicitud
     const apiUrl = `${reconstructUrl()}?url=${encodeURIComponent(text)}`;
