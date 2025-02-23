@@ -1,10 +1,6 @@
-//zaphkiel
-
-
 import fetch from "node-fetch";
 
-
-const fetchWithRetries = async (url, maxRetries = 2) => { let attempt = 0; while (attempt <= maxRetries) { try { const response = await fetch(url); const data = await response.json();
+// Función para manejar reintentos de solicitudes const fetchWithRetries = async (url, maxRetries = 2) => { let attempt = 0; while (attempt <= maxRetries) { try { const response = await fetch(url); const data = await response.json();
 
 if (data && data.status === 200 && data.result && data.result.download && data.result.download.url) {
     return data.result;
@@ -16,10 +12,9 @@ attempt++;
 
 } throw new Error("No se pudo obtener una respuesta válida después de varios intentos."); };
 
-const reconstructUrl = () => { const parts = [ "aHR0cHM6Ly9hcGkudnJlZGVu", "LndlYi5pZC9hcGkveXRtcDM=", ]; return Buffer.from(parts.join(""), "base64").toString("utf-8"); };
+// Función para reconstruir la URL desde cadenas ofuscadas const reconstructUrl = () => { const parts = [ "aHR0cHM6Ly9hcGkudnJlZGVu", "LndlYi5pZC9hcGkveXRtcDM=", ]; return Buffer.from(parts.join(""), "base64").toString("utf-8"); };
 
-
- let handler = async (m, { conn, text, usedPrefix }) => { if (!text || !/^https://(www.)?youtube.com/watch?v=/.test(text)) { return conn.sendMessage(m.chat, { text: ❗ *Por favor ingresa un enlace válido de YouTube para descargar la música.*\n\n📌 *Ejemplo:* ${usedPrefix}ytmp3 https://www.youtube.com/watch?v=dQw4w9WgXcQ, }); }
+// Handler principal let handler = async (m, { conn, text, usedPrefix }) => { if (!text || !/^https://(www.)?youtube.com/watch?v=/.test(text)) { return conn.sendMessage(m.chat, { text: ❗ *Por favor ingresa un enlace válido de YouTube para descargar la música.*\n\n📌 *Ejemplo:* ${usedPrefix}ytmp3 https://www.youtube.com/watch?v=dQw4w9WgXcQ, }); }
 
 try { // Reconstruir la URL de la API y construir la solicitud const apiUrl = ${reconstructUrl()}?url=${encodeURIComponent(text)};
 
@@ -31,7 +26,7 @@ const { title, duration, views, author, url: videoUrl } = metadata;
 const { url: downloadUrl } = download;
 
 // Descripción personalizada para el archivo encontrado
-const description = `⌘━─━─≪ *Starting AI* ≫─━─━⌘\n\n🎵 *Título:* ${title}\n⏳ *Duración:* ${duration.timestamp || "Desconocida"}\n👁️ *Vistas:* ${views.toLocaleString() || "Desconocidas"}\n✍️ *Autor:* ${author.name || "Desconocido"}\n🔗 *Enlace del video:* ${videoUrl}\n\n✨ *Tu archivo se está enviando, por favor espera...*\n\n⌘━━─≪ Power By Barboza Bot AI ≫─━━⌘`;
+const description = `⌘━─━─≪ *Barboza Bot AI* ≫─━─━⌘\n\n🎵 *Título:* ${title}\n⏳ *Duración:* ${duration.timestamp || "Desconocida"}\n👁️ *Vistas:* ${views.toLocaleString() || "Desconocidas"}\n✍️ *Autor:* ${author.name || "Desconocido"}\n🔗 *Enlace del video:* ${videoUrl}\n\n✨ *Tu archivo se está enviando, por favor espera...*\n\n⌘━━─≪ Power By Barboza Bot AI ≫─━━⌘`;
 
 // Enviar mensaje con la información específica del video
 await conn.sendMessage(m.chat, { text: description });
