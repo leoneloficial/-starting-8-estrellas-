@@ -22,13 +22,13 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
         {
           buttonId: `.ytmp3 ${videoInfo.url}`,
           buttonText: {
-            displayText: 'ᯓᡣ𐭩 ᥲᥙძі᥆',
+            displayText: 'ᥫ᭡ ᥲᥙძі᥆',
           },
         },
         {
           buttonId: `.ytmp4 ${videoInfo.url}`,
           buttonText: {
-            displayText: 'ᯓᡣ𐭩 ᥎іძᥱ᥆',
+            displayText: 'ᥫ᭡ ᥎іძᥱ᥆',
           },
         },
       ],
