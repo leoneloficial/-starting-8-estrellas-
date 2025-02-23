@@ -29,9 +29,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
           buttonId: `.ytmp4 ${videoInfo.url}`,
           buttonText: {
             displayText: '♥︎ ᥎іძᥱ᥆',
-          },
-        },
-      ],
+ 
 
     } else if (command === 'yta' || command === 'ytmp3') {
     m.react(rwait)
