@@ -1,31 +1,47 @@
-import fetch from 'node-fetch';
+/* ౨ৎ ˖ ࣪⊹ 𝐁𝐲 𝐉𝐭𝐱𝐬 𐙚˚.ᡣ𐭩
 
-const handler = async (m, { conn, text }) => {
-  if (!text) return conn.reply(m.chat, '✎ Por favor, ingresa un enlace de TikTok.', m);
+❀ Canal Principal ≽^•˕• ྀི≼
+https://whatsapp.com/channel/0029VaeQcFXEFeXtNMHk0D0n
 
-  const tiktokAPI = `https://apis-starlights-team.koyeb.app/starlight/tiktok2?url=${text}`;
+❀ Canal Rikka Takanashi Bot
+https://whatsapp.com/channel/0029VaksDf4I1rcsIO6Rip2X
 
-  try {
-    await m.react(rwait);
-    const res = await fetch(tiktokAPI);
-    const json = await res.json();
+❀ Canal StarlightsTeam
+https://whatsapp.com/channel/0029VaBfsIwGk1FyaqFcK91S
 
-    if (!json || !json.video) return conn.reply(m.chat, '✧ No se pudo descargar el video. Verifica que la URL sea correcta.', m);
+❀ HasumiBot FreeCodes 
+https://whatsapp.com/channel/0029Vanjyqb2f3ERifCpGT0W
+*/
 
-    await conn.sendMessage(m.chat, { video: { url: json.video }, caption: '✎ Aqui tienes ฅ^•ﻌ•^ฅ.' }, { quoted: m });
-   await m.react(done);
+// ❀ Canal Owner Api : 
+// https://whatsapp.com/channel/0029VakPf6C0bIdnzOGlMZ1K
 
-  } catch (e) {
-    conn.reply(m.chat, '⚠️ Ocurrió un error al descargar el video.', m);
-    await m.react(error);
-    console.log(e);
-  }
-};
+// *𓍯𓂃𓏧♡ TIKTOK DL*
+import axios from 'axios'
 
-handler.help = ['tiktok', 'tt'];
-handler.tags = ['descargas'];
-handler.command = ['tiktok', 'tt'];
-handler.coin = 1;
-handler.register = true;
+let HS = async (m, { conn, text }) => {
+if (!text) return conn.reply(m.chat, H✎ Ingresa un link de Tiktok`, m)
+  
+try {
+let api = await axios.get(`https://mahiru-shiina.vercel.app/download/tiktok?url=${text}`)
+let json = api.data
 
-export default handler;
+let { title, nickname, username, plays, likes, comments, shares, audiotitle, download } = json.data
+let { video, audio } = download
+
+let HS = `- *Titulo:* ${title}
+- *Usuario:* ${nickname} - *${username}*
+- *Reproducciones:* ${plays}
+- *Comentarios:* ${comments}
+- *Compartidos:* ${shares}
+- *Audio:* ${audiotitle}`
+await conn.sendMessage(m.chat, { video: { url: video }, caption: HS }, { quoted: m })
+await conn.sendMessage(m.chat, { audio: { url: audio }, mimetype: 'audio/mpeg', ptt: false }, { quoted: m })
+
+} catch (error) {
+console.error(error)
+}}
+
+HS.command = ['tiktok', 'tiktokdl'] 
+
+export default HS
