@@ -11,7 +11,7 @@ let handler = async (_0x10bd40, {
   command: _0x5ad406
 }) => {
   if (!_0x27db11) {
-    return _0x9c7141.reply(_0x10bd40.chat, "🍟 *¿Que quieres buscar en pinterest?*", _0x10bd40, rcanal);
+    return _0x9c7141.reply(_0x10bd40.chat, "✎ Ingresa el texto de lo que quieras buscar", _0x10bd40,);
   }
     await _0x10bd40.react(rwait);
  _0x9c7141.reply(_0x10bd40.chat, '🕒 *𝗘𝘀𝗽𝗲𝗿𝗮 𝗨𝗻 𝗠𝗼𝗺𝗲𝗻𝘁𝗼, 𝗦𝗼𝘆 𝗟𝗲𝗻𝘁𝗮 ...*', _0x10bd40, {
