@@ -62,7 +62,7 @@ let handler = async (_0x10bd40, {
       'nativeFlowMessage': proto.Message.InteractiveMessage.NativeFlowMessage.fromObject({
         'buttons': [{
           'name': "cta_url",
-          'buttonParamsJson': "{\"display_text\":\"url 🌸\",\"Url\":\"https://www.pinterest.com/search/pins/?rs=typed&q=" + _0x27db11 + "\",\"merchant_url\":\"https://www.pinterest.com/search/pins/?rs=typed&q=" + _0x27db11 + "\"}"
+          'buttonParamsJson': "{\"display_text\":\"url ♥︎•♥︎\",\"Url\":\"https://www.pinterest.com/search/pins/?rs=typed&q=" + _0x27db11 + "\",\"merchant_url\":\"https://www.pinterest.com/search/pins/?rs=typed&q=" + _0x27db11 + "\"}"
         }]
       })
     });
