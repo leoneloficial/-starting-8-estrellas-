@@ -20,16 +20,15 @@ try { // Reconstruir la URL de la API y construir la solicitud const apiUrl = ${
 
 // Intentar obtener datos con reintentos
 const apiData = await fetchWithRetries(apiUrl);
-
 const { metadata, download } = apiData;
 const { title, duration, views, author, url: videoUrl } = metadata;
 const { url: downloadUrl } = download;
 
 // Descripción personalizada para el archivo encontrado
-const description = `⌘━─━─≪ *Barboza Bot AI* ≫─━─━⌘\n\n🎵 *Título:* ${title}\n⏳ *Duración:* ${duration.timestamp || "Desconocida"}\n👁️ *Vistas:* ${views.toLocaleString() || "Desconocidas"}\n✍️ *Autor:* ${author.name || "Desconocido"}\n🔗 *Enlace del video:* ${videoUrl}\n\n✨ *Tu archivo se está enviando, por favor espera...*\n\n⌘━━─≪ Power By Barboza Bot AI ≫─━━⌘`;
+const description = `⌘━─━─≪ *Starting Bot AI* ≫─━─━⌘\n\n🎵 *Título:* ${title}\n⏳ *Duración:* ${duration.timestamp || "Desconocida"}\n👁️ *Vistas:* ${views.toLocaleString() || "Desconocidas"}\n✍️ *Autor:* ${author.name || "Desconocido"}\n🔗 *Enlace del video:* ${videoUrl}\n\n⌘━━─≪ Power By Barboza Bot AI ≫─━━⌘`;
 
 // Enviar mensaje con la información específica del video
-await conn.sendMessage(m.chat, { text: description });
+await conn.sendMessage(m.chat, { text: description }, { quoted: m });
 
 // Enviar archivo como audio
 await conn.sendMessage(
