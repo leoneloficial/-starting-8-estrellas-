@@ -38,7 +38,7 @@ let handler = async (m, { conn, text, usedPrefix }) => {
 
   // Mensaje inicial indicando que Barboza Bot AI está procesando la música
   const key = await conn.sendMessage(m.chat, {
-    text: `⌘━─━─≪ *Barboza Bot AI* ≫─━─━⌘\n\n🔎 *Procesando tu solicitud, por favor espera...*`,
+    text: `\n\n🔎 *Procesando tu solicitud, por favor espera...*`,
   });
 
   try {
@@ -53,7 +53,7 @@ let handler = async (m, { conn, text, usedPrefix }) => {
     const { url: downloadUrl } = download;
 
     // Descripción personalizada para el archivo encontrado
-    const description = `⌘━─━─≪ *Barboza Bot AI* ≫─━─━⌘\n\n🎵 *Título:* ${title}\n⏳ *Duración:* ${duration.timestamp || "Desconocida"}\n👁️ *Vistas:* ${views.toLocaleString() || "Desconocidas"}\n✍️ *Autor:* ${author.name || "Desconocido"}\n🔗 *Enlace del video:* ${videoUrl}\n\n✨ *Tu archivo se está enviando, por favor espera...*\n\n⌘━━─≪ Power By Barboza Bot AI ≫─━━⌘`;
+    const description = `\n\n🎵 *Título:* ${title}\n⏳ *Duración:* ${duration.timestamp || "Desconocida"}\n👁️ *Vistas:* ${views.toLocaleString() || "Desconocidas"}\n✍️ *Autor:* ${author.name || "Desconocido"}\n🔗 *Enlace del video:* ${videoUrl}\n\n✨ *Tu archivo se está enviando, por favor espera...*\n\n`;
 
     // Actualizar mensaje inicial con la información específica del video
     await conn.sendMessage(m.chat, { text: description, edit: key });
