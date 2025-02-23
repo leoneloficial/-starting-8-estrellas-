@@ -20,7 +20,7 @@ https://whatsapp.com/channel/0029Vanjyqb2f3ERifCpGT0W
 import axios from 'axios'
 
 let HS = async (m, { conn, text }) => {
-if (!text) return conn.reply(m.chat, H✎ Ingresa un link de Tiktok`, m)
+if (!text) return conn.reply(m.chat, `❀ Ingresa un link de Tiktok`, m)
   
 try {
 let api = await axios.get(`https://mahiru-shiina.vercel.app/download/tiktok?url=${text}`)
