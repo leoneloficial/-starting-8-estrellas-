@@ -32,10 +32,6 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
           },
         },
       ],
-      viewOnce: true,
-      headerType: 4,
-    }, { quoted: fkontak });
-    m.react('🕒');
 
     } else if (command === 'yta' || command === 'ytmp3') {
     m.react(rwait)
