@@ -1,4 +1,4 @@
-/* ౨ৎ ˖ ࣪⊹ 𝐁𝐲 𝐉𝐭𝐱𝐬 𐙚˚.ᡣ𐭩
+
 
 ❀ Canal Principal ≽^•˕• ྀི≼
 https://whatsapp.com/channel/0029VaeQcFXEFeXtNMHk0D0n
