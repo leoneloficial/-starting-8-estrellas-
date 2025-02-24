@@ -1,4 +1,4 @@
-const ro = 6000;
+const ro = 1000;
 const handler = async (m, {conn, usedPrefix, command}) => {
   const time = global.db.data.users[m.sender].lastrob2 + 1200000;
   if (new Date - global.db.data.users[m.sender].lastrob2 < 1200000) {
