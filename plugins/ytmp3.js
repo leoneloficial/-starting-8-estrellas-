@@ -1,30 +1,31 @@
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-const { servers, yta } = require('../lib/y2mate')
-let handler = async (m, { conn, args, isPrems, isOwner }) => {
-let chat = global.DATABASE.data.chats[m.chat]
-  if (!args || !args[0]) throw '*❰ ❗ ❱ Inserte un enlace de YouTube*\n\n*Ejemplo:*\n*#ytmp3 https://youtu.be/gBRi6aZJGj4*'
-  let server = (args[1] || 'id4').toLowerCase()
-  let { dl_link, thumb, title, filesize, filesizeF} = await yta(args[0], servers.includes(server) ? server : 'id4')
-  //let isLimit = (isPrems || isOwner ? 99 : limit) * 1024 < filesize
- let fs = require('fs')
- let y = fs.readFileSync('./Menu2.jpg')
+// *𓍯𓂃𓏧♡ YTMP3*
+import axios from 'axios'
+
+let HS = async (m, { conn, text }) => {
+if (!text) return conn.reply(m.chat, `❀ Ingresa un link de YouTube`, m)
+  
+try {
+let api = await axios.get(`https://mahiru-shiina.vercel.app/download/ytmp3?url=${text}`)
+let json = api.data
+
+let { title, description, uploaded, duration, views, type, url, thumbnail, author, download } = json.data
+let { name, url: authorUrl } = author
 
 
-conn.sendMessage(m.chat, `*🪄 ️Descargando por Gata Dios 🪄*\n\n*🔮 Titulo:* ${title}\n*🎈 Tamaño del archivo:* ${filesizeF}` , 'conversation', {quoted: m, thumbnail: global.thumb, contextInfo:{externalAdReply: {title: 'Simple WhatsApp Bot', body: `© ${conn.user.name}`, sourceUrl: 'enviando...', thumbnail: y}}})
-conn.sendFile(m.chat, dl_link , `By ${conn.user.name}.mp3`, m, false, {ptt: true, duration: 999999999999, asDocument: chat.useDocument})
-conn.sendFile(m.chat, dl_link , `By ${conn.user.name}.mp3`, m)
-}
-handler.command = /^yt(a|mp3)$/i
-handler.owner = false
-handler.mods = false
-handler.premium = false
-handler.group = false
-handler.private = false
+let HS = `- *Titulo:* ${title}
+- *Autor:* ${name} - ${authorUrl}
+- *Descripción:* ${description}
+- *Subido:* ${uploaded}
+- *Duración:* ${duration}
+- *Vistas:* ${views}`
 
-handler.admin = false
-handler.botAdmin = false
+//await conn.sendMessage(m.chat, { image: { url: thumbnail }, caption: HS }, { quoted: m })
+await conn.sendMessage(m.chat, { audio: { url: download }, mimetype: 'audio/mpeg' }, { quoted: m })
+    
+} catch (error) {
+console.error(error)
+}}
 
-handler.fail = null
-handler.exp = 0
+HS.command = ['ytmp3']
 
-module.exports = handler
+export default HS
