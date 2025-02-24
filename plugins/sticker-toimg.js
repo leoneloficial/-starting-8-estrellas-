@@ -1,56 +1,17 @@
-const { spawn } = require('child_process')
-const util = require('util')
-const { MessageType } = require('@adiwajshing/baileys')
-let { webp2png } = require('../lib/webp2mp4')
-
-let handler = async (m, { conn, command, usedPrefix }) => {
-  if (!global.support.convert &&
-      !global.support.magick &&
-      !global.support.gm) {
-      if (!m.quoted) throw `*❰ ❗️ ❱ Responda a un sticker con el comando* *${usedPrefix + command}*`
-      let mime = m.quoted.mimetype || ''
-      if (!/webp/.test(mime)) throw `*❰ ❗️ ❱ Responda a un sticker con el comando* *${usedPrefix + command}*`
-      let media = await m.quoted.download()
-      let out = Buffer.alloc(0)
-      if (/webp/.test(mime)) {
-          out = await webp2png(media)
-      }
-      await conn.sendFile(m.chat, out, 'out.png', '*DONE*', m, false, {
-  thumbnail: Buffer.alloc(0)
-      })
-      return
-  }
-  if (!m.quoted) return conn.reply(m.chat, '❰ ❗️ ❱ Responda a un sticker!', m)
-  let q = { message: { [m.quoted.mtype]: m.quoted } }
-  if (/sticker/.test(m.quoted.mtype)) {
-    let sticker = await conn.downloadM(q)
-    if (!sticker) throw sticker
-    let bufs = []
-    const [_spawnprocess, ..._spawnargs] = [...(global.support.gm ? ['gm'] : global.support.magick ? ['magick'] : []), 'convert', 'webp:-', 'png:-']
-    let im = spawn(_spawnprocess, _spawnargs)
-    im.on('error', e => conn.reply(m.chat, util.format(e), m))
-    im.stdout.on('data', chunk => bufs.push(chunk))
-    im.stdin.write(sticker)
-    im.stdin.end()
-    im.on('exit', () => {
-      conn.sendMessage(m.chat, Buffer.concat(bufs), MessageType.image, {
-        quoted: m
-      })
-    })
-  }
-}
-handler.help = ['toimg (reply)']
-handler.tags = ['General']
-handler.command = /^toimg|img|jpg$/i
-handler.owner = false
-handler.mods = false
-handler.premium = false
-handler.group = false
-handler.private = false
-
-handler.admin = false
-handler.botAdmin = false
-
-handler.fail = null
-
-module.exports = handler
+import {webp2png} from '../lib/webp2mp4.js';
+const handler = async (m, {conn, usedPrefix, command}) => {
+const notStickerMessage = `*⚠️ 𝐑𝐞𝐬𝐩𝐨𝐧𝐝𝐞 𝐚 𝐮𝐧 𝐬𝐭𝐢𝐜𝐤𝐞𝐫 𝐪𝐮𝐞 𝐝𝐞𝐬𝐞𝐞 𝐜𝐨𝐧𝐯𝐞𝐫𝐭𝐢𝐫 𝐞𝐧 𝐢𝐦𝐚𝐠𝐞𝐧 𝐜𝐨𝐧 𝐞𝐥 𝐬𝐢𝐠𝐮𝐢𝐞𝐧𝐭𝐞 𝐜𝐨𝐦𝐚𝐧𝐝𝐨:* ${usedPrefix + command}`;
+if (!m.quoted) throw notStickerMessage;
+m.reply(`Euu flaco 🥴\n\n> *Convirtiendo tu Sticker a Imagen 🔄*`) 
+const q = m.quoted || m;
+const mime = q.mediaType || '';
+if (!/sticker/.test(mime)) throw notStickerMessage;
+const media = await q.download();
+const out = await webp2png(media).catch((_) => null) || Buffer.alloc(0);
+await conn.sendFile(m.chat, out, 'error.png', null, m, null, fake);
+};
+handler.help = ['toimg (reply)'];
+handler.tags = ['convertidor']
+handler.command = ['toimg', 'jpg', 'img'];
+handler.register = true
+export default handler;
