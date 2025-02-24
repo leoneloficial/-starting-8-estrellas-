@@ -1,50 +1,56 @@
-import fetch from "node-fetch";
+case 'ytmp3': {
+    const fs = require('fs');
+    const path = require('path');
+    const fetch = require('node-fetch');
+    const ytdl = require('./libs/ytdl');
+    const yts = require('yt-search');
 
-// Función para manejar reintentos de solicitudes const fetchWithRetries = async (url, maxRetries = 2) => { let attempt = 0; while (attempt <= maxRetries) { try { const response = await fetch(url); const data = await response.json();
+    if (!args.length || !/^https?:\/\/(www\.)?(youtube\.com|youtu\.be)/.test(args[0])) {
+        return sock.sendMessage(msg.key.remoteJid, { text: 'Por favor, ingresa un enlace de YouTube válido.' });
+    }
+await sock.sendMessage(msg.key.remoteJid, {
+            react: {
+                text: '⏱️',
+                key: msg.key,
+            },
+        });
+                
+    await sock.sendMessage(msg.key.remoteJid, { text: '🚀 Procesando tu solicitud...' });
+    const videoUrl = args[0];
 
-if (data && data.status === 200 && data.result && data.result.download && data.result.download.url) {
-    return data.result;
-  }
-} catch (error) {
-  console.error(`Error en el intento ${attempt + 1}:`, error.message);
+    try {
+        const searchResult = await yts({ videoId: videoUrl.split('v=')[1] || videoUrl.split('/').pop() });
+        if (!searchResult || !searchResult.title || !searchResult.thumbnail) {
+            throw new Error('No se pudo obtener la información del video.');
+        }
+
+        const videoInfo = {
+            title: searchResult.title,
+            thumbnail: await (await fetch(searchResult.thumbnail)).buffer()
+        };
+
+        const ytdlResult = await ytdl(videoUrl);
+        if (ytdlResult.status !== 'success' || !ytdlResult.dl) {
+            throw new Error('No se pudo obtener el enlace de descarga.');
+        }
+
+        const tmpDir = path.join(__dirname, 'tmp');
+        if (!fs.existsSync(tmpDir)) fs.mkdirSync(tmpDir);
+
+        const filePath = path.join(tmpDir, `${Date.now()}.mp3`);
+        const response = await fetch(ytdlResult.dl);
+        const buffer = await response.buffer();
+        fs.writeFileSync(filePath, buffer);
+
+        await sock.sendMessage(msg.key.remoteJid, {
+            audio: fs.readFileSync(filePath),
+            mimetype: 'audio/mpeg',
+            fileName: `${videoInfo.title}.mp3`,
+        }, { quoted: msg });
+
+        fs.unlinkSync(filePath);
+    } catch (error) {
+        await sock.sendMessage(msg.key.remoteJid, { text: 'Ocurrió un error al intentar descargar el audio.' });
+    }
+    break;
 }
-attempt++;
-
-} throw new Error("No se pudo obtener una respuesta válida después de varios intentos."); };
-
-// Función para reconstruir la URL desde cadenas ofuscadas const reconstructUrl = () => { const parts = [ "aHR0cHM6Ly9hcGkudnJlZGVu", "LndlYi5pZC9hcGkveXRtcDM=", ]; return Buffer.from(parts.join(""), "base64").toString("utf-8"); };
-
-// Handler principal let handler = async (m, { conn, text, usedPrefix }) => { if (!text || !/^https://(www.)?youtube.com/watch?v=/.test(text)) { return conn.sendMessage(m.chat, { text: ❗ *Por favor ingresa un enlace válido de YouTube para descargar la música.*\n\n📌 *Ejemplo:* ${usedPrefix}ytmp3 https://www.youtube.com/watch?v=dQw4w9WgXcQ, }); }
-
-try { // Reconstruir la URL de la API y construir la solicitud const apiUrl = ${reconstructUrl()}?url=${encodeURIComponent(text)};
-
-// Intentar obtener datos con reintentos
-const apiData = await fetchWithRetries(apiUrl);
-const { metadata, download } = apiData;
-const { title, duration, views, author, url: videoUrl } = metadata;
-const { url: downloadUrl } = download;
-
-// Descripción personalizada para el archivo encontrado
-const description = `⌘━─━─≪ *Starting Bot AI* ≫─━─━⌘\n\n🎵 *Título:* ${title}\n⏳ *Duración:* ${duration.timestamp || "Desconocida"}\n👁️ *Vistas:* ${views.toLocaleString() || "Desconocidas"}\n✍️ *Autor:* ${author.name || "Desconocido"}\n🔗 *Enlace del video:* ${videoUrl}\n\n⌘━━─≪ Power By Barboza Bot AI ≫─━━⌘`;
-
-// Enviar mensaje con la información específica del video
-await conn.sendMessage(m.chat, { text: description }, { quoted: m });
-
-// Enviar archivo como audio
-await conn.sendMessage(
-  m.chat,
-  {
-    audio: { url: downloadUrl },
-    mimetype: "audio/mpeg",
-    fileName: `${title}.mp3`,
-    caption: `🎶 *Descarga completada por Barboza Bot AI*`,
-  },
-  { quoted: m }
-);
-
-} catch (error) { console.error("Error al procesar la solicitud:", error); await conn.sendMessage(m.chat, { text: ❌ *Ocurrió un error al intentar procesar tu solicitud:*\n${error.message || "Error desconocido"}, }); } };
-
-handler.command = /^ytmp3$/i; // Comando único: ytmp3
-
-export default handler;
-
