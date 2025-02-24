@@ -1,33 +1,32 @@
-
-
-// *𓍯𓂃𓏧♡ YTMP4*
-import axios from 'axios'
+import fetch from 'node-fetch'
 
 let HS = async (m, { conn, text }) => {
-if (!text) return conn.reply(m.chat, `❀ Ingresa un link de YouTube`, m)
-  
-try {
-let api = await axios.get(`https://mahiru-shiina.vercel.app/download/ytmp4?url=${text}`)
-let json = api.data
+  if (!text) return conn.reply(m.chat, `❀ Ingresa un link de YouTube`, m)
 
-let { title, description, uploaded, duration, views, type, url, thumbnail, author, download } = json.data
-let { name, url: authorUrl } = author
+  let isUrl = isYouTubeUrl(text)
+  if (!isUrl) return conn.reply(m.chat, "❀ Ingresa una URL válida de YouTube.", m)
 
+  try {
+    let api = await (await fetch(`https://api.lyrax.net/api/dl/ytdl?url=${text}&apikey=0a2cc90e`)).json()
+    let { file_url, title } = api.data
+    let { type, size, duration } = api.data.info
 
-let HS = `- *Titulo:* ${title}
-- *Autor:* ${name} - ${authorUrl}
-- *Descripción:* ${description}
-- *Subido:* ${uploaded}
-- *Duración:* ${duration}
-- *Vistas:* ${views}`
+    await conn.sendMessage(m.chat, {
+      video: { url: file_url },
+      fileName: `${title}.mp4`,
+      mimetype: 'video/mp4',
+      caption: `🌿 Titulo: ${title}\n🌲 Duración: ${duration}\n🌴 Peso: ${size}\n🌾 Tipo: ${type}`
+    }, { quoted: m })
+  } catch (error) {
+    console.error(error)
+    conn.reply(m.chat, "❀ Hubo un error al obtener el video, intenta nuevamente.", m)
+  }
+}
 
-await conn.sendMessage(m.chat, { image: { url: thumbnail }, caption: HS }, { quoted: m })
-await conn.sendMessage(m.chat, { video: { url: download }, mimetype: 'video/mp4'  }, { quoted: m })
-    
-} catch (error) {
-console.error(error)
-}}
-
-HS.command = ['ytmp4']
-
+HS.command = ['ytmp4', 'ytv']
 export default HS
+
+function isYouTubeUrl(text) {
+  const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/\S+|youtu\.be\/\S+)/
+  return youtubeRegex.test(text)
+}
