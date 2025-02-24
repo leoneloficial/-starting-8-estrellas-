@@ -1,4 +1,3 @@
-
 // *𓍯𓂃𓏧♡ YTMP3*
 import axios from 'axios'
 
@@ -20,7 +19,7 @@ let HS = `- *Titulo:* ${title}
 - *Duración:* ${duration}
 - *Vistas:* ${views}`
 
-await conn.sendMessage(m.chat, { image: { url: thumbnail }, caption: HS }, { quoted: m })
+//await conn.sendMessage(m.chat, { image: { url: thumbnail }, caption: HS }, { quoted: m })
 await conn.sendMessage(m.chat, { audio: { url: download }, mimetype: 'audio/mpeg' }, { quoted: m })
     
 } catch (error) {
