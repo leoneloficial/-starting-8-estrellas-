@@ -104,7 +104,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
       },
     };
 
-    await conn.reply(m.chat, infoMessage, m, JT);
+    //await conn.reply(m.chat, infoMessage, m, JT);
 
     if (command === 'play' || command === 'yta' || command === 'ytmp3') {
         const api = await ddownr.download(url, 'mp3');
@@ -153,7 +153,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
   }
 };
 
-handler.command = handler.help = ['ytmp3', 'yta', 'ytmp4', 'ytv'];
+handler.command = handler.help = ['play', 'play2', 'ytmp3', 'yta', 'ytmp4', 'ytv'];
 handler.tags = ['downloader'];
 
 export default handler;
