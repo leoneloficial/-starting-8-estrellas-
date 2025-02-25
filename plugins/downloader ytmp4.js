@@ -1,17 +1,41 @@
-// *𓍯𓂃𓏧♡ YTMP4*
+import axios from 'axios';
 
-import fetch from "node-fetch";
+const downloadHandler = {
+  download: async (url) => {
+    const apiUrl = `https://api.siputzx.my.id/api/d/ytmp4?url=${encodeURIComponent(url)}`;
+    
+    try {
+      const response = await axios.get(apiUrl);
 
-let HS = async (m, { conn, text }) => {
-if (!text)  return conn.reply(m.chat, `❀ Ingresa un link de youtube`, m)
-try {
-let api = await (await fetch(`https://api.lyrax.net/api/dl/ytdl?url=${text}&apikey=Tesis`)).json()
+      if (response.data && response.data.status) {
+        return response.data.data;
+      } else {
+        throw new Error('Fallo al obtener los detalles del video.');
+      }
+    } catch (error) {
+      console.error('Error en la descarga:');
+      throw error;
+    }
+  }
+};
 
-await conn.sendMessage(m.chat, { video: { url: json.data.file_url }, json.data.title: `${json.data.title}.mp4`, mimetype: 'video/mp4', caption: `` }, { quoted: m })
-} catch (error) {
-console.error(error)
-}}
+const handler = async (m, { conn, text }) => {
+  try {
+    if (!text.trim()) {
+      return conn.reply(m.chat, `> Ingresa el enlace de YouTube para descargar.`, m);
+    }
+    const videoInfo = await downloadHandler.download(text);
+    const videoTitle = videoInfo.title;
+    const videoUrl = videoInfo.dl;
 
-HS.command = ['ytmp4', 'ytv']
+    await conn.sendMessage(m.chat, { video: { url: videoUrl }, mimetype: 'video/mp4', caption: `*Título:* ${videoTitle}` }, { quoted: m });
 
-export default HS
+  } catch (error) {
+    return m.reply(`Error: ${error.message}`);
+  }
+};
+
+handler.command = handler.help = ['ytmp4', 'ytv'];
+handler.tags = ['downloader'];
+
+export default handler;
