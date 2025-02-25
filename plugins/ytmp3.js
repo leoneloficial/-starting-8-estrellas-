@@ -69,7 +69,7 @@ const ddownr = {
 const handler = async (m, { conn, text, usedPrefix, command }) => {
   try {
     if (!text.trim()) {
-      return conn.reply(m.chat, `⚔️ ingresa el nombre de la música a descargar.`, m);
+      return conn.reply(m.chat, `✎ ingresa el nombre de la música a descargar.`, m);
     }
 
     const search = await yts(text);
@@ -132,7 +132,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
               video: { url: downloadUrl },
               fileName: `${title}.mp4`,
               mimetype: 'video/mp4',
-              caption: `🥷 Aqui tienes tu video`,
+              caption: `✎﹏Aqui tienes tu video`,
               thumbnail: thumb
             }, { quoted: m });
             break;
@@ -143,7 +143,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
       }
 
       if (!success) {
-        return m.reply(`⚔️ *No se pudo descargar el video:* No se encontró un enlace de descarga válido.`);
+        return m.reply(` ✱ *No se pudo descargar el video:* No se encontró un enlace de descarga válido.`);
       }
     } else {
       throw "Comando no reconocido.";
