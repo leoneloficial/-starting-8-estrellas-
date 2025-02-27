@@ -20,7 +20,7 @@ let handler = async (m, { conn }) => {
 
 handler.help = ['setimage'];
 handler.tags = ['owner'];
-handler.command = ['setpfp', 'setimage'];
+handler.command = ['setppbot', 'setimage'];
 handler.rowner = true;
 
 export default handler;
