@@ -24,9 +24,18 @@ let handler = async (m, { conn, text }) => {
     if (dmt < 1) return m.reply('🍭 Mínimo es *1*');
 
     let users = global.db.data.users;
-    if (!users[who]) return m.reply('⚠️ *El usuario no está registrado en la base de datos.*');
+    
+    // Asegurar que el usuario esté registrado en la base de datos
+    if (!users[who]) users[who] = { coin: 0 };
+    
+    // Asegurar que el saldo inicial no sea undefined o NaN
+    if (typeof users[who].coin !== 'number' || isNaN(users[who].coin)) {
+        users[who].coin = 0;
+    }
 
-    if (users[who].coin < dmt) return m.reply(`💸 *Error:* @${who.split('@')[0]} no tiene suficientes monedas.`, null, { mentions: [who] });
+    if (users[who].coin < dmt) {
+        return m.reply(`💸 *Error:* @${who.split('@')[0]} no tiene suficientes monedas.`, null, { mentions: [who] });
+    }
 
     users[who].coin -= dmt;
 
