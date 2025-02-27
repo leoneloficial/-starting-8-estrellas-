@@ -1,4 +1,5 @@
 import db from '../lib/database.js';
+import PhoneNumber from 'awesome-phonenumber';
 
 let handler = async function (m, { conn, text }) {
     let who;
@@ -7,11 +8,18 @@ let handler = async function (m, { conn, text }) {
         if (m.mentionedJid.length > 0) {
             who = m.mentionedJid[0]; // Si mencionaron a alguien, tomamos su JID.
         } else if (text) {
-            let number = text.replace(/[^0-9]/g, '') + '@s.whatsapp.net'; // Extraemos solo los números y formateamos.
-            who = number.length > 15 ? null : number; // Validamos que no sea un número inválido.
+            let num = text.replace(/[^0-9]/g, ''); // Extraemos solo los números.
+            let parsedNum = PhoneNumber(`+${num}`).getNumber('e164'); // Convertimos a formato internacional.
+            who = parsedNum ? parsedNum.replace(/\+/g, '') + '@s.whatsapp.net' : null;
         }
     } else {
-        who = text ? text.replace(/[^0-9]/g, '') + '@s.whatsapp.net' : m.chat;
+        if (text) {
+            let num = text.replace(/[^0-9]/g, '');
+            let parsedNum = PhoneNumber(`+${num}`).getNumber('e164');
+            who = parsedNum ? parsedNum.replace(/\+/g, '') + '@s.whatsapp.net' : null;
+        } else {
+            who = m.chat;
+        }
     }
 
     if (!who) return m.reply('*✧ Por favor, menciona al usuario o ingresa su número.*');
