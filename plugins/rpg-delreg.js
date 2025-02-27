@@ -5,19 +5,20 @@ let handler = async function (m, { conn, text }) {
 
     if (m.isGroup) {
         if (m.mentionedJid.length > 0) {
-            who = m.mentionedJid[0];
-        } else {
-            who = text.includes('@') ? text.replace(/[^0-9]/g, '') + '@s.whatsapp.net' : m.chat;
+            who = m.mentionedJid[0]; // Si mencionaron a alguien, tomamos su JID.
+        } else if (text) {
+            let number = text.replace(/[^0-9]/g, '') + '@s.whatsapp.net'; // Extraemos solo los números y formateamos.
+            who = number.length > 15 ? null : number; // Validamos que no sea un número inválido.
         }
     } else {
-        who = m.chat;
+        who = text ? text.replace(/[^0-9]/g, '') + '@s.whatsapp.net' : m.chat;
     }
 
     if (!who) return m.reply('*✧ Por favor, menciona al usuario o ingresa su número.*');
 
     let users = global.db.data.users;
 
-    if (!users[who]) return m.reply('⚠️ *El usuario no está registrado en la base de datos.*');
+    if (!(who in users)) return m.reply('⚠️ *El usuario no está registrado en la base de datos.*');
 
     delete users[who];
 
