@@ -31,9 +31,13 @@ const handler = async (m, { conn, text, command }) => {
 
     } else if (command === 'yta' || command === 'ytmp3') {
       m.react('⏳');
-      const apiUrl = `https://api.akuari.my.id/down/ytmp3?link=${videoInfo.url}`;
+      const apiUrl = `https://api.akuari.my.id/down/ytmp3?link=${encodeURIComponent(videoInfo.url)}`;
+      
+      console.log(`🔍 Fetching audio from: ${apiUrl}`);
       const response = await fetch(apiUrl);
       const audio = await response.json();
+
+      console.log("🔍 Audio API Response:", audio);
 
       if (!audio || !audio.result || !audio.result.url) {
         return await m.reply('⚠️ Error al obtener el audio. Intenta con otro video.');
@@ -44,9 +48,13 @@ const handler = async (m, { conn, text, command }) => {
 
     } else if (command === 'ytv' || command === 'ytmp4') {
       m.react('⏳');
-      const apiUrl = `https://api.akuari.my.id/down/ytmp4?link=${videoInfo.url}`;
+      const apiUrl = `https://api.akuari.my.id/down/ytmp4?link=${encodeURIComponent(videoInfo.url)}`;
+      
+      console.log(`🔍 Fetching video from: ${apiUrl}`);
       const response = await fetch(apiUrl);
       const video = await response.json();
+
+      console.log("🔍 Video API Response:", video);
 
       if (!video || !video.result || !video.result.url) {
         return await m.reply('⚠️ Error al obtener el video. Intenta con otro video.');
@@ -65,7 +73,7 @@ const handler = async (m, { conn, text, command }) => {
     }
 
   } catch (error) {
-    console.error(error);
+    console.error("❌ Error en el comando:", error);
     return await m.reply("⚠️ Ocurrió un error. Intenta nuevamente más tarde.");
   }
 };
