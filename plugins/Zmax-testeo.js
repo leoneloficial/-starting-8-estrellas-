@@ -3,78 +3,53 @@ import fetch from 'node-fetch';
 
 const handler = async (m, { conn, text, command }) => {
   if (!text) {
-    m.react('⚠️');
+    m.react('⚠️'); // Reacciona inmediatamente para indicar advertencia
     return await m.reply('🎵 Por favor ingresa la música que deseas descargar.');
   }
 
-  m.react('🎵'); // Reacción inmediata
+  m.react('🎵'); // Reacciona de inmediato al recibir el comando
 
-  try {
-    const search = await yts(text);
-    if (!search.all || search.all.length === 0) {
-      return await m.reply("No se encontraron resultados para tu búsqueda.");
-    }
+  const search = await yts(text);
+  if (!search.all || search.all.length === 0) {
+    return await m.reply("No se encontraron resultados para tu búsqueda.");
+  }
 
-    const videoInfo = search.all[0];
-    const body = `「✦」Descargando *<${videoInfo.title}>*\n\n> 🎤 *Canal:* ${videoInfo.author.name || 'Desconocido'}\n> 👁 *Vistas:* ${videoInfo.views}\n> ⏳ *Duración:* ${videoInfo.timestamp}\n> 📅 *Publicado:* ${videoInfo.ago}\n> 🔗 *Link:* ${videoInfo.url}`;
+  const videoInfo = search.all[0];
+  const body = `「✦」ძᥱsᥴᥲrgᥲᥒძ᥆ *<${videoInfo.title}>*\n\n> ✦ ᥴᥲᥒᥲᥣ » *${videoInfo.author.name || 'Desconocido'}*\n> ✰ ᥎іs𝗍ᥲs » *${videoInfo.views}*\n> ⴵ ძᥙrᥲᥴі᥆ᥒ » *${videoInfo.timestamp}*\n> ✐ ⍴ᥙᑲᥣіᥴᥲძ᥆ » *${videoInfo.ago}*\n> 🜸 ᥣіᥒk » ${videoInfo.url}\n`;
 
-    if (command === 'play' || command === 'play2' || command === 'playvid') {
-      await conn.sendMessage(m.chat, {
-        image: { url: videoInfo.thumbnail },
-        caption: body,
-        buttons: [
-          { buttonId: `.ytmp3 ${videoInfo.url}`, buttonText: { displayText: '🎶 Audio' } },
-          { buttonId: `.ytmp4 ${videoInfo.url}`, buttonText: { displayText: '🎥 Video' } },
-        ],
-        viewOnce: true,
-      }, { quoted: m });
+  if (command === 'play' || command === 'play2' || command === 'playvid') {
+    await conn.sendMessage(m.chat, {
+      image: { url: videoInfo.thumbnail },
+      caption: body,
+      buttons: [
+        { buttonId: `.ytmp3 ${videoInfo.url}`, buttonText: { displayText: '🎶 Audio' } },
+        { buttonId: `.ytmp4 ${videoInfo.url}`, buttonText: { displayText: '🎥 Video' } },
+      ],
+      viewOnce: true,
+      headerType: 4,
+    }, { quoted: m });
 
-    } else if (command === 'yta' || command === 'ytmp3') {
-      m.react('⏳');
-      const apiUrl = `https://api.akuari.my.id/down/ytmp3?link=${encodeURIComponent(videoInfo.url)}`;
-      
-      console.log(`🔍 Fetching audio from: ${apiUrl}`);
-      const response = await fetch(apiUrl);
-      const audio = await response.json();
+  } else if (command === 'yta' || command === 'ytmp3') {
+    m.react('⏳');
+    let audio = await (await fetch(`https://api.example.com/ytmp3?url=${videoInfo.url}`)).json();
+    
+    await conn.sendFile(m.chat, audio.data.url, videoInfo.title, '', m, null, { mimetype: "audio/mpeg", asDocument: false });
+    m.react('✅');
 
-      console.log("🔍 Audio API Response:", audio);
+  } else if (command === 'ytv' || command === 'ytmp4') {
+    m.react('⏳');
+    let video = await (await fetch(`https://api.example.com/ytmp4?url=${videoInfo.url}`)).json();
 
-      if (!audio || !audio.result || !audio.result.url) {
-        return await m.reply('⚠️ Error al obtener el audio. Intenta con otro video.');
-      }
+    await conn.sendMessage(m.chat, {
+      video: { url: video.data.url },
+      mimetype: "video/mp4",
+      caption: '',
+    }, { quoted: m });
 
-      await conn.sendFile(m.chat, audio.result.url, `${videoInfo.title}.mp3`, '', m, null, { mimetype: "audio/mpeg", asDocument: false });
-      m.react('✅');
+    m.react('✅');
 
-    } else if (command === 'ytv' || command === 'ytmp4') {
-      m.react('⏳');
-      const apiUrl = `https://api.akuari.my.id/down/ytmp4?link=${encodeURIComponent(videoInfo.url)}`;
-      
-      console.log(`🔍 Fetching video from: ${apiUrl}`);
-      const response = await fetch(apiUrl);
-      const video = await response.json();
-
-      console.log("🔍 Video API Response:", video);
-
-      if (!video || !video.result || !video.result.url) {
-        return await m.reply('⚠️ Error al obtener el video. Intenta con otro video.');
-      }
-
-      await conn.sendMessage(m.chat, {
-        video: { url: video.result.url },
-        mimetype: "video/mp4",
-        caption: videoInfo.title,
-      }, { quoted: m });
-
-      m.react('✅');
-
-    } else {
-      return await m.reply("Comando no reconocido.");
-    }
-
-  } catch (error) {
-    console.error("❌ Error en el comando:", error);
-    return await m.reply("⚠️ Ocurrió un error. Intenta nuevamente más tarde.");
+  } else {
+    return await m.reply("Comando no reconocido.");
   }
 };
 
