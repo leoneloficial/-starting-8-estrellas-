@@ -1,17 +1,17 @@
 import yts from 'yt-search';
 import fetch from 'node-fetch';
 
-const handler = async (m, { conn, text, usedPrefix, command }) => {
+const handler = async (m, { conn, text, command }) => {
   if (!text) {
-    m.react('🎵');
-    throw '🎵 Por favor ingresa la música que deseas descargar.';
+    m.react('⚠️'); // Reacciona inmediatamente para indicar advertencia
+    return await m.reply('🎵 Por favor ingresa la música que deseas descargar.');
   }
 
-  const isVideo = /vid|2|mp4|v$/.test(command);
-  const search = await yts(text);
+  m.react('🎵'); // Reacciona de inmediato al recibir el comando
 
+  const search = await yts(text);
   if (!search.all || search.all.length === 0) {
-    throw "No se encontraron resultados para tu búsqueda.";
+    return await m.reply("No se encontraron resultados para tu búsqueda.");
   }
 
   const videoInfo = search.all[0];
@@ -22,27 +22,19 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
       image: { url: videoInfo.thumbnail },
       caption: body,
       buttons: [
-        {
-          buttonId: `.ytmp3 ${videoInfo.url}`,
-          buttonText: { displayText: 'ᰔᩚ ᥲᥙძі᥆ ⃪⃘⵿᷒〬ᰰુ͡ꪆֺּ ' },
-        },
-        {
-          buttonId: `.ytmp4 ${videoInfo.url}`,
-          buttonText: { displayText: 'ᰔᩚ ᥎іძᥱ᥆ ⃪⃘⵿᷒〬ᰰુ͡ꪆֺּ ' },
-        },
+        { buttonId: `.ytmp3 ${videoInfo.url}`, buttonText: { displayText: '🎶 Audio' } },
+        { buttonId: `.ytmp4 ${videoInfo.url}`, buttonText: { displayText: '🎥 Video' } },
       ],
       viewOnce: true,
       headerType: 4,
     }, { quoted: m });
 
-    m.react('🎵'); // Reacción de música
-
   } else if (command === 'yta' || command === 'ytmp3') {
-    m.react('⏳'); // Indica que está procesando
+    m.react('⏳');
     let audio = await (await fetch(`https://api.example.com/ytmp3?url=${videoInfo.url}`)).json();
     
     await conn.sendFile(m.chat, audio.data.url, videoInfo.title, '', m, null, { mimetype: "audio/mpeg", asDocument: false });
-    m.react('✅'); // Indica que terminó correctamente
+    m.react('✅');
 
   } else if (command === 'ytv' || command === 'ytmp4') {
     m.react('⏳');
@@ -57,7 +49,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
     m.react('✅');
 
   } else {
-    throw "Comando no reconocido.";
+    return await m.reply("Comando no reconocido.");
   }
 };
 
