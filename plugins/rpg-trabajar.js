@@ -1,4 +1,4 @@
-let cooldowns = {}
+let cooldowns = {30}
 
 let handler = async (m, { conn, isPrems }) => {
 let user = global.db.data.users[m.sender]
