@@ -8,7 +8,7 @@ const tiempo2 = segundosAHMS(Math.ceil((cooldowns[m.sender] + tiempo * 1000 - Da
 conn.reply(m.chat, `✎ Debes esperar *${tiempo2}* para usar *#w* de nuevo.`, m, rcanal)
 return
 }
-let rsl = Math.floor(Math.random() * 4500)
+let rsl = Math.floor(Math.random() * 4100)
 cooldowns[m.sender] = Date.now()
 await conn.reply(m.chat, `✎ ${pickRandom(trabajo)} *${toNum(rsl)}* ( *${rsl}* ) ${moneda}  ⛁.`, m, rcanal)
 user.coin += rsl
