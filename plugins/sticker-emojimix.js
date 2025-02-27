@@ -1,128 +1,68 @@
-import { sticker, addExif } from '../lib/sticker.js';
-import { Sticker } from 'wa-sticker-formatter';
-import fetch from 'node-fetch';
-import got from 'got';
-import * as cheerio from 'cheerio';
+import MessageType from '@whiskeysockets/baileys'
+import fetch from 'node-fetch'
+import { sticker } from '../lib/sticker.js'
+import fs from "fs"
 
-const handler = async (m, { usedPrefix, conn, args, text, command }) => {
-  let tipe, emoji;
-  if (text && text.includes('|')) {
-    [tipe, emoji] = text.split('|').map(s => s.trim());
-  } else {
-    tipe = args[0] || 'apple';
-    emoji = args[1] || '😎';
-  }
+// Función para obtener JSON con mejor manejo de errores
+const fetchJson = async (url, options = {}) => {
+    try {
+        console.log(`📡 Fetching URL: ${url}`);
+        const response = await fetch(url, options);
+        if (!response.ok) throw new Error(`🌐 Error HTTP: ${response.status}`);
+        const json = await response.json();
+        console.log("✅ Respuesta de la API:", JSON.stringify(json, null, 2)); // Log detallado de la respuesta
+        return json;
+    } catch (error) {
+        console.error("❌ Error en fetchJson:", error);
+        return null;
+    }
+}
 
-  const errMsg = `*[❗] USO CORRECTO:*
-◉ ${usedPrefix + command} <tipo> <emoji>
+let handler = async (m, { conn, text, args, usedPrefix, command }) => {
+    try {
+        if (!args[0]) {
+            console.log("⚠️ No se proporcionaron emojis.");
+            return m.reply(`✎ Ejemplo: *${usedPrefix + command}* 😎+🤑`);
+        }
 
-*Ejemplo:*
-◉ ${usedPrefix + command} fa 😎
+        let [emoji, emoji2] = text.split`+`;
+        if (!emoji || !emoji2) {
+            console.log("⚠️ Entrada inválida, faltan emojis.");
+            return m.reply("⚠️ Debes ingresar dos emojis separados por '+'.");
+        }
 
-*Tipos disponibles:* 
-◉ wha = whatsapp
-◉ ap = apple
-◉ fa = facebook
-◉ mi = microsoft
-◉ ht = htc
-◉ tw = twitter
-◉ go = google
-◉ mo = mozilla
-◉ op = openmoji
-◉ pi = pixel
-◉ sa = samsung
+        console.log(`🔍 Buscando combinación: ${emoji} + ${emoji2}`);
 
-*Solo usar un emoji y respetar los espacios.*`;
+        let apiUrl = `https://tenor.googleapis.com/v2/featured?key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&contentfilter=high&media_filter=png_transparent&component=proactive&collection=emoji_kitchen_v5&q=${encodeURIComponent(emoji)}_${encodeURIComponent(emoji2)}`;
 
-  if (!emoji) throw errMsg;
+        let anu = await fetchJson(apiUrl);
 
-  // Normalización de nombres
-  const tipeMap = {
-    mo: 'mozilla',
-    op: 'openmoji',
-    pi: 'joypixels',
-    sa: 'samsung',
-    go: 'google',
-    wha: 'whatsapp',
-    fa: 'facebook',
-    ap: 'apple',
-    mi: 'microsoft',
-    ht: 'htc',
-    tw: 'twitter'
-  };
-  
-  tipe = tipeMap[tipe] || tipe.toLowerCase();
+        if (!anu || !anu.results || anu.results.length === 0) {
+            console.log("⚠️ No se encontraron resultados en la API.");
+            return m.reply("❌ No se encontró una combinación para esos emojis.");
+        }
 
-  try {
-    emoji = emoji.trim();
-    const json = await semoji(emoji);
-    if (!json.length) throw new Error("Emoji no encontrado.");
+        for (let res of anu.results) {
+            console.log(`📥 Descargando sticker de: ${res.url}`);
+            let stiker = await sticker(false, res.url, global.packname, global.author);
 
-    let chosenURL = json.find(v => v.nama.includes(tipe))?.url || json[0].url;
+            if (stiker) {
+                console.log("✅ Sticker creado correctamente.");
+                await conn.sendFile(m.chat, stiker, null, { asSticker: true }, m);
+            } else {
+                console.log("❌ Error al crear sticker.");
+                m.reply("❌ Ocurrió un error al generar el sticker.");
+            }
+        }
+    } catch (err) {
+        console.error("❌ Error en handler:", err);
+        m.reply("❌ Ocurrió un error interno, por favor intenta nuevamente.");
+    }
+}
 
-    console.log("Sticker URL:", chosenURL);
-    
-    const stiker = await createSticker(false, chosenURL, global.packname, global.author, 20);
-    
-    await conn.sendMessage(m.chat, { sticker: stiker }, { quoted: m });
-  } catch (error) {
-    console.error(error);
-    throw `*[❗] ERROR, INTENTA NUEVAMENTE*`;
-  }
-};
+handler.help = ['emojimix *<emoji+emoji>*']
+handler.tags = ['sticker']
+handler.command = ['emojimix']
+handler.register = true
 
-handler.help = ['emoji <tipo> <emoji>'];
-handler.tags = ['sticker'];
-handler.command = ['emoji', 'smoji', 'semoji'];
 export default handler;
-
-// Función para obtener URLs de emojis
-async function semoji(emoji) {
-  try {
-    const result = [];
-    const url = `https://emojipedia.org/${encodeURIComponent(emoji)}/`;
-    const response = await got(url, { method: 'GET', headers: { 'User-Agent': 'Mozilla/5.0' } });
-    const $ = cheerio.load(response.body);
-
-    $('section.vendor-list ul li').each((_, element) => {
-      const nama = $(element).find('div.vendor-info h2 a').text().trim().toLowerCase();
-      const url = $(element).find('div.vendor-image img').attr('src');
-      if (nama && url) result.push({ nama, url });
-    });
-
-    return result;
-  } catch (error) {
-    console.error("Error obteniendo emojis:", error);
-    return [];
-  }
-}
-
-// Función para crear sticker
-async function createSticker(img, url, packName, authorName, quality) {
-  const stickerMetadata = { type: 'full', pack: packName, author: authorName, quality };
-  return new Sticker(img || url, stickerMetadata).toBuffer();
-}
-
-// Función para convertir MP4 a WebP (para stickers animados)
-async function mp4ToWebp(file, stickerMetadata = { pack: '‎', author: '‎', crop: false }) {
-  const base64File = file.toString('base64');
-  const requestBody = {
-    file: `data:video/mp4;base64,${base64File}`,
-    processOptions: { crop: stickerMetadata.crop, startTime: '00:00:00.0', endTime: '00:00:07.0', loop: 0 },
-    stickerMetadata,
-    sessionInfo: {
-      WA_VERSION: '2.2106.5',
-      PAGE_UA: 'WhatsApp/2.2037.6 Mozilla/5.0',
-      OS: 'Windows Server 2016'
-    },
-    config: { sessionId: 'session', headless: true, qrTimeout: 20 }
-  };
-
-  const res = await fetch('https://sticker-api.openwa.dev/convertMp4BufferToWebpDataUrl', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(requestBody)
-  });
-
-  return Buffer.from((await res.text()).split(';base64,')[1], 'base64');
-}
