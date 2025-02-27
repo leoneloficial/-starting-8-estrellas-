@@ -1,3 +1,6 @@
+//creado por Zaphkiel y explicado por paso
+
+
 import db from '../lib/database.js';
 import MessageType from '@whiskeysockets/baileys';
 
