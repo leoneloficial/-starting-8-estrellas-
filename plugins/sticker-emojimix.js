@@ -3,14 +3,14 @@ import fetch from 'node-fetch'
 import { sticker } from '../lib/sticker.js'
 import fs from "fs"
 
-// Zahpkiel Función para obtener JSON con mejor manejo de errores
+// Función para obtener JSON con mejor manejo de errores
 const fetchJson = async (url, options = {}) => {
     try {
         console.log(`📡 Fetching URL: ${url}`);
         const response = await fetch(url, options);
         if (!response.ok) throw new Error(`🌐 Error HTTP: ${response.status}`);
         const json = await response.json();
-        console.log("✅ Respuesta recibida correctamente.");
+        console.log("✅ Respuesta de la API:", JSON.stringify(json, null, 2)); // Log detallado de la respuesta
         return json;
     } catch (error) {
         console.error("❌ Error en fetchJson:", error);
@@ -38,7 +38,7 @@ let handler = async (m, { conn, text, args, usedPrefix, command }) => {
         let anu = await fetchJson(apiUrl);
 
         if (!anu || !anu.results || anu.results.length === 0) {
-            console.log("⚠️ No se encontraron resultados.");
+            console.log("⚠️ No se encontraron resultados en la API.");
             return m.reply("❌ No se encontró una combinación para esos emojis.");
         }
 
