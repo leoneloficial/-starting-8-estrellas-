@@ -22,8 +22,8 @@ const handler = async (m, { conn, text, command }) => {
       image: { url: videoInfo.thumbnail },
       caption: body,
       buttons: [
-        { buttonId: `.ytmp3 ${videoInfo.url}`, buttonText: { displayText: '🎶 Audio' } },
-        { buttonId: `.ytmp4 ${videoInfo.url}`, buttonText: { displayText: '🎥 Video' } },
+        { buttonId: `.ytmp3 ${videoInfo.url}`, buttonText: { displayText: '🎶 ᰔᩚ ᥲᥙძі᥆ ⃪⃘⵿᷒〬ᰰુ͡ꪆֺּ' } },
+        { buttonId: `.ytmp4 ${videoInfo.url}`, buttonText: { displayText: '🎥 ᰔᩚ ᥎іძᥱ᥆ ⃪⃘⵿᷒〬ᰰુ͡ꪆֺּ ' } },
       ],
       viewOnce: true,
       headerType: 4,
