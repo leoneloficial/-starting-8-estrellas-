@@ -1,4 +1,4 @@
-const we = 5000;
+const we = 2000;
 let handler = async (m, { conn }) => {
 
     let user = global.db.data.users[m.sender] || {};
