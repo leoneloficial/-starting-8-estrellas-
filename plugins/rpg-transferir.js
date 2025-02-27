@@ -1,4 +1,4 @@
-const items = ['yenes', 'exp'];
+const items = ['coin', 'exp'];
 const confirmation = {};
 
 async function handler(m, { conn, args, usedPrefix, command }) {
