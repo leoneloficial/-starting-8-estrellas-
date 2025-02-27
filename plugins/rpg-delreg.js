@@ -1,3 +1,6 @@
+//Zaphkiel Solo borra el registro de usuario sin tocar dinero o objetos
+
+
 import db from '../lib/database.js';
 import PhoneNumber from 'awesome-phonenumber';
 
