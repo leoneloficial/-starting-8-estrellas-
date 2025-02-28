@@ -26,9 +26,10 @@ let handler = async (m, { conn, usedPrefix, text, args, command }) => {
   ], m)
 }
 
-handler.help = ["staff", "staffs"]
-handler.tags = ["main"]
-handler.command = ['staff', 'colaboradores']
+handler.help = ['staff'];
+handler.tags = ['main'];
+handler.command = ['ayudantes', 'colaboradores', 'staff'];
+
 export default handler
 
 async function sendContactArray(conn, jid, data, quoted, options) {
