@@ -3,7 +3,9 @@ import moment from 'moment-timezone';
 let handler = async (m, { conn, args }) => {
 
   let staff = `
-✨ *EQUIPO DE AYUDANTES* ✨
+*EQUIPO STAFF OWNERS DEL BOT* 
+
+
 👑 *Dueño* ${creador}
 🍬 *Bot:* ${botname}
 ⚜️ *Versión:* ${vs}
@@ -15,23 +17,23 @@ let handler = async (m, { conn, args }) => {
 🔖 *Rol:* Creador
 👾 *GitHub:* 
 
-🍃 *Colaboradores:*
+🌻 *STAFF SOPORTE DEL BOT:*
 
-✴️ EnderJs-CreatorGL
+✴️ Zaphkiel
 🔖 *Rol:* Developer
-👾 *GitHub:https://github.com/EnderJs-CreatorGL/Lobo-Bot-Lite
+👾 *GitHub:https://github.com/EnderJs-CreatorGL
 
 🍍 
 🔖 *Rol:* Developer
-👾 *Github:
+👾 *Github:*
 
 ⚡ 
 🔖 *Rol:* Developer
-👾 *GitHub:
+👾 *GitHub:*
 
 ☘️ 
 🔖 *Rol:* Developer
-👾 *GitHub:
+👾 *GitHub:*
 
 
 🔖 *Rol:* Moderador 
