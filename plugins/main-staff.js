@@ -2,16 +2,16 @@ import moment from 'moment-timezone';
 
 let handler = async (m, { conn }) => {
   let staff = [
-    { name: "Dueño", role: "Creador", github: "https://github.com/TuGitHub" },
-    { name: "Zaphkiel", role: "Developer", github: "https://github.com/EnderJs-CreatorGL" },
+    { name: "👑 Dueño", role: "Creador", github: "https://github.com/TuGitHub" },
+    { name: "✴️ Zaphkiel", role: "Developer", github: "https://github.com/EnderJs-CreatorGL" },
     { name: "🍍", role: "Developer", github: "https://github.com/TuGitHub" },
     { name: "⚡", role: "Developer", github: "https://github.com/TuGitHub" },
     { name: "☘️", role: "Developer", github: "https://github.com/TuGitHub" },
-    { name: "Moderador", role: "Moderador", github: "https://github.com/TuGitHub" }
+    { name: "🔖 Moderador", role: "Moderador", github: "https://github.com/TuGitHub" }
   ];
 
   let buttons = staff.map(member => ({
-    buttonId: `staff_${member.name.toLowerCase()}`,
+    buttonId: `.staffinfo ${member.name.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()}`, 
     buttonText: { displayText: member.name },
     type: 1
   }));
