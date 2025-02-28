@@ -3,7 +3,7 @@ import yts from 'yt-search';
 const handler = async (m, { conn, text, command }) => {
   try {
     if (!text) throw "⚠️ Debes escribir el nombre de la música.";
-    
+
     m.reply("📡 Buscando en YouTube... 🔎");
 
     const search = await yts(text);
@@ -12,40 +12,19 @@ const handler = async (m, { conn, text, command }) => {
     const videoInfo = search.all[0];
     console.log("🔗 URL obtenida:", videoInfo.url);
 
-    await m.reply(`✅ Video encontrado: ${videoInfo.title}\n🔗 ${videoInfo.url}`);
+    // Enviar mensaje con botones
+    let message = {
+      image: { url: videoInfo.thumbnail },
+      caption: `✅ *Video encontrado:*\n📌 *${videoInfo.title}*\n🎵 *Canal:* ${videoInfo.author.name}\n👀 *Vistas:* ${videoInfo.views}\n📅 *Publicado:* ${videoInfo.ago}\n🔗 ${videoInfo.url}`,
+      footer: "Selecciona una opción para descargar:",
+      buttons: [
+        { buttonId: `.ytmp3 ${videoInfo.url}`, buttonText: { displayText: '🎵 Descargar MP3' }, type: 1 },
+        { buttonId: `.ytmp4 ${videoInfo.url}`, buttonText: { displayText: '📹 Descargar MP4' }, type: 1 }
+      ],
+      headerType: 4
+    };
 
-    if (!videoInfo.url.startsWith("http")) {
-      return m.reply("⚠️ Error: La URL del video no es válida.");
-    }
-
-    if (command === 'yta' || command === 'ytmp3') {
-      let apiUrl = `https://api.example.com/ytmp3?url=${encodeURIComponent(videoInfo.url)}`;
-      console.log("📡 URL de la API:", apiUrl);
-
-      let response = await fetch(apiUrl).catch(err => {
-        console.error("❌ Error en la API:", err);
-        return null;
-      });
-
-      if (!response) return m.reply("⚠️ La API no responde.");
-      
-      let audio = await response.json().catch(err => {
-        console.error("❌ Error al procesar JSON:", err);
-        return null;
-      });
-
-      if (!audio || !audio.data || !audio.data.url) {
-        return m.reply("⚠️ Error al obtener el audio. Revisa la API.");
-      }
-
-      await conn.sendMessage(m.chat, { 
-        document: { url: audio.data.url }, 
-        mimetype: "audio/mpeg", 
-        fileName: `${videoInfo.title}.mp3` 
-      }, { quoted: m });
-
-      m.react('✅');
-    }
+    await conn.sendMessage(m.chat, message, { quoted: m });
 
   } catch (err) {
     console.error("🚨 Error detectado:", err);
@@ -53,5 +32,5 @@ const handler = async (m, { conn, text, command }) => {
   }
 };
 
-handler.command = ['play', 'ytmp3'];
+handler.command = ['play'];
 export default handler;
