@@ -11,7 +11,7 @@ let handler = async (m, { conn, args }) => {
   let coins = user.coin || 0;
   let role = user.role || '';
 
-  let perfil = await conn.profilePictureUrl(userId, 'image').catch(_ => 'https://files.catbox.moe/xr2m6u.jpg');
+  let perfil = await conn.profilePictureUrl(userId, 'image').catch(_ => 'https://qu.ax/RGury.jpg');
 
 const handler = async (m, { conn, usedPrefix }) => {
   let sender = m.sender.split("@")[0];
