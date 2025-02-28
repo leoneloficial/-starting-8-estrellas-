@@ -1,72 +1,43 @@
 import yts from 'yt-search';
 
-const handler = async (m, { conn, text, usedPrefix, command }) => {
+const handler = async (m, { conn, text, command }) => {
   try {
-    if (!text) throw new Error("⚠️ Ingresa el nombre de la música que deseas descargar.");
+    console.log("✅ Comando recibido:", command);
+    console.log("🔍 Texto de búsqueda:", text);
+
+    if (!text) {
+      console.log("⚠️ No se ingresó texto.");
+      return m.reply("⚠️ Debes escribir el nombre de la música.");
+    }
+
+    m.reply("📡 Buscando en YouTube... 🔎");
 
     const search = await yts(text);
-    if (!search.all.length) throw new Error("❌ No se encontraron resultados.");
+    console.log("🔎 Resultados de búsqueda:", search.all);
+
+    if (!search.all.length) {
+      console.log("❌ No se encontraron resultados.");
+      return m.reply("❌ No se encontraron resultados.");
+    }
 
     const videoInfo = search.all[0];
+    let message = `🎵 *Música Encontrada*\n\n📌 *Título:* ${videoInfo.title}\n🎬 *Canal:* ${videoInfo.author.name || 'Desconocido'}\n👀 *Vistas:* ${videoInfo.views}\n⏳ *Duración:* ${videoInfo.timestamp}\n📆 *Publicado:* ${videoInfo.ago}\n🔗 *Enlace:* ${videoInfo.url}`;
 
-    // Mensaje de respuesta con la información del video
-    let message = `🎵 *Descarga de Música*\n\n📌 *Título:* ${videoInfo.title}\n🎬 *Canal:* ${videoInfo.author.name || 'Desconocido'}\n👀 *Vistas:* ${videoInfo.views}\n⏳ *Duración:* ${videoInfo.timestamp}\n📆 *Publicado hace:* ${videoInfo.ago}\n🔗 *Enlace:* ${videoInfo.url}`;
-
-    // Botones de descarga
-    let buttons = [
-      { buttonId: `.ytmp3 ${videoInfo.url}`, buttonText: { displayText: '🎶 Descargar MP3' } },
-      { buttonId: `.ytmp4 ${videoInfo.url}`, buttonText: { displayText: '📹 Descargar MP4' } }
-    ];
-
-    // Enviar mensaje con imagen y botones
-
-console.log("Texto de búsqueda:", text);
-const search = await yts(text);
-console.log("Resultados de búsqueda:", search.all);
+    console.log("📩 Enviando mensaje con info del video...");
 
     await conn.sendMessage(m.chat, {
       image: { url: videoInfo.thumbnail },
       caption: message,
       footer: "Bot WhatsApp",
-      buttons,
+      buttons: [
+        { buttonId: `.ytmp3 ${videoInfo.url}`, buttonText: { displayText: '🎶 Descargar MP3' } },
+        { buttonId: `.ytmp4 ${videoInfo.url}`, buttonText: { displayText: '📹 Descargar MP4' } }
+      ],
       headerType: 4
     }, { quoted: m });
 
-    // Si el comando es para descargar audio
-    if (command === 'yta' || command === 'ytmp3') {
-      m.react('⏳');
-
-      let response = await fetch(`API_ENDPOINT/mp3?url=${encodeURIComponent(videoInfo.url)}`);
-      let audio = await response.json();
-      if (!audio.data || !audio.data.url) throw new Error("⚠️ Error al procesar el audio.");
-
-      await conn.sendFile(m.chat, audio.data.url, `${videoInfo.title}.mp3`, '', m, null, { mimetype: "audio/mpeg" });
-      m.react('✅');
-    }
-
-    // Si el comando es para descargar video
-    if (command === 'ytv' || command === 'ytmp4') {
-      m.react('⏳');
-
-      let response = await fetch(`API_ENDPOINT/mp4?url=${encodeURIComponent(videoInfo.url)}`);
-      let video = await response.json();
-      if (!video.data || !video.data.url) throw new Error("⚠️ Error al procesar el video.");
-
-console.log("Texto de búsqueda:", text);
-const search = await yts(text);
-console.log("Resultados de búsqueda:", search.all);
-
-      await conn.sendMessage(m.chat, {
-        video: { url: video.data.url },
-        mimetype: "video/mp4",
-        caption: `🎥 ${videoInfo.title}`
-      }, { quoted: m });
-
-      m.react('✅');
-    }
-
   } catch (err) {
-    console.error(err); // Para depuración en consola
+    console.error("🚨 Error detectado:", err);
     m.reply(`⚠️ Error: ${err.message || "Ocurrió un error inesperado."}`);
   }
 };
