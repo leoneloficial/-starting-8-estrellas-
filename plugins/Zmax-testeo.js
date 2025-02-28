@@ -12,7 +12,6 @@ const handler = async (m, { conn, text, command }) => {
     const videoInfo = search.all[0];
     console.log("🔗 URL obtenida:", videoInfo.url);
 
-    // Depuración para evitar URL inválidas
     if (!videoInfo.url || !videoInfo.url.startsWith("http")) {
       console.error("🚨 Error: URL inválida:", videoInfo.url);
       return m.reply("❌ Ocurrió un error al obtener el enlace.");
@@ -20,19 +19,19 @@ const handler = async (m, { conn, text, command }) => {
 
     await new Promise(resolve => setTimeout(resolve, 1000)); // Espera antes de enviar
 
-    // Enviar mensaje con botones
-    let message = {
-      image: { url: videoInfo.thumbnail },
-      caption: `✅ *Video encontrado:*\n📌 *${videoInfo.title}*\n🎵 *Canal:* ${videoInfo.author.name}\n👀 *Vistas:* ${videoInfo.views}\n📅 *Publicado:* ${videoInfo.ago}\n🔗 ${videoInfo.url}`,
-      footer: "Selecciona una opción para descargar:",
-      buttons: [
-        { buttonId: `.ytmp3 ${videoInfo.url}`, buttonText: { displayText: '🎵 Descargar MP3' }, type: 1 },
-        { buttonId: `.ytmp4 ${videoInfo.url}`, buttonText: { displayText: '📹 Descargar MP4' }, type: 1 }
-      ],
-      headerType: 4
+    // Nueva estructura de botones con templateMessage
+    let buttons = [
+      { index: 1, quickReplyButton: { displayText: "🎵 Descargar MP3", id: `.ytmp3 ${videoInfo.url}` } },
+      { index: 2, quickReplyButton: { displayText: "📹 Descargar MP4", id: `.ytmp4 ${videoInfo.url}` } }
+    ];
+
+    let templateMessage = {
+      text: `✅ *Video encontrado:*\n📌 *${videoInfo.title}*\n🎵 *Canal:* ${videoInfo.author.name}\n👀 *Vistas:* ${videoInfo.views}\n📅 *Publicado:* ${videoInfo.ago}\n🔗 ${videoInfo.url}`,
+      footer: "Selecciona una opción:",
+      templateButtons: buttons
     };
 
-    await conn.sendMessage(m.chat, message, { quoted: m });
+    await conn.sendMessage(m.chat, templateMessage, { quoted: m });
 
   } catch (err) {
     console.error("🚨 Error detectado:", err);
