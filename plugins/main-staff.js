@@ -1,69 +1,31 @@
 import moment from 'moment-timezone';
 
-let handler = async (m, { conn, args }) => {
+let handler = async (m, { conn }) => {
+  let staff = [
+    { name: "Dueño", role: "Creador", github: "https://github.com/TuGitHub" },
+    { name: "Zaphkiel", role: "Developer", github: "https://github.com/EnderJs-CreatorGL" },
+    { name: "🍍", role: "Developer", github: "https://github.com/TuGitHub" },
+    { name: "⚡", role: "Developer", github: "https://github.com/TuGitHub" },
+    { name: "☘️", role: "Developer", github: "https://github.com/TuGitHub" },
+    { name: "Moderador", role: "Moderador", github: "https://github.com/TuGitHub" }
+  ];
 
-  let staff = `
-*EQUIPO STAFF OWNERS DEL BOT* 
+  let buttons = staff.map(member => ({
+    buttonId: `staff_${member.name.toLowerCase()}`,
+    buttonText: { displayText: member.name },
+    type: 1
+  }));
 
+  let buttonMessage = {
+    text: "✨ *EQUIPO STAFF OWNERS DEL BOT*\n\nSelecciona un miembro para ver sus detalles:",
+    footer: "👾 GitHub Bot",
+    buttons: buttons,
+    headerType: 1
+  };
 
-👑 *Dueño* ${creador}
-🍬 *Bot:* ${botname}
-⚜️ *Versión:* ${vs}
-📚 *Libreria:* ${libreria} ${baileys}
-
-🪐 *Creador:*
-
-☁️ ৎ୭࠭͢𓆩𝕷͢𝖊𝖔፝֟፝֟፝֟፝֟፝֟፝֟𝖓𝖊𝖑𓆪͟͞ '
-🔖 *Rol:* Creador
-👾 *GitHub:* 
-
-🌻 *STAFF SOPORTE DEL BOT:*
-
-✴️ Zaphkiel
-🔖 *Rol:* Developer
-👾 *GitHub:https://github.com/EnderJs-CreatorGL
-
-🍍 
-🔖 *Rol:* Developer
-👾 *Github:*
-
-⚡ 
-🔖 *Rol:* Developer
-👾 *GitHub:*
-
-☘️ 
-🔖 *Rol:* Developer
-👾 *GitHub:*
-
-
-🔖 *Rol:* Moderador 
-👾 *GitHub:* `.trim();
-
-  await conn.sendMessage(m.chat, { 
-      text: staff,
-      contextInfo: {
-          isForwarded: true,
-          forwardedNewsletterMessageInfo: {
-              newsletterJid: channelRD.id,
-              newsletterName: channelRD.name,
-              serverMessageId: -1,
-          },
-          forwardingScore: 999,
-          externalAdReply: {
-              title: `✨ Developers`,
-              body: dev,
-              thumbnailUrl: catalogo,
-              mediaType: 1,
-              showAdAttribution: true,
-              renderLargerThumbnail: true,
-          },
-      },
-  }, { quoted: m });
-
+  await conn.sendMessage(m.chat, buttonMessage, { quoted: m });
 };
 
-handler.help = ['staff'];
-handler.tags = ['main'];
 handler.command = ['ayudantes', 'colaboradores', 'staff'];
 
 export default handler;
