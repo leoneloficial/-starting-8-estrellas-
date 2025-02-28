@@ -12,6 +12,14 @@ const handler = async (m, { conn, text, command }) => {
     const videoInfo = search.all[0];
     console.log("🔗 URL obtenida:", videoInfo.url);
 
+    // Depuración para evitar URL inválidas
+    if (!videoInfo.url || !videoInfo.url.startsWith("http")) {
+      console.error("🚨 Error: URL inválida:", videoInfo.url);
+      return m.reply("❌ Ocurrió un error al obtener el enlace.");
+    }
+
+    await new Promise(resolve => setTimeout(resolve, 1000)); // Espera antes de enviar
+
     // Enviar mensaje con botones
     let message = {
       image: { url: videoInfo.thumbnail },
