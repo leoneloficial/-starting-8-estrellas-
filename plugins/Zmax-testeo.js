@@ -16,7 +16,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
 
     const videoInfo = search.all[0];
     const responseText = `🎶 *Música Encontrada* 🎶\n\n` +
-      `>🌟*Título:* ${videoInfo.title}\n` +
+      `> 🌟*Título:* ${videoInfo.title}\n` +
       `🌿 *Canal:* ${videoInfo.author.name || 'Desconocido'}\n` +
       `✨ *Duración:* ${videoInfo.timestamp}\n` +
       `🍀 *Vistas:* ${videoInfo.views.toLocaleString()}\n` +
