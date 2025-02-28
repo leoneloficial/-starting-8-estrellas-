@@ -19,6 +19,11 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
     ];
 
     // Enviar mensaje con imagen y botones
+
+console.log("Texto de búsqueda:", text);
+const search = await yts(text);
+console.log("Resultados de búsqueda:", search.all);
+
     await conn.sendMessage(m.chat, {
       image: { url: videoInfo.thumbnail },
       caption: message,
@@ -46,6 +51,10 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
       let response = await fetch(`API_ENDPOINT/mp4?url=${encodeURIComponent(videoInfo.url)}`);
       let video = await response.json();
       if (!video.data || !video.data.url) throw new Error("⚠️ Error al procesar el video.");
+
+console.log("Texto de búsqueda:", text);
+const search = await yts(text);
+console.log("Resultados de búsqueda:", search.all);
 
       await conn.sendMessage(m.chat, {
         video: { url: video.data.url },
