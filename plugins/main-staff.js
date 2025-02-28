@@ -3,7 +3,7 @@ import moment from 'moment-timezone';
 let handler = async (m, { conn, args }) => {
 
   let staff = `
-*EQUIPO STAFF OWNERS DEL BOT* 
+*EQUIPO STAFF* 
 
 
 👑 *Dueño* ${creador}
