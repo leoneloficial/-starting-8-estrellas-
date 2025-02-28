@@ -98,7 +98,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
       },
     };
 
-    await conn.reply(m.chat, infoMessage, m, JT);
+    //await conn.reply(m.chat, infoMessage, m, JT);
 
     if (command === 'play' || command === 'yta' || command === 'ytmp3') {
       const api = await (await fetch(`https://api.neoxr.eu/api/youtube?url=${url}&type=audio&quality=128kbps&apikey=GataDios`)).json()
