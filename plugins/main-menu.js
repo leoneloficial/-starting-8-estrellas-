@@ -41,7 +41,8 @@ const handler = async (m, { conn, usedPrefix }) => {
 │   ${dev}
 ╰๋͜┈ࠢ͜┅ࠦ͜͜╾݊͜─ؕ͜─ׄ͜─֬͜─֟͜─֫͜─ׄ͜─ؕ͜─݊͜┈ࠦ͜┅ࠡ͜͜┈࠭͜͜۰۰͜۰
 
-»  ╭ ~ ˚₊‧꒰ა ֝ 𝐼ؔؗ𝑛ٰ֦𝑓ׇ𝑜-𝑏ַ֑𝑜֧֘֞𝑡ֻܹ໒꒱ ‧₊˚ ~
+»  ⊹˚• \`Info-Bot\` •˚⊹
+┈ࠢ͜┅ࠦ͜͜╾݊͜─ؕ͜─ׄ͜─֬͜─֟͜─֫͜─ׄ͜─ؕ͜─݊͜┈ࠦ͜┅ࠡ͜͜┈࠭͜͜۰۰͜۰
 
 ✧ Comandos para ver estado e información de la Bot.
 ᰔᩚ *#help • #menu*
