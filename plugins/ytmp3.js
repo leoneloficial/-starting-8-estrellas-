@@ -111,7 +111,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
       const json = await response.json()
 
       try {
-        await conn.sendMessage(m.chat, {
+        //await conn.sendMessage(m.chat, {
           video: { url: json.data.url },
           fileName: json.data.filename,
           mimetype: 'video/mp4',
