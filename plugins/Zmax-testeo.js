@@ -4,7 +4,7 @@ import fetch from 'node-fetch';
 const handler = async (m, { conn, text, command }) => {
   if (!text) {
     m.react('⚠️'); // Reacciona inmediatamente para indicar advertencia
-    return await m.reply('🎵 Por favor ingresa la música que deseas descargar.');
+    return await m.reply('🌸 Por favor ingresa la música que deseas descargar.');
   }
 
   m.react('🎵'); // Reacciona de inmediato al recibir el comando
