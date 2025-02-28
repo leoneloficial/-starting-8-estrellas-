@@ -9,16 +9,16 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
 
     const videoInfo = search.all[0];
 
-console.log("Enviando mensaje con info del video:", message);
+    // Mensaje de respuesta con la información del video
+    let message = `🎵 *Descarga de Música*\n\n📌 *Título:* ${videoInfo.title}\n🎬 *Canal:* ${videoInfo.author.name || 'Desconocido'}\n👀 *Vistas:* ${videoInfo.views}\n⏳ *Duración:* ${videoInfo.timestamp}\n📆 *Publicado hace:* ${videoInfo.ago}\n🔗 *Enlace:* ${videoInfo.url}`;
 
-
-    const message = `🎵 *Descarga de Música*\n\n📌 *Título:* ${videoInfo.title}\n🎬 *Canal:* ${videoInfo.author.name || 'Desconocido'}\n👀 *Vistas:* ${videoInfo.views}\n⏳ *Duración:* ${videoInfo.timestamp}\n📆 *Publicado hace:* ${videoInfo.ago}\n🔗 *Enlace:* ${videoInfo.url}`;
-
-    const buttons = [
+    // Botones de descarga
+    let buttons = [
       { buttonId: `.ytmp3 ${videoInfo.url}`, buttonText: { displayText: '🎶 Descargar MP3' } },
       { buttonId: `.ytmp4 ${videoInfo.url}`, buttonText: { displayText: '📹 Descargar MP4' } }
     ];
 
+    // Enviar mensaje con imagen y botones
     await conn.sendMessage(m.chat, {
       image: { url: videoInfo.thumbnail },
       caption: message,
@@ -27,8 +27,10 @@ console.log("Enviando mensaje con info del video:", message);
       headerType: 4
     }, { quoted: m });
 
+    // Si el comando es para descargar audio
     if (command === 'yta' || command === 'ytmp3') {
       m.react('⏳');
+
       let response = await fetch(`API_ENDPOINT/mp3?url=${encodeURIComponent(videoInfo.url)}`);
       let audio = await response.json();
       if (!audio.data || !audio.data.url) throw new Error("⚠️ Error al procesar el audio.");
@@ -37,8 +39,10 @@ console.log("Enviando mensaje con info del video:", message);
       m.react('✅');
     }
 
+    // Si el comando es para descargar video
     if (command === 'ytv' || command === 'ytmp4') {
       m.react('⏳');
+
       let response = await fetch(`API_ENDPOINT/mp4?url=${encodeURIComponent(videoInfo.url)}`);
       let video = await response.json();
       if (!video.data || !video.data.url) throw new Error("⚠️ Error al procesar el video.");
@@ -48,6 +52,7 @@ console.log("Enviando mensaje con info del video:", message);
         mimetype: "video/mp4",
         caption: `🎥 ${videoInfo.title}`
       }, { quoted: m });
+
       m.react('✅');
     }
 
