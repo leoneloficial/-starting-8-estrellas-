@@ -11,9 +11,10 @@ const handler = async (m, { conn, text, command }) => {
     }
 
     m.reply("📡 Buscando en YouTube... 🔎");
+    console.log("🔍 Buscando en YouTube...");
 
     const search = await yts(text);
-    console.log("🔎 Resultados de búsqueda:", search.all);
+    console.log("✅ Búsqueda completada:", search.all);
 
     if (!search.all.length) {
       console.log("❌ No se encontraron resultados.");
