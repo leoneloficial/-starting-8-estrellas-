@@ -49,118 +49,170 @@ const handler = async (m, { conn, usedPrefix }) => {
 ┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#uptime • #runtime*
 > ✦ Ver tiempo activo o en linea de la Bot.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#sc • #script*
 > ✦ Link del repositorio oficial de la Bot
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#staff • #colaboradores*
 > ✦ Ver la lista de desarrolladores de la Bot.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 > ✦ ᰔᩚ *#creador*
 > ✦ Contacto del creador de la Bot.
 ᰔᩚ *#status • #estado*
 > ✦ Ver el estado actual de la Bot.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#links • #grupos*
 > ✦ Ver los enlaces oficiales de la Bot.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#infobot • #infobot*
 > ✦ Ver la información completa de la Bot.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#sug • #newcommand*
 > ✦ Sugiere un nuevo comando.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#solicitud • #sugerencia*
 > ✦ Envia una sugerencia al canal de la Bot.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#p • #ping*
 > ✦ Ver la velocidad de respuesta del Bot.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#reporte • #reportar*
 > ✦ Reporta alguna falla o problema de la Bot.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#sistema • #system*
 > ✦ Ver estado del sistema de alojamiento.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#speed • #speedtest*
 > ✦ Ver las estadísticas de velocidad de la Bot.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#views • #usuarios*
 > ✦ Ver la cantidad de usuarios registrados en el sistema.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#funciones • #totalfunciones*
 > ✦ Ver todas las funciones de la Bot.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#ds • #fixmsgespera*
 > ✦ Eliminar archivos de sesión innecesarios.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#editautoresponder*
 > ✦ Configurar un Prompt personalizado de la Bot.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 
 »  ⊹˚• \`Buscadores\` •˚⊹
 
 ✧ Comandos para realizar búsquedas en distintas plataformas.
 ᰔᩚ *#tiktoksearch • #tiktoks*
 > ✦ Buscador de videos de tiktok.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#tweetposts*
 > ✦ Buscador de posts de Twitter/X.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#ytsearch • #yts*
 > ✦ Realiza búsquedas de Youtube.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#githubsearch*
 > ✦ Buscador de usuarios de GitHub.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#cuevana • #cuevanasearch*
 > ✦ Buscador de películas/series por Cuevana.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#google*
 > ✦ Realiza búsquedas por Google.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#pin • #pinterest*
 > ✦ Buscador de imagenes de Pinterest.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#imagen • #image*
 > ✦ buscador de imagenes de Google.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#animesearch • #animess*
 > ✦ Buscador de animes de tioanime.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#animei • #animeinfo*
 > ✦ Buscador de capítulos de #animesearch.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#infoanime*
 > ✦ Buscador de información de anime/manga.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#hentaisearch • #searchhentai*
 > ✦ Buscador de capítulos hentai.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ #xnxxsearch • #xnxxs*
 > ✦ Buscador de vídeos de Xnxx.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#xvsearch • #xvideossearch*
 > ✦ Buscador de vídeos de Xvideos.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#pornhubsearch • #phsearch*
 > ✦ Buscador de videos de Pornhub.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#npmjs*
 > ✦ Buscandor de npmjs.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 
 »  ⊹˚• \`Descargas\` •˚⊹
 
 ✧ Comandos de descargas para varios archivos.
 ᰔᩚ *#tiktok • #tt*
 > ✦ Descarga videos de TikTok.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#mediafire • #mf*
 > ✦ Descargar un archivo de MediaFire.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#pinvid • #pinvideo* + [enlacé]
 > ✦ Descargar vídeos de Pinterest. 
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#mega • #mg* + [enlacé]
 > ✦ Descargar un archivo de MEGA.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#play • #play2*
 > ✦ Descarga música/video de YouTube.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#ytmp3 • #ytmp4*
 > ✦ Descarga música/video de YouTube mediante url.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#fb • #facebook*
 > ✦ Descarga videos de Facebook.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#twitter • #x* + [Link]
 > ✦ Descargar un video de Twitter/X
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#ig • #instagram*
 > ✦ Descarga contenido de Instagram.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#tts • #tiktoks* + [busqueda]
 > ✦ Buscar videos de tiktok 
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#terabox • #tb* + [enlace]
 > ✦ Descargar archivos por Terabox.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#gdrive • #drive* + [enlace]
 > ✦ Descargar archivos por Google Drive.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#ttimg • #ttmp3* + <url>
 > ✦ Descarga fotos/audios de tiktok. 
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#gitclone* + <url> 
 > ✦ Descarga un repositorio de github.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#xvideosdl*
 > ✦ Descarga videos porno de (Xvideos). 
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#xnxxdl*
 > ✦ Descarga videos porno de (xnxx).
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#apk • #modapk*
 > ✦ Descarga un apk de Aptoide.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#tiktokrandom • #ttrandom*
 > ✦ Descarga un video aleatorio de tiktok.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#npmdl • #npmdownloader*
 > ✦ Descarga paquetes de NPMJs.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#animelinks • #animedl*
 > ✦ Descarga Links disponibles de descargas.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 
 »  ⊹˚• \`Economia-rpg\` •˚⊹
 
