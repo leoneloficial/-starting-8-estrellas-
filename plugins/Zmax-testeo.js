@@ -1,27 +1,27 @@
 import yts from 'yt-search';
 
 const handler = async (m, { conn, text, usedPrefix, command }) => {
-  if (!text) throw `❌ *Error:* Debes ingresar el nombre de la canción o artista.`;
+  if (!text) throw `*Debes ingresar el nombre de la canción o artista*`;
 
   // Mensaje inicial con animación de carga
-  let searchMessage = await conn.sendMessage(m.chat, { text: '⏳ *Buscando tu música...*\n🔍 Esto puede tardar unos segundos.' }, { quoted: m });
+  let searchMessage = await conn.sendMessage(m.chat, { text: ' *Buscando tu música...*\n🔍 Esto puede tardar unos segundos.' }, { quoted: m });
 
   try {
     const isVideo = /vid|2|mp4|v$/.test(command);
     const search = await yts(text);
 
     if (!search.all || search.all.length === 0) {
-      throw "⚠️ No se encontraron resultados para tu búsqueda.";
+      throw "*No se encontraron resultados para tu búsqueda*";
     }
 
     const videoInfo = search.all[0];
     const responseText = `🎶 *Música Encontrada* 🎶\n\n` +
-      `📌 *Título:* ${videoInfo.title}\n` +
-      `👤 *Canal:* ${videoInfo.author.name || 'Desconocido'}\n` +
-      `⏳ *Duración:* ${videoInfo.timestamp}\n` +
-      `👀 *Vistas:* ${videoInfo.views.toLocaleString()}\n` +
-      `📅 *Publicado hace:* ${videoInfo.ago}\n` +
-      `🔗 *Link:* ${videoInfo.url}`;
+      `>🌟*Título:* ${videoInfo.title}\n` +
+      `🌿 *Canal:* ${videoInfo.author.name || 'Desconocido'}\n` +
+      `✨ *Duración:* ${videoInfo.timestamp}\n` +
+      `🍀 *Vistas:* ${videoInfo.views.toLocaleString()}\n` +
+      `🌹 *Publicado hace:* ${videoInfo.ago}\n` +
+      `💐 *Link:* ${videoInfo.url}`;
 
     if (command === 'play' || command === 'playvid' || command === 'play2') {
       await conn.sendMessage(m.chat, {
