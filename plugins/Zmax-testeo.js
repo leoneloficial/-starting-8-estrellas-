@@ -8,6 +8,10 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!search.all.length) throw new Error("❌ No se encontraron resultados.");
 
     const videoInfo = search.all[0];
+
+console.log("Enviando mensaje con info del video:", message);
+
+
     const message = `🎵 *Descarga de Música*\n\n📌 *Título:* ${videoInfo.title}\n🎬 *Canal:* ${videoInfo.author.name || 'Desconocido'}\n👀 *Vistas:* ${videoInfo.views}\n⏳ *Duración:* ${videoInfo.timestamp}\n📆 *Publicado hace:* ${videoInfo.ago}\n🔗 *Enlace:* ${videoInfo.url}`;
 
     const buttons = [
