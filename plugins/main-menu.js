@@ -406,220 +406,321 @@ const handler = async (m, { conn, usedPrefix }) => {
 ✧ Comandos de perfil para ver, configurar y comprobar estados de tu perfil.
 ᰔᩚ *#reg • #verificar • #register*
 > ✦ Registra tu nombre y edad en el bot.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#unreg*
 > ✦ Elimina tu registro del bot.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#profile*
 > ✦ Muestra tu perfil de usuario.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#marry* [mension / etiquetar]
 > ✦ Propón matrimonio a otro usuario.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#divorce*
 > ✦ Divorciarte de tu pareja.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#setgenre • #setgenero*
 > ✦ Establece tu género en el perfil del bot.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#delgenre • #delgenero*
 > ✦ Elimina tu género del perfil del bot.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#setbirth • #setnacimiento*
 > ✦ Establece tu fecha de nacimiento en el perfil del bot.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#delbirth • #delnacimiento*
 > ✦ Elimina tu fecha de nacimiento del perfil del bot.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#setdescription • #setdesc*
 > ✦ Establece una descripción en tu perfil del bot.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#deldescription • #deldesc*
 > ✦ Elimina la descripción de tu perfil del bot.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#lb • #lboard* + <Paginá>
 > ✦ Top de usuarios con más (experiencia y nivel).
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#level • #lvl* + <@Mencion>
 > ✦ Ver tu nivel y experiencia actual.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#comprarpremium • #premium*
 > ✦ Compra un pase premium para usar el bot sin límites.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ #confesiones • #confesar*
 > ✦ Confiesa tus sentimientos a alguien de manera anonima.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 
 »  ⊹˚• \`Grupos\` •˚⊹
 
 ✧ Comandos de grupos para una mejor gestión de ellos.
 ᰔᩚ *#config • #on*
 > ✦ Ver opciones de configuración de grupos.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#hidetag*
-> ✦ Envia un mensaje mencionando a todos los usuarios
+> ✦ Envia un mensaje mencionando a todos los usuarios. 
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#gp • #infogrupo*
 > ✦  Ver la Informacion del grupo.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#linea • #listonline*
 > ✦ Ver la lista de los usuarios en linea.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#setwelcome*
 > ✦ Establecer un mensaje de bienvenida personalizado.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#setbye*
 > ✦ Establecer un mensaje de despedida personalizado.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#link*
 > ✦ El bot envia el link del grupo.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#admins • #admin*
 > ✦ Mencionar a los admins para solicitar ayuda.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#restablecer • #revoke*
 > ✦ Restablecer el enlace del grupo.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#grupo • #group* [open / abrir]
 > ✦ Cambia ajustes del grupo para que todos los usuarios envien mensaje.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#grupo • #gruop* [close / cerrar]
 > ✦ Cambia ajustes del grupo para que solo los administradores envien mensaje.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#kick* [número / mension]
 > ✦ Elimina un usuario de un grupo.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#add • #añadir • #agregar* [número]
 > ✦ Invita a un usuario a tu grupo.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#promote* [mension / etiquetar]
 > ✦ El bot dara administrador al usuario mencionando.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#demote* [mension / etiquetar]
 > ✦ El bot quitara administrador al usuario mencionando.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#gpbanner • #groupimg*
 > ✦ Cambiar la imagen del grupo.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#gpname • #groupname*
 > ✦ Cambiar el nombre del grupo.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#gpdesc • #groupdesc*
 > ✦ Cambiar la descripción del grupo.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#advertir • #warn • #warning*
 > ✦ Darle una advertencia aún usuario.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ ︎*#unwarn • #delwarn*
 > ✦ Quitar advertencias.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#advlist • #listadv*
 > ✦ Ver lista de usuarios advertidos.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#banchat*
 > ✦ Banear el Bot en un chat o grupo.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#unbanchat*
 > ✦ Desbanear el Bot del chat o grupo.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#mute* [mension / etiquetar]
 > ✦ El bot elimina los mensajes del usuario.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#unmute* [mension / etiquetar]
 > ✦ El bot deja de eliminar los mensajes del usuario.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#encuesta • #poll*
 > ✦ Crea una encuesta.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#delete • #del*
 > ✦ Elimina mensaje de otros usuarios.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#fantasmas*
 > ✦ Ver lista de inactivos del grupo.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#kickfantasmas*
 > ✦ Elimina a los inactivos del grupo.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#invocar • #tagall • #todos*
 > ✦ Invoca a todos los usuarios de un grupo.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#setemoji • #setemo*
 > ✦ Cambia el emoji que se usa en la invitación de usuarios.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#listnum • #kicknum*
 > ✦ Elimine a usuario por el prefijo de país.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 
 »  ⊹˚• \`Anime\` •˚⊹
 
 ✧ Comandos de reacciones de anime.
 ᰔᩚ *#angry • #enojado* + <mencion>
 > ✦ Estar enojado
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#bite* + <mencion>
 > ✦ Muerde a alguien
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#bleh* + <mencion>
 > ✦ Sacar la lengua
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#blush* + <mencion>
 > ✦ Sonrojarte
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#bored • #aburrido* + <mencion>
 > ✦ Estar aburrido
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#cry* + <mencion>
 > ✦ Llorar por algo o alguien
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#cuddle* + <mencion>
 > ✦ Acurrucarse
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#dance* + <mencion>
 > ✦ Sacate los pasitos prohíbidos
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#drunk* + <mencion>
 > ✦ Estar borracho
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#eat • #comer* + <mencion>
 > ✦ Comer algo delicioso
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#facepalm* + <mencion>
 > ✦ Darte una palmada en la cara
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#happy • #feliz* + <mencion>
 > ✦ Salta de felicidad
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#hug* + <mencion>
 > ✦ Dar un abrazo
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#impregnate • #preg* + <mencion>
 > ✦ Embarazar a alguien
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#kill* + <mencion>
 > ✦ Toma tu arma y mata a alguien
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#kiss • #besar* • #kiss2 + <mencion>
 > ✦ Dar un beso
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#laugh* + <mencion>
 > ✦ Reírte de algo o alguien
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#lick* + <mencion>
 > ✦ Lamer a alguien
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#love • #amor* + <mencion>
 > ✦ Sentirse enamorado
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#pat* + <mencion>
 > ✦ Acaricia a alguien
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#poke* + <mencion>
 > ✦ Picar a alguien
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#pout* + <mencion>
 > ✦ Hacer pucheros
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#punch* + <mencion>
 > ✦ Dar un puñetazo
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#run* + <mencion>
 > ✦ Correr
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#sad • #triste* + <mencion>
 > ✦ Expresar tristeza
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#scared* + <mencion>
 > ✦ Estar asustado
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#seduce* + <mencion>
 > ✦ Seducir a alguien
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#shy • #timido* + <mencion>
 > ✦ Sentir timidez
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#slap* + <mencion>
 > ✦ Dar una bofetada
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#dias • #days*
-> ✦ Darle los buenos días a alguien 
+> ✦ Darle los buenos días a alguien ┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#noches • #nights*
 > ✦ Darle las buenas noches a alguien 
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#sleep* + <mencion>
 > ✦ Tumbarte a dormir
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#smoke* + <mencion>
 > ✦ Fumar
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#think* + <mencion>
 > ✦ Pensar en algo
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 
 »  ⊹˚• \`NSFW\` •˚⊹
 
 ✧ Comandos NSFW (Contenido para adultos)
 ᰔᩚ *#anal* + <mencion>
 > ✦ Hacer un anal
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#waifu*
 > ✦ Buscá una waifu aleatorio.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#bath* + <mencion>
 > ✦ Bañarse
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#blowjob • #mamada • #bj* + <mencion>
 > ✦ Dar una mamada
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#boobjob* + <mencion>
 > ✦ Hacer una rusa
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#cum* + <mencion>
 > ✦ Venirse en alguien.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#fap* + <mencion>
 > ✦ Hacerse una paja
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#ppcouple • #ppcp*
 > ✦ Genera imagenes para amistades o parejas.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#footjob* + <mencion>
 > ✦ Hacer una paja con los pies
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#fuck • #coger • #fuck2* + <mencion>
 > ✦ Follarte a alguien
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#cafe • #coffe*
 > ✦ Tomate un cafecito con alguien
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#violar • #perra + <mencion>
 > ✦ Viola a alguien
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#grabboobs* + <mencion>
 > ✦ Agarrrar tetas
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#grop* + <mencion>
 > ✦ Manosear a alguien
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#lickpussy* + <mencion>
 > ✦ Lamer un coño
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#rule34 • #r34* + [Tags]
 > ✦ Buscar imagenes en Rule34
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#sixnine • #69* + <mencion>
 > ✦ Haz un 69 con alguien
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#spank • #nalgada* + <mencion>
 > ✦ Dar una nalgada
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#suckboobs* + <mencion>
 > ✦ Chupar tetas
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#undress • #encuerar* + <mencion>
 > ✦ Desnudar a alguien
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
 ᰔᩚ *#yuri • #tijeras* + <mencion>
 > ✦ Hacer tijeras.
+┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
   `.trim();
 
   await conn.sendMessage(m.chat, { 
