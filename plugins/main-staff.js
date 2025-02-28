@@ -1,48 +1,69 @@
-let handler = async (m, { conn, args, command }) => {
-  if (!args[0]) {
-    // Si no hay argumento, mostrar los botones con los nombres del staff
-    let buttons = [
-      { buttonId: ".staff dueño", buttonText: { displayText: "👑 Dueño" }, type: 1 },
-      { buttonId: ".staff zaphkiel", buttonText: { displayText: "✴️ Zaphkiel" }, type: 1 },
-      { buttonId: ".staff piña", buttonText: { displayText: "🍍 Developer" }, type: 1 },
-      { buttonId: ".staff rayo", buttonText: { displayText: "⚡ Developer" }, type: 1 },
-      { buttonId: ".staff trebol", buttonText: { displayText: "☘️ Developer" }, type: 1 },
-      { buttonId: ".staff moderador", buttonText: { displayText: "🔖 Moderador" }, type: 1 }
-    ];
+import moment from 'moment-timezone';
 
-    let buttonMessage = {
-      text: "✨ *EQUIPO STAFF DEL BOT*\n\nSelecciona un miembro para ver sus detalles:",
-      footer: "👾 GitHub Bot",
-      buttons: buttons,
-      headerType: 1
-    };
+let handler = async (m, { conn, args }) => {
 
-    return await conn.sendMessage(m.chat, buttonMessage, { quoted: m });
+  let staff = `
+*EQUIPO STAFF OWNERS DEL BOT* 
 
-  } else {
-    // Si hay argumento, mostrar la información del staff seleccionado
-    let staffDetails = {
-      dueño: { name: "👑 Dueño", role: "Creador", github: "https://github.com/TuGitHub" },
-      zaphkiel: { name: "✴️ Zaphkiel", role: "Developer", github: "https://github.com/EnderJs-CreatorGL" },
-      piña: { name: "🍍 Developer", role: "Developer", github: "https://github.com/TuGitHub" },
-      rayo: { name: "⚡ Developer", role: "Developer", github: "https://github.com/TuGitHub" },
-      trebol: { name: "☘️ Developer", role: "Developer", github: "https://github.com/TuGitHub" },
-      moderador: { name: "🔖 Moderador", role: "Moderador", github: "https://github.com/TuGitHub" }
-    };
 
-    let selectedStaff = args[0]?.toLowerCase();
-    if (staffDetails[selectedStaff]) {
-      let { name, role, github } = staffDetails[selectedStaff];
-      let response = `👤 *Nombre:* ${name}\n🔖 *Rol:* ${role}\n👾 *GitHub:* ${github}`;
-      
-      return await conn.sendMessage(m.chat, { text: response }, { quoted: m });
-    } else {
-      return await m.reply("⚠️ No encontré ese miembro en el equipo.");
-    }
-  }
+👑 *Dueño* ${creador}
+🍬 *Bot:* ${botname}
+⚜️ *Versión:* ${vs}
+📚 *Libreria:* ${libreria} ${baileys}
+
+🪐 *Creador:*
+
+☁️ ৎ୭࠭͢𓆩𝕷͢𝖊𝖔፝֟፝֟፝֟፝֟፝֟፝֟𝖓𝖊𝖑𓆪͟͞ '
+🔖 *Rol:* Creador
+👾 *GitHub:* 
+
+🌻 *STAFF SOPORTE DEL BOT:*
+
+✴️ Zaphkiel
+🔖 *Rol:* Developer
+👾 *GitHub:https://github.com/EnderJs-CreatorGL
+
+🍍 
+🔖 *Rol:* Developer
+👾 *Github:*
+
+⚡ 
+🔖 *Rol:* Developer
+👾 *GitHub:*
+
+☘️ 
+🔖 *Rol:* Developer
+👾 *GitHub:*
+
+
+🔖 *Rol:* Moderador 
+👾 *GitHub:* `.trim();
+
+  await conn.sendMessage(m.chat, { 
+      text: staff,
+      contextInfo: {
+          isForwarded: true,
+          forwardedNewsletterMessageInfo: {
+              newsletterJid: channelRD.id,
+              newsletterName: channelRD.name,
+              serverMessageId: -1,
+          },
+          forwardingScore: 999,
+          externalAdReply: {
+              title: `✨ Developers`,
+              body: dev,
+              thumbnailUrl: catalogo,
+              mediaType: 1,
+              showAdAttribution: true,
+              renderLargerThumbnail: true,
+          },
+      },
+  }, { quoted: m });
+
 };
 
-handler.command = ['staff'];
-handler.register = true
+handler.help = ['staff'];
+handler.tags = ['main'];
+handler.command = ['ayudantes', 'colaboradores', 'staff'];
 
 export default handler;
