@@ -2,10 +2,10 @@ import yts from 'yt-search';
 
 const handler = async (m, { conn, text, usedPrefix, command }) => {
   try {
-    if (!text) throw "⚠️ Ingresa el nombre de la música que deseas descargar.";
+    if (!text) throw new Error("⚠️ Ingresa el nombre de la música que deseas descargar.");
 
     const search = await yts(text);
-    if (!search.all.length) throw "❌ No se encontraron resultados.";
+    if (!search.all.length) throw new Error("❌ No se encontraron resultados.");
 
     const videoInfo = search.all[0];
     const message = `🎵 *Descarga de Música*\n\n📌 *Título:* ${videoInfo.title}\n🎬 *Canal:* ${videoInfo.author.name || 'Desconocido'}\n👀 *Vistas:* ${videoInfo.views}\n⏳ *Duración:* ${videoInfo.timestamp}\n📆 *Publicado hace:* ${videoInfo.ago}\n🔗 *Enlace:* ${videoInfo.url}`;
@@ -25,9 +25,9 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
 
     if (command === 'yta' || command === 'ytmp3') {
       m.react('⏳');
-      let response = await fetch(`API_ENDPOINT/mp3?url=${videoInfo.url}`);
+      let response = await fetch(`API_ENDPOINT/mp3?url=${encodeURIComponent(videoInfo.url)}`);
       let audio = await response.json();
-      if (!audio.data) throw "⚠️ Error al procesar el audio.";
+      if (!audio.data || !audio.data.url) throw new Error("⚠️ Error al procesar el audio.");
 
       await conn.sendFile(m.chat, audio.data.url, `${videoInfo.title}.mp3`, '', m, null, { mimetype: "audio/mpeg" });
       m.react('✅');
@@ -35,9 +35,9 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
 
     if (command === 'ytv' || command === 'ytmp4') {
       m.react('⏳');
-      let response = await fetch(`API_ENDPOINT/mp4?url=${videoInfo.url}`);
+      let response = await fetch(`API_ENDPOINT/mp4?url=${encodeURIComponent(videoInfo.url)}`);
       let video = await response.json();
-      if (!video.data) throw "⚠️ Error al procesar el video.";
+      if (!video.data || !video.data.url) throw new Error("⚠️ Error al procesar el video.");
 
       await conn.sendMessage(m.chat, {
         video: { url: video.data.url },
@@ -48,7 +48,8 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
     }
 
   } catch (err) {
-    m.reply(`⚠️ Error: ${err.message}`);
+    console.error(err); // Para depuración en consola
+    m.reply(`⚠️ Error: ${err.message || "Ocurrió un error inesperado."}`);
   }
 };
 
