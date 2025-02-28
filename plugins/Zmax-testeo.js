@@ -1,36 +1,55 @@
 import yts from 'yt-search';
 
-const handler = async (m, { conn, text, command }) => {
-  try {
-    console.log("✅ Comando recibido:", command);
-    console.log("🔍 Texto de búsqueda:", text);
+const handler = async (m, { conn, text, usedPrefix, command }) => {
+  if (!text) throw "⚠️ Debes escribir el nombre de la música.";
 
-    if (!text) return m.reply("⚠️ Debes escribir el nombre de la música.");
+  const isVideo = /vid|2|mp4|v$/.test(command);
+  const search = await yts(text);
 
-    m.reply("📡 Buscando en YouTube... 🔎");
+  if (!search.all || search.all.length === 0) {
+    throw "❌ No se encontraron resultados.";
+  }
 
-    const search = await yts(text);
-    console.log("✅ Búsqueda completada:", search.all);
+  const videoInfo = search.all[0];
+  const body = `🎵 *${videoInfo.title}*\n\n📺 *Canal:* ${videoInfo.author.name || 'Desconocido'}\n👀 *Vistas:* ${videoInfo.views}\n⏳ *Duración:* ${videoInfo.timestamp}\n📆 *Publicado:* ${videoInfo.ago}\n🔗 *Enlace:* ${videoInfo.url}`;
 
-    if (!search.all.length) return m.reply("❌ No se encontraron resultados.");
-
-    const videoInfo = search.all[0];
-
-    console.log("📩 Enviando mensaje con info del video...");
-
+  if (command === 'play' || command === 'playvid' || command === 'play2') {
     await conn.sendMessage(m.chat, {
-      text: `🎵 *${videoInfo.title}*\n🔗 ${videoInfo.url}`,
-      footer: "Bot WhatsApp",
+      image: { url: videoInfo.thumbnail },
+      caption: body,
+      footer: "🔊 Selecciona una opción:",
       buttons: [
-        { buttonId: `.ytmp3 ${videoInfo.url}`, buttonText: { displayText: '🎶 MP3' }, type: 1 },
-        { buttonId: `.ytmp4 ${videoInfo.url}`, buttonText: { displayText: '📹 MP4' }, type: 1 }
+        { buttonId: `.ytmp3 ${videoInfo.url}`, buttonText: { displayText: '🎶 Descargar MP3' }, type: 1 },
+        { buttonId: `.ytmp4 ${videoInfo.url}`, buttonText: { displayText: '📹 Descargar MP4' }, type: 1 }
       ],
-      headerType: 1
+      headerType: 4
     }, { quoted: m });
 
-  } catch (err) {
-    console.error("🚨 Error detectado:", err);
-    m.reply(`⚠️ Error: ${err.message || "Ocurrió un error inesperado."}`);
+  } else if (command === 'yta' || command === 'ytmp3') {
+    m.react('⏳');
+    let audio = await (await fetch(`API_YTMP3?url=${videoInfo.url}`)).json();
+
+    await conn.sendMessage(m.chat, { 
+      document: { url: audio.data.url }, 
+      mimetype: "audio/mpeg", 
+      fileName: `${videoInfo.title}.mp3` 
+    }, { quoted: m });
+
+    m.react('✅');
+
+  } else if (command === 'ytv' || command === 'ytmp4') {
+    m.react('⏳');
+    let video = await (await fetch(`API_YTMP4?url=${videoInfo.url}`)).json();
+
+    await conn.sendMessage(m.chat, {
+      video: { url: video.data.url },
+      mimetype: "video/mp4",
+      caption: "🎥 Video descargado con éxito"
+    }, { quoted: m });
+
+    m.react('✅');
+  } else {
+    throw "⚠️ Comando no reconocido.";
   }
 };
 
