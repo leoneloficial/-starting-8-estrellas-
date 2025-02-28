@@ -1,48 +1,73 @@
 import yts from 'yt-search';
 
-const handler = async (m, { conn, text, command }) => {
-  if (!text) throw "❌ Ingresa el nombre de la música.";
+const handler = async (m, { conn, text, usedPrefix, command }) => {
+  if (!text) throw `❌ *Error:* Debes ingresar el nombre de la canción o artista.`;
 
-  m.reply("📡 Buscando en YouTube... 🔎");
+  // Mensaje inicial con animación de carga
+  let searchMessage = await conn.sendMessage(m.chat, { text: '⏳ *Buscando tu música...*\n🔍 Esto puede tardar unos segundos.' }, { quoted: m });
 
   try {
     const isVideo = /vid|2|mp4|v$/.test(command);
     const search = await yts(text);
 
-    if (!search.all.length) throw "❌ No se encontraron resultados.";
-
-    const videoInfo = search.all[0];
-
-    console.log("🔗 URL obtenida:", videoInfo.url);
-
-    if (!videoInfo.url || !videoInfo.url.startsWith("http")) {
-      console.error("🚨 URL inválida:", videoInfo.url);
-      return m.reply("❌ Ocurrió un error al obtener el enlace.");
+    if (!search.all || search.all.length === 0) {
+      throw "⚠️ No se encontraron resultados para tu búsqueda.";
     }
 
-    let body = `🎵 *Descargando:* ${videoInfo.title}\n\n📺 *Canal:* ${videoInfo.author.name}\n👀 *Vistas:* ${videoInfo.views}\n⏳ *Duración:* ${videoInfo.timestamp}\n📅 *Publicado:* ${videoInfo.ago}\n🔗 *Enlace:* ${videoInfo.url}`;
+    const videoInfo = search.all[0];
+    const responseText = `🎶 *Música Encontrada* 🎶\n\n` +
+      `📌 *Título:* ${videoInfo.title}\n` +
+      `👤 *Canal:* ${videoInfo.author.name || 'Desconocido'}\n` +
+      `⏳ *Duración:* ${videoInfo.timestamp}\n` +
+      `👀 *Vistas:* ${videoInfo.views.toLocaleString()}\n` +
+      `📅 *Publicado hace:* ${videoInfo.ago}\n` +
+      `🔗 *Link:* ${videoInfo.url}`;
 
-    let buttons = [
-      { index: 1, quickReplyButton: { displayText: "🎶 Descargar MP3", id: `.ytmp3 ${videoInfo.url}` } },
-      { index: 2, quickReplyButton: { displayText: "📹 Descargar MP4", id: `.ytmp4 ${videoInfo.url}` } }
-    ];
+    if (command === 'play' || command === 'playvid' || command === 'play2') {
+      await conn.sendMessage(m.chat, {
+        image: { url: videoInfo.thumbnail },
+        caption: responseText,
+        footer: '🌸 Elige una opción de descarga:',
+        buttons: [
+          {
+            buttonId: `.ytmp3 ${videoInfo.url}`,
+            buttonText: { displayText: '🎵 Descargar en Audio' },
+          },
+          {
+            buttonId: `.ytmp4 ${videoInfo.url}`,
+            buttonText: { displayText: '📹 Descargar en Video' },
+          },
+        ],
+        viewOnce: true,
+        headerType: 4,
+      }, { quoted: m });
 
-    await conn.sendMessage(m.chat, {
-      image: { url: videoInfo.thumbnail },
-      caption: body,
-      footer: "Selecciona una opción:",
-      templateButtons: buttons
-    }, { quoted: m });
+    } else if (command === 'yta' || command === 'ytmp3') {
+      await conn.sendMessage(m.chat, { text: '🎧 *Procesando audio...* 🔄' }, { quoted: m });
+      let audio = await (await fetch(`api${videoInfo.url}`)).json();
+      await conn.sendFile(m.chat, audio.data.url, videoInfo.title, '', m, null, { mimetype: "audio/mpeg", asDocument: false });
 
-  } catch (err) {
-    console.error("🚨 Error detectado:", err);
-    m.reply(`⚠️ Error: ${err.message || "Ocurrió un error inesperado."}`);
+    } else if (command === 'ytv' || command === 'ytmp4') {
+      await conn.sendMessage(m.chat, { text: '🎬 *Procesando video...* 🔄' }, { quoted: m });
+      let video = await (await fetch(`api${videoInfo.url}`)).json();
+      await conn.sendMessage(m.chat, {
+        video: { url: video.data.url },
+        mimetype: "video/mp4",
+        caption: `🎥 *Aquí tienes tu video*`,
+      }, { quoted: m });
+
+    } else {
+      throw "⚠️ Comando no reconocido.";
+    }
+
+  } catch (error) {
+    await conn.sendMessage(m.chat, { text: `❌ *Error:* ${error}` }, { quoted: m });
   }
 };
 
 handler.help = ['play', 'playvid', 'ytv', 'ytmp4', 'yta', 'play2', 'ytmp3'];
 handler.command = ['play', 'playvid', 'ytv', 'ytmp4', 'yta', 'play2', 'ytmp3'];
-handler.tags = ['descargas'];
+handler.tags = ['dl'];
 handler.register = true;
 
 export default handler;
