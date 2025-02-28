@@ -34,11 +34,11 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
         buttons: [
           {
             buttonId: `.ytmp3 ${videoInfo.url}`,
-            buttonText: { displayText: '> 🎶 Audio mp3 ♥ ' },
+            buttonText: { displayText: '> 🍓 Audio mp3 ♣ ' },
           },
           {
             buttonId: `.ytmp4 ${videoInfo.url}`,
-            buttonText: { displayText: '> 🎬 Video mp4 ♥' },
+            buttonText: { displayText: '> 🍒 Video mp4 ♣' },
           },
         ],
         viewOnce: true,
