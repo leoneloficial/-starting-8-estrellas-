@@ -41,7 +41,7 @@ global.fotoperfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => '
 //Ids channel
 global.idchannel = '120363324350463849@newsletter'
 global.canalIdM = ["120363324350463849@newsletter", "120363324350463849@newsletter"]
-global.canalNombreM = ["ᯓ᮫݃͜ᮨ🌸ܾ݉CHANEL 𝘚𝗎ࣼｍ͑͡ⅈࣾ ٞ 𝘚َٙ͜ɑ𝚔𝗎͡𝔯ɑ𝘇゙ɑ͜𝑤ɑ", "ᯓ᮫݃͜ᮨ🌸ܾ݉CHANNEL 𝘚𝗎ࣼｍ͑͡ⅈࣾ ٞ 𝘚َٙ͜ɑ𝚔𝗎͡𝔯ɑ𝘇゙ɑ͜𝑤ɑ "]
+global.canalNombreM = ["ᯓ᮫݃͜ᮨ🌸ܾ݉𐊢̼͛һ̧͑͡ɑ̠̇𝖓̜̇𝖓̑𝖊͓͜𝘭 𝘚𝗎ࣼｍ͑͡ⅈࣾ ٞ 𝘚َٙ͜ɑ𝚔𝗎͡𝔯ɑ𝘇゙ɑ͜𝑤ɑ᭓᭫◞˚ₓ", "ᯓ᮫݃͜ᮨ🌸ܾ݉𐊢̼͛һ̧͑͡ɑ̠̇𝖓̜̇𝖓̑𝖊͓͜𝘭 𝘚𝗎ࣼｍ͑͡ⅈࣾ ٞ 𝘚َٙ͜ɑ𝚔𝗎͡𝔯ɑ𝘇゙ɑ͜𝑤ɑ᭓᭫◞˚ₓ"]
 global.channelRD = await getRandomChannel()
 
 //fechas
