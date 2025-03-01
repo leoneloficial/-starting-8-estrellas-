@@ -269,6 +269,8 @@ async function startBot() {
     return sock;
 }
 
+startBot();
+
 
 let reason = new Boom(lastDisconnect?.error)?.output?.statusCode
 if (connection === 'close') {
