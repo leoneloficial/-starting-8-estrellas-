@@ -83,7 +83,7 @@ const responseMessage = `*╔══❰ SUB-BOTS ACTIVOS ❱══╗*
 *
  ⏝⃨֟፝︶ .     ׅ    ꪆඏ᳞ᩙ୧    ׅ      .︶⃨֟፝⏝
 
-> 🔹 Mis Sub-Bots Online: 
+> 🌸 Mis Sub-Bots Online: 
 : ${totalUsers || '0'}
 \n\n${replyMessage.trim()}`.trim();
 await _envio.sendMessage(m.chat, {text: responseMessage, mentions: _envio.parseMention(responseMessage)}, {quoted: m})
