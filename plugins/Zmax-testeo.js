@@ -22,7 +22,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
 ᯓ×͜× *Música Encontrada* ᯓ×͜×\n\n` +
       `> ✎Título: ${videoInfo.title}\n` +
       `> ⚘ *Canal:* ${videoInfo.author.name || 'Desconocido'}\n` +
-      `> ✒ Duración: ${videoInfo.timestamp}\n` +
+      `> ❁ Duración: ${videoInfo.timestamp}\n` +
 
       `> ✰ Vistas: ${videoInfo.views.toLocaleString()}\n` +
 
