@@ -1,67 +1,31 @@
+import { WAMessageStubType } from '@whiskeysockets/baileys'
+import fetch from 'node-fetch'
+
 export async function before(m, { conn, participants, groupMetadata }) {
-    if (!m.messageStubType || !m.isGroup) return true;
+  if (!m.messageStubType || !m.isGroup) return true
 
-    let videoWelcome = 'https://files.catbox.moe/ox19vs.mp4';
-    let videoGoodbye = 'https://files.catbox.moe/ox19vs.mp4';
+  let who = m.messageStubParameters[0]
+  let taguser = `@${who.split('@')[0]}`
+  let chat = global.db.data.chats[m.chat]
+  let defaultImage = 'https://files.catbox.moe/xr2m6u.jpg';
 
-    let chat = global.db.data.chats[m.chat];
-    const getMentionedJid = () => {
-        return m.messageStubParameters.map(param => `${param}@s.whatsapp.net`);
-    };
-
-    let who = m.messageStubParameters[0] + '@s.whatsapp.net';
-    let user = global.db.data.users[who];
-
-    let userName = user ? user.name : await conn.getName(who);
-    if (!userName) {
-        userName = who.split('@')[0]; 
-    } else {
-        userName = userName.trim(); 
+  if (chat.welcome) {
+    let img;
+    try {
+      let pp = await conn.profilePictureUrl(who, 'image');
+      img = await (await fetch(pp)).buffer();
+    } catch {
+      img = await (await fetch(defaultImage)).buffer();
     }
 
-    let groupDesc = groupMetadata.desc ? groupMetadata.desc : '¡No hay descripción establecida!';
-
-    if (chat.welcome && m.messageStubType === 27) {
-        this.sendMessage(m.chat, {
-            video: { url: videoWelcome },
-            caption: `💫 ¡Bienvenido, ${userName}! 💞\n\n` +
-                     `Estamos encantados de tenerte aquí. Informa aquí:\n\n` +
-                     `*Descripción del grupo:*\n\n${groupDesc}`,
-            contextInfo: {
-                forwardingScore: 9999999,
-                isForwarded: true,
-                mentionedJid: getMentionedJid(),
-                "externalAdReply": {
-                    "title": `  ͟͞ Ｗ Ｅ Ｌ Ｃ Ｏ Ｍ Ｅ ͟͞  `,
-                    "body": '© ⍴᥆ᥕᥱrᥱძ ᑲᥡ Leonel',
-                    "previewType": "PHOTO",
-                    "thumbnailUrl": null,
-                    "thumbnail": null,
-                    "sourceUrl": null,
-                    "showAdAttribution": true
-                }
-            }
-        }, { quoted: fkontak });
+    if (m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_ADD) {
+      let bienvenida = `🍬 *Bienvenido* a ${groupMetadata.subject}\n ✰ ${taguser}\n${global.welcom1}\n •(=^●ω●^=)• Disfruta tu estadía en el grupo!\n> 🍭 Puedes usar *#help* para ver la lista de comandos.`
+      await conn.sendMessage(m.chat, { image: img, caption: bienvenida, mentions: [who] })
+    } else if (m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_REMOVE || m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_LEAVE) {
+      let bye = `🍬 *Adiós* De ${groupMetadata.subject}\n ✰ ${taguser}\n${global.welcom2}\n •(=^●ω●^=)• Te esperamos pronto!\n> 🍭 Puedes usar *#help* para ver la lista de comandos.`
+      await conn.sendMessage(m.chat, { image: img, caption: bye, mentions: [who] })
     }
+  }
 
-    if (chat.welcome && (m.messageStubType === 28 || m.messageStubType === 32)) {
-        this.sendMessage(m.chat, {
-            video: { url: videoGoodbye },
-            caption: `👋 Adiós, ${userName}. ¡Te deseamos lo mejor en tus futuros caminos! 👋`,
-            contextInfo: {
-                forwardingScore: 9999999,
-                isForwarded: true,
-                mentionedJid: getMentionedJid(),
-                "externalAdReply": {
-                    "title": `  ͟͞ Ａ Ｄ Ｉ Ｏ Ｓ ͟͞  `,
-                    "body": `© ⍴᥆ᥕᥱrᥱძ ᑲᥡ Leonel`,
-                    "previewType": "PHOTO",
-                    "thumbnailUrl": null,
-                    "thumbnail": null,
-                    "sourceUrl": null,
-                    "showAdAttribution": true
-                }
-            }
-        }, { quoted: fkontak });
-    }
+  return true
 }
