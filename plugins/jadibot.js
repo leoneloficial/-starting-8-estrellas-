@@ -67,9 +67,7 @@ resultado += segundos + " segundos";
 }
 return resultado;
 }
-const message = users.map((v, index) => `• 「♪ ${index + 1} 」\[🌨] Wa.me/${v.user.jid.replace(/[^0-9]/g, '')}?text=${usedPrefix}estado\n[🌟] *Usuario*: ${v.user.name || 'Sub-Bot'}\n[🍓] *Online*: ${ v.uptime ?
-> Sub-Bot Power By Starting
- convertirMsADiasHorasMinutosSegundos(Date.now() - v.uptime) : 'Desconocido'}`).join('\n\n\n\n');
+const message = users.map((v, index) => `• 「♪ ${index + 1} 」\[🌨] Wa.me/${v.user.jid.replace(/[^0-9]/g, '')}?text=${usedPrefix}estado\n[🌟] *Usuario*: ${v.user.name || 'Sub-Bot'}\n[🍓] *Online*: ${ v.uptime ? convertirMsADiasHorasMinutosSegundos(Date.now() - v.uptime) : 'Desconocido'}`).join('\n\n\n\n');
 const replyMessage = message.length === 0 ? `No hay Sub-Bots disponible por el momento, verifique mas tarde.` : message;
 const totalUsers = users.length;
 const responseMessage = `*╔═══ SUB-BOTS ACTIVOS ❱═══╗* 
