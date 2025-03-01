@@ -16,7 +16,7 @@ handler.all = async function (m) {
     }  
 
     let uptime = clockString(_uptime);  
-    let bio = `${global.packname || 'Bot'} ║ ${uptime}  
+    let bio = `🌸Sumi sakurazawa🌸 ║🕛 ${uptime}  
     .Sistema .menu .Code .owner ║ 𝙱𝚢 Leonel`;  
 
     await this.updateProfileStatus(bio).catch(_ => _);  
