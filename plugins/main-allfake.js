@@ -31,8 +31,8 @@ console.log(`Error : ${e}`)
 global.creador = 'Wa.me/584164137403 '
 global.ofcbot = `${conn.user.jid.split('@')[0]}`
 global.asistencia = 'Wa.me/+584164137403'
-global.namechannel = '𖤓⏤͟͟͞͞【𝙎𝙩𝙖𝙧𝙩𝙞𝙣𝙜 8 𝙚𝙨𝙩𝙧𝙚𝙡𝙡𝙖𝙨 】⏤͟͟͞͞𖤓'
-global.namechannel2 = '𖤓⏤͟͟͞͞【𝙩𝙚𝙖𝙢 𝙨𝙩𝙖𝙧𝙩𝙞𝙣𝙜 8 𝙚𝙨𝙩𝙧𝙚𝙡𝙡𝙖𝙨】⏤͟͟͞͞𖤓"'
+global.namechannel = 'ᯓ᮫݃͜ᮨ🌸ܾ݉𐊢̼͛һ̧͑͡ɑ̠̇𝖓̜̇𝖓̑𝖊͓͜𝘭 𝘚𝗎ࣼｍ͑͡ⅈࣾ ٞ 𝘚َٙ͜ɑ𝚔𝗎͡𝔯ɑ𝘇゙ɑ͜𝑤ɑ᭓᭫◞˚ₓ'
+global.namechannel2 = 'ᯓ᮫݃͜ᮨ🌸ܾ݉𐊢̼͛һ̧͑͡ɑ̠̇𝖓̜̇𝖓̑𝖊͓͜𝘭 𝘚𝗎ࣼｍ͑͡ⅈࣾ ٞ 𝘚َٙ͜ɑ𝚔𝗎͡𝔯ɑ𝘇゙ɑ͜𝑤ɑ᭓᭫◞˚ₓ"'
 global.namegrupo = 'gяυρσ ∂єℓ вσт'
 global.namecomu = '¢αηαℓ ∂єℓ вσт'
 global.listo = '✎ *Aquí tienes ฅ^•ﻌ•^ฅ*'
