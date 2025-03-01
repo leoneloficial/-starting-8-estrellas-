@@ -64,7 +64,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
       }, { quoted: m });
 
     } else {
-      throw "❤️ Comando no reconocido.";
+      throw "🌺 Comando no reconocido.";
     }
 
   } catch (error) {
