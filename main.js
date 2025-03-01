@@ -233,6 +233,43 @@ console.log(chalk.bold.yellow(`\n✨ ESCANEA EL CÓDIGO QR EXPIRA EN 45 SEGUNDOS
 if (connection == 'open') {
 console.log(boxen(chalk.bold(' ¡CONECTADO CON WHATSAPP! '), { borderStyle: 'round', borderColor: 'green', title: chalk.green.bold('● CONEXIÓN ●'), titleAlignment: '', float: '' }))
 await joinChannels(conn)}
+
+
+const { default: makeWASocket } = require('@whiskeysockets/baileys');
+
+let startTime = Date.now();
+
+function getUptime() {
+    let uptime = Math.floor((Date.now() - startTime) / 1000);
+    let days = Math.floor(uptime / 86400);
+    let hours = Math.floor((uptime % 86400) / 3600);
+    let minutes = Math.floor((uptime % 3600) / 60);
+    let seconds = uptime % 60;
+    return `🕒 En línea: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+}
+
+async function updateStatus(sock) {
+    let status = `🤖 Nombre: Starting-8-estrellas\n👤 Creador: Leonel\n${getUptime()}`;
+    await sock.updateProfileStatus(status);
+    console.log(`Estado actualizado: ${status}`);
+}
+
+// Crear el bot y actualizar el estado al conectar
+async function startBot() {
+    const sock = makeWASocket({ /* Configuración del socket */ });
+
+    sock.ev.on('connection.update', (update) => {
+        const { connection } = update;
+        if (connection === 'open') {
+            updateStatus(sock);
+            setInterval(() => updateStatus(sock), 60000); // Actualiza cada minuto
+        }
+    });
+
+    return sock;
+}
+
+
 let reason = new Boom(lastDisconnect?.error)?.output?.statusCode
 if (connection === 'close') {
 if (reason === DisconnectReason.badSession) {
