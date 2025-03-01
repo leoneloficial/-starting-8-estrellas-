@@ -79,7 +79,7 @@ const responseMessage = `*╔═══ SUB-BOTS ACTIVOS ❱═══╗*
 ┆ Cada usuario de un sub-bot es responsable de su uso.
 ┆ El número principal no se hace responsable de un mal uso.
 
-╚══════════════════════╝
+╚═════════════════════╝
 
 🔹 SUB-BOTS CONECTADOS: 🚀
 : ${totalUsers || '0'}\n\n${replyMessage.trim()}`.trim();
