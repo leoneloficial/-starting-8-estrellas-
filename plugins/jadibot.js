@@ -73,7 +73,14 @@ const replyMessage = message.length === 0 ? `No hay Sub-Bots disponible por el m
 const totalUsers = users.length;
 const responseMessage = `*╔═══❰ SUB-BOTS ACTIVOS ❱═══╗* 
 
- ╭ׅ ׄ𓈃〪 ְ֟፝͡  ࣳꨲ ᪬ׅ〫֔ 🌸ໍ࣭ꨲ᳟ ᪬ׅ〫ׄ ⫶⫶⫶͚  ۪͝͝  ቦ֢֔ᩙ 𓈃ᰰׅׄ 〪ׅ╮ ෮̷̸̶ᮢ⃟᭮᭯ᯩ🌸᠀ᮢ𝆬    ⎝ ¿⃔𝑄𝑢ᮬᮢ᩼𝑖𝑒ᮡ𝑟𝑒𝑠 𝑎᩼ᩬ𝑔𝑟𝑒ᮥᮤ᭳𝑔𝑎𝑟 𝑢᭯ᩬ𝑛᭫ 𝑠᳖𝑢𝑏-᳣᳝᳑𝑏𝑜ᩞᩞ𝑡 𝑎 𝑡ᩘ𝑢 𝑔᩷𝑟𝑢᳖⃑𝑝᰷𝑜⃕? ⎞
+ ㅤത   ׅ     *𝚆ᧉ𝗅𝖼ᨣⴅᧉ*      🍁     ɱιʂ    ベ
+ㅤ ೕ       ʂυႦ       ׄ   ꕑ        *Ⴆσƚ*
+ㅤ ◞◟   ʂυႦႦσƚ    ✿•˖    🌴    ֵ   ᰨᰍ
+
+
+* ꆬꆬ       ݂ʂυɱι Ⴆσƚ ::🌸
+
+¿⃔𝑄𝑢ᮬᮢ᩼𝑖𝑒ᮡ𝑟𝑒𝑠 𝑎᩼ᩬ𝑔𝑟𝑒ᮥᮤ᭳𝑔𝑎𝑟 𝑢᭯ᩬ𝑛᭫ 𝑠᳖𝑢𝑏-᳣᳝᳑𝑏𝑜ᩞᩞ𝑡 𝑎 𝑡ᩘ𝑢 𝑔᩷𝑟𝑢᳖⃑𝑝᰷𝑜⃕? ⎞
 ┆ ✧ Puedes solicitar permiso para que te autoricen.
 
  ⎝    🌨️  𝐼ُؖ𝑀͔ۖ𝑃͚̈͛𝑂̬̽𝑅ۧ𝑇̙̃ۗ𝐴̇𝑁̠۪̉𝑇̣̒ۢ۫𝐸̫̙  🌨️    ⎞ 
