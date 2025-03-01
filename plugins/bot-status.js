@@ -1,3 +1,7 @@
+//Codigo adaptado por Zaphkiel 
+
+
+
 let handler = m => m;
 
 handler.all = async function (m) {  
