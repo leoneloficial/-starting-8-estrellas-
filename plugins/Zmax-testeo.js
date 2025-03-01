@@ -7,7 +7,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
   if (!text) throw `*Debes ingresar el nombre de la canción o artista*`;
 
   // Mensaje inicial con animación de carga
-  let searchMessage = await conn.sendMessage(m.chat, { text: ' *Buscando tu música...*\n🔍 Esto puede tardar unos segundos...' }, { quoted: m });
+  let searchMessage = await conn.sendMessage(m.chat, { text: ' *Buscando tu música...*\n✎ Esto puede tardar unos segundos...' }, { quoted: m });
 
   try {
     const isVideo = /vid|2|mp4|v$/.test(command);
