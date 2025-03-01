@@ -73,14 +73,14 @@ const replyMessage = message.length === 0 ? `No hay Sub-Bots disponible por el m
 const totalUsers = users.length;
 const responseMessage = `*╔═══❰ SUB-BOTS ACTIVOS ❱═══╗* 
 
- ⌜ ¿Quieres agregar un sub-bot a tu grupo? ⌟
+ ╭ׅ ׄ𓈃〪 ְ֟፝͡  ࣳꨲ ᪬ׅ〫֔ 🌸ໍ࣭ꨲ᳟ ᪬ׅ〫ׄ ⫶⫶⫶͚  ۪͝͝  ቦ֢֔ᩙ 𓈃ᰰׅׄ 〪ׅ╮ ෮̷̸̶ᮢ⃟᭮᭯ᯩ🌸᠀ᮢ𝆬    ⎝ ¿⃔𝑄𝑢ᮬᮢ᩼𝑖𝑒ᮡ𝑟𝑒𝑠 𝑎᩼ᩬ𝑔𝑟𝑒ᮥᮤ᭳𝑔𝑎𝑟 𝑢᭯ᩬ𝑛᭫ 𝑠᳖𝑢𝑏-᳣᳝᳑𝑏𝑜ᩞᩞ𝑡 𝑎 𝑡ᩘ𝑢 𝑔᩷𝑟𝑢᳖⃑𝑝᰷𝑜⃕? ⎞
 ┆ ✧ Puedes solicitar permiso para que te autoricen.
 
- ⌜ 🌨 IMPORTANTE 🌨 ⌟
+ ⎝    🌨️  𝐼ُؖ𝑀͔ۖ𝑃͚̈͛𝑂̬̽𝑅ۧ𝑇̙̃ۗ𝐴̇𝑁̠۪̉𝑇̣̒ۢ۫𝐸̫̙  🌨️    ⎞ 
 ┆ Cada usuario de un sub-bot es responsable de su uso.
 ┆ El número principal no se hace responsable de un mal uso.
-
-╚═════════════════════╝
+ ᩥ̷̸⃨᷼
+ ⏝⃨֟፝︶ .     ׅ    ꪆඏ᳞ᩙ୧    ׅ      .︶⃨֟፝⏝
 
 > 🔹 Mis Sub-Bots Online: 
 : ${totalUsers || '0'}
