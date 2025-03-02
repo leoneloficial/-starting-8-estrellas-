@@ -3,13 +3,18 @@ import axios from 'axios';
 import util from 'util';
 
 let handler = async (m, { conn, isOwner, usedPrefix, command, args }) => {
-    console.log(`Ejecutando comando: ${command}, Args: ${args.join(" ")}`);
+    console.log(`Ejecutando comando: ${command}, Args:`, args);
 
-    const q = args.join(" ");    
-    if (!q || !args[0]) {
+    // Verificar si el usuario ingresó un número válido
+    if (!args || args.length === 0 || !args[0]) {
         console.log("❌ Error: No se ingresó un número válido.");
-        throw '[⁉️] Ingrese el número en formato internacional. Ejemplo: +1 (890) 555-555';
+        return m.reply('[⁉️] Ingrese el número en formato internacional. Ejemplo: +1 (890) 555-555');
     }
+
+    const q = args.join(" ");
+    console.log("📞 Número ingresado:", q);
+
+    m.reply("🔄 Procesando solicitud...");
 
     try {
         console.log("🔄 Obteniendo datos de WhatsApp...");
@@ -25,7 +30,9 @@ let handler = async (m, { conn, isOwner, usedPrefix, command, args }) => {
 
         let $ = cheerio.load(ntah.data);
         let $form = $("form");
-        if (!$form.length) throw 'No se encontró el formulario de WhatsApp';
+        if (!$form.length) {
+            throw '❌ No se encontró el formulario de WhatsApp';
+        }
 
         let url = new URL($form.attr("action"), "https://www.whatsapp.com").href;
         let form = new URLSearchParams();
