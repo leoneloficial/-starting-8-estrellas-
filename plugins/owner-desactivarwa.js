@@ -91,5 +91,4 @@ let handler = async (m, { conn, isOwner, usedPrefix, command, args }) => {
             throw 'Error procesando la respuesta del servidor';
         }
 
-        if (jsonResponse.payload === true) {
-            m.reply(`❕𝗗𝗘𝗦𝗔𝗖𝗧𝗜𝗩𝗔𝗡𝗗𝗢❕\n\n##- WhatsApp Support -##\n\nHola,\n\nGracias por tu mensaje.\n\nHemos desactivado tu cuenta de WhatsApp. Esto significa que su cuenta está deshabilitada temporalmente y se eliminará automáticamente en 30 días si no vuelve a registrar la27
+        if (jsonResponse.payload === true)36
