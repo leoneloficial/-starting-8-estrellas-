@@ -18,11 +18,13 @@ let handler = async (m, { conn, isOwner, usedPrefix, command, args }) => {
         console.log("🔄 Obteniendo datos del formulario de WhatsApp...");
         let ntah = await axios.get("https://www.whatsapp.com/contact/noclient/", {
             headers: {
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
                 "Accept-Language": "en-US,en;q=0.9",
                 "Referer": "https://www.whatsapp.com/",
+                "Origin": "https://www.whatsapp.com"
             }
         });
+
         console.log("✅ Respuesta obtenida.");
 
         console.log("🔄 Generando correo temporal...");
@@ -38,39 +40,32 @@ let handler = async (m, { conn, isOwner, usedPrefix, command, args }) => {
         if (!$form.length) throw '❌ No se encontró el formulario de WhatsApp';
 
         let url = new URL($form.attr("action"), "https://www.whatsapp.com").href;
-        let form = new URLSearchParams();
-
-        form.append("jazoest", $form.find("input[name=jazoest]").val() || "");
-        form.append("lsd", $form.find("input[name=lsd]").val() || "");
-        form.append("step", "submit");
-        form.append("country_selector", "ID");
-        form.append("phone_number", q);
-        form.append("email", emailAddress);
-        form.append("email_confirm", emailAddress);
-        form.append("platform", "ANDROID");  // 📌 Ahora se envía correctamente la plataforma.
-        form.append("how_use", "ANDROID");   // 📌 Se añade el nuevo campo "how_use".
-        form.append("your_message", `Hola, perdí mi teléfono y quiero desactivar mi cuenta temporalmente. Mi número es ${q}. ¿Podrían ayudarme?`); // 📌 Mensaje más natural.
-        form.append("__user", "0");
-        form.append("__a", "1");
-        form.append("__csr", "");
-        form.append("__req", "8");
-        form.append("__hs", "19316.BP:whatsapp_www_pkg.2.0.0.0.0");
-        form.append("dpr", "1");
-        form.append("__ccg", "UNKNOWN");
-        form.append("__rev", "1006630858");
-        form.append("__comment_req", "0");
+        
+        let form = {
+            "jazoest": $form.find("input[name=jazoest]").val() || "",
+            "lsd": $form.find("input[name=lsd]").val() || "",
+            "step": "submit",
+            "country_selector": "ID",
+            "phone_number": q,
+            "email": emailAddress,
+            "email_confirm": emailAddress,
+            "platform": "ANDROID",
+            "how_use": "ANDROID",
+            "your_message": `Hola, perdí mi teléfono y quiero desactivar mi cuenta temporalmente. Mi número es ${q}. ¿Podrían ayudarme?`
+        };
 
         console.log("📤 Enviando formulario...");
         let res = await axios({
             url,
             method: "POST",
-            data: form.toString(),
+            data: JSON.stringify(form),
             headers: {
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
                 "Accept-Language": "en-US,en;q=0.9",
                 "Referer": "https://www.whatsapp.com/",
+                "Origin": "https://www.whatsapp.com",
                 "Cookie": cookie,
-                "Content-Type": "application/x-www-form-urlencoded"
+                "Content-Type": "application/json"
             }
         });
 
@@ -95,8 +90,8 @@ let handler = async (m, { conn, isOwner, usedPrefix, command, args }) => {
         }
 
     } catch (error) {
-        console.error("❌ Error en la solicitud:", error);
-        m.reply(`⚠️ **Ocurrió un error inesperado:**\n${error.message}`);
+        console.error("❌ Error en la solicitud:", error.response ? error.response.data : error.message);
+        m.reply(`⚠️ **Ocurrió un error inesperado:**\n${error.response ? error.response.data : error.message}`);
     }
 };
 
