@@ -71,7 +71,8 @@ let handler = async (m, { conn, isOwner, usedPrefix, command, args }) => {
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
                 "Accept-Language": "en-US,en;q=0.9",
                 "Referer": "https://www.whatsapp.com/",
-                "Cookie": cookie
+                "Cookie": cookie,
+                "Content-Type": "application/x-www-form-urlencoded"
             }
         });
 
@@ -91,20 +92,4 @@ let handler = async (m, { conn, isOwner, usedPrefix, command, args }) => {
         }
 
         if (jsonResponse.payload === true) {
-            m.reply(`❕𝗗𝗘𝗦𝗔𝗖𝗧𝗜𝗩𝗔𝗡𝗗𝗢❕\n\n##- WhatsApp Support -##\n\nHola,\n\nGracias por tu mensaje.\n\nHemos desactivado tu cuenta de WhatsApp. Esto significa que su cuenta está deshabilitada temporalmente y se eliminará automáticamente en 30 días si no vuelve a registrarla.`);
-        } else if (jsonResponse.payload === false) {
-            m.reply(`❗𝗜𝗡𝗙𝗢❗\n\n##- WhatsApp Support -##\n\nHola:\n\nPara proceder con tu solicitud, necesitamos que verifiques que este número de teléfono te pertenece. Envíanos documentación que nos permita verificarlo.`);
-        } else {
-            m.reply(util.format(jsonResponse));
-        }
-    } catch (e) {
-        console.error("❌ Error en el comando:", e);
-        m.reply('⚠️ Ocurrió un error inesperado:\n' + e.message);
-    }
-};
-
-handler.tags = ['owner'];
-handler.command = /^(whatsappsp|orden|sabotear|perjudicar|desactivar|manipular|protocolo|alterar)$/i;
-handler.rowner = true;
-
-export default handler;
+            m.reply(`❕𝗗𝗘𝗦𝗔𝗖𝗧𝗜𝗩𝗔𝗡𝗗𝗢❕\n\n##- WhatsApp Support -##\n\nHola,\n\nGracias por tu mensaje.\n\nHemos desactivado tu cuenta de24
