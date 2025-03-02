@@ -18,7 +18,13 @@ let handler = async (m, { conn, isOwner, usedPrefix, command, args }) => {
 
     try {
         console.log("🔄 Obteniendo datos de WhatsApp...");
-        let ntah = await axios.get("https://www.whatsapp.com/contact/noclient/");
+        let ntah = await axios.get("https://www.whatsapp.com/contact/noclient/", {
+            headers: {
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
+                "Accept-Language": "en-US,en;q=0.9",
+                "Referer": "https://www.whatsapp.com/",
+            }
+        });
         console.log("✅ Respuesta de WhatsApp obtenida.");
 
         console.log("🔄 Generando correo temporal...");
@@ -61,8 +67,17 @@ let handler = async (m, { conn, isOwner, usedPrefix, command, args }) => {
             url,
             method: "POST",
             data: form,
-            headers: { cookie }
+            headers: {
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
+                "Accept-Language": "en-US,en;q=0.9",
+                "Referer": "https://www.whatsapp.com/",
+                "Cookie": cookie
+            }
         });
+
+        console.log("🔍 Headers de respuesta:", res.headers);
+        console.log("📜 Código de estado:", res.status);
+        console.log("📩 Cuerpo de respuesta:", res.data);
 
         let payload = String(res.data).replace("for (;;);", "");
         console.log("📥 Respuesta de WhatsApp:", payload);
