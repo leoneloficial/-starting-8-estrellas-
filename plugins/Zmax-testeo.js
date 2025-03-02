@@ -34,7 +34,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
       await conn.sendMessage(m.chat, {
         image: { url: videoInfo.thumbnail },
         caption: responseText,
-        footer: '🌸 Elige una opción de descarga:',
+        footer: '✦ Elige una opción de descarga:',
         buttons: [
           {
             buttonId: `.ytmp3 ${videoInfo.url}`,
