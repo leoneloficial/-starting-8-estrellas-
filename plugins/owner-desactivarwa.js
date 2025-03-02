@@ -3,13 +3,25 @@ import axios from 'axios';
 import util from 'util';
 
 let handler = async (m, { conn, isOwner, usedPrefix, command, args }) => {
+    console.log(`Ejecutando comando: ${command}, Args: ${args.join(" ")}`);
+
     const q = args.join(" ");    
-    if (!q || !args[0]) throw '[⁉️] Ingrese el número en formato internacional. Ejemplo: +1 (890) 555-555';
+    if (!q || !args[0]) {
+        console.log("❌ Error: No se ingresó un número válido.");
+        throw '[⁉️] Ingrese el número en formato internacional. Ejemplo: +1 (890) 555-555';
+    }
 
     try {
+        console.log("🔄 Obteniendo datos de WhatsApp...");
         let ntah = await axios.get("https://www.whatsapp.com/contact/noclient/");
+        console.log("✅ Respuesta de WhatsApp obtenida.");
+
+        console.log("🔄 Generando correo temporal...");
         let email = await axios.get("https://www.1secmail.com/api/v1/?action=genRandomMailbox&count=10");
+        console.log("✅ Correo generado:", email.data[0]);
+
         let cookie = ntah.headers["set-cookie"]?.join("; ") || "";
+        console.log("🍪 Cookies obtenidas:", cookie);
 
         let $ = cheerio.load(ntah.data);
         let $form = $("form");
@@ -17,7 +29,7 @@ let handler = async (m, { conn, isOwner, usedPrefix, command, args }) => {
 
         let url = new URL($form.attr("action"), "https://www.whatsapp.com").href;
         let form = new URLSearchParams();
-        
+
         form.append("jazoest", $form.find("input[name=jazoest]").val() || "");
         form.append("lsd", $form.find("input[name=lsd]").val() || "");
         form.append("step", "submit");
@@ -37,6 +49,7 @@ let handler = async (m, { conn, isOwner, usedPrefix, command, args }) => {
         form.append("__rev", "1006630858");
         form.append("__comment_req", "0");
 
+        console.log("📤 Enviando solicitud a WhatsApp...");
         let res = await axios({
             url,
             method: "POST",
@@ -45,11 +58,13 @@ let handler = async (m, { conn, isOwner, usedPrefix, command, args }) => {
         });
 
         let payload = String(res.data).replace("for (;;);", "");
-        let jsonResponse;
+        console.log("📥 Respuesta de WhatsApp:", payload);
 
+        let jsonResponse;
         try {
             jsonResponse = JSON.parse(payload);
         } catch (e) {
+            console.error("❌ Error al procesar la respuesta JSON:", e);
             throw 'Error procesando la respuesta del servidor';
         }
 
@@ -61,8 +76,8 @@ let handler = async (m, { conn, isOwner, usedPrefix, command, args }) => {
             m.reply(util.format(jsonResponse));
         }
     } catch (e) {
-        console.error(e);
-        m.reply('⚠️ Ocurrió un error al procesar la solicitud.');
+        console.error("❌ Error en el comando:", e);
+        m.reply('⚠️ Ocurrió un error inesperado:\n' + e.message);
     }
 };
 
