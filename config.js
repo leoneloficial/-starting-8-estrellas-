@@ -19,7 +19,7 @@ global.confirmCode = ''
 global.owner = [
   ['584164137403', 'ⁱᵃᵐ|LeonelOFC𒆜', true],
 ['59169739411'],
-['559296077349'],
+['559296077349','Undefined',true],
 ['50558124470', 'Zaphkiel',true] 
 ];
 
