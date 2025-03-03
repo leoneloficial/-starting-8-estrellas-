@@ -1,10 +1,9 @@
 //mejorado por ENder
 
-
 import yts from 'yt-search';
 
 const handler = async (m, { conn, text, usedPrefix, command }) => {
-  if (!text) throw `*Debes ingresar el nombre de la canción o artista*`;
+  if (!text) throw '*Debes ingresar el nombre de la canción o artista*';
 
   // Mensaje inicial con animación de carga
   let searchMessage = await conn.sendMessage(m.chat, { text: ' *Buscando tu música...*\n❀ Esto puede tardar unos segundos...' }, { quoted: m });
@@ -14,7 +13,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
     const search = await yts(text);
 
     if (!search.all || search.all.length === 0) {
-      throw "*No se encontraron resultados para tu búsqueda*";
+      throw '*No se encontraron resultados para tu búsqueda*';
     }
 
     const videoInfo = search.all[0];
@@ -23,14 +22,11 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
       `> ✎Título: ${videoInfo.title}\n` +
       `> ⚘ *Canal:* ${videoInfo.author.name || 'Desconocido'}\n` +
       `> ❁ Duración: ${videoInfo.timestamp}\n` +
-
       `> ✰ Vistas: ${videoInfo.views.toLocaleString()}\n` +
-
       `> ✦ Publicado hace: ${videoInfo.ago}\n` +
-
       `> ✤ Link: ${videoInfo.url}`;
 
-    if (command === 'play' || command === 'playvid' || command === 'play2') {
+    if (['play', 'playvid', 'play2'].includes(command)) {
       await conn.sendMessage(m.chat, {
         image: { url: videoInfo.thumbnail },
         caption: responseText,
@@ -38,7 +34,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
         buttons: [
           {
             buttonId: `.ytmp3 ${videoInfo.url}`,
-            buttonText: { displayText: '> 🍓 Audio mp3 ♣ ' },
+            buttonText: { displayText: '> 🍓 Audio mp3 ♣' },
           },
           {
             buttonId: `.ytmp4 ${videoInfo.url}`,
@@ -49,26 +45,28 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
         headerType: 4,
       }, { quoted: m });
 
-    } else if (command === 'yta' || command === 'ytmp3') {
+    } else if (['yta', 'ytmp3'].includes(command)) {
       await conn.sendMessage(m.chat, { text: '🎧 *Procesando audio...* ' }, { quoted: m });
-      let audio = await (await fetch(`api${videoInfo.url}`)).json();
-      await conn.sendFile(m.chat, audio.data.url, videoInfo.title, '', m, null, { mimetype: "audio/mpeg", asDocument: false });
+      let response = await fetch(`api${videoInfo.url}`);
+      let audio = await response.json();
+      await conn.sendFile(m.chat, audio.data.url, `${videoInfo.title}.mp3`, '', m, null, { mimetype: "audio/mpeg", asDocument: false });
 
-    } else if (command === 'ytv' || command === 'ytmp4') {
+    } else if (['ytv', 'ytmp4'].includes(command)) {
       await conn.sendMessage(m.chat, { text: '🎬 *Procesando video...* 🔄' }, { quoted: m });
-      let video = await (await fetch(`api${videoInfo.url}`)).json();
+      let response = await fetch(`api${videoInfo.url}`);
+      let video = await response.json();
       await conn.sendMessage(m.chat, {
         video: { url: video.data.url },
         mimetype: "video/mp4",
-        caption: `🎥 *Aquí tienes tu video*`,
+        caption: '🎥 *Aquí tienes tu video*',
       }, { quoted: m });
 
     } else {
-      throw "🦅 Comando no reconocido.";
+      throw '🦅 Comando no reconocido.';
     }
 
   } catch (error) {
-    await conn.sendMessage(m.chat, { text: `*Error*: ${error}` }, { quoted: m });
+    await conn.sendMessage(m.chat, { text: `*Error*: ${error.message || error}` }, { quoted: m });
   }
 };
 
