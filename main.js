@@ -235,7 +235,6 @@ console.log(boxen(chalk.bold(' ¡CONECTADO CON WHATSAPP! '), { borderStyle: 'rou
 await joinChannels(conn)}
 
 
-const { default: makeWASocket } = require('@whiskeysockets/baileys');
 
 let startTime = Date.now();
 
