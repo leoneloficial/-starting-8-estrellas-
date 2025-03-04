@@ -1,41 +1,34 @@
-import axios from 'axios';
 
-const downloadHandler = {
-  download: async (url) => {
-    const apiUrl = `https://api.siputzx.my.id/api/d/ytmp4?url=${encodeURIComponent(url)}`;
+
+
+// *𓍯𓂃𓏧♡ YTMP4*
+import axios from 'axios'
+
+let HS = async (m, { conn, text }) => {
+if (!text) return conn.reply(m.chat, `❀ Ingresa un link de YouTube`, m)
+  
+try {
+let api = await axios.get(`https://mahiru-shiina.vercel.app/download/ytmp4?url=${text}`)
+let json = api.data
+
+let { title, description, uploaded, duration, views, type, url, thumbnail, author, download } = json.data
+let { name, url: authorUrl } = author
+
+
+let HS = `- *Titulo:* ${title}
+- *Autor:* ${name} - ${authorUrl}
+- *Descripción:* ${description}
+- *Subido:* ${uploaded}
+- *Duración:* ${duration}
+- *Vistas:* ${views}`
+
+await conn.sendMessage(m.chat, { image: { url: thumbnail }, caption: HS }, { quoted: m })
+await conn.sendMessage(m.chat, { video: { url: download }, mimetype: 'video/mp4'  }, { quoted: m })
     
-    try {
-      const response = await axios.get(apiUrl);
+} catch (error) {
+console.error(error)
+}}
 
-      if (response.data && response.data.status) {
-        return response.data.data;
-      } else {
-        throw new Error('Fallo al obtener los detalles del video.');
-      }
-    } catch (error) {
-      console.error('Error en la descarga:');
-      throw error;
-    }
-  }
-};
+HS.command = ['ytmp4']
 
-const handler = async (m, { conn, text }) => {
-  try {
-    if (!text.trim()) {
-      return conn.reply(m.chat, `> Ingresa el enlace de YouTube para descargar.`, m);
-    }
-    const videoInfo = await downloadHandler.download(text);
-    const videoTitle = videoInfo.title;
-    const videoUrl = videoInfo.dl;
-
-    await conn.sendMessage(m.chat, { video: { url: videoUrl }, mimetype: 'video/mp4', caption: `*Título:* ${videoTitle}` }, { quoted: m });
-
-  } catch (error) {
-    return m.reply(`Error: ${error.message}`);
-  }
-};
-
-handler.command = handler.help = ['ytmp4', 'ytv'];
-handler.tags = ['downloader'];
-
-export default handler;
+export default HS
