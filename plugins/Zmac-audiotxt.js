@@ -3,22 +3,32 @@ const fs = require("fs");
 const path = require("path");
 
 const handler = async (m, { conn, usedPrefix, command }) => {
-  if (!m.quoted || !m.quoted.audio) return m.reply(`Responde a un audio con *${usedPrefix + command}*`);
+  if (!m.quoted || !m.quoted.audio) {
+    return m.reply(`⚠️ Responde a un audio con *${usedPrefix + command}* para separar la voz.`);
+  }
 
   let audioPath = path.join(__dirname, "input.mp3");
-  let instrumentalPath = path.join(__dirname, "output/instrumental.wav");
+  let outputDir = path.join(__dirname, "output");
+  let instrumentalPath = path.join(outputDir, "instrumental.wav");
 
+  // Asegurar que la carpeta de salida existe
+  if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir);
+
+  // Descargar el audio
   let audioBuffer = await m.quoted.download();
   fs.writeFileSync(audioPath, audioBuffer);
 
-  m.reply("Verificando dependencias...");
+  m.reply("✅ Audio recibido, verificando dependencias...");
 
-  // Instalar Spleeter si no está instalado
+  // Verificar si Spleeter está instalado
   exec("spleeter -h", (error) => {
     if (error) {
-      m.reply("Spleeter no encontrado. Instalando dependencias...");
-      exec("pkg install python ffmpeg -y && pip install spleeter", (err, stdout, stderr) => {
-        if (err) return m.reply("Error instalando dependencias.");
+      m.reply("⚠️ Spleeter no encontrado. Instalando dependencias, espera...");
+      exec("pkg install python ffmpeg -y && pip install spleeter", (err) => {
+        if (err) {
+          console.error("❌ Error instalando Spleeter:", err);
+          return m.reply("❌ Error instalando dependencias.");
+        }
         separarAudio(m, conn, audioPath, instrumentalPath);
       });
     } else {
@@ -28,15 +38,26 @@ const handler = async (m, { conn, usedPrefix, command }) => {
 };
 
 function separarAudio(m, conn, audioPath, instrumentalPath) {
-  m.reply("Procesando audio, espera un momento...");
+  m.reply("🎵 Procesando el audio... Esto puede tardar unos segundos.");
 
   exec(`spleeter separate -p spleeter:2stems -o output ${audioPath}`, (err, stdout, stderr) => {
-    if (err) return m.reply("Error al procesar el audio");
+    console.log("📝 Spleeter output:", stdout);
+    console.error("⚠️ Spleeter error:", stderr);
+
+    if (err) {
+      console.error("❌ Error al procesar el audio:", err);
+      return m.reply("❌ Error al procesar el audio.");
+    }
+
+    if (!fs.existsSync(instrumentalPath)) {
+      console.error("❌ No se generó el archivo instrumental.");
+      return m.reply("❌ No se pudo extraer la instrumental.");
+    }
 
     let instrumentalBuffer = fs.readFileSync(instrumentalPath);
     conn.sendMessage(m.chat, { audio: instrumentalBuffer, mimetype: "audio/mp3" }, { quoted: m });
 
-    fs.unlinkSync(audioPath); // Eliminar archivos temporales
+    fs.unlinkSync(audioPath); // Limpiar archivos temporales
   });
 }
 
