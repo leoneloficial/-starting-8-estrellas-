@@ -22,13 +22,13 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
         {
           buttonId: `.yta ${videoInfo.url}`,
           buttonText: {
-            displayText: 'ᯓ👑 𝑨𝒖𝒅𝒊𝒐',
+            displayText: 'ᯓ🌸 𝑨𝒖𝒅𝒊𝒐',
           },
         },
         {
           buttonId: `.ytv ${videoInfo.url}`,
           buttonText: {
-            displayText: 'ᯓ👑 𝑽𝒊𝒅𝒆𝒐',
+            displayText: 'ᯓ🌸 𝑽𝒊𝒅𝒆𝒐',
           },
         },
       ],
