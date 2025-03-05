@@ -7,16 +7,18 @@ const handler = async (m, { conn, usedPrefix, command, args }) => {
   let outputDir = path.join("output");
   let instrumentalPath = path.join(outputDir, "input/accompaniment.wav");
 
-  if (args[0] && args[0].includes("youtube.com")) {
+  const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+$/;
+
+  if (args.length > 0 && youtubeRegex.test(args[0])) {
     m.reply("📥 Descargando audio desde YouTube...");
     descargarAudio(m, conn, args[0], audioPath, instrumentalPath);
-  } else if (m.quoted?.audio) {
+  } else if (m.quoted?.mimetype?.startsWith("audio/")) {
     m.reply("🎵 Procesando el audio... Esto puede tardar unos segundos.");
     let audioBuffer = await m.quoted.download();
     fs.writeFileSync(audioPath, audioBuffer);
     procesarAudio(m, conn, audioPath, instrumentalPath);
   } else {
-    return m.reply(`⚠️ Responde a un audio o proporciona un enlace de YouTube con *${usedPrefix + command}*`);
+    return m.reply(`⚠️ Responde a un audio o proporciona un enlace de YouTube con *${usedPrefix + command} <URL>*`);
   }
 };
 
