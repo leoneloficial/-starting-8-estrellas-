@@ -61,7 +61,7 @@ function separarAudio(m, conn, audioPath, instrumentalPath) {
   });
 }
 
-handler.command = ["instrumental"];
+handler.command = ["ins"];
 handler.tags = ["audio"];
 handler.help = ["instrumental"];
 
