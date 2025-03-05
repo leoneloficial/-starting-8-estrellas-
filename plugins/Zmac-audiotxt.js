@@ -1,86 +1,47 @@
-import { exec } from "child_process";
-import fs from "fs";
-import path from "path";
+import ytdlp from 'yt-dlp-exec';
+import fs from 'fs';
+import { exec } from 'child_process';
 
-const handler = async (m, { conn, usedPrefix, command, args }) => {
-  let audioPath = path.join("input.mp3");
-  let outputDir = path.join("output");
-  let instrumentalPath = path.join(outputDir, "input/accompaniment.wav");
+const handler = async (m, { conn, text, usedPrefix, command, args }) => {
+    let audioPath = './temp/instrumental.mp3';
 
-  const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+$/;
+    // Si el usuario responde a un audio
+    if (m.quoted && m.quoted.mimetype?.startsWith('audio/')) {
+        let audio = await m.quoted.download();
+        fs.writeFileSync(audioPath, audio);
 
-  if (args.length > 0 && youtubeRegex.test(args[0])) {
-    m.reply("📥 Descargando audio desde YouTube...");
-    descargarAudio(m, conn, args[0], audioPath, instrumentalPath);
-  } else if (m.quoted?.mimetype?.startsWith("audio/")) {
-    m.reply("🎵 Procesando el audio... Esto puede tardar unos segundos.");
-    let audioBuffer = await m.quoted.download();
-    fs.writeFileSync(audioPath, audioBuffer);
-    procesarAudio(m, conn, audioPath, instrumentalPath);
-  } else {
-    return m.reply(`⚠️ Responde a un audio o proporciona un enlace de YouTube con *${usedPrefix + command} <URL>*`);
-  }
+        // Procesar el audio para extraer la instrumental
+        await exec(`spleeter separate -p spleeter:2stems -o output ${audioPath}`, (err, stdout, stderr) => {
+            if (err) {
+                return m.reply('❌ Error al procesar el audio.');
+            }
+            let instrumentalPath = './output/instrumental.wav';
+            conn.sendMessage(m.chat, { audio: fs.readFileSync(instrumentalPath), mimetype: 'audio/mp3' });
+        });
+        return;
+    }
+
+    // Si el usuario envía un enlace de YouTube
+    if (args[0] && args[0].includes('youtu')) {
+        let url = args[0].split('&')[0]; // Limpia parámetros innecesarios
+        m.reply('🎵 Descargando audio desde YouTube...');
+
+        try {
+            await ytdlp(url, {
+                output: audioPath,
+                format: 'bestaudio[ext=mp3]'
+            });
+
+            conn.sendMessage(m.chat, { audio: fs.readFileSync(audioPath), mimetype: 'audio/mp3' });
+        } catch (error) {
+            m.reply('❌ Error al descargar el audio. Asegúrate de que el enlace es válido.');
+        }
+        return;
+    }
+
+    // Si no responde a un audio ni envía enlace
+    m.reply(`⚠️ Responde a un audio o envía un enlace de YouTube.\nEjemplo: \`${usedPrefix + command} https://youtu.be/XXXXX\``);
 };
 
-function instalarDependencias(m, callback) {
-  m.reply("⚠️ Instalando dependencias necesarias...");
-  exec("pkg install python ffmpeg -y && pip install spleeter yt-dlp", (err) => {
-    if (err) {
-      console.error("❌ Error instalando dependencias:", err);
-      return m.reply("❌ No se pudo instalar alguna dependencia.");
-    }
-    callback();
-  });
-}
-
-function descargarAudio(m, conn, url, audioPath, instrumentalPath) {
-  exec("yt-dlp --version", (error) => {
-    if (error) {
-      instalarDependencias(m, () => descargarAudio(m, conn, url, audioPath, instrumentalPath));
-    } else {
-      exec(`yt-dlp -x --audio-format mp3 -o "${audioPath}" ${url}`, (err) => {
-        if (err) {
-          console.error("❌ Error descargando de YouTube:", err);
-          return m.reply("❌ No se pudo descargar el audio desde YouTube.");
-        }
-        procesarAudio(m, conn, audioPath, instrumentalPath);
-      });
-    }
-  });
-}
-
-function procesarAudio(m, conn, audioPath, instrumentalPath) {
-  exec("spleeter -h", (error) => {
-    if (error) {
-      instalarDependencias(m, () => separarAudio(m, conn, audioPath, instrumentalPath));
-    } else {
-      separarAudio(m, conn, audioPath, instrumentalPath);
-    }
-  });
-}
-
-function separarAudio(m, conn, audioPath, instrumentalPath) {
-  exec(`spleeter separate -p spleeter:2stems -o output ${audioPath}`, (err) => {
-    if (err) {
-      console.error("❌ Error al procesar el audio:", err);
-      return m.reply("❌ No se pudo procesar el audio.");
-    }
-
-    if (!fs.existsSync(instrumentalPath)) {
-      console.error("❌ No se generó el archivo instrumental.");
-      return m.reply("❌ No se pudo extraer la instrumental.");
-    }
-
-    let instrumentalBuffer = fs.readFileSync(instrumentalPath);
-    conn.sendMessage(m.chat, { audio: instrumentalBuffer, mimetype: "audio/mp3" }, { quoted: m });
-
-    fs.unlinkSync(audioPath);
-    fs.unlinkSync(instrumentalPath);
-  });
-}
-
-handler.command = ["instrumental"];
-handler.tags = ["audio"];
-handler.help = ["instrumental"];
-
+handler.command = ['instrumental'];
 export default handler;
