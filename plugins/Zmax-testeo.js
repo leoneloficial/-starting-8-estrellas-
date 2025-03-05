@@ -11,7 +11,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
   }
 
   const videoInfo = search.all[0];
-  const body = `「✦」ძᥱsᥴᥲrgᥲᥒძ᥆ *<${videoInfo.title}>*\n\n> ✦ ᥴᥲᥒᥲᥣ » *${videoInfo.author.name || 'Desconocido'}*\n*°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°*\n> ✰ ᥎іs𝗍ᥲs » *${videoInfo.views}*\n*°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°*\n> ⴵ ძᥙrᥲᥴі᥆ᥒ » *${videoInfo.timestamp}*\n*°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°*\n> ✐ ⍴ᥙᑲᥣіᥴᥲძ᥆ » *${videoInfo.ago}*\n*°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°*\n> 🜸 ᥣіᥒk » ${videoInfo.url}\n`;
+  const body = `「✦」ძᥱsᥴᥲrgᥲᥒძ᥆ *<${videoInfo.title}>*\n\n> ✦ ᥴᥲᥒᥲᥣ » *${videoInfo.author.name || 'Desconocido'}*\n*◆━━━━━━◆✰◆━━━━━━◆*\n> ✰ ᥎іs𝗍ᥲs » *${videoInfo.views}*\n*◆━━━━━━◆✰◆━━━━━━◆*\n> ⴵ ძᥙrᥲᥴі᥆ᥒ » *${videoInfo.timestamp}*\n*◆━━━━━━◆✰◆━━━━━━◆*\n> ✐ ⍴ᥙᑲᥣіᥴᥲძ᥆ » *${videoInfo.ago}*\n*◆━━━━━━◆✰◆━━━━━━◆*\n> 🜸 ᥣіᥒk » ${videoInfo.url}\n`;
 
   if (command === 'play' || command === 'play2' || command === 'playvid') {
     await conn.sendMessage(m.chat, {
@@ -22,13 +22,13 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
         {
           buttonId: `.yta ${videoInfo.url}`,
           buttonText: {
-            displayText: 'ᯓᡣ𐭩 ᥲᥙძі᥆',
+            displayText: 'ᯓ👑 𝑨𝒖𝒅𝒊𝒐',
           },
         },
         {
           buttonId: `.ytv ${videoInfo.url}`,
           buttonText: {
-            displayText: 'ᯓᡣ𐭩 ᥎іძᥱ᥆',
+            displayText: 'ᯓ👑 𝑽𝒊𝒅𝒆𝒐',
           },
         },
       ],
@@ -49,11 +49,11 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
         audio = await (await fetch(`https://api.vreden.my.id/api/ytmp3?url=${videoInfo.url}`)).json();
       }
     }
-    
+
     if (!audio.data || !audio.data.url) throw "No se pudo obtener el audio.";
     conn.sendFile(m.chat, audio.data.url, videoInfo.title, '', m, null, { mimetype: "audio/mpeg", asDocument: false });
     m.react(done);
-  
+
   } else if (command === 'ytv' || command === 'ytmp4') {
     m.react(rwait);
     let video;
@@ -66,7 +66,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
         video = await (await fetch(`https://api.vreden.my.id/api/ytmp4?url=${videoInfo.url}`)).json();
       }
     }
-    
+
     if (!video.data || !video.data.url) throw "No se pudo obtener el video.";
     await conn.sendMessage(m.chat, {
       video: { url: video.data.url },
@@ -74,21 +74,21 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
       caption: ``,
     }, { quoted: m });
     m.react(done);
-  
+
   } else {
     throw "Comando no reconocido.";
   }
 };
 
-handler.help = ['play', 'playvid', 'ytv', 'ytmp4', 'yta', 'play2', 'ytmp3'];
-handler.command = ['play', 'playvid', 'ytv', 'ytmp4', 'yta', 'play2', 'ytmp3'];
+handler.help = ['play', 'playvid', 'ytv', 'yta', 'play2',];
+handler.command = ['play', 'playvid', 'ytv', 'yta', 'play2',];
 handler.tags = ['dl'];
 handler.register = true;
 
 export default handler;
 
 const getVideoId = (url) => {
-  const regex = /(?:v=|\/)([0-9A-Za-z_-]{11}).*;
+  const regex = /(?:v=|\/)([0-9A-Za-z_-]{11}).*/;
   const match = url.match(regex);
   if (match) {
     return match[1];
@@ -112,7 +112,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
   }
 
   const videoInfo = search.all[0];
-  const body = `「✦」ძᥱsᥴᥲrgᥲᥒძ᥆ *<${videoInfo.title}>*\n\n> ✦ ᥴᥲᥒᥲᥣ » *${videoInfo.author.name || 'Desconocido'}*\n*°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°*\n> ✰ ᥎іs𝗍ᥲs » *${videoInfo.views}*\n*°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°*\n> ⴵ ძᥙrᥲᥴі᥆ᥒ » *${videoInfo.timestamp}*\n*°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°*\n> ✐ ⍴ᥙᑲᥣіᥴᥲძ᥆ » *${videoInfo.ago}*\n*°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°*\n> 🜸 ᥣіᥒk » ${videoInfo.url}\n`;
+  const body = `「✦」ძᥱsᥴᥲrgᥲᥒძ᥆ *<${videoInfo.title}>*\n\n> ✦ ᥴᥲᥒᥲᥣ » *${videoInfo.author.name || 'Desconocido'}*\n*◆━━━━━━◆✰◆━━━━━━◆*\n> ✰ ᥎іs𝗍ᥲs » *${videoInfo.views}*\n*◆━━━━━━◆✰◆━━━━━━◆*\n> ⴵ ძᥙrᥲᥴі᥆ᥒ » *${videoInfo.timestamp}*\n*◆━━━━━━◆✰◆━━━━━━◆*\n> ✐ ⍴ᥙᑲᥣіᥴᥲძ᥆ » *${videoInfo.ago}*\n*◆━━━━━━◆✰◆━━━━━━◆*\n> 🜸 ᥣіᥒk » ${videoInfo.url}\n`;
   
   if (Object.keys(global.play).length >= 100) global.play = {};
   
@@ -125,13 +125,13 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
         {
           buttonId: `.ytmp3 ${videoInfo.url}`,
           buttonText: {
-            displayText: 'ᯓᡣ𐭩 ᥲᥙძі᥆',
+            displayText: 'ᯓ👑 𝑨𝒖𝒅𝒊𝒐',
           },
         },
         {
           buttonId: `.ytmp4 ${videoInfo.url}`,
           buttonText: {
-            displayText: 'ᯓᡣ𐭩 ᥎іძᥱ᥆',
+            displayText: 'ᯓ👑  𝑽𝒊𝒅𝒆𝒐',
           },
         },
       ],
@@ -162,8 +162,8 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
     }
 };
 
-handler.help = ['play', 'playvid', 'ytv', 'ytmp4', 'yta', 'play2', 'ytmp3'];
-handler.command = ['play', 'playvid', 'ytv', 'ytmp4', 'yta', 'play2', 'ytmp3'];
+handler.help = ['play', 'playvid', 'ytv',  'yta', 'play2',];
+handler.command = ['play', 'playvid', 'ytv',  'yta', 'play2',];
 handler.tags = ['dl'];
 handler.group = true;
 handler.register = true;
