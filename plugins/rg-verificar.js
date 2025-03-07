@@ -50,8 +50,9 @@ regbot += `「𖣔」 𝗥𝗲𝗰𝗼𝗺𝗽𝗲𝗻𝘀𝗮𝘀:\n`
 regbot += `> • ⛁ *${moneda}* » 500\n`
 regbot += `> • ✩ *Experiencia* » 600\n`
 regbot += `> • ❀ *Tokens* » 50\n`
-regbot += canal oficial `https://whatsapp.com/channel/0029Vagdmfv1SWt5nfdR4z3w
-•┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄•\n`
+regbot += `•┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄•\n
+sigue el canal oficial 
+https://whatsapp.com/channel/0029Vagdmfv1SWt5nfdR4z3w`
 regbot += `${dev}`
 await m.react('📩')
 //await m.reply(mini)
