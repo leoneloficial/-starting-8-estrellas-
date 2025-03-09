@@ -4,28 +4,28 @@ import fetch from 'node-fetch'
 let handler = async (m, { conn, usedPrefix, command, text }) => {
 const isQuotedImage = m.quoted && (m.quoted.msg || m.quoted).mimetype && (m.quoted.msg || m.quoted).mimetype.startsWith('image/')
 const username = `${conn.getName(m.sender)}`
-const basePrompt = `Tu nombre es ${botname} y parece haber sido creada por Destroy. Tu versión actual es 2.1.5, Tú usas el idioma Español. Llamarás a las personas por su nombre ${username}, te gusta ser divertida, y te encanta aprender. Lo más importante es que debes ser amigable con la persona con la que estás hablando. ${username}`
+const basePrompt = `Tu nombre es ${botname} y parece haber sido creada por ${etiqueta}. Tu versión actual es ${vs}, Tú usas el idioma Español. Llamarás a las personas por su nombre ${username}, te gusta ser divertida, y te encanta aprender. Lo más importante es que debes ser amigable con la persona con la que estás hablando. ${username}`
 if (isQuotedImage) {
 const q = m.quoted
 const img = await q.download?.()
 if (!img) {
-console.error('⚠️ Error: No image buffer available')
-return conn.reply(m.chat, '✘ ChatGpT no pudo descargar la imagen.', m, fake)}
-const content = '🍬 ¿Qué se observa en la imagen?'
+console.error(`${msm} Error: No image buffer available`)
+return conn.reply(m.chat, '✘ ChatGpT no pudo descargar la imagen.', m)}
+const content = `${emoji} ¿Qué se observa en la imagen?`
 try {
 const imageAnalysis = await fetchImageBuffer(content, img)
-const query = '🍬 Descríbeme la imagen y detalla por qué actúan así. También dime quién eres'
+const query = `${emoji} Descríbeme la imagen y detalla por qué actúan así. También dime quién eres`
 const prompt = `${basePrompt}. La imagen que se analiza es: ${imageAnalysis.result}`
 const description = await luminsesi(query, username, prompt)
-await conn.reply(m.chat, description, m, fake)
+await conn.reply(m.chat, description, m)
 } catch {
 await m.react(error)
-await conn.reply(m.chat, '✘ ChatGpT no pudo analizar la imagen.', m, fake)}
+await conn.reply(m.chat, '✘ ChatGpT no pudo analizar la imagen.', m)}
 } else {
-if (!text) { return conn.reply(m.chat, `🍬 Ingrese una petición para que el ChatGpT lo responda.`, m)}
+if (!text) { return conn.reply(m.chat, `${emoji} Ingrese una petición para que el ChatGpT lo responda.`, m)}
 await m.react(rwait)
 try {
-const { key } = await conn.sendMessage(m.chat, {text: `🍭 ChatGPT está procesando tu petición, espera unos segundos.`}, {quoted: m})
+const { key } = await conn.sendMessage(m.chat, {text: `${emoji2} ChatGPT está procesando tu petición, espera unos segundos.`}, {quoted: m})
 const query = text
 const prompt = `${basePrompt}. Responde lo siguiente: ${query}`
 const response = await luminsesi(query, username, prompt)
@@ -33,12 +33,12 @@ await conn.sendMessage(m.chat, {text: response, edit: key})
 await m.react(done)
 } catch {
 await m.react(error)
-await conn.reply(m.chat, '✘ ChatGpT no puede responder a esa pregunta.', m, fake)}}}
+await conn.reply(m.chat, '✘ ChatGpT no puede responder a esa pregunta.', m)}}}
 
 handler.help = ['ia', 'chatgpt']
 handler.tags = ['ai']
 handler.register = true
-handler.command = ['ia', 'chatgpt']
+handler.command = ['ia', 'chatgpt', 'luminai']
 handler.group = true
 
 export default handler
@@ -70,5 +70,5 @@ webSearchMode: false
 })
 return response.data.result
 } catch (error) {
-console.error('⚠️ Error al obtener:', error)
+console.error(`${msm} Error al obtener:`, error)
 throw error }}
