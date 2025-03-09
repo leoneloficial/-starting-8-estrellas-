@@ -7,7 +7,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
   }
 
   console.log(`[INFO] Buscando en YouTube: ${text}`);
-
+  
   try {
     const search = await yts(text);
     if (!search.videos.length) {
@@ -17,13 +17,6 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
     const videoInfo = search.videos[0]; // Toma el primer resultado válido
     const { title, author, views, timestamp, ago, url, thumbnail } = videoInfo;
 
-    if (!url || !url.startsWith("http")) {
-      console.log("[ERROR] URL no válida:", url);
-      return conn.reply(m.chat, "❌ No se pudo obtener un enlace válido.", m);
-    }
-
-    console.log(`[INFO] Video encontrado: ${url}`);
-
     const messageText = `🎵 *${title}*\n\n` +
       `📺 *Canal:* ${author.name || 'Desconocido'}\n` +
       `👀 *Vistas:* ${views.toLocaleString()}\n` +
@@ -31,7 +24,11 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
       `📅 *Publicado:* ${ago}\n` +
       `🔗 *Link:* ${url}`;
 
+    console.log(`[INFO] Video encontrado: ${url}`);
+
     if (['play', 'playvid', 'play2'].includes(command)) {
+      console.log("[INFO] Enviando mensaje con información del video...");
+      
       let msg = await conn.sendMessage(m.chat, {
         image: { url: thumbnail },
         caption: messageText,
@@ -44,35 +41,31 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
         headerType: 4,
       }, { quoted: m });
 
+      console.log("[INFO] Mensaje enviado correctamente.");
+
+      // Mensaje de prueba para ver si el bot responde
+      await conn.reply(m.chat, "✅ Prueba de respuesta después del comando.", m);
+
       global.play = global.play || {};
       global.play[msg.key.id] = { url };
       return;
     }
 
-    // Función mejorada para obtener la URL de descarga
+    // Función para obtener URL de descarga de distintas APIs
     const fetchFromAPIs = async (videoUrl, type) => {
       const apis = [
-        `https://api.alyachan.dev/api/youtube?url=${encodeURIComponent(videoUrl)}&type=${type}&apikey=Gata-Dios`,
-        `https://delirius-apiofc.vercel.app/download/yt${type}?url=${encodeURIComponent(videoUrl)}`,
-        `https://api.vreden.my.id/api/yt${type}?url=${encodeURIComponent(videoUrl)}`
+        `https://api.alyachan.dev/api/youtube?url=${videoUrl}&type=${type}&apikey=Gata-Dios`,
+        `https://delirius-apiofc.vercel.app/download/yt${type}?url=${videoUrl}`,
+        `https://api.vreden.my.id/api/yt${type}?url=${videoUrl}`
       ];
 
       for (let api of apis) {
         try {
           console.log(`[INFO] Intentando API: ${api}`);
           let res = await fetch(api);
-          let text = await res.text();
-          console.log(`[DEBUG] Respuesta API (${api}):`, text);
-
-          let json;
-          try {
-            json = JSON.parse(text);
-          } catch (err) {
-            console.log(`[ERROR] No se pudo parsear JSON: ${err.message}`);
-            continue; // Intenta la siguiente API
-          }
-
-          if (json?.data?.url && json.data.url.startsWith("http")) {
+          let json = await res.json();
+          
+          if (json?.data?.url) {
             console.log(`[INFO] Descarga lista: ${json.data.url}`);
             return json.data.url;
           }
@@ -83,7 +76,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
       throw "⚠️ No se pudo obtener el archivo.";
     };
 
-    // Manejo de descargas
+    // Manejo de comandos para descargar
     if (command === 'yta' || command === 'ytmp3') {
       let audioUrl = await fetchFromAPIs(url, "mp3");
       return await conn.sendFile(m.chat, audioUrl, `${title}.mp3`, '', m, null, { mimetype: "audio/mpeg" });
