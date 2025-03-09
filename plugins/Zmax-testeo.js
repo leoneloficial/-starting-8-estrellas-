@@ -13,6 +13,10 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
   const videoInfo = search.all[0];
   console.log("URL obtenida:", videoInfo?.url); // Depuración
 
+  if (!videoInfo.url || !/^https?:\/\//.test(videoInfo.url)) {
+    throw "❌ No se pudo obtener una URL válida para la descarga.";
+  }
+
   const body = `🎵 Descargando *<${videoInfo.title}>*\n\n📺 Canal: *${videoInfo.author.name || 'Desconocido'}*\n👁️‍🗨️ Vistas: *${videoInfo.views}*\n⏳ Duración: *${videoInfo.timestamp}*\n🗓️ Publicado: *${videoInfo.ago}*\n🔗 Link: ${videoInfo.url}`;
 
   if (command === 'play' || command === 'play2' || command === 'playvid') {
@@ -25,10 +29,10 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
       ],
       headerType: 4,
     }, { quoted: m });
-    await m.react('🎶');
+    m.react('🎶');
 
   } else if (command === 'yta' || command === 'ytmp3') {
-    await m.react('⏳');
+    m.react('⏳');
     let audio;
     try {
       audio = await (await fetch(`https://api.alyachan.dev/api/youtube?url=${videoInfo.url}&type=mp3&apikey=Gata-Dios`)).json();
@@ -43,15 +47,11 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
     }
 
     if (!audio.data || !audio.data.url) throw "❌ No se pudo obtener el audio.";
-    await conn.sendMessage(m.chat, {
-      document: { url: audio.data.url },
-      fileName: `${videoInfo.title}.mp3`,
-      mimetype: "audio/mpeg",
-    }, { quoted: m });
-    await m.react('✅');
+    conn.sendFile(m.chat, audio.data.url, videoInfo.title, '', m, null, { mimetype: "audio/mpeg", asDocument: false });
+    m.react('✅');
 
   } else if (command === 'ytv' || command === 'ytmp4') {
-    await m.react('⏳');
+    m.react('⏳');
     let video;
     try {
       video = await (await fetch(`https://api.alyachan.dev/api/youtube?url=${videoInfo.url}&type=mp4&apikey=Gata-Dios`)).json();
@@ -69,9 +69,8 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
     await conn.sendMessage(m.chat, {
       video: { url: video.data.url },
       mimetype: "video/mp4",
-      caption: `🎥 *${videoInfo.title}*`,
     }, { quoted: m });
-    await m.react('✅');
+    m.react('✅');
 
   } else {
     throw "❌ Comando no reconocido.";
