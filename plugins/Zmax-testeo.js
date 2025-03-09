@@ -7,7 +7,7 @@ const handler = async (m, { conn, text, command }) => {
     return await m.reply('🌸 Por favor ingresa la música que deseas descargar.');
   }
 
-  m.react('🕒'); // Reacciona de inmediato al recibir el comando
+  m.react(''); // Reacciona de inmediato al recibir el comando
 
   const search = await yts(text);
   if (!search.all || search.all.length === 0) {
