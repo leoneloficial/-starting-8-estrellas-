@@ -4,7 +4,6 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
   if (!text) throw "⚠️ Por favor ingresa la música que deseas descargar.";
 
   console.log("Texto recibido:", text); // Depuración
-  const isVideo = /vid|2|mp4|v$/.test(command);
   const search = await yts(text);
 
   if (!search.all || search.all.length === 0) {
@@ -26,10 +25,10 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
       ],
       headerType: 4,
     }, { quoted: m });
-    m.react('🎶');
+    await m.react('🎶');
 
   } else if (command === 'yta' || command === 'ytmp3') {
-    m.react('⏳');
+    await m.react('⏳');
     let audio;
     try {
       audio = await (await fetch(`https://api.alyachan.dev/api/youtube?url=${videoInfo.url}&type=mp3&apikey=Gata-Dios`)).json();
@@ -44,11 +43,15 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
     }
 
     if (!audio.data || !audio.data.url) throw "❌ No se pudo obtener el audio.";
-    conn.sendFile(m.chat, audio.data.url, videoInfo.title, '', m, null, { mimetype: "audio/mpeg", asDocument: false });
-    m.react('✅');
+    await conn.sendMessage(m.chat, {
+      document: { url: audio.data.url },
+      fileName: `${videoInfo.title}.mp3`,
+      mimetype: "audio/mpeg",
+    }, { quoted: m });
+    await m.react('✅');
 
   } else if (command === 'ytv' || command === 'ytmp4') {
-    m.react('⏳');
+    await m.react('⏳');
     let video;
     try {
       video = await (await fetch(`https://api.alyachan.dev/api/youtube?url=${videoInfo.url}&type=mp4&apikey=Gata-Dios`)).json();
@@ -66,8 +69,9 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
     await conn.sendMessage(m.chat, {
       video: { url: video.data.url },
       mimetype: "video/mp4",
+      caption: `🎥 *${videoInfo.title}*`,
     }, { quoted: m });
-    m.react('✅');
+    await m.react('✅');
 
   } else {
     throw "❌ Comando no reconocido.";
