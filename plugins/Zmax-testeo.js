@@ -18,9 +18,18 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
     throw `❌ No se pudo obtener una URL válida para la descarga.\n🔍 Objeto recibido: ${JSON.stringify(videoInfo, null, 2)}`;
   }
 
-  // Construir la URL manualmente para evitar errores
+  // Construir la URL manualmente y normalizarla
   let url = `https://www.youtube.com/watch?v=${videoInfo.videoId}`;
-  console.log("URL corregida:", url); // Confirmar que se generó bien
+  url = encodeURI(url); // Asegurar que sea una URL válida
+
+  console.log("URL corregida y codificada:", url); // Confirmar que se generó bien
+
+  try {
+    new URL(url); // Verificar si la URL es válida
+  } catch (err) {
+    console.error("Error con la URL:", err);
+    throw "❌ Error: La URL generada no es válida.";
+  }
 
   const body = `🎵 Descargando *<${videoInfo.title}>*\n\n📺 Canal: *${videoInfo.author.name || 'Desconocido'}*\n👁️‍🗨️ Vistas: *${videoInfo.views}*\n⏳ Duración: *${videoInfo.timestamp}*\n🗓️ Publicado: *${videoInfo.ago}*\n🔗 Link: ${url}`;
 
