@@ -12,20 +12,24 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
 
   const videoInfo = search.all[0];
   console.log("Objeto completo del video:", videoInfo); // Muestra todo el objeto para ver si hay error
-  console.log("URL obtenida:", videoInfo?.url); // Depuración de la URL
+  console.log("URL obtenida antes de ajuste:", videoInfo?.url); // Depuración de la URL
 
-  if (!videoInfo.url || !/^https?:\/\//.test(videoInfo.url)) {
+  if (!videoInfo.url) {
     throw `❌ No se pudo obtener una URL válida para la descarga.\n🔍 Objeto recibido: ${JSON.stringify(videoInfo, null, 2)}`;
   }
 
-  const body = `🎵 Descargando *<${videoInfo.title}>*\n\n📺 Canal: *${videoInfo.author.name || 'Desconocido'}*\n👁️‍🗨️ Vistas: *${videoInfo.views}*\n⏳ Duración: *${videoInfo.timestamp}*\n🗓️ Publicado: *${videoInfo.ago}*\n🔗 Link: ${videoInfo.url}`;
+  // Asegurar que la URL tenga "www.youtube.com"
+  let url = videoInfo.url.replace("youtube.com", "www.youtube.com");
+  console.log("URL obtenida después de ajuste:", url); // Confirmar que se corrigió
+
+  const body = `🎵 Descargando *<${videoInfo.title}>*\n\n📺 Canal: *${videoInfo.author.name || 'Desconocido'}*\n👁️‍🗨️ Vistas: *${videoInfo.views}*\n⏳ Duración: *${videoInfo.timestamp}*\n🗓️ Publicado: *${videoInfo.ago}*\n🔗 Link: ${url}`;
 
   await conn.sendMessage(m.chat, {
     image: { url: videoInfo.thumbnail },
     caption: body,
     buttons: [
-      { buttonId: `.yta ${videoInfo.url}`, buttonText: { displayText: '🎧 Audio' } },
-      { buttonId: `.ytv ${videoInfo.url}`, buttonText: { displayText: '🎥 Video' } },
+      { buttonId: `.yta ${url}`, buttonText: { displayText: '🎧 Audio' } },
+      { buttonId: `.ytv ${url}`, buttonText: { displayText: '🎥 Video' } },
     ],
     headerType: 4,
   }, { quoted: m });
