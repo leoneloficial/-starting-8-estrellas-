@@ -55,6 +55,8 @@ regbot += `•┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄•\n
 https://whatsapp.com/channel/0029Vagdmfv1SWt5nfdR4z3w`
 
 
+
+
 regbot += `${dev}`
 await m.react('📩')
 //await m.reply(mini)
