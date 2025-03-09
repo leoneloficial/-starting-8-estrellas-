@@ -11,16 +11,16 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
   }
 
   const videoInfo = search.all[0];
-  console.log("Objeto completo del video:", videoInfo); // Muestra todo el objeto para ver si hay error
+  console.log("Objeto completo del video:", videoInfo); // Depuración
   console.log("URL obtenida antes de ajuste:", videoInfo?.url); // Depuración de la URL
 
-  if (!videoInfo.url) {
+  if (!videoInfo.url || !videoInfo.videoId) {
     throw `❌ No se pudo obtener una URL válida para la descarga.\n🔍 Objeto recibido: ${JSON.stringify(videoInfo, null, 2)}`;
   }
 
-  // Asegurar que la URL tenga "www.youtube.com"
-  let url = videoInfo.url.replace("youtube.com", "www.youtube.com");
-  console.log("URL obtenida después de ajuste:", url); // Confirmar que se corrigió
+  // Construir la URL manualmente para evitar errores
+  let url = `https://www.youtube.com/watch?v=${videoInfo.videoId}`;
+  console.log("URL corregida:", url); // Confirmar que se generó bien
 
   const body = `🎵 Descargando *<${videoInfo.title}>*\n\n📺 Canal: *${videoInfo.author.name || 'Desconocido'}*\n👁️‍🗨️ Vistas: *${videoInfo.views}*\n⏳ Duración: *${videoInfo.timestamp}*\n🗓️ Publicado: *${videoInfo.ago}*\n🔗 Link: ${url}`;
 
@@ -33,6 +33,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
     ],
     headerType: 4,
   }, { quoted: m });
+
   m.react('🎶');
 };
 
