@@ -1,101 +1,97 @@
-import fetch from 'node-fetch';
 import yts from 'yt-search';
 
 const handler = async (m, { conn, text, usedPrefix, command }) => {
-  if (!text) {
-    return conn.reply(m.chat, "⚠️ Ingresa el nombre de la canción.", m);
+  if (!text) throw "❌ *Por favor ingresa el nombre de la música que deseas descargar.*";
+
+  const isVideo = /vid|2|mp4|v$/.test(command);
+  const search = await yts(text);
+
+  if (!search.all || search.all.length === 0) {
+    throw "⚠️ *No se encontraron resultados para tu búsqueda.*";
   }
 
-  console.log(`[INFO] Buscando en YouTube: ${text}`);
-  
-  try {
-    const search = await yts(text);
-    if (!search.videos.length) {
-      return conn.reply(m.chat, "❌ No se encontraron resultados.", m);
-    }
+  const videoInfo = search.all[0];
+  const body = `┏━━━━━━━━━━━┓
+┃ 🎵 *Descarga de Música* 🎵
+┣━━━━━━━━━━━┛
+┃ 🔹 *Título:* ${videoInfo.title}
+┃ 🔹 *Canal:* ${videoInfo.author.name || 'Desconocido'}
+┃ 🔹 *Vistas:* ${videoInfo.views.toLocaleString()}
+┃ 🔹 *Duración:* ${videoInfo.timestamp}
+┃ 🔹 *Publicado hace:* ${videoInfo.ago}
+┃ 🔹 🔗 *Enlace:* ${videoInfo.url}
+┗━━━━━━━━━━━┛`;
 
-    const videoInfo = search.videos[0]; // Toma el primer resultado válido
-    const { title, author, views, timestamp, ago, url, thumbnail } = videoInfo;
+  if (command === 'play' || command === 'play2' || command === 'playvid') {
+    await conn.sendMessage(m.chat, {
+      image: { url: videoInfo.thumbnail },
+      caption: body,
+      footer: "📥 *Selecciona una opción:*",
+      buttons: [
+        {
+          buttonId: `.yta ${videoInfo.url}`,
+          buttonText: {
+            displayText: '🎧 Descargar MP3',
+          },
+        },
+        {
+          buttonId: `.ytv ${videoInfo.url}`,
+          buttonText: {
+            displayText: '🎬 Descargar MP4',
+          },
+        },
+      ],
+      viewOnce: true,
+      headerType: 4,
+    }, { quoted: m });
+    m.react('⏳');
 
-    const messageText = `🎵 *${title}*\n\n` +
-      `📺 *Canal:* ${author.name || 'Desconocido'}\n` +
-      `👀 *Vistas:* ${views.toLocaleString()}\n` +
-      `⏳ *Duración:* ${timestamp}\n` +
-      `📅 *Publicado:* ${ago}\n` +
-      `🔗 *Link:* ${url}`;
-
-    console.log(`[INFO] Video encontrado: ${url}`);
-
-    if (['play', 'playvid', 'play2'].includes(command)) {
-      console.log("[INFO] Enviando mensaje con información del video...");
-      
-      let msg = await conn.sendMessage(m.chat, {
-        image: { url: thumbnail },
-        caption: messageText,
-        footer: "🎧 Descarga rápida",
-        buttons: [
-          { buttonId: `.yta ${url}`, buttonText: { displayText: '🎵 Audio' } },
-          { buttonId: `.ytv ${url}`, buttonText: { displayText: '🎥 Video' } },
-        ],
-        viewOnce: true,
-        headerType: 4,
-      }, { quoted: m });
-
-      console.log("[INFO] Mensaje enviado correctamente.");
-
-      // Mensaje de prueba para ver si el bot responde
-      await conn.reply(m.chat, "✅ Prueba de respuesta después del comando.", m);
-
-      global.play = global.play || {};
-      global.play[msg.key.id] = { url };
-      return;
-    }
-
-    // Función para obtener URL de descarga de distintas APIs
-    const fetchFromAPIs = async (videoUrl, type) => {
-      const apis = [
-        `https://api.alyachan.dev/api/youtube?url=${videoUrl}&type=${type}&apikey=Gata-Dios`,
-        `https://delirius-apiofc.vercel.app/download/yt${type}?url=${videoUrl}`,
-        `https://api.vreden.my.id/api/yt${type}?url=${videoUrl}`
-      ];
-
-      for (let api of apis) {
-        try {
-          console.log(`[INFO] Intentando API: ${api}`);
-          let res = await fetch(api);
-          let json = await res.json();
-          
-          if (json?.data?.url) {
-            console.log(`[INFO] Descarga lista: ${json.data.url}`);
-            return json.data.url;
-          }
-        } catch (e) {
-          console.log(`[ERROR] Falló API: ${api} - ${e.message}`);
-        }
+  } else if (command === 'yta' || command === 'ytmp3') {
+    m.react('⏳');
+    let audio;
+    try {
+      audio = await (await fetch(`https://api.alyachan.dev/api/youtube?url=${videoInfo.url}&type=mp3&apikey=Gata-Dios`)).json();
+    } catch (error) {
+      try {
+        audio = await (await fetch(`https://delirius-apiofc.vercel.app/download/ytmp3?url=${videoInfo.url}`)).json();
+      } catch (error) {
+        audio = await (await fetch(`https://api.vreden.my.id/api/ytmp3?url=${videoInfo.url}`)).json();
       }
-      throw "⚠️ No se pudo obtener el archivo.";
-    };
-
-    // Manejo de comandos para descargar
-    if (command === 'yta' || command === 'ytmp3') {
-      let audioUrl = await fetchFromAPIs(url, "mp3");
-      return await conn.sendFile(m.chat, audioUrl, `${title}.mp3`, '', m, null, { mimetype: "audio/mpeg" });
     }
+    
+    if (!audio.data || !audio.data.url) throw "❌ *No se pudo obtener el audio.*";
+    conn.sendFile(m.chat, audio.data.url, videoInfo.title, '', m, null, { mimetype: "audio/mpeg", asDocument: false });
+    m.react('✅');
 
-    if (command === 'ytv' || command === 'ytmp4') {
-      let videoUrl = await fetchFromAPIs(url, "mp4");
-      return await conn.sendMessage(m.chat, { video: { url: videoUrl }, mimetype: "video/mp4", caption: "" }, { quoted: m });
+  } else if (command === 'ytv' || command === 'ytmp4') {
+    m.react('⏳');
+    let video;
+    try {
+      video = await (await fetch(`https://api.alyachan.dev/api/youtube?url=${videoInfo.url}&type=mp4&apikey=Gata-Dios`)).json();
+    } catch (error) {
+      try {
+        video = await (await fetch(`https://delirius-apiofc.vercel.app/download/ytmp4?url=${videoInfo.url}`)).json();
+      } catch (error) {
+        video = await (await fetch(`https://api.vreden.my.id/api/ytmp4?url=${videoInfo.url}`)).json();
+      }
     }
-  } catch (error) {
-    console.log(`[ERROR] ${error}`);
-    return conn.reply(m.chat, "❌ Ocurrió un error, intenta de nuevo.", m);
+    
+    if (!video.data || !video.data.url) throw "❌ *No se pudo obtener el video.*";
+    await conn.sendMessage(m.chat, {
+      video: { url: video.data.url },
+      mimetype: "video/mp4",
+      caption: "🎬 *Aquí está tu video:*",
+    }, { quoted: m });
+    m.react('✅');
+
+  } else {
+    throw "❌ *Comando no reconocido.*";
   }
 };
 
 handler.help = ['play', 'playvid', 'ytv', 'ytmp4', 'yta', 'play2', 'ytmp3'];
 handler.command = ['play', 'playvid', 'ytv', 'ytmp4', 'yta', 'play2', 'ytmp3'];
 handler.tags = ['descargas'];
-handler.group = true;
 handler.register = true;
 
 export default handler;
