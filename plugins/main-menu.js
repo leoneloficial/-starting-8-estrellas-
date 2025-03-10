@@ -34,9 +34,6 @@ let handler = async (m, { conn, args }) => {
 │   ${dev}
 ╰๋͜┈ࠢ͜┅ࠦ͜͜╾݊͜─ؕ͜─ׄ͜─֬͜─֟͜─֫͜─ׄ͜─ؕ͜─݊͜┈ࠦ͜┅ࠡ͜͜┈࠭͜͜۰۰͜۰
 
-✐ ꒷ꕤ🍓ദ ᴄᴀɴᴀʟ ᴏғɪᴄɪᴀʟ ෴
-https://whatsapp.com/channel/0029Vagdmfv1SWt5nfdR4z3w
-
 ✐; 💎→ ᴘᴀʀᴀ ᴄʀᴇᴀʀ ᴜɴ sᴜʙ-ʙᴏᴛ ᴄᴏɴ ᴛᴜ ɴᴜᴍᴇʀᴏ ᴜᴛɪʟɪᴢᴀ *#qr* o *#code
 
 »  ⊹˚• \`Info-Bot\` •˚⊹
