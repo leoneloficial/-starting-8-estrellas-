@@ -7,7 +7,7 @@ let handler = async (m, { conn, args }) => {
   let perfil = await conn.profilePictureUrl(userId, 'image').catch(_ => 'https://qu.ax/RGury.jpg');
 
   let sender = m.sender.split("@")[0];
-  let porcentajes = ["*Ejecutando* ...","100%"];
+  let porcentajes = ["100%"];
   
   for (let porcentaje of porcentajes) {
     await conn.sendMessage(m.chat, { text: `Cargando... ${porcentaje}` }, { quoted: m });
