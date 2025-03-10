@@ -125,13 +125,13 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
         {
           buttonId: `.ytmp3 ${videoInfo.url}`,
           buttonText: {
-            displayText: 'ᯓ👑 𝑨𝒖𝒅𝒊𝒐',
+            displayText: 'ᯓ 𝑨𝒖𝒅𝒊𝒐',
           },
         },
         {
           buttonId: `.ytmp4 ${videoInfo.url}`,
           buttonText: {
-            displayText: 'ᯓ👑  𝑽𝒊𝒅𝒆𝒐',
+            displayText: 'ᯓ  𝑽𝒊𝒅𝒆𝒐',
           },
         },
       ],
