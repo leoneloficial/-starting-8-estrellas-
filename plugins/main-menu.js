@@ -18,7 +18,7 @@ const handler = async (m, { conn, usedPrefix }) => {
   let porcentajes = ["10%", "25%", "50%", "75%", "100%"];
   
   for (let porcentaje of porcentajes) {
-    await conn.sendMessage(m.chat, { text: `Cargando... ${porcentaje}` }, { quoted: m });
+    await conn.sendMessage(m.chat, { text: `Cargando... ${porcentajes}` }, { quoted: m });
     await new Promise(resolve => setTimeout(resolve, 500)); // Espera de 500ms entre cada mensaje
   }
 
