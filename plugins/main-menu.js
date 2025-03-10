@@ -25,9 +25,7 @@ let handler = async (m, { conn, args }) => {
   let txt = `
 һ᥆ᥣᥲ! s᥆ᥡ *${botname}*
 ᥲ𝗊ᥙí 𝗍іᥱᥒᥱs ᥣᥲ ᥣіs𝗍ᥲ ძᥱ ᥴ᥆mᥲᥒძ᥆s          
-╭┈ ↷
-│✐ ꒷ꕤ🌸ദ ᴄᴀɴᴀʟ ᴏғɪᴄɪᴀʟ ෴
-https://whatsapp.com/channel/0029Vagdmfv1SWt5nfdR4z3w
+╭┈ ↷ 
 │✰ Cliente » @${userId.split('@')[0]}
 │⛁ ${moneda} » ${coins}
 │☆ Experiencia » ${exp.toLocaleString()}
