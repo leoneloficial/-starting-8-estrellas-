@@ -1,4 +1,4 @@
-/* import moment from 'moment-timezone';
+import moment from 'moment-timezone';
 
 let handler = async (m, { conn, args }) => {
   let userId = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.sender;
@@ -754,4 +754,4 @@ handler.help = ['menu'];
 handler.tags = ['main'];
 handler.command = ['menu', 'menú', 'help', 'ayuda'];
 
-export default handler;*/
+export default handler;
