@@ -53,7 +53,7 @@ regbot += `> • ❀ *Tokens* » 50\n`
 regbot += `•┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄•\n`
 regbot += `${dev}
 
-❥⊱〰︎sigue el canal oficial〰︎⊱❥
+❥⊱〰︎*sigue el canal oficial*〰︎⊱❥
 https://whatsapp.com/channel/0029Vagdmfv1SWt5nfdR4z3w`
 
 await m.react('📩')
