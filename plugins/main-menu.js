@@ -13,17 +13,13 @@ let handler = async (m, { conn, args }) => {
 
   let perfil = await conn.profilePictureUrl(userId, 'image').catch(_ => 'https://qu.ax/RGury.jpg');
 
-  const handler = async (m, { conn, usedPrefix }) => {
-    let sender = m.sender.split("@")[0];
-    let porcentajes = ["10%", "25%", "50%", "75%", "100%"];
-  
-    for (let porcentaje of porcentajes) {
-      await conn.sendMessage(m.chat, { text: `Cargando... ${porcentaje}` }, { quoted: m });
-      await new Promise(resolve => setTimeout(resolve, 500)); // Espera de 500ms entre cada mensaje
-    }
+  let sender = m.sender.split("@")[0];
+  let porcentajes = ["10%", "25%", "50%", "75%", "100%"];
 
-    conn.sendMessage(m.chat, { text: menu }, { quoted: m });
-  };
+  for (let porcentaje of porcentajes) {
+    await conn.sendMessage(m.chat, { text: `Cargando... ${porcentaje}` }, { quoted: m });
+    await new Promise(resolve => setTimeout(resolve, 500)); // Espera de 500ms entre cada mensaje
+  }
 
   let txt = `
 һ᥆ᥣᥲ! s᥆ᥡ *${botname}*
@@ -721,6 +717,7 @@ let handler = async (m, { conn, args }) => {
 > ✦ Hacer tijeras.
 ┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
   `.trim();
+
   await conn.sendMessage(m.chat, { 
       text: txt,
       contextInfo: {
