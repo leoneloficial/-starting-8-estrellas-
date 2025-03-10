@@ -36,7 +36,7 @@ let handler = async (m, { conn, args }) => {
 
 ✐; 🌸→ ᴘᴀʀᴀ ᴄʀᴇᴀʀ ᴜɴ sᴜʙ-ʙᴏᴛ ᴄᴏɴ ᴛᴜ ɴᴜᴍᴇʀᴏ ᴜᴛɪʟɪᴢᴀ *#qr* o *#code*
 
-»  ⊹˚• \`Info-Bot\` •˚⊹
+»  ⊹˚• `Info-Bot` •˚⊹
 ┈ࠢ͜┅ࠦ͜͜╾݊͜─ؕ͜─ׄ͜─֬͜─֟͜─֫͜─ׄ͜─ؕ͜─݊͜┈ࠦ͜┅ࠡ͜͜┈࠭͜͜۰۰͜۰
 »  ⊹˚୨ •(=^●ω●^=)•  *Economy* ⊹
 
@@ -101,6 +101,34 @@ let handler = async (m, { conn, args }) => {
 →Reclama tu dulce o truco (solo en Halloween). 
 ✦ *christmas • #navidad*
 →reclama tu regalo navideño (solo en navidad) 
+ 
+»  ⊹˚୨ •(=^●ω●^=)•  *sistema*
+
+✦ *#uptime • #runtime*
+→Ver tiempo activo o en línea de la bot 
+✦ *#sc • script*
+→ link del repositorio oficial de la bot
+✦ *#staff • #colaboradores*
+→ ver lista de desarrolladores de la bot 
+✦ *#creador*
+→contacto del creador 
+✦ *#infobot*
+→ver la información completa del bot. 
+✦ *#sug • #newcommad*
+→Sugiere un nuevo comando. 
+✦ *#reporte • #reportar*
+→Reportar alguna falla o problemas del bot  
+✦ *#sistema • #system*
+→Ver estado del sistema de alojamiento. 
+✦ *#speed • #speedtest*
+→ver la velocidad del bot 
+✦ *#funciones • #totalfinciones*
+→ ver todas las funciones de la bot. 
+✦ *#ds • #fixmsgespera*
+→Eliminar archivos de sesiones. 
+✦ *#editautoresponder*
+→configurar un prompt
+Personalizado de la bot . 
 
 »  ⊹˚୨ •(=^●ω●^=)•  *Download* ⊹
 
@@ -123,6 +151,38 @@ let handler = async (m, { conn, args }) => {
 → Descargar un reel de Instagram
 ✦ *#tiktok • #tt*
 → Descargar un video de TikTok
+✦ *#tiktoksearch • #tiktoks*
+‘n Buscador de videos de tiktok.
+✦ *#tweetposts*
+‘n Buscador de posts de Twitter/X.
+✦ *#ytsearch • #yts*
+‘n Realiza búsquedas de Youtube.
+✦ *#githubsearch*
+‘n Buscador de usuarios de GitHub.
+✦ *#cuevana • #cuevanasearch*
+‘n Buscador de películas/series por Cuevana.
+✦ *#google*
+‘n Realiza búsquedas por Google.
+✦ *#pin • #pinterest*
+‘n Buscador de imagenes de Pinterest.
+✦ *#imagen • #image*
+‘n buscador de imagenes de Google.
+✦ *#animesearch • #animess*
+‘n Buscador de animes de tioanime.
+✦ *#animei • #animeinfo*
+‘n Buscador de capítulos de #animesearch.
+✦ *#infoanime*
+‘n Buscador de información de anime/manga.
+✦ *#hentaisearch • #searchhentai*
+‘n Buscador de capítulos hentai.
+✦ *#xnxxsearch • #xnxxs*
+‘n Buscador de vídeos de Xnxx.
+✦ *#xvsearch • #xvideossearch*
+‘n Buscador de vídeos de Xvideos.
+✦ *#pornhubsearch • #phsearch*
+‘n Buscador de videos de Pornhub.
+✦ *#npmjs*
+‘n Buscandor de npmjs.
 ✦ *#twitter • #x* + [Link]
 → Descargar un video de Twitter/X
 ✦ *#vermangasporno • #vmp* + [url/id]
@@ -204,6 +264,32 @@ let handler = async (m, { conn, args }) => {
 »  ⊹˚୨ •(=^●ω●^=)•  *Utils* ⊹
 
 ✐ Comandos *Utiles*
+✦ *#calcular • #calcular • #cal*
+‘n Calcular todo tipo de ecuaciones.
+✦ *#tiempo • #clima*
+‘n Ver el clima de un pais.
+✦ *#horario*
+‘n Ver el horario global de los países.
+✦ *#fake • #fakereply*
+‘n Crea un mensaje falso de un usuario.
+✦ *#enhance • #remini • #hd*
+‘n Mejora la calidad de una imagen.
+✦ *#letra*
+‘n Cambia la fuente de las letras.
+✦ *#read • #readviewonce • #ver*
+‘n Ver imágenes de una sola vista.
+✦ *#whatmusic • #shazam*
+‘n Descubre el nombre de canciones o vídeos.
+✦ *#ss • #ssweb*
+‘n Ver el estado de una página web.
+✦ *#length • #tamaño*
+‘n Cambia el tamaño de imágenes y vídeos.
+✦ *#say • #decir* + [texto]
+‘n Repetir un mensaje.
+✦ *#todoc • #toducument*
+‘n Crea documentos de (audio, imágenes y vídeos).
+✦ *#translate • #traducir • #trad*
+  `n Traduce palabras en otros idiomas
 ✦ *#bots • #sockets*
 → Ver el numero de bots activos.
 ✦ *#del • #delete* + {citar un mensaje}
