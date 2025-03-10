@@ -289,7 +289,7 @@ Personalizado de la bot .
 ✦ *#todoc • #toducument*
 ‘n Crea documentos de (audio, imágenes y vídeos).
 ✦ *#translate • #traducir • #trad*
-  `n Traduce palabras en otros idiomas
+  ‘n Traduce palabras en otros idiomas
 ✦ *#bots • #sockets*
 → Ver el numero de bots activos.
 ✦ *#del • #delete* + {citar un mensaje}
