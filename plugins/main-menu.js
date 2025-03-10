@@ -3,30 +3,19 @@ import moment from 'moment-timezone';
 let handler = async (m, { conn, args }) => {
   let userId = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.sender;
   let user = global.db.data.users[userId];
-  let name = conn.getName(userId);
-  let cumpleanos = user.birth || 'No especificado';
-  let genero = user.genre || 'No especificado';
+  let name = conn.getName(userId);  
   let exp = user.exp || 0;
   let nivel = user.level || 0;
   let coins = user.coin || 0;
   let role = user.role || '';
-
-  let perfil = await conn.profilePictureUrl(userId, 'image').catch(_ => 'https://qu.ax/RGury.jpg');
-
   let sender = m.sender.split("@")[0];
-
- /* let porcentajes = ["*Enviando mi menu 🪄*","*Listo* !"];
-
-  for (let porcentaje of porcentajes) {
-    await conn.sendMessage(m.chat, { text: ` ${porcentaje}` }, { quoted: m });
-    await new Promise(resolve => setTimeout(resolve, 500)); // Espera de 500ms entre cada mensaje
-  }*/
 
   let txt = `
 һ᥆ᥣᥲ! s᥆ᥡ *${botname}*
 ᥲ𝗊ᥙí 𝗍іᥱᥒᥱs ᥣᥲ ᥣіs𝗍ᥲ ძᥱ ᥴ᥆mᥲᥒძ᥆s          
 ╭┈ ↷ 
 │✰ Cliente » @${userId.split('@')[0]}
+│✦ Bot » ${(conn.user.jid == global.conn.user.jid ? 'Principal' : 'Sub-Bot')}
 │⛁ ${moneda} » ${coins}
 │☆ Experiencia » ${exp.toLocaleString()}
 │❖ Nivel » ${nivel}
