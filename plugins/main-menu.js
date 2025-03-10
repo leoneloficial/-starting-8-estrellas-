@@ -10,17 +10,6 @@ let handler = async (m, { conn, args }) => {
   let role = user.role || '';
   let sender = m.sender.split("@")[0];
 
-  
-  let imageUrl = 'https://qu.ax/fjxyW.jpg'; 
-
-  await conn.sendMessage(m.chat, { 
-    document: { url: imageUrl }, 
-    mimetype: 'image/jpeg',
-    fileName: 'imagen.jpg',
-    caption: txt 
-  });
-
-}
 
   let txt = `
 һ᥆ᥣᥲ! s᥆ᥡ *${botname}*
