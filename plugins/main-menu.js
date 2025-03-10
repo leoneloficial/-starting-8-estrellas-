@@ -10,6 +10,15 @@ let handler = async (m, { conn, args }) => {
   let role = user.role || '';
   let sender = m.sender.split("@")[0];
 
+  let imageUrl = 'https://qu.ax/fjxyW.jpg'; // Reemplázala con una URL válida o un archivo local
+
+  await conn.sendMessage(m.chat, { 
+    image: { url: imageUrl }, 
+    caption: txt 
+  });
+
+};
+
   let txt = `
 һ᥆ᥣᥲ! s᥆ᥡ *${botname}*
 ᥲ𝗊ᥙí 𝗍іᥱᥒᥱs ᥣᥲ ᥣіs𝗍ᥲ ძᥱ ᥴ᥆mᥲᥒძ᥆s          
