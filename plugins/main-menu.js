@@ -14,12 +14,13 @@ let handler = async (m, { conn, args }) => {
   let perfil = await conn.profilePictureUrl(userId, 'image').catch(_ => 'https://qu.ax/RGury.jpg');
 
   let sender = m.sender.split("@")[0];
-  let porcentajes = ["*Enviando mi menu 🪄*","*Listo* !"];
+
+ /* let porcentajes = ["*Enviando mi menu 🪄*","*Listo* !"];
 
   for (let porcentaje of porcentajes) {
     await conn.sendMessage(m.chat, { text: ` ${porcentaje}` }, { quoted: m });
     await new Promise(resolve => setTimeout(resolve, 500)); // Espera de 500ms entre cada mensaje
-  }
+  }*/
 
   let txt = `
 һ᥆ᥣᥲ! s᥆ᥡ *${botname}*
