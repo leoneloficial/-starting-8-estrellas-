@@ -25,8 +25,6 @@ let handler = async (m, { conn, args }) => {
 
 ✐; 🌸→ ᴘᴀʀᴀ ᴄʀᴇᴀʀ ᴜɴ sᴜʙ-ʙᴏᴛ ᴄᴏɴ ᴛᴜ ɴᴜᴍᴇʀᴏ ᴜᴛɪʟɪᴢᴀ *#qr* o *#code*
 
-»  ⊹˚• `Info-Bot` •˚⊹
-┈ࠢ͜┅ࠦ͜͜╾݊͜─ؕ͜─ׄ͜─֬͜─֟͜─֫͜─ׄ͜─ؕ͜─݊͜┈ࠦ͜┅ࠡ͜͜┈࠭͜͜۰۰͜۰
 »  ⊹˚୨ •(=^●ω●^=)•  *Economy* ⊹
 
 ✐ Comandos de *Economia* para ganar dinero y divertirte con tus amigos.
