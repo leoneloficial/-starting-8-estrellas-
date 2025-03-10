@@ -32,7 +32,7 @@ const handler = async (m, { conn, text }) => {
                 buttons: [
                     { 
                         buttonId: `.pinterest ${text}`, 
-                        buttonText: { displayText: 'next ☄' },
+                        buttonText: { displayText: 'siguente ☄' },
                         type: 1  
                     }
                 ],
