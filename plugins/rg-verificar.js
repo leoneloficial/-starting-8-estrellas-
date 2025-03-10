@@ -51,7 +51,10 @@ regbot += `> • ⛁ *${moneda}* » 500\n`
 regbot += `> • ✩ *Experiencia* » 600\n`
 regbot += `> • ❀ *Tokens* » 50\n`
 regbot += `•┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄•\n`
-regbot += `${dev}`
+regbot += `${dev}
+
+https://whatsapp.com/channel/0029Vagdmfv1SWt5nfdR4z3w`
+
 await m.react('📩')
 //await m.reply(mini)
 await conn.sendMessage(m.chat, {
