@@ -138,7 +138,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
       viewOnce: true,
       headerType: 4,
     }, { quoted: fkontak });
-    m.react('🕒');
+    m.react('');
     
     global.play[msg.key.id] = { url: videoInfo.url };
 
