@@ -51,7 +51,6 @@ regbot += `> • ⛁ *${moneda}* » 500\n`
 regbot += `> • ✩ *Experiencia* » 600\n`
 regbot += `> • ❀ *Tokens* » 50\n`
 regbot += `•┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄•\n
-✦⏤͟͟͞͞sigue el canal oficial⏤͟͟͞͞✦
 https://whatsapp.com/channel/0029Vagdmfv1SWt5nfdR4z3w`
 
 
