@@ -4,20 +4,11 @@ let handler = async (m, { conn, args }) => {
   let userId = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.sender;
   let user = global.db.data.users[userId];
   let name = conn.getName(userId);
-  let cumpleanos = user.birth || 'No especificado';
-  let genero = user.genre || 'No especificado';
-  let exp = user.exp || 0;
-  let nivel = user.level || 0;
-  let coins = user.coin || 0;
-  let role = user.role || '';
-
   let perfil = await conn.profilePictureUrl(userId, 'image').catch(_ => 'https://qu.ax/RGury.jpg');
 
-const handler = async (m, { conn, usedPrefix }) => {
-  
   let sender = m.sender.split("@")[0];
   let porcentajes = ["10%", "25%", "50%", "75%", "100%"];
-  
+
   for (let porcentaje of porcentajes) {
     await conn.sendMessage(m.chat, { text: `Cargando... ${porcentaje}` }, { quoted: m });
     await new Promise(resolve => setTimeout(resolve, 500)); // Espera de 500ms entre cada mensaje
