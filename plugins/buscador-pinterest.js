@@ -6,7 +6,7 @@ import axios from 'axios';
 const handler = async (m, { conn, text }) => {
     try {
         if (!text) {
-            await conn.sendMessage(m.chat, { text: '🚩 Por favor proporciona un término de búsqueda.' }, { quoted: m, rcanal });
+            await conn.sendMessage(m.chat, { text: '✎ Por favor proporciona un término de búsqueda.' }, { quoted: m, rcanal });
             return;
         }
 
@@ -28,11 +28,11 @@ const handler = async (m, { conn, text }) => {
             m.chat,
             { 
                 image: { url: imageUrl },
-                caption: `\t\t💫 *${title}*\n ${global.dev}`,
+                caption: `\t\t⚘ *${title}*\n ${global.dev}`,
                 buttons: [
                     { 
                         buttonId: `.pinterest ${text}`, 
-                        buttonText: { displayText: 'siguente ☄' },
+                        buttonText: { displayText: 'ᯓsiguente' },
                         type: 1  
                     }
                 ],
