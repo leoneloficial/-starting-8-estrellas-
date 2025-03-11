@@ -21,16 +21,16 @@ let neww = performance.now()
 let speed = neww - old
 const used = process.memoryUsage()
 let yuki = `\`\`\`Información - ${botname}\`\`\`\n `
-yuki += `۰ᝰֺ࡙┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Creador◞* ⇢ 𝕷͢𝖊𝖔፝֟፝֟፝֟፝֟፝֟፝֟𝖓𝖊𝖑`
-yuki += `۰ᝰֺ࡙┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Prefijo◞* ⇢ [ ${usedPrefix} ]\n`
-yuki += `۰ᝰֺ࡙┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Versión◞* ⇢ ${vs}\n`
-yuki += `۰ᝰֺ࡙┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Chats Privados◞* ⇢ ${chats.length - groupsIn.length}\n`
-yuki += `۰ᝰֺ࡙┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Total De Chats◞* ⇢ ${chats.length}\n`
-yuki += `۰ᝰֺ࡙┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Usuarios◞* ⇢ ${totalreg}\n`
-yuki += `۰ᝰֺ࡙┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Grupos◞* ⇢ ${groupsIn.length}\n`
-yuki += `۰ᝰֺ࡙┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Actividad◞* ⇢ ${muptime}\n`
-yuki += `۰ᝰֺ࡙┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Velocidad◞* ⇢ ${(speed * 1000).toFixed(0) / 1000}\n`
-yuki += `۰ᝰֺ࡙┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Sub-Bots Activos◞* ⇢ ${totalUsers || '0'}`
+yuki += `۰┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Creador◞* ⇢ 𝕷͢𝖊𝖔፝֟፝֟፝֟፝֟፝֟፝֟𝖓𝖊𝖑`
+yuki += `۰┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Prefijo◞* ⇢ [ ${usedPrefix} ]\n`
+yuki += `۰┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Versión◞* ⇢ ${vs}\n`
+yuki += `۰┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Chats Privados◞* ⇢ ${chats.length - groupsIn.length}\n`
+yuki += `۰┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Total De Chats◞* ⇢ ${chats.length}\n`
+yuki += `۰┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Usuarios◞* ⇢ ${totalreg}\n`
+yuki += `۰┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Grupos◞* ⇢ ${groupsIn.length}\n`
+yuki += `۰┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Actividad◞* ⇢ ${muptime}\n`
+yuki += `۰┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Velocidad◞* ⇢ ${(speed * 1000).toFixed(0) / 1000}\n`
+yuki += `۰┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Sub-Bots Activos◞* ⇢ ${totalUsers || '0'}`
 await conn.sendFile(m.chat, pp, 'yuki.jpg', yuki, fkontak, null, rcanal)
 }
 handler.help = ['estado']
