@@ -30,23 +30,23 @@ let handler = async (m, { conn, usedPrefix }) => {
   let correo = 'Leoneloficial.com'
 
   let yuki = `╭─⬣「 *Info De ${botname}* 」⬣\n`
-  yuki += `│ 「 ❃*˚｡⋆」 *Creador* : @${owner[0][0].split('@s.whatsapp.net')[0]}\n`
-  yuki += `│ 「 ೃ♥︎•୭」 *Prefijo* : [ ${usedPrefix} ]\n`
-  yuki += `│ 「 ∫ *✰* *.۰」 *Total Plugins* : ${totalf}\n`
-  yuki += `│ 「 ࿔* 𖤓*:･ﾟ」 *Plataforma* : ${platform()}\n`
-  yuki += `│ 「༉₊ ✦*˚」 *Servidor* : ${hostname()}\n`
-  yuki += `│ 「 ❃*˚｡⋆」 *RAM* : ${format(totalmem() - freemem())} / ${format(totalmem())}\n`
-  yuki += `│  「༊ ❆·˚」 *FreeRAM* : ${format(freemem())}\n`
-  yuki += `│ 「⋰˚❁」 *Speed* : ${latensi.toFixed(4)} ms\n`
-  yuki += `│ 「୭̥° *❀⋰˚」 *Uptime* : ${uptime}\n`
-  yuki += `│ 「₊˚✿*.༄」 *Grupos Registrados* : ${groupsIn.length}\n`
-  yuki += `│ 「‧₊˚ ✧* 彡」 *Chats Totales* : ${chats.length}\n`
+  yuki += `│ 「𖤓」 *Creador* : @${owner[0][0].split('@s.whatsapp.net')[0]}\n`
+  yuki += `│ 「❁」 *Prefijo* : [ ${usedPrefix} ]\n`
+  yuki += `│ 「✧」 *Total Plugins* : ${totalf}\n`
+  yuki += `│ 「❃」 *Plataforma* : ${platform()}\n`
+  yuki += `│ 「✰」 *Servidor* : ${hostname()}\n`
+  yuki += `│ 「𖤓」 *RAM* : ${format(totalmem() - freemem())} / ${format(totalmem())}\n`
+  yuki += `│ 「♥︎」 *FreeRAM* : ${format(freemem())}\n`
+  yuki += `│ 「✧」 *Speed* : ${latensi.toFixed(4)} ms\n`
+  yuki += `│ 」「✿」 *Uptime* : ${uptime}\n`
+  yuki += `│ 「❀」 *Grupos Registrados* : ${groupsIn.length}\n`
+  yuki += `│ 「❁」 *Chats Totales* : ${chats.length}\n`
   yuki += `╰─⬣\n\n`
   
   yuki += `╭─⬣「 *Redes del Creador* 」⬣\n`
-  yuki += `│ 「 ೃ♥︎•୭」 *GitHub Personal* : ${git}\n`
-  yuki += `│ 「 ࿔* *𖤓:･ﾟ」 *Repositorio Bot* : ${github}\n`
-  yuki += `│ 「 ∫ *✰ *.۰」 *Correo* : ${correo}\n`
+  yuki += `│ 「❆」 *GitHub Personal* : ${git}\n`
+  yuki += `│ 「❃」 *Repositorio Bot* : ${github}\n`
+  yuki += `│ 「✦」 *Correo* : ${correo}\n`
   yuki += `╰─⬣\n\n`
 
   yuki += `╭─⬣「 *NodeJS Uso de memoria* 」⬣\n`
