@@ -38,7 +38,7 @@ let handler = async (m, { conn, usedPrefix }) => {
   yuki += `│ 「𖤓」 *RAM* : ${format(totalmem() - freemem())} / ${format(totalmem())}\n`
   yuki += `│ 「♥︎」 *FreeRAM* : ${format(freemem())}\n`
   yuki += `│ 「✧」 *Speed* : ${latensi.toFixed(4)} ms\n`
-  yuki += `│ 」「✿」 *Uptime* : ${uptime}\n`
+  yuki += `│ 「✿」 *Uptime* : ${uptime}\n`
   yuki += `│ 「❀」 *Grupos Registrados* : ${groupsIn.length}\n`
   yuki += `│ 「❁」 *Chats Totales* : ${chats.length}\n`
   yuki += `╰─⬣\n\n`
