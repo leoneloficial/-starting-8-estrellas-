@@ -11,18 +11,13 @@ if (/webp|image|video/g.test(mime)) {
 if (/video/g.test(mime)) if ((q.msg || q).seconds > 8) return m.reply(`☁️ *¡El video no puede durar mas de 8 segundos!*`)
 let img = await q.download?.()
 
-if (!img) return conn.reply(m.chat, `《♥︎》 Por favor, envía una imagen o video para hacer un sticker.`, m,)
+if (!img) return conn.reply(m.chat, `⚠️ *_La conversión ha fallado, intenta enviar primero imagen/video/gif y luego responde con el comando._*`, m, rcanal)
 
 let out
 try {
 stiker = await sticker(img, false, global.packsticker, `━━━━━━━━━♾
-\🌸sumi-sakurazawa🌸
-
-sticker creado por↷
-
-\n${m.pushName}\n
-
-⇝ ${moment.tz('America/Los_Angeles').format('DD/MM/YY')}\n⇝ ${moment.tz('America/Los_Angeles').format('HH:mm:ss')}\n\n\nѕτιϲκєя ϐγ: Starting⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.`)
+\🌸𝙨𝙪𝙢𝙞 𝙨𝙖𝙠𝙪𝙧𝙖𝙯𝙖𝙬𝙖🌸\n${m.pushName}\n⇝ ${moment.tz('America/Los_Angeles').format('DD/MM/YY')}\n⇝ ${moment.tz('America/Los_Angeles').format('HH:mm:ss')} \n.\n\nѕτιϲκєя ϐγ: Starting
+.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.`)
 } catch (e) {
 console.error(e)
 } finally {
@@ -34,7 +29,7 @@ if (typeof out !== 'string') out = await uploadImage(img)
 stiker = await sticker(false, out, global.packsticker, `━━━━━━━━♾\вσт мαƒια\n${m.pushName}\n⇝ ${moment.tz('America/Los_Angeles').format('DD/MM/YY')}\n⇝ ${moment.tz('America/Los_Angeles').format('HH:mm:ss')} \n°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°\n\nѕτιϲκєя ϐγ: Starting`)
 }}
 } else if (args[0]) {
-if (isUrl(args[0])) stiker = await sticker(false, args[0], global.packsticker, `━━━━━━━━♾\𖤓⏤͟͟͞͞вσт мαƒια 𓆩✝︎𓆪 ʝαρσηєѕα⏤͟͟͞͞𖤓\n${m.pushName}\n⇝ ${moment.tz('America/Los_Angeles').format('DD/MM/YY')}\n⇝ ${moment.tz('America/Los_Angeles').format('HH:mm:ss')} \n°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°\n\nѕτιϲκєя ϐγ: Starting`)
+if (isUrl(args[0])) stiker = await sticker(false, args[0], global.packsticker, `━━━━━━━━♾\🌸𝙨𝙪𝙢𝙞 𝙨𝙖𝙠𝙪𝙧𝙖𝙯𝙖𝙬𝙖🌸\n${m.pushName}\n⇝ ${moment.tz('America/Los_Angeles').format('DD/MM/YY')}\n⇝ ${moment.tz('America/Los_Angeles').format('HH:mm:ss')} \n°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°\n\nѕτιϲκєя ϐγ: Starting`)
 
 else return m.reply(`💫 El url es incorrecto`)
 
@@ -45,13 +40,13 @@ if (!stiker) stiker = e
 } finally {
 if (stiker) conn.sendFile(m.chat, stiker, 'sticker.webp', '',m, true, { contextInfo: { 'forwardingScore': 200, 'isForwarded': false, externalAdReply:{ showAdAttribution: false, title: packname, body: `hola`, mediaType: 2, sourceUrl: redes, thumbnail: icons}}}, { quoted: m })
 
-else return conn.reply(m.chat, '《♥︎》 Por favor, envía una imagen o video para hacer un sticker.', m,)
+else return conn.reply(m.chat, '⚠️ *_La conversión ha fallado, intenta enviar primero imagen/video/gif y luego responde con el comando._*', m, rcanal)
 
 
 }}
 handler.help = ['stiker <img>', 'sticker <url>']
 handler.tags = ['sticker']
-handler.group = true;
+handler.group = false;
 handler.register = true
 handler.command = ['s', 'sticker', 'stiker']
 
