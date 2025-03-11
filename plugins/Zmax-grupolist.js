@@ -31,7 +31,7 @@ let handler = async (m, { conn, args }) => {
         }
 
         // Enviar mensaje de despedida y salir del grupo
-        await conn.reply(groupId, `✎ *Adiós a todos, el Bot se despide! (≧ω≦)ゞ*`);
+        await conn.reply(groupId, `✎ *Se me ordeno salir, Adios a todos, el Bot se despide! (≧ω≦)ゞ*`);
         await conn.groupLeave(groupId);
 
         m.reply(`*Salí del grupo*: ${await conn.getName(groupId)}`);
