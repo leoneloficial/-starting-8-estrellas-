@@ -12,32 +12,33 @@ let handler = async (m, { conn, args }) => {
     const groupCode = match[1];
 
     try {
-        // Obtener el ID del grupo desde el enlace
-        let groupMetadata = await conn.groupAcceptInvite(groupCode).catch(() => null);
-
-        if (!groupMetadata) {
-            return m.reply('⚠️ No encontré el grupo o no puedo acceder a él.');
+        // Buscar el grupo en la lista de chats del bot
+        let groupId;
+        for (let chat of Object.values(conn.chats)) {
+            if (chat.id.includes('@g.us')) {
+                let metadata = await conn.groupMetadata(chat.id).catch(() => null);
+                if (metadata && metadata.inviteCode === groupCode) {
+                    groupId = metadata.id;
+                    break;
+                }
+            }
         }
 
-        let groupId = groupMetadata.id;
-
-        // Verificar si el bot realmente está en el grupo
-        let inGroup = conn.chats.has(groupId);
-        if (!inGroup) {
-            return m.reply('⚠️ No estoy en este grupo.');
+        if (!groupId) {
+            return m.reply('⚠️ No encontré el grupo o no estoy en él.');
         }
 
-        // Enviar mensaje de despedida y salir
+        // Enviar mensaje de despedida y salir del grupo
         await conn.reply(groupId, `✎ *Adiós a todos, el Bot se despide! (≧ω≦)ゞ*`);
         await conn.groupLeave(groupId);
 
-        m.reply(`🚪 Salí del grupo: ${groupMetadata.subject}`);
+        m.reply(`🚪 Salí del grupo: ${groupId}`);
     } catch (e) {
         console.error(e);
         m.reply('⚠️ No pude procesar la solicitud.');
     }
 };
 
-handler.command = /^LeaveCD$/i;
+handler.command = ['LeaveCD'];
 handler.rowner = true; // Solo el dueño del bot puede usarlo
 export default handler;
