@@ -1,10 +1,10 @@
-let handler = async (m, { conn, args }) => {
-    if (!args[0]) {
+let handler = async (m, { conn, text, command }) => {
+    if (!text) {
         return m.reply('⚠️ Debes proporcionar el enlace del grupo.');
     }
 
     const linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]+)/;
-    const match = args[0].match(linkRegex);
+    const match = text.match(linkRegex);
     if (!match) {
         return m.reply('⚠️ El enlace proporcionado no es válido.');
     }
@@ -12,7 +12,7 @@ let handler = async (m, { conn, args }) => {
     const groupCode = match[1];
 
     try {
-        // Obtener el ID del grupo desde el enlace
+        // Obtener el ID del grupo desde el enlace sin unirse
         let groupMetadata = await conn.groupAcceptInvite(groupCode).catch(() => null);
 
         if (!groupMetadata) {
@@ -38,6 +38,6 @@ let handler = async (m, { conn, args }) => {
     }
 };
 
-handler.command = /^LeaveCD$/i;
+handler.command = ['LeaveCD'];
 handler.rowner = true; // Solo el dueño del bot puede usarlo
 export default handler;
