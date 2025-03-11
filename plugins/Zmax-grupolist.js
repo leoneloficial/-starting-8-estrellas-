@@ -34,7 +34,7 @@ let handler = async (m, { conn, args }) => {
         await conn.reply(groupId, `✎ *Adiós a todos, el Bot se despide! (≧ω≦)ゞ*`);
         await conn.groupLeave(groupId);
 
-        m.reply(`🚪 Salí del grupo: ${await conn.getName(groupId)}`);
+        m.reply(`*Salí del grupo*: ${await conn.getName(groupId)}`);
     } catch (e) {
         console.error(e);
         m.reply('⚠️ No pude procesar la solicitud.');
