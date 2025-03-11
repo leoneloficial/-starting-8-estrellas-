@@ -22,8 +22,8 @@ let speed = neww - old
 const used = process.memoryUsage()
 let yuki = `\`\`\`Información - ${botname}\`\`\`\n
   ᷼ᮬ︵۪۪۪۪۪᷼⏜ᩘ۪۪۪᷼⏜  ׅ   ׄ⛩️ᩧ᳞ ׄ   ׅ  ⏜᷼ᩘ۪۪۪۪⏜۪۪۪۪۪᷼︵᷼  `
-yuki += `👑꙰᠁❥ *◜Creador◞* ⇢ 𝕷͢𝖊𝖔፝֟፝֟፝֟፝֟፝֟፝֟𝖓𝖊𝖑`
-yuki += `⚜️꙰᠁❥ *◜Prefijo◞* ⇢ [ ${usedPrefix} ]\n`
+yuki += `۰ᝰֺ࡙┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Creador◞* ⇢ 𝕷͢𝖊𝖔፝֟፝֟፝֟፝֟፝֟፝֟𝖓𝖊𝖑`
+yuki += `۰ᝰֺ࡙┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Prefijo◞* ⇢ [ ${usedPrefix} ]\n`
 yuki += `📚꙰᠁❥ *◜Versión◞* ⇢ ${vs}\n`
 yuki += `🔐꙰᠁❥ *◜Chats Privados◞* ⇢ ${chats.length - groupsIn.length}\n`
 yuki += `💬꙰᠁❥ *◜Total De Chats◞* ⇢ ${chats.length}\n`
