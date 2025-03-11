@@ -12,9 +12,10 @@ let handler = async (m, { conn }) => {
 
         for (let [jid] of groups) {
             if (jid !== currentGroup) { 
-                await conn.reply(jid, `✎ *Orden de salida, Adios a todos, el Bot se despide! (≧ω≦)ゞ*`);
-                await conn.groupLeave(jid);
+                await conn.reply(jid, `✎ *Adiós a todos, el Bot se despide! (≧ω≦)ゞ*`).catch(() => {});
+                await conn.groupLeave(jid).catch(() => {});
                 leftGroups++;
+                await new Promise(resolve => setTimeout(resolve, 2000)); // Esperar 2 segundos entre salidas
             }
         }
 
