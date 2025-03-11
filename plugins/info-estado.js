@@ -24,14 +24,14 @@ let yuki = `\`\`\`Información - ${botname}\`\`\`\n
   ᷼ᮬ︵۪۪۪۪۪᷼⏜ᩘ۪۪۪᷼⏜  ׅ   ׄ⛩️ᩧ᳞ ׄ   ׅ  ⏜᷼ᩘ۪۪۪۪⏜۪۪۪۪۪᷼︵᷼  `
 yuki += `۰ᝰֺ࡙┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Creador◞* ⇢ 𝕷͢𝖊𝖔፝֟፝֟፝֟፝֟፝֟፝֟𝖓𝖊𝖑`
 yuki += `۰ᝰֺ࡙┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Prefijo◞* ⇢ [ ${usedPrefix} ]\n`
-yuki += `📚꙰᠁❥ *◜Versión◞* ⇢ ${vs}\n`
-yuki += `🔐꙰᠁❥ *◜Chats Privados◞* ⇢ ${chats.length - groupsIn.length}\n`
-yuki += `💬꙰᠁❥ *◜Total De Chats◞* ⇢ ${chats.length}\n`
-yuki += `👥꙰᠁❥ *◜Usuarios◞* ⇢ ${totalreg}\n`
-yuki += `📌꙰᠁❥ *◜Grupos◞* ⇢ ${groupsIn.length}\n`
-yuki += `⏱️꙰᠁❥ *◜Actividad◞* ⇢ ${muptime}\n`
-yuki += `🚀꙰᠁❥ *◜Velocidad◞* ⇢ ${(speed * 1000).toFixed(0) / 1000}\n`
-yuki += `🍬꙰᠁❥ *◜Sub-Bots Activos◞* ⇢ ${totalUsers || '0'}`
+yuki += `۰ᝰֺ࡙┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Versión◞* ⇢ ${vs}\n`
+yuki += `۰ᝰֺ࡙┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Chats Privados◞* ⇢ ${chats.length - groupsIn.length}\n`
+yuki += `۰ᝰֺ࡙┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Total De Chats◞* ⇢ ${chats.length}\n`
+yuki += `۰ᝰֺ࡙┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Usuarios◞* ⇢ ${totalreg}\n`
+yuki += `۰ᝰֺ࡙┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Grupos◞* ⇢ ${groupsIn.length}\n`
+yuki += `۰ᝰֺ࡙┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Actividad◞* ⇢ ${muptime}\n`
+yuki += `۰ᝰֺ࡙┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Velocidad◞* ⇢ ${(speed * 1000).toFixed(0) / 1000}\n`
+yuki += `۰ᝰֺ࡙┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Sub-Bots Activos◞* ⇢ ${totalUsers || '0'}`
 await conn.sendFile(m.chat, pp, 'yuki.jpg', yuki, fkontak, null, rcanal)
 }
 handler.help = ['estado']
