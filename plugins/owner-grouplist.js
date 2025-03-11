@@ -41,12 +41,12 @@ try {
     *➤ Total de Participantes:* ${totalParticipants}
     *➤ Link:* ${isBotAdmin ? '--- (Error) ---' : '--- (No admin) ---'}\n\n`;
   }
-  m.reply(`*Lista de grupos del Bot* 👾\n\n*—◉ Total de grupos:* ${totalGroups}\n\n${txt}`.trim());
+  m.reply(`*Lista de grupos del Bot* \n\n*—◉ Total de grupos:* ${totalGroups}\n\n${txt}`.trim());
  }    
 };
 handler.help = ['groups', 'grouplist'];
 handler.tags = ['owner'];
 handler.command = ['listgroup', 'gruposlista', 'grouplist', 'listagrupos']
 handler.rowner = true;
-handler.private = true
+handler.private = false
 export default handler;
