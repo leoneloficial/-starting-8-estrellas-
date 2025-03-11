@@ -23,6 +23,8 @@ const used = process.memoryUsage()
 let yuki = `\`\`\`Información - ${botname}\`\`\`\n `
 yuki += `۰┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Creador◞*⇢𝕷͢𝖊𝖔፝֟፝֟፝֟፝֟፝֟፝֟𝖓𝖊𝖑`
 
+
+
 yuki += `۰┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Prefijo◞* ⇢ [ ${usedPrefix} ]\n`
 yuki += `۰┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Versión◞* ⇢ ${vs}\n`
 yuki += `۰┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Chats Privados◞* ⇢ ${chats.length - groupsIn.length}\n`
