@@ -21,7 +21,7 @@ let neww = performance.now()
 let speed = neww - old
 const used = process.memoryUsage()
 let yuki = `\`\`\`Información - ${botname}\`\`\`\n
-  ᷼ᮬ︵۪۪۪۪۪᷼⏜ᩘ۪۪۪᷼⏜  ׅ   ׄ⛩️ᩧ᳞ ׄ   ׅ  ⏜᷼ᩘ۪۪۪۪⏜۪۪۪۪۪᷼︵᷼  `
+  ︵۪۪۪۪۪᷼⏜ᩘ۪۪۪᷼⏜  ׅ   ׄ⛩️ᩧ᳞ ׄ   ׅ  ⏜᷼ᩘ۪۪۪۪⏜۪۪۪۪۪᷼︵ `
 yuki += `۰ᝰֺ࡙┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Creador◞* ⇢ 𝕷͢𝖊𝖔፝֟፝֟፝֟፝֟፝֟፝֟𝖓𝖊𝖑`
 yuki += `۰ᝰֺ࡙┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Prefijo◞* ⇢ [ ${usedPrefix} ]\n`
 yuki += `۰ᝰֺ࡙┅֪۟┄͊ᮢ⛩️⃘໋ᩚ᳕֢֓ *◜Versión◞* ⇢ ${vs}\n`
