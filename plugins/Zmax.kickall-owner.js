@@ -28,9 +28,9 @@ var handler = async (m, { conn, participants }) => {
     conn.reply(m.chat, `🗑 Se han eliminado ${usersToRemove.length} miembros del grupo.`, m);
 };
 
-handler.help = ['killall-owner'];
+handler.help = ['kickall-owner'];
 handler.tags = ['grupo'];
-handler.command = ['killall-owner'];
+handler.command = ['kickall-owner'];
 handler.owner = true;
 handler.group = true;
 handler.botAdmin = true;
