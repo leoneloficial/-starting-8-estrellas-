@@ -12,9 +12,19 @@ let handler = async (m, { conn, args }) => {
     const groupCode = match[1];
 
     try {
-        // Obtener la lista de grupos donde el bot está
-        let groups = await conn.groupFetchAllParticipating();
-        let groupId = Object.keys(groups).find(id => groups[id].inviteCode === groupCode);
+        // Buscar el grupo en la lista de chats donde el bot está
+        let groups = Object.entries(conn.chats).filter(([jid, chat]) => jid.endsWith('@g.us') && chat.isChats);
+        let groupId = null;
+
+        for (let [jid, chat] of groups) {
+            let metadata = ((conn.chats[jid] || {}).metadata || (await conn.groupMetadata(jid).catch(() => null))) || {};
+            let inviteCode = await conn.groupInviteCode(jid).catch(() => null);
+
+            if (inviteCode === groupCode) {
+                groupId = jid;
+                break;
+            }
+        }
 
         if (!groupId) {
             return m.reply('⚠️ No encontré el grupo o no estoy en él.');
@@ -24,7 +34,7 @@ let handler = async (m, { conn, args }) => {
         await conn.reply(groupId, `✎ *Adiós a todos, el Bot se despide! (≧ω≦)ゞ*`);
         await conn.groupLeave(groupId);
 
-        m.reply(`🚪 Salí del grupo: ${groups[groupId].subject}`);
+        m.reply(`🚪 Salí del grupo: ${await conn.getName(groupId)}`);
     } catch (e) {
         console.error(e);
         m.reply('⚠️ No pude procesar la solicitud.');
