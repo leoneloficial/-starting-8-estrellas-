@@ -17,11 +17,12 @@ let out
 try {
 stiker = await sticker(img, false, global.packsticker, `━━━━━━━━━♾
 \🌸sumi-sakurazawa🌸
+
 sticker creado por↷
 
-\n${m.pushName}\n⇝ 
+\n${m.pushName}\n
 
-${moment.tz('America/Los_Angeles').format('DD/MM/YY')}\n⇝ ${moment.tz('America/Los_Angeles').format('HH:mm:ss')} \n.\n\nѕτιϲκєя ϐγ: Starting
+⇝ ${moment.tz('America/Los_Angeles').format('DD/MM/YY')}\n⇝ ${moment.tz('America/Los_Angeles').format('HH:mm:ss')} \n.\n\nѕτιϲκєя ϐγ: Starting
 .⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.`)
 } catch (e) {
 console.error(e)
