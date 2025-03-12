@@ -15,10 +15,10 @@ if (!img) return conn.reply(m.chat, `《♥︎》 *Por favor, envía una imagen 
 
 let out
 try {
-stiker = await sticker(img, false, global.packsticker, `━━━━━━━━━♾
-\🌸𝙨𝙪𝙢𝙞 𝙨𝙖𝙠𝙪𝙧𝙖𝙯𝙖𝙬𝙖🌸
-✎sticker creado por
-    ☟
+stiker = await sticker(img, false, global.packsticker, `┊🌸Chanel♥︎star‘tin
+     ╰https://Sumi.online
+              ┊🌸Info:
+╰➣https://channel Sumi.likes
 \n${m.pushName}\n⇝ ${moment.tz('America/Los_Angeles').format('DD/MM/YY')}\n⇝ ${moment.tz('America/Los_Angeles').format('HH:mm:ss')}\n\n\n❀ SUMI-BOT ❀
 .⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.`)
 } catch (e) {
