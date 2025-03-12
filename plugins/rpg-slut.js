@@ -8,7 +8,7 @@ let senderName = conn.getName(senderId)
 let tiempo = 5 * 60
 if (cooldowns[m.sender] && Date.now() - cooldowns[m.sender] < tiempo * 1000) {
 let tiempo2 = segundosAHMS(Math.ceil((cooldowns[m.sender] + tiempo * 1000 - Date.now()) / 1000))
-m.reply(`✎ Debes esperar *${tiempo2}* para usar *#slut* de nuevo.`)
+m.reply(`《✧》 Debes esperar *${tiempo2}* para usar *#slut* de nuevo.`)
 return
 }
 cooldowns[m.sender] = Date.now()
@@ -41,7 +41,7 @@ let smallAmountTaken = Math.min(Math.floor(Math.random() * (randomUserCoin / 2 -
 users[senderId].coin += smallAmountTaken
 users[randomUserId].coin -= smallAmountTaken
 conn.sendMessage(m.chat, {
-text: `✎ Le diste unos sentones y te pagaron *${smallAmountTaken} ${moneda}* de @${randomUserId.split("@")[0]} lo dejaste paralitico\n\nSe suman *+${smallAmountTaken} ${moneda}* a ${senderName}.`,
+text: `「✿」 Le diste unos sentones y te pagaron *${smallAmountTaken} ${moneda}* de @${randomUserId.split("@")[0]} lo dejaste paralitico\n\nSe suman *+${smallAmountTaken} ${moneda}* a ${senderName}.`,
 contextInfo: { 
 mentionedJid: [randomUserId],
 }}, { quoted: m })
