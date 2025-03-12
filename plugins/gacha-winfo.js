@@ -44,7 +44,7 @@ let handler = async (m, { conn, args }) => {
             ? `Reclamado por @${userEntry.userId.split('@')[0]}` 
             : 'Libre';
         
-        const message = `❀ Nombre » *${character.name}*\n⚥ Género » *${character.gender}*\n✰ Valor » *${character.value}*\n♡ Estado » ${statusMessage}\n❖ Fuente » *${character.source}*\nID: *${character.id}*`;
+        const message = `❀ Nombre » *${character.name}*\n⚥ Género » *${character.gender}*\n✰ Valor » *${character.value}*\n♡ Estado » ${statusMessage}\n❖ Fuente » *${character.source}*`;
 
         await conn.reply(m.chat, message, m, { mentions: [userEntry ? userEntry.userId : null] });
     } catch (error) {
@@ -55,5 +55,6 @@ let handler = async (m, { conn, args }) => {
 handler.help = ['charinfo <nombre del personaje>', 'winfo <nombre del personaje>', 'waifuinfo <nombre del personaje>'];
 handler.tags = ['anime'];
 handler.command = ['charinfo', 'winfo', 'waifuinfo'];
+handler.group = true;
 
 export default handler;
