@@ -2,7 +2,7 @@ const ro = 3000;
 const handler = async (m, {conn, usedPrefix, command}) => {
   const time = global.db.data.users[m.sender].lastrob + 7200000;
   if (new Date - global.db.data.users[m.sender].lastrob < 7200000) {
-  conn.reply(m.chat, `${emoji3} Debes esperar ${msToTime(time - new Date())} para usar #robxp de nuevo.`, m);
+  conn.reply(m.chat, `${emoji3} Debes 《✧》esperar ${msToTime(time - new Date())} para usar #robxp de nuevo.`, m);
   return;
   }
   let who;
@@ -21,7 +21,7 @@ return;
   if (users.exp < rob) return conn.reply(m.chat, `${emoji2} @${who.split`@`[0]} no tiene suficiente *${ro} XP* como para que valga la pena intentar robar.":`, m, {mentions: [who]});
   global.db.data.users[m.sender].exp += rob;
   global.db.data.users[who].exp -= rob;
-  conn.reply(m.chat, `${emoji} Le robaste ${rob} XP a @${who.split`@`[0]}`, m, {mentions: [who]});
+  conn.reply(m.chat, `${emoji} 「✿」Le robaste ${rob} XP a @${who.split`@`[0]}`, m, {mentions: [who]});
   global.db.data.users[m.sender].lastrob = new Date * 1;
 };
 handler.help = ['rob'];
