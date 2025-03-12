@@ -18,7 +18,7 @@ try {
 stiker = await sticker(img, false, global.packsticker, `┊👑Bot:
     ┊🌸 *Sumi-bot*🌸
     
-     ┊👑Usuario:\n${m.pushName}\n⇝ ${moment.tz('America/Los_Angeles').format('DD/MM/YY')}\n⇝ ${moment.tz('America/Los_Angeles').format('HH:mm:ss')}\n\n\n❀ SUMI-BOT ❀
+     ┊👑Usuario:\┊n${m.pushName}\n⇝ ${moment.tz('America/Los_Angeles').format('DD/MM/YY')}\n⇝ ${moment.tz('America/Los_Angeles').format('HH:mm:ss')}\n\n\n❀ SUMI-BOT ❀
 .⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.`)
 } catch (e) {
 console.error(e)
