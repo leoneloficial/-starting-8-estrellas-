@@ -46,7 +46,7 @@ global.sumiJadibts = true
 
 global.packsticker =`┊🌸Chanel♥︎star‘tin
      ╰https://Sumi.online
-            ┊✿Info:
+        ┊🍁Info:
 ╰➣https://channel Sumi.likes`
 global.packsticker2 = `━━━━━━━━━♾\
 вσт мαƒια\nৎ୭࠭͢𓆩𝕷͢𝖊𝖔፝֟፝֟፝֟፝֟፝֟፝֟𝖓𝖊𝖑𓆪͟͞ \n⇝ ${moment.tz('America/Los_Angeles').format('DD/MM/YY')}\n⇝ ${moment.tz('America/Los_Angeles').format('HH:mm:ss')} \n°.⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.°\n\nѕτιϲκєя ϐγ: Starting`
