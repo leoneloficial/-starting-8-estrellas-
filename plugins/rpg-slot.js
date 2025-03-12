@@ -9,7 +9,7 @@ const handler = async (m, { args, usedPrefix, command, conn }) => {
   const apuesta = parseInt(args[0]);
   const users = global.db.data.users[m.sender];
   const time = users.lastslot + 10000;
-  if (new Date() - users.lastslot < 10000) throw `✎ Debes esperar ${msToTime(time - new Date())} para usar #slot nuevamente.`;
+  if (new Date() - users.lastslot < 10000) throw `《✧》 Debes esperar ${msToTime(time - new Date())} para usar #slot nuevamente.`;
   if (apuesta < 100) throw '✧ El minimo para apostar es de 100 XP.';
   if (users.exp < apuesta) {
     throw `✧ Tu XP no es suficiente para aportar esa cantidad.`;
@@ -46,7 +46,7 @@ ${x[2]} : ${y[2]} : ${z[2]}
   const { x, y, z } = getRandomEmojis();
   let end;
   if (x[0] === y[0] && y[0] === z[0]) {
-    end = `✎ Ganaste! 🎁 +${apuesta + apuesta} XP.`;
+    end = `「✿」 Ganaste! 🎁 +${apuesta + apuesta} XP.`;
     users.exp += apuesta;
   } else if (x[0] === y[0] || x[0] === z[0] || y[0] === z[0]) {
     end = `✎ Casi lo logras!, sigue intentandolo = *Toma +10 XP*`;
