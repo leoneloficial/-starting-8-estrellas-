@@ -8,7 +8,7 @@ if (args[0] == 'all') {
 let count = parseInt(user.coin)
 user.coin -= count * 1
 user.bank += count * 1
-await m.reply(`✎ Depositaste *${count} ${moneda}* en el banco, ya no podran robartelo.`)
+await m.reply(`「✿」Depositaste *${count} ${moneda}* en el banco, ya no podran robartelo.`)
 return !0
 }
 if (!Number(args[0])) return m.reply('✧ Debes depositar una cantidad válida.\n> Ejemplo 1 » *#d 25000*\n> Ejemplo 2 » *#d all*')
