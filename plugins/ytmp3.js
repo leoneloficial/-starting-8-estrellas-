@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 
 let handler = async (m, { conn, args }) => {
 
-if (!args[0]) return m.reply(`🍭 Ingresa Un Link De YouTube.`);
+if (!args[0]) return m.reply(`✨ Ingresa Un Link De YouTube.`);
 
 let api = await(await fetch(`https://api.fgmods.xyz/api/downloader/ytmp3?url=${args[0]}&quality=480p&apikey=elrebelde21`)).json();
 
