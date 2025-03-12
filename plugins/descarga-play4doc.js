@@ -57,10 +57,10 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
 
     
     let txt = `✦ *Título:* » ${title}\n`;
-    txt += `✦ *Duración:* » ${timestamp}\n`;
-    txt += `✦ *Visitas:* » ${views}\n`;
-    txt += `✦ *Subido:* » ${ago}\n`;
-    txt += `✦ *Tamaño:* » ${sizeHumanReadable}\n\n`;
+    txt += ` *Duración:* » ${timestamp}\n`;
+    txt += `✰ *Visitas:* » ${views}\n`;
+    txt += `> 🜸 *Subido:* » ${ago}\n`;
+    txt += `> ❒ *Tamaño:* » ${sizeHumanReadable}\n\n`;
     //txt += `> *- ↻ El video se está enviando, espera un momento...*`;
 
     
