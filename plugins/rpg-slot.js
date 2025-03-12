@@ -49,10 +49,10 @@ ${x[2]} : ${y[2]} : ${z[2]}
     end = `「✿」 Ganaste! 🎁 +${apuesta + apuesta} XP.`;
     users.exp += apuesta;
   } else if (x[0] === y[0] || x[0] === z[0] || y[0] === z[0]) {
-    end = `✎ Casi lo logras!, sigue intentandolo = *Toma +10 XP*`;
+    end = `「✿」 Casi lo logras!, sigue intentandolo = *Toma +10 XP*`;
     users.exp += 10;
   } else {
-    end = `✧ Perdiste -${apuesta} XP`;
+    end = `《✧》 Perdiste -${apuesta} XP`;
     users.exp -= apuesta;
   }
 
