@@ -18,7 +18,7 @@ while (randomUserId === senderId) {
 randomUserId = Object.keys(users)[Math.floor(Math.random() * Object.keys(users).length)]}
 let randomUserCoin = users[randomUserId].coin || 0
 let minAmount = 600
-let maxAmount = 250
+let maxAmount = 3000
 let amountTaken = Math.floor(Math.random() * (maxAmount - minAmount + 1)) + minAmount
 let randomOption = Math.floor(Math.random() * 3)
 switch (randomOption) {
@@ -26,7 +26,7 @@ case 0:
 users[senderId].coin += amountTaken
 users[randomUserId].coin -= amountTaken
 conn.sendMessage(m.chat, {
-text: `✎ ¡Se la chupaste a @${randomUserId.split("@")[0]} por *${amountTaken} ${moneda}* lo dejaste bien seco\n\nSe suman *+${amountTaken} ${moneda}* a ${senderName}.`,
+text: `「✿」 ¡Se la chupaste a @${randomUserId.split("@")[0]} por *${amountTaken} ${moneda}* lo dejaste bien seco\n\nSe suman *+${amountTaken} ${moneda}* a ${senderName}.`,
 contextInfo: { 
 mentionedJid: [randomUserId],
 }}, { quoted: m })
