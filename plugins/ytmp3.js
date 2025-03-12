@@ -1,4 +1,4 @@
-import fetch from "node-fetch";
+oimport fetch from "node-fetch";
 import yts from 'yt-search';
 import axios from "axios";
 
@@ -85,7 +85,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
    ✦ *ෆ  Título : » ${videoInfo.title}
    ✿ *💯 Vistas: » ${videoInfo.views}
    ✸ *⏳ Duración : » ${videoInfo.timestamp}
-   ☘🐽 *😏 Publicado : » ${videoInfo.ago}
+   ☘🐽 *🤭 Publicado : » ${videoInfo.ago}
    🔗 *✦ URL : » ${videoInfo.url}`;
     const thumb = (await conn.getFile(thumbnail))?.data;
 
