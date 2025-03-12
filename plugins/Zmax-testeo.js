@@ -46,7 +46,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
       }, { quoted: m });
 
     } else if (['yta', 'ytmp3'].includes(command)) {
-      await conn.sendMessage(m.chat, { text: '🎧 *Procesando audio...* ' }, { quoted: m });
+      await conn.sendMessage(m.chat, { text: '🤔 *Procesando audio...* ' }, { quoted: m });
       let response = await fetch(`api${videoInfo.url}`);
       let audio = await response.json();
       await conn.sendFile(m.chat, audio.data.url, `${videoInfo.title}.mp3`, '', m, null, { mimetype: "audio/mpeg", asDocument: false });
