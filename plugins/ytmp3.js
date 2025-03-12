@@ -83,7 +83,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
     const infoMessage = `•••] ✞ ◜YouTube Play◞ ✞ [•••
 
    ✦ *ෆ  Título : » ${videoInfo.title}
-   ✿ *💯 Vistas: » ${videoInfo.views}
+   ✿ *💌 Vistas: » ${videoInfo.views}
    ✸ *⏳ Duración : » ${videoInfo.timestamp}
    ☘🐽 *🍟 Publicado : » ${videoInfo.ago}
    🔗 *✦ URL : » ${videoInfo.url}`;
