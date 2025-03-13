@@ -26,7 +26,7 @@ case 0:
 users[senderId].coin += amountTaken
 users[randomUserId].coin -= amountTaken
 conn.sendMessage(m.chat, {
-text: `✎ ¡Lograste cometer tu crimen con exito!, acabas de robar *${amountTaken} ${moneda} 💸* a @${randomUserId.split("@")[0]}\n\nSe suman *+${amountTaken} ${moneda} 💸* a ${senderName}.`,
+text: `「✿」 ¡Lograste cometer tu crimen con exito!, acabas de robar *${amountTaken} ${moneda} ⛀* a @${randomUserId.split("@")[0]}\n\nSe suman *+${amountTaken} ${moneda} ⛀* a ${senderName}.`,
 contextInfo: { 
 mentionedJid: [randomUserId],
 }}, { quoted: m })
