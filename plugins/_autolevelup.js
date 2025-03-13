@@ -44,7 +44,7 @@ renderLargerThumbnail: false
 }}}, { quoted: null }) 
 }
 
-m.reply(`*🎉 ¡ F E L I C I D A D E S ! 🎉*\n\n🌟 Nivel Actual » *${user.level}*\n⚜️ Rango » ${user.role}\n📆 Fecha » *${moment.tz('America/Bogota').format('DD/MM/YY')}*\n\n> *\`¡Has alcanzado un Nuevo Nivel!\`*`)
+/*m.reply(`*🎉 ¡ F E L I C I D A D E S ! 🎉*\n\n🌟 Nivel Actual » *${user.level}*\n⚜️ Rango » ${user.role}\n📆 Fecha » *${moment.tz('America/Bogota').format('DD/MM/YY')}*\n\n> *\`¡Has alcanzado un Nuevo Nivel!\`*`)*/
 
 let especial = 'coin'
 let especial2 = 'exp'
