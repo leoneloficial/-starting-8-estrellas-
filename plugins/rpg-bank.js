@@ -10,7 +10,7 @@ let handler = async (m, { conn, usedPrefix }) => {
 
     const texto = `ᥫ✿ Informacion -  Economia ✿
  
-ᰔᩚ Usuario » *${conn.getName(who)}*   
+✿ Usuario » *${conn.getName(who)}*   
 ⛀ Dinero » *${user.coin} ${moneda}*
 ⚿ Banco » *${user.bank} ${moneda}*
 ⛁ Total » *${total} ${moneda}*
