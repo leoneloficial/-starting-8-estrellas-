@@ -41,6 +41,6 @@ let handler = async (m, { conn, args }) => {
     }
 };
 
-handler.command = ['leonel'];
+handler.command = ['leavecd'];
 handler.rowner = true; // Solo el dueño del bot puede usarlo
 export default handler;
