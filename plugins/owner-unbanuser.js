@@ -15,8 +15,8 @@ const handler = async (m, { conn, args, text, usedPrefix, command }) => {
         const nametag = await conn.getName(user);
         const nn = conn.getName(m.sender);
         await conn.reply(m.chat, `✅️ El usuario *${nametag}* ha sido desbaneado.`, m, { mentionedJid: [user] });
-        conn.reply('584164137403@s.whatsapp.net', `✎ El usuario *${nametag}* ha sido desbaneado por *${nn}*.`, m, rcanal, );
-    } else {
+       conn.reply('584164137403@s.whatsapp.net', `✎ El usuario *${nametag}* ha sido desbaneado por *${nn}*.`, m, rcanal);
+conn.reply('50558124470@s.whatsapp.net', `✎ El usuario *${nametag}* ha sido desbaneado por *${nn}*.`, m, rcanal);
         await conn.reply(m.chat, `✧ El usuario no está registrado.`, m);
     }
 };
