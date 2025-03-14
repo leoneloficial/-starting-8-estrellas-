@@ -1,7 +1,7 @@
 import yts from 'yt-search';
 
 const handler = async (m, { conn, text }) => {
-  if (!text) throw "⚠️ Ingresa el nombre de la música.";
+  if (!text) throw "⚠🥰 Ingresa el nombre de la música.";
 
   console.log("🔎 Buscando:", text);
   const search = await yts(text);
