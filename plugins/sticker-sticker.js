@@ -18,7 +18,7 @@ try {
 stiker = await sticker(img, false, global.packsticker, `┊👑Bot:
        ┊🌸𝙎𝙐𝙈𝙄-𝘽𝙊𝙏🌸
     
- ┊👑Usuario:\n┊${m.pushName}\n⇝ ${moment.tz('America/Los_Angeles').format('DD/MM/YY')}\n⇝ ${moment.tz('America/Los_Angeles').format('HH:mm:ss')}\n\n\n❀ SUMI-BOT ❀
+ ┊👑Usuario:\n┊${m.pushName}\n⇝ ${moment.tz('America/Los_Angeles').format('DD/MM/YY')}\n⇝ ${moment.tz('America/Los_Angeles').format('HH:mm:ss')}\n\n\n
 .⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸⎯ܴ⎯̶᳞͇ࠝ⎯⃘̶⎯̸.`)
 } catch (e) {
 console.error(e)
@@ -45,7 +45,7 @@ if (!stiker) stiker = e
 } finally {
 if (stiker) conn.sendFile(m.chat, stiker, 'sticker.webp', '',m, true, { contextInfo: { 'forwardingScore': 200, 'isForwarded': false, externalAdReply:{ showAdAttribution: false, title: packname, body: `hola`, mediaType: 2, sourceUrl: redes, thumbnail: icons}}}, { quoted: m })
 
-else return conn.reply(m.chat, '《♥︎》 *Por favor, envía una imagen o video para hacer un sticker.*', m, )
+else return conn.reply(m.chat, '《✿》 *Por favor, envía una imagen o video para hacer un sticker.*', m, )
 
 
 }}
