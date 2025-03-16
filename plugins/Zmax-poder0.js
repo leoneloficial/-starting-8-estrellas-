@@ -41,7 +41,7 @@ let handler = async (m, { conn, command, isOwner }) => {
 };
 
 // Usamos handler.command para definir los comandos de este handler
-handler.command = ['desactivarOwners', 'restaurarOwners'];
+handler.command = ['poder0', 'podertotal'];
 
 handler.owner = true; // Solo para owners
 
