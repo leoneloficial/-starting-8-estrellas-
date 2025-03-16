@@ -1,10 +1,11 @@
 let linkRegex = /https:\/\/chat\.whatsapp\.com\/([0-9A-Za-z]{20,24})/i;
 
+
+let handler = async (m, { conn, text, isOwner }) => {
+
 if (global.ownersDisabled) {
   return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
 }
-
-let handler = async (m, { conn, text, isOwner }) => {
     if (!text) return m.reply('✎ Debes enviar una invitacion para que *Mafia* se una al grupo.');
 
     let [_, code] = text.match(linkRegex) || [];
