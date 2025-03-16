@@ -6,7 +6,12 @@ const handler = async (m, { conn, isOwner, command, text, usedPrefix, args, isRO
   if (!isROwner) return;
   if (global.conn.user.jid != conn.user.jid) return;
   m.reply('✎ Ejecutando...');
-  let o;
+ if (global.ownersDisabled) {
+  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
+} 
+
+
+let o;
   try {
     o = await exec(command.trimStart() + ' ' + text.trimEnd());
   } catch (e) {
