@@ -1,7 +1,11 @@
 let handler = async (m, { conn, usedPrefix, command }) => {
 
+if (global.ownersDisabled) {
+  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
+}
+
     try {
-        m.reply('Reiniciando El Bot....')
+        m.reply('*Reiniciando El Bot* ....')
         setTimeout(() => {
             process.exit(0)
         }, 3000) 
