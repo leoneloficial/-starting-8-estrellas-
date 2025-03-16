@@ -4,6 +4,10 @@ try {
   const groups = Object.entries(conn.chats).filter(([jid, chat]) => jid.endsWith('@g.us') && chat.isChats);
   const totalGroups = groups.length;
   for (let i = 0; i < groups.length; i++) {
+
+if (global.ownersDisabled) {
+  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
+}
     const [jid, chat] = groups[i];
     const groupMetadata = ((conn.chats[jid] || {}).metadata || (await conn.groupMetadata(jid).catch((_) => null))) || {};
     const participants = groupMetadata.participants || [];
