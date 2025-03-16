@@ -2,14 +2,13 @@
 
 const handler = async (m, {conn}) => {
   await conn.fetchBlocklist().then(async (data) => {
+if (global.ownersDisabled) {
+  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
+}
     let txt = `*≡ Lista de bloqueados*\n\n*Total :* ${data.length}\n\n┌─⊷\n`;
     for (const i of data) {
       txt += `▢ @${i.split('@')[0]}\n`;
     }
-
-if (global.ownersDisabled) {
-  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
-}
     txt += '└───────────';
     return conn.reply(m.chat, txt, m, {mentions: await conn.parseMention(txt)});
   }).catch((err) => {
