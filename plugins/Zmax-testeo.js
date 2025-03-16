@@ -1,145 +1,78 @@
-import fetch from "node-fetch";
+//mejorado por ENder
+
 import yts from 'yt-search';
-import axios from "axios";
-
-const formatAudio = ['mp3', 'm4a', 'webm', 'acc', 'flac', 'opus', 'ogg', 'wav'];
-const formatVideo = ['360', '480', '720', '1080', '1440', '4k'];
-
-const ddownr = {
-  download: async (url, format) => {
-    if (!formatAudio.includes(format) && !formatVideo.includes(format)) {
-      throw new Error('Formato no soportado, verifica la lista de formatos disponibles.');
-    }
-
-    const config = {
-      method: 'GET',
-      url: `https://p.oceansaver.in/ajax/download.php?format=${format}&url=${encodeURIComponent(url)}&api=dfcb6d76f2f6a9894gjkege8a4ab232222`,
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, como Gecko) Chrome/91.0.4472.124 Safari/537.36'
-      }
-    };
-
-    try {
-      const response = await axios.request(config);
-
-      if (response.data && response.data.success) {
-        const { id, title, info } = response.data;
-        const { image } = info;
-        const downloadUrl = await ddownr.cekProgress(id);
-
-        return {
-          id: id,
-          image: image,
-          title: title,
-          downloadUrl: downloadUrl
-        };
-      } else {
-        throw new Error('Fallo al obtener los detalles del video.');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      throw error;
-    }
-  },
-  cekProgress: async (id) => {
-    const config = {
-      method: 'GET',
-      url: `https://p.oceansaver.in/ajax/progress.php?id=${id}`,
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, como Gecko) Chrome/91.0.4472.124 Safari/537.36'
-      }
-    };
-
-    try {
-      while (true) {
-        const response = await axios.request(config);
-
-        if (response.data && response.data.success && response.data.progress === 1000) {
-          return response.data.download_url;
-        }
-        await new Promise(resolve => setTimeout(resolve, 5000));
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      throw error;
-    }
-  }
-};
 
 const handler = async (m, { conn, text, usedPrefix, command }) => {
-  try {
-    if (!text.trim()) {
-      return conn.reply(m.chat, `❀ Por favor, ingresa el nombre de la música a descargar.`, m);
-    }
+  if (!text) throw '*Debes ingresar el nombre de la canción o artista*';
 
+  // Mensaje inicial con animación de carga
+  let searchMessage = await conn.sendMessage(m.chat, { text: ' *Buscando tu música...*\n❀ Esto puede tardar unos segundos...' }, { quoted: m });
+
+  try {
+    const isVideo = /vid|2|mp4|v$/.test(command);
     const search = await yts(text);
+
     if (!search.all || search.all.length === 0) {
-      return m.reply('No se encontraron resultados para tu búsqueda.');
+      throw '*No se encontraron resultados para tu búsqueda*';
     }
 
     const videoInfo = search.all[0];
-    const { title, thumbnail, timestamp, views, ago, url } = videoInfo;
-    const vistas = formatViews(views);
-    const infoMessage = `「✦」Descargando *<${title}>*\n\n> ✦ Canal » *${videoInfo.author.name || 'Desconocido'}*\n> ✰ Vistas » *${views}*\n> ⴵ Duración » *${timestamp}*\n> ✐ Publicación » *${ago}*\n> 🜸 Link » ${url}\n`;
-    const thumb = (await conn.getFile(thumbnail))?.data;
+    const responseText = `┅─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟͜═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜─͜┅
+ᯓ×͜× *Música Encontrada* ×͜×ᯓ\n\n` +
+      `> ✎Título: ${videoInfo.title}\n` +
+      `> ⚘ *Canal:* ${videoInfo.author.name || 'Desconocido'}\n` +
+      `> ❁ Duración: ${videoInfo.timestamp}\n` +
+      `> ✰ Vistas: ${videoInfo.views.toLocaleString()}\n` +
+      `> ✦ Publicado hace: ${videoInfo.ago}\n` +
+      `> ✤ Link: ${videoInfo.url}`;
 
-    const JT = {
-      contextInfo: {
-        externalAdReply: {
-          title: botname,
-          body: dev,
-          mediaType: 1,
-          previewType: 0,
-          mediaUrl: url,
-          sourceUrl: url,
-          thumbnail: thumb,
-          renderLargerThumbnail: true,
-        },
-      },
-    };
+    if (['play', 'playvid', 'play2'].includes(command)) {
+      await conn.sendMessage(m.chat, {
+        image: { url: videoInfo.thumbnail },
+        caption: responseText,
+        footer: '✦ Elige una opción de descarga:',
+        buttons: [
+          {
+            buttonId: `.ytmp3 ${videoInfo.url}`,
+            buttonText: { displayText: '> 🍓 Audio mp3 ♣' },
+          },
+          {
+            buttonId: `.ytmp4 ${videoInfo.url}`,
+            buttonText: { displayText: '> 🍒 Video mp4 ♣' },
+          },
+        ],
+        viewOnce: true,
+        headerType: 4,
+      }, { quoted: m });
 
-    await conn.reply(m.chat, infoMessage, m, JT);
+    } else if (['yta', 'ytmp3'].includes(command)) {
+      await conn.sendMessage(m.chat, { text: '🎧 *Procesando audio...* ' }, { quoted: m });
+      let response = await fetch(`api${videoInfo.url}`);
+      let audio = await response.json();
+      await conn.sendFile(m.chat, audio.data.url, `${videoInfo.title}.mp3`, '', m, null, { mimetype: "audio/mpeg", asDocument: false });
 
-    if (command === 'play' || command === 'yta' || command === 'ytmp3') {
-      const api = await (await fetch(`https://api.neoxr.eu/api/youtube?url=${url}&type=audio&quality=128kbps&apikey=GataDios`)).json()
-      const result = api.data.url
-      await conn.sendMessage(m.chat, { audio: { url: result }, mimetype: "audio/mpeg" }, { quoted: m });
-
-    } else if (command === 'play2' || command === 'ytv' || command === 'ytmp4') {
-      
-      const response = await fetch(`https://api.neoxr.eu/api/youtube?url=${url}&type=video&quality=480p&apikey=GataDios`)
-      const json = await response.json()
-
-      try {
-        await conn.sendMessage(m.chat, {
-          video: { url: json.data.url },
-          fileName: json.data.filename,
-          mimetype: 'video/mp4',
-          caption: '',
-          thumbnail: json.thumbnail
-        }, { quoted: m });
-      } catch (e) {
-        console.error(`Error con la fuente de descarga:`, e.message);
-      }
+    } else if (['ytv', 'ytmp4'].includes(command)) {
+      await conn.sendMessage(m.chat, { text: '🎬 *Procesando video...* 🔄' }, { quoted: m });
+      let response = await fetch(`api${videoInfo.url}`);
+      let video = await response.json();
+      await conn.sendMessage(m.chat, {
+        video: { url: video.data.url },
+        mimetype: "video/mp4",
+        caption: '🎥 *Aquí tienes tu video*',
+      }, { quoted: m });
 
     } else {
-      throw "Comando no reconocido.";
+      throw '🍟 Comando no reconocido.';
     }
+
   } catch (error) {
-    return m.reply(`⚠︎ Ocurrió un error: ${error.message}`);
+    await conn.sendMessage(m.chat, { text: `*Error*: ${error.message || error}` }, { quoted: m });
   }
 };
 
-handler.command = handler.help = ['play', 'play2', 'ytmp3', 'yta', 'ytmp4', 'ytv'];
-handler.tags = ['downloader'];
-handler.group = true;
+handler.help = ['play', 'playvid', 'ytv', 'ytmp4', 'yta', 'play2', 'ytmp3'];
+handler.command = ['play', 'playvid', 'ytv', 'ytmp4', 'yta', 'play2', 'ytmp3'];
+handler.tags = ['dl'];
+handler.register = true;
 
 export default handler;
-
-function formatViews(views) {
-  if (views >= 1000) {
-    return (views / 1000).toFixed(1) + 'k (' + views.toLocaleString() + ')';
-  } else {
-    return views.toString();
-  }
-}
