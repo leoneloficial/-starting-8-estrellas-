@@ -1,102 +1,155 @@
-import db from '../lib/database.js'
-import fs from 'fs'
-import PhoneNumber from 'awesome-phonenumber'
-import { createHash } from 'crypto'  
-import fetch from 'node-fetch'
+// By: @elrebelde21
 
-let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i
+import fs from 'fs';
+import fetch from 'node-fetch';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 
-let handler = async function (m, { conn, text, usedPrefix, command }) {
-  let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
-let mentionedJid = [who]
- let bio = 0, fechaBio
-  let sinDefinir = '😿 Es privada'
-  let biografia = await conn.fetchStatus(m.sender).catch(() => null)
-  if (!biografia || !biografia[0] || biografia[0].status === null) {
-   bio = sinDefinir
-   fechaBio = "Fecha no disponible"
-} else {
-bio = biografia[0].status || sinDefinir
-fechaBio = biografia[0].setAt ? new Date(biografia[0].setAt).toLocaleDateString("es-ES", { day: "2-digit", month: "2-digit", year: "numeric", }) : "Fecha no disponible"
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+let suggestionQueue = {};
+const idgroup = "120363387375017939@g.us
+";
+
+let handler = async (m, { conn, text, usedPrefix, command }) => {
+    let who = m.mentionedJid && m.mentionedJid.length > 0 ? m.mentionedJid[0] : (m.fromMe ? conn.user.jid : m.sender);
+    let pp = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://qu.ax/QGAVS.jpg')
+    let pp2 = 'https://qu.ax/zdEhG.jpg'
+
+    if (!text && !m.quoted) {
+        return m.reply(`*🍬 Por favor, escribe tu solicitud.*\n\n> *🍭 Elige una categoría:*\n\na). Sugerencia 💡\nb). Propuesta 📝\nc). Publicidad 📢\nd). Opinión 💬\ne). Pregunta 🚀\nf). Eventos 🎉\ng). Frases ✨\nh). Confesión anónima 🕵\n\n> 🌹 Ejemplo: ${usedPrefix + command} c Texto`);
+    }
+
+    let [categoryChoice, ...rest] = text.split(' ');
+    let suggestionText = rest.join(' ');
+
+    if (!suggestionText) {
+        return m.reply(`✎ Debes agregar un texto después de seleccionar la categoría.\nEjemplo: ${usedPrefix + command} a Mi solicitud es...`);
+    }
+
+    let categories = {
+        'a': 'sugerencia',
+        'b': 'propuesta',
+        'c': 'publicidad',
+        'd': 'opinión',
+        'e': 'pregunta',
+        'f': 'eventos',
+        'g': 'frases',
+        'h': 'confesión'
+    };
+
+    let category = categories[categoryChoice];
+    if (!category) {
+        return m.reply('🍭 Opción inválida. Elige una categoría correcta: a, b, c o d.');
+    }
+
+    m.reply(`✎ Tu Publicación ha sido enviada a los administradores para su revisión.`);
+
+    let groupMetadata = await conn.groupMetadata(idgroup);
+    let groupAdmins = groupMetadata.participants.filter(p => p.admin);
+
+    if (!groupAdmins || groupAdmins.length === 0) {
+        return;
+    }
+
+    let suggestionId = Math.floor(Math.random() * 901);
+    suggestionQueue[suggestionId] = {
+        suggestionText, category, sender: m.sender, senderName: m.pushName, pp, pp2, suggestionId
+    };
+
+    let confirmMessage = `👤 El usuario @${m.sender.split('@')[0]} ha enviado una solicitud!\n\n*${category.charAt(0).toUpperCase() + category.slice(1)}:* ${suggestionText || 'Sin texto'}\n\n_Escriba "si ${suggestionId}" para aceptar_\n_Escriba "no ${suggestionId}" para rechazar._\n\n> *🌹 ID de la publicación:* ${suggestionId}`;
+
+        await conn.sendMessage(idgroup, { text: confirmMessage, mentions: [m.sender] }, { quoted: m });
+};
+
+handler.before = async (response) => {
+    if (!response.text || !response.text.match(/^(si|no)\s*(\d+)?/i)) return;
+
+    let groupMetadata = await conn.groupMetadata(idgroup);
+    let groupAdmins = groupMetadata.participants.filter(p => p.admin);
+    const isAdmin = groupAdmins.some(admin => admin.id === response.sender);
+    if (!isAdmin) return;
+
+    let matches = response.text.match(/^(si|no)\s*(\d+)?/i);
+    let action = matches[1].toLowerCase();
+    let suggestionId = matches[2];
+
+    if (!suggestionId || !suggestionQueue[suggestionId]) {
+        return;
+    }
+
+    const { suggestionText, category, sender, senderName, pp, pp2 } = suggestionQueue[suggestionId];
+
+    if (action === 'no') {
+        await conn.sendMessage(idgroup, { react: { text: "❌", key: response.key } });
+        await conn.reply(sender, `😿 Los administradores rechazaron tu solicitud.`, null, { mentions: [sender] });
+        delete suggestionQueue[suggestionId];
+        return;
+    }
+
+if (action === 'si') {
+await conn.sendMessage(idgroup, { react: { text: "✅", key: response.key } });
+let approvedText = `${suggestionText || '🍬 Desconocido'}`;
+let title, body, foto;
+
+switch (category) {
+case 'sugerencia': 
+title = `【 🔔 𝗡𝗨𝗘𝗩𝗔 𝗦𝗨𝗚𝗘𝗥𝗘𝗡𝗖𝗜𝗔 🔔 】`;
+body = `🍬 Nueva sugerencia`;
+foto = `${pp}`;
+break;
+case 'eventos':
+title = `【 ⭐️ 𝗡𝗨𝗘𝗩𝗢 𝗘𝗩𝗘𝗡𝗧𝗢 ⭐️ 】`;
+body = `🍨 Nueva sugerencia de un evento`;
+foto = `${pp}`;
+break;
+case 'opinión':
+title = `【 😃 𝗡𝗨𝗘𝗩𝗔 𝗢𝗣𝗜𝗡𝗜𝗢𝗡 😃 】`;
+body = `🍭 Nueva opinion`;
+foto = `${pp}`;
+break;
+case 'propuesta':
+title = `【 ✨️ 𝗡𝗨𝗘𝗩𝗔 𝗣𝗥𝗢𝗣𝗨𝗘𝗦𝗧𝗔 ✨️ 】`;
+body = `🍦 Nueva propuesta`;
+foto = `${pp}`;
+break;
+case 'frases':
+title = `【 ✍️ 𝗙𝗥𝗔𝗦𝗘 𝗖𝗢𝗠𝗣𝗔𝗥𝗧𝗜𝗗𝗔 ✍️ 】`;
+body = `🍧 Nueva frase compartida`;
+foto = `${pp}`;
+break;
+case 'confesión':
+title = `【 🕵 𝗖𝗢𝗡𝗙𝗘𝗦𝗜𝗢́𝗡 𝗔𝗡𝗢́𝗡𝗜𝗠𝗔 🕵 】`;
+body = `🕵‍♂️ Confesión anónima`;
+foto = `${pp2}`;
+break;
+case 'pregunta': 
+title = `【 🪐 𝗣𝗥𝗘𝗚𝗨𝗡𝗧𝗔 🪐 】`;
+body = `💡 Una pregunta de un usuario`;
+foto = `${pp}`;
+break;
+case 'publicidad': 
+title = `【 🍄 𝗣𝗨𝗕𝗟𝗜𝗖𝗜𝗗𝗔𝗗 🍄 】`;
+body = `🪧 Nueva publicidad`;
+foto = `${pp}`;
+break;
 }
-  let perfil = await conn.profilePictureUrl(who, 'image').catch(_ => 'https://qu.ax/Tpmzb.jpg')
-  let pp = await conn.profilePictureUrl(who, 'image').catch((_) => 'https://qu.ax/Tpmzb.jpg')
-  let user = global.db.data.users[m.sender]
-  let name2 = conn.getName(m.sender)
-  if (user.registered === true) return m.reply(`✧ Ya estás registrado.\n\n*¿Quiere volver a registrarse?*\n\nUse este comando para eliminar su registro.\n*${usedPrefix}unreg*`)
-  if (!Reg.test(text)) return m.reply(`✧ Formato incorrecto.\n\nUso del comamdo: *${usedPrefix + command} nombre.edad*\nEjemplo : *${usedPrefix + command} ${name2}.18*`)
-  let [_, name, splitter, age] = text.match(Reg)
-  if (!name) return m.reply('✧ El nombre no puede estar vacío.')
-  if (!age) return m.reply('✧ La edad no puede estar vacía.')
-  if (name.length >= 100) return m.reply('🍭 El nombre es demasiado largo.' )
-  age = parseInt(age)
-  if (age > 1000) return m.reply('✧ Wow el abuelo quiere jugar al bot.')
-  if (age < 5) return m.reply('✧ hay un abuelo bebé jsjsj. ')
-  user.name = name + '✓'.trim()
-  user.age = age
-  user.descripcion = bio 
-  user.regTime = + new Date      
-  user.registered = true
-  global.db.data.users[m.sender].coin += 500
-  global.db.data.users[m.sender].exp += 600
-  global.db.data.users[m.sender].joincount += 50
-  let sn = createHash('md5').update(m.sender).digest('hex').slice(0, 20)
-let regbot = `❀ 𝗥 𝗘 𝗚 𝗜 𝗦 𝗧 𝗥 𝗔 𝗗 𝗢 ❀\n`
-regbot += `•┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄•\n`
-regbot += `「✰」𝗡𝗼𝗺𝗯𝗿𝗲 » ${name}\n`
-regbot += `「✦」𝗘𝗱𝗮𝗱 » ${age} años\n`
-regbot += `•┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄•\n`
-regbot += `「𖣔」 𝗥𝗲𝗰𝗼𝗺𝗽𝗲𝗻𝘀𝗮𝘀:\n`
-regbot += `> • ⛁ *${moneda}* » 500\n`
-regbot += `> • ✩ *Experiencia* » 600\n`
-regbot += `> • ❀ *Tokens* » 50\n`
-regbot += `•┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄•\n`
-regbot += `${dev}\n❥⊱〰︎ *sigue el canal oficial* 〰︎⊱❥\nhttps://whatsapp.com/channel/0029Vagdmfv1SWt5nfdR4z3w`
 
-await m.react('📩')
-await conn.sendMessage(m.chat, {
-        text: regbot,
-        contextInfo: {
-            externalAdReply: {
-                title: '✧ Usuario Verificado ✧',
-                body: textbot,
-                thumbnailUrl: pp,
-                sourceUrl: channel,
-                mediaType: 1,
-                showAdAttribution: true,
-                renderLargerThumbnail: true
-            }
-        }
-    }, { quoted: m });    
-}
+let options = { contextInfo: { externalAdReply: {
+title: title, body: body,
+thumbnailUrl: foto, 
+sourceUrl: redes,
+mediaType: 1,
+showAdAttribution: false,
+renderLargerThumbnail: false
+}}};
 
-let chtxt = `👤 *𝚄𝚜𝚎𝚛* » ${m.pushName || 'Anónimo'}
-🗂 *𝚅𝚎𝚛𝚒𝚏𝚒𝚌𝚊𝚌𝚒𝚘́𝚗* » ${user.name}
-⭐️ *𝙴𝚍𝚊𝚍* » ${user.age} años
-👀 *𝙳𝚎𝚜𝚌𝚛𝚒𝚙𝚌𝚒𝚘𝚗* » ${user.descripcion} 
-⏳ *𝚄𝚕𝚝𝚒𝚖𝚊 𝙼𝚘𝚍𝚒𝚏𝚒𝚌𝚊𝚝𝚒𝚘𝚗* » ${fechaBio}
-📆 *𝙵𝚎𝚌𝚑𝚊* » ${moment.tz('America/Bogota').format('DD/MM/YY')}
-☁️ *𝙽𝚞𝚖𝚎𝚛𝚘 𝚍𝚎 𝚛𝚎𝚐𝚒𝚜𝚝𝚛𝚘* »
-⤷ ${sn}`;
+await conn.sendMessage(idchannel, { text: approvedText, contextInfo: options.contextInfo }, { quoted: null });
 
-    await conn.sendMessage(global.idchannel, {
-        text: chtxt,
-        contextInfo: {
-            externalAdReply: {
-                title: "【 🔔 𝐍𝐎𝐓𝐈𝐅𝐈𝐂𝐀𝐂𝐈𝐎́𝐍 🔔 】",
-                body: '🥳 ¡𝚄𝚗 𝚞𝚜𝚞𝚊𝚛𝚒𝚘 𝚗𝚞𝚎𝚟𝚘 𝚎𝚗 𝚖𝚒 𝚋𝚊𝚜𝚎 𝚍𝚎 𝚍𝚊𝚝𝚘𝚜!',
-                thumbnailUrl: perfil,
-                sourceUrl: redes,
-                mediaType: 1,
-                showAdAttribution: false,
-                renderLargerThumbnail: false
-            }
-        }
-    }, { quoted: null });
-}
+await conn.reply(sender, `✦ Solicitud aceptada, Grupo:\n${gp4}`);
+delete suggestionQueue[suggestionId];
+}};
+handler.command = ['sugerencia', 'enviarmensaje', 'solicitud', 'enviarsolicitud'];
 
-handler.help = ['reg']
-handler.tags = ['rg']
-handler.command = ['verify', 'verificar', 'reg', 'register', 'registrar'] 
-
-export default handler
+export default handler;
