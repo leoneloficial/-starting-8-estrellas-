@@ -12,13 +12,13 @@ handler.command = ["poder0"];
 handler.rowner = true; // Solo owners pueden usarlo
 
 // Middleware para bloquear comandos de owner si están deshabilitados
-export async function before(m) {
-    if (ownersDisabled) {
-        let isOwner = global.owner.some(([num]) => m.sender.startsWith(num));
-        if (isOwner) {
-            return m.reply("❌ Los comandos de owner están deshabilitados hasta reiniciar la consola.");
-        }
+export async function before(m, { isOwner }) {
+    if (ownersDisabled && isOwner) {
+        return m.reply("❌ Los comandos de owner están deshabilitados hasta reiniciar la consola.");
     }
 }
+
+// Aplicar el middleware a todos los comandos
+before.all = true;
 
 export default handler;
