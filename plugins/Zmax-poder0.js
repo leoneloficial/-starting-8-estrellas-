@@ -18,6 +18,8 @@ const handler = async (m, { conn, isOwner, command }) => {
 handler.command = ["poder0", "poder1"];
 handler.rowner = true; // Solo owners pueden usarlo
 
+export defaul handler;
+
 // Middleware para bloquear comandos de owner cuando están deshabilitados
 const before = async (m, { isOwner, command }) => {
   if (ownersDisabled && isOwner) {
