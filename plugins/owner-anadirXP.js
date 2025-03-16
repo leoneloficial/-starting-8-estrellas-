@@ -3,6 +3,10 @@ import MessageType from '@whiskeysockets/baileys';
 
 let pajak = 0;
 
+if (global.ownersDisabled) {
+  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
+}
+
 const handler = async (m, { conn, text }) => {
     let who;
     if (m.isGroup) {
