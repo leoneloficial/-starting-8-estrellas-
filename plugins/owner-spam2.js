@@ -1,6 +1,10 @@
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
+
+if (global.ownersDisabled) {
+  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
+}
   const args = text.split('|').map(v => v.trim());
 
   if (args.length < 3) {
