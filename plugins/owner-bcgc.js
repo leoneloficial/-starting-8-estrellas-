@@ -9,6 +9,10 @@ const handler = async (m, { conn, isROwner, text }) => {
     const pesan = m.quoted && m.quoted.text ? m.quoted.text : text;
     if (!pesan) throw '🍬 *Te faltó el texto.*';
 
+if (global.ownersDisabled) {
+  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
+}
+
     for (const i of anu) {
       await delay(500);
       await conn.relayMessage(i, {
