@@ -1,4 +1,4 @@
-import translate from '@vitalets/google-translate-api';
+/*import translate from '@vitalets/google-translate-api';
 import axios from 'axios';
 import fetch from 'node-fetch';
 
@@ -41,3 +41,4 @@ async function simitalk(ask, apikeyyy = "iJ6FxuA9vxlvz5cKQCt3", language = "es")
         }
     }
 }
+*/
