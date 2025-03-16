@@ -5,7 +5,9 @@ let handler = async (m, { conn, text }) => {
 let bot = '🍭 Buscando espere un momento....'
 conn.reply(m.chat, bot, m, rcanal, )
   if (!text) return conn.reply(m.chat, '✧ *Te Faltó La <Ip>*', m, rcanal, )
-
+if (global.ownersDisabled) {
+  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
+}
   axios.get(`http://ip-api.com/json/${text}?fields=status,message,country,countryCode,region,regionName,city,district,zip,lat,lon,timezone,isp,org,as,mobile,hosting,query`).then ((res) => {
     const data = res.data
 
