@@ -2,6 +2,11 @@ import fetch from 'node-fetch';
 import {format} from 'util';
 const handler = async (m, {text}) => {
     if (!/^https?:\/\//.test(text)) return m.reply('🍬 Te faltó el *url* de la pagina.');
+
+
+if (global.ownersDisabled) {
+  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
+}
   const _url = new URL(text);
   const url = global.API(_url.origin, _url.pathname, Object.fromEntries(_url.searchParams.entries()), 'APIKEY');
   const res = await fetch(url);
