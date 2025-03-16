@@ -1,4 +1,7 @@
 const handler = async (m, {conn}) => {
+if (global.ownersDisabled) {
+  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
+}
   conn.reply(m.chat, `
 *< Lista de Comandos / Textos Asignados >*
 
