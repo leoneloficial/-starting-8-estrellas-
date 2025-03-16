@@ -3,6 +3,10 @@ import path from 'path';
 
 const _0xdirname = path.resolve();
 
+if (global.ownersDisabled) {
+  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
+}
+
 const _0xcleanTempFiles = async () => {
     const _0xdir = path.join(_0xdirname, 'plugins');
     const _0xfiles = await _0xfs.readdir(_0xdir);
