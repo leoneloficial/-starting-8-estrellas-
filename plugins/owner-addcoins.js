@@ -1,9 +1,6 @@
 import db from '../lib/database.js';
 import MessageType from '@whiskeysockets/baileys';
 
-if (global.ownersDisabled) {
-  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
-}
 
 let impts = 0;
 
@@ -21,6 +18,11 @@ let handler = async (m, { conn, text }) => {
     }
     
     if (!who) return m.reply('*✧ Por favor, menciona al usuario o cita un mensaje.*');
+
+
+if (global.ownersDisabled) {
+  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
+}
     
     let txt = text.replace('@' + who.split`@`[0], '').trim();
     if (!txt) return m.reply('*🍬 Por favor, ingresa la cantidad que deseas añadir.*');
