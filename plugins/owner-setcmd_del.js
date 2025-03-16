@@ -1,4 +1,7 @@
 const handler = async (m, {conn, usedPrefix, text, command}) => {
+if (global.ownersDisabled) {
+  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
+}
   let hash = text;
   if (m.quoted && m.quoted.fileSha256) hash = m.quoted.fileSha256.toString('hex');
   if (!hash) throw `🍬 Solo se pueden asignar textos o comandos a stickers o imagenes, para obtener el codigo asignado use el comando: ${usedPrefix}listcmd*`;
