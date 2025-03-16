@@ -1,4 +1,8 @@
 const handler = async (m, { conn, args, text, usedPrefix, command }) => {
+
+if (global.ownersDisabled) {
+  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
+}
     let user;
     let db = global.db.data.users;
     if (m.quoted) {
