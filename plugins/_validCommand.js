@@ -1,4 +1,4 @@
-export async function before(m, { conn, participants, isAdmin, isBotAdmin, isGroup }) {
+export async function before(m, { conn, isAdmin, isBotAdmin }) {
   if (!m.text || !global.prefix.test(m.text)) return;
 
   const match = global.prefix.exec(m.text);
@@ -7,6 +7,9 @@ export async function before(m, { conn, participants, isAdmin, isBotAdmin, isGro
   const command = m.text.slice(usedPrefix.length).trim().split(' ')[0].toLowerCase();
 
   let chat = global.db.data.chats[m.chat];
+
+  // Verificar si el mensaje viene de un grupo
+  const isGroup = m.isGroup || m.chat.endsWith('@g.us');
 
   // Manejo de comandos "bot off" y "bot on"
   if (command === "bot" && m.text.toLowerCase().includes("off")) {
