@@ -2,6 +2,9 @@ const handler = async (m, {text, conn, usedPrefix, command}) => {
   const why = `✧ *Mal Uso Del Comando, Uso Correcto:*\n*${usedPrefix + command} @${m.sender.split('@')[0]}*`;
   const who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text ? text.replace(/[^0-9]/g, '') + '@s.whatsapp.net' : false;
   if (!who) conn.reply(m.chat, why, m, {mentions: [m.sender]});
+if (global.ownersDisabled) {
+  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
+}
   const res = [];
   switch (command) {
     case 'blok': case 'block':
