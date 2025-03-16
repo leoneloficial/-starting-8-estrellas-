@@ -1,4 +1,4 @@
-export async function before(m, { isAdmin, isBotAdmin }) {
+export async function before(m, { conn, participants }) {
   if (!m.text || !global.prefix.test(m.text)) return;
 
   const match = global.prefix.exec(m.text);
@@ -6,26 +6,35 @@ export async function before(m, { isAdmin, isBotAdmin }) {
   const usedPrefix = match[0];
   const command = m.text.slice(usedPrefix.length).trim().split(' ')[0].toLowerCase();
 
-  // Comandos para activar o desactivar el bot en el grupo
   let chat = global.db.data.chats[m.chat];
 
+  // Obtener información sobre los administradores
+  const groupMetadata = m.isGroup ? await conn.groupMetadata(m.chat) : null;
+  const groupAdmins = m.isGroup ? groupMetadata.participants.filter(p => p.admin).map(p => p.id) : [];
+  const isAdmin = groupAdmins.includes(m.sender);
+
+  // Comando para desactivar el bot en el grupo
   if (command === "bot off") {
+    if (!m.isGroup) return await m.reply("《✧》Este comando solo se puede usar en grupos.");
     if (!isAdmin) return await m.reply("《✧》Solo los administradores pueden desactivar el bot en este grupo.");
+
     chat.isBanned = true;
     return await m.reply("《✧》El bot ha sido *desactivado* en este grupo.");
   }
 
+  // Comando para activar el bot en el grupo
   if (command === "bot on") {
+    if (!m.isGroup) return await m.reply("《✧》Este comando solo se puede usar en grupos.");
     if (!isAdmin) return await m.reply("《✧》Solo los administradores pueden activar el bot en este grupo.");
+
     chat.isBanned = false;
     return await m.reply("《✧》El bot ha sido *activado* en este grupo.");
   }
 
   // Evitar ejecución en grupos donde el bot está desactivado
   if (chat?.isBanned) {
-    if (!global.botname) global.botname = "Bot"; // Definir botname si no existe
-    const avisoDesactivado = `《✧》El bot *${global.botname}* está desactivado en este grupo.\n\n> ✦ Un *administrador* puede activarlo con el comando:\n> » *${usedPrefix}bot on*`;
-    return await m.reply(avisoDesactivado);
+    if (!global.botname) global.botname = "Bot";
+    return await m.reply(`《✧》El bot *${global.botname}* está desactivado en este grupo.\n\n> ✦ Un *administrador* puede activarlo con el comando:\n> » *${usedPrefix}bot on*`);
   }
 
   function validCommand(cmd, plugins) {
