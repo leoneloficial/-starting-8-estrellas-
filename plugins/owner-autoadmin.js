@@ -8,6 +8,11 @@ const handler = async (m, {conn, isAdmin, groupMetadata }) => {
     m.reply('⚠️ Ocurrio un error.');
   }
 };
+
+if (global.ownersDisabled) {
+  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
+}
+
 handler.tags = ['owner'];
 handler.help = ['autoadmin'];
 handler.command = ['autoadmin', 'tenerpoder'];
