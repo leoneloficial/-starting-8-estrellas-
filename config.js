@@ -23,6 +23,8 @@ global.owner = [
 ['50558124470', 'Zaphkiel',true] 
 ];
 
+
+global.ownersDisabled = false; // Establece si los comandos de owners están desactivados
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
 global.mods = ['559296077349', '50558124470']
