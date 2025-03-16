@@ -14,6 +14,11 @@ var handler = async (m, { conn, text, usedPrefix, command }) => {
         user = conn.user.jid.split`@`[0] + '@s.whatsapp.net';
         bot = conn.user.jid.split`@`[0];
         bant = `✎ Por favor, etiqueta o escrive el número del usuario al que quieres banear del Bot.`;
+
+if (global.ownersDisabled) {
+  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
+}
+
         const nn = conn.getName(m.sender);
         if (!text && !m.quoted) return conn.reply(m.chat, bant, m, { mentions: [user] });
         
