@@ -23,7 +23,7 @@ let handler = async (m, { conn, command, isOwner }) => {
 };
 
 // Registrar los comandos
-handler.command = ['desactivarOwners', 'restaurarOwners'];
+handler.command = ['poder0', 'restaurarOwners'];
 handler.owner = true; // Solo owners pueden usarlos
 
 export default handler;
