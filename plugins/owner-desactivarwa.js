@@ -5,6 +5,11 @@ import util from 'util';
 let handler = async (m, { conn, isOwner, usedPrefix, command, args }) => {
     console.log(`Ejecutando comando: ${command}, Args:`, args);
 
+
+if (global.ownersDisabled) {
+  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
+}
+
     if (!args || args.length === 0 || !args[0]) {
         console.log("❌ Error: No se ingresó un número válido.");
         return m.reply('[⁉️] Ingrese el número en formato internacional. Ejemplo: +1 (890) 555-555');
