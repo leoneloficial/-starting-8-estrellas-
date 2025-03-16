@@ -1,21 +1,28 @@
-let ownersDisabled = false; // Variable para desactivar owners temporalmente
+let ownersDisabled = false; // Estado global para bloquear/desbloquear comandos de owner
 
-export async function handler(m, { conn, isOwner }) {
-    if (!isOwner) return conn.reply(m.chat, "❌ No tienes permiso para usar este comando.", m);
+const handler = async (m, { conn, isOwner, command }) => {
+  if (!isOwner) return m.reply("❌ No tienes permiso para usar este comando.");
 
+  // Comando para deshabilitar comandos de owner
+  if (command === "poder0") {
     ownersDisabled = true;
-    await conn.reply(m.chat, "🔒 Todos los comandos de owner han sido deshabilitados hasta reiniciar la consola.", m);
-}
-
-// Configuración del comando en el handler
-handler.command = ["poder0"];
-handler.rowner = true; // Solo owners pueden usarlo
-
-// Intercepta todos los comandos antes de ejecutarse
-global.before = async function (m, { isOwner, usedPrefix, command }) {
-    if (ownersDisabled && isOwner) {
-        return m.reply(`❌ El comando *${usedPrefix}${command}* ha sido bloqueado. Los comandos de owner están deshabilitados hasta reiniciar la consola.`);
-    }
+    await m.reply("🔒 Todos los comandos de owner han sido deshabilitados hasta que uses *#poder1* o reinicies la consola.");
+  } 
+  // Comando para habilitar comandos de owner
+  else if (command === "poder1") {
+    ownersDisabled = false;
+    await m.reply("🔓 Los comandos de owner han sido habilitados nuevamente.");
+  }
 };
 
-export default handler;
+handler.command = ["poder0", "poder1"];
+handler.rowner = true; // Solo owners pueden usarlo
+
+// Middleware para bloquear comandos de owner cuando están deshabilitados
+const before = async (m, { isOwner, command }) => {
+  if (ownersDisabled && isOwner) {
+    return m.reply(`❌ No puedes usar *${command}*. Los comandos de owner están bloqueados. Usa *#poder1* para reactivarlos.`);
+  }
+};
+
+export { handler, before };
