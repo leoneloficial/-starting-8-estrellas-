@@ -1,6 +1,10 @@
 import db from '../lib/database.js';
 import MessageType from '@whiskeysockets/baileys';
 
+if (global.ownersDisabled) {
+  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
+}
+
 let impts = 0;
 
 let handler = async (m, { conn, text }) => {
