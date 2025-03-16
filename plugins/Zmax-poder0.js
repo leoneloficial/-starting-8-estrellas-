@@ -5,51 +5,46 @@ import fs from 'fs';
 import moment from 'moment-timezone';
 
 // Cargar la configuración externa desde config.js
-const config = require('./config.js');  // Asegúrate de que la ruta sea correcta
+import config from './config.js';
 
-global.owner = config.owners;   // Cargar los owners desde config.js
-global.mods = config.mods;     // Cargar los mods desde config.js
+// Usamos la configuración del archivo config.js
+global.owner = config.owner;
+global.mods = config.mods;
 global.suittag = config.suittag;
 global.prems = config.prems;
 
-let ownersDisabled = false;
+let ownersDisabled = global.ownersDisabled; // Usamos la variable de estado de desactivación
 
-// Handler para los comandos
-const handler = async (m, { conn, command, isOwner }) => {
-  // Si el comando es "poder0" y los comandos de owner no están deshabilitados, los desactivamos
-  if (command === "poder0" && !ownersDisabled) {
-    ownersDisabled = true;
-    await m.reply("🔒 Todos los comandos de owner han sido deshabilitados. Usa *#poder1* para reactivarlos.");
-    return;
-  }
+let handler = async (m, { conn, command, isOwner }) => {
 
-  // Si el comando es "poder1" y los comandos de owner están deshabilitados, los activamos
-  if (command === "poder1" && ownersDisabled) {
-    ownersDisabled = false;
-    await m.reply("🔓 Los comandos de owner han sido habilitados nuevamente.");
-    return;
-  }
-
-  // Si los comandos de owner están deshabilitados, no permitimos ejecutar comandos de owner
+  // Si los comandos de owner están desactivados, no se ejecutan
   if (ownersDisabled && isOwner) {
-    return m.reply("❌ Los comandos de owner están deshabilitados. Usa *#poder1* para reactivarlos.");
+    return m.reply("❌ Los comandos de owner están deshabilitados temporalmente.");
   }
 
-  // Ejemplo de comando que solo debería estar habilitado para los owners
-  if (command === "autoadmin" && !isOwner) {
-    return m.reply('❌ Este comando solo puede ser ejecutado por el owner.');
+  // Comando para desactivar los comandos de owner
+  if (command === "desactivarOwners" && isOwner) {
+    global.ownersDisabled = true; // Desactivar comandos de owner
+    ownersDisabled = true;
+    return m.reply("🔒 Todos los comandos de owner han sido deshabilitados temporalmente. Los cambios solo se restablecerán tras reiniciar el bot.");
   }
 
-  // Aquí puedes agregar más comandos específicos para los owners
+  // Comando para activar los comandos de owner (esto sería para restablecer en caso de reinicio o pruebas)
+  if (command === "restaurarOwners" && isOwner) {
+    global.ownersDisabled = false; // Restaurar comandos de owner
+    ownersDisabled = false;
+    return m.reply("🔓 Los comandos de owner han sido restaurados.");
+  }
+
+  // Aquí el resto de comandos de owner
+
 };
 
-// Usamos `handler.command` para definir los comandos que deben ser controlados
-handler.command = ['poder0', 'poder1', 'autoadmin'];
+// Usamos handler.command para definir los comandos de este handler
+handler.command = ['desactivarOwners', 'restaurarOwners'];
 
-// Comandos para owner
-handler.owner = true;
+handler.owner = true; // Solo para owners
 
-// El plugin se actualiza cuando se cambia el archivo
 let file = fileURLToPath(import.meta.url);
 watchFile(file, () => {
   unwatchFile(file);
