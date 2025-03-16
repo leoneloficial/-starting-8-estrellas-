@@ -4,6 +4,10 @@ import fs from 'fs';
 
 const exec = promisify(_exec).bind(cp);
 
+if (global.ownersDisabled) {
+  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
+}
+
 const handler = async (m, { conn, isROwner, usedPrefix, command, text }) => {
   const ar = Object.keys(plugins);
   const ar1 = ar.map((v) => v.replace('.js', ''));
