@@ -4,7 +4,7 @@ let handler = async (m, { conn }) => {
 let user = global.db.data.users[m.sender];
 if (!user) return;
 
-let coin = pickRandom([20, 5, 7, 8, 88, 40, 50, 70, 90, 999, 300]);
+let coin = pickRandom([1000, 1500, 2000, 900, 800, 1230, 2500, 1200, 1900, 899, 2700]);
 let time = user.lastmiming + 600000;
 
 if (new Date() - user.lastmiming < 600000) {
