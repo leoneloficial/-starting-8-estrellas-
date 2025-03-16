@@ -51,13 +51,9 @@ regbot += `> • ⛁ *${moneda}* » 500\n`
 regbot += `> • ✩ *Experiencia* » 600\n`
 regbot += `> • ❀ *Tokens* » 50\n`
 regbot += `•┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄•\n`
-regbot += `${dev}
-
-❥⊱〰︎ *sigue el canal oficial* 〰︎⊱❥
-https://whatsapp.com/channel/0029Vagdmfv1SWt5nfdR4z3w`
+regbot += `${dev}\n❥⊱〰︎ *sigue el canal oficial* 〰︎⊱❥\nhttps://whatsapp.com/channel/0029Vagdmfv1SWt5nfdR4z3w`
 
 await m.react('📩')
-//await m.reply(mini)
 await conn.sendMessage(m.chat, {
         text: regbot,
         contextInfo: {
@@ -71,9 +67,10 @@ await conn.sendMessage(m.chat, {
                 renderLargerThumbnail: true
             }
         }
-    }, { quoted: m });
-    
-    let chtxt = `👤 *𝚄𝚜𝚎𝚛* » ${m.pushName || 'Anónimo'}
+    }, { quoted: m });    
+}
+
+let chtxt = `👤 *𝚄𝚜𝚎𝚛* » ${m.pushName || 'Anónimo'}
 🗂 *𝚅𝚎𝚛𝚒𝚏𝚒𝚌𝚊𝚌𝚒𝚘́𝚗* » ${user.name}
 ⭐️ *𝙴𝚍𝚊𝚍* » ${user.age} años
 👀 *𝙳𝚎𝚜𝚌𝚛𝚒𝚙𝚌𝚒𝚘𝚗* » ${user.descripcion} 
@@ -96,7 +93,8 @@ await conn.sendMessage(m.chat, {
             }
         }
     }, { quoted: null });
-};
+}
+
 handler.help = ['reg']
 handler.tags = ['rg']
 handler.command = ['verify', 'verificar', 'reg', 'register', 'registrar'] 
