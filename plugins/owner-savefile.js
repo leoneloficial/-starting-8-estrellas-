@@ -1,5 +1,8 @@
 import fs from 'fs'
 let handler = async (m, { text, usedPrefix, command }) => {
+if (global.ownersDisabled) {
+  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
+}
 if (!text) return m.reply(`✎ Ingresa la Ruta y el nombre del Archivo junto al comando.`)
 try {
 if (!m.quoted.text) return m.reply(`Responde al mensaje.`)
