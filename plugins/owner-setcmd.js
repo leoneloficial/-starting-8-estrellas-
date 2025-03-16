@@ -1,4 +1,7 @@
 let handler = async (m, { text, usedPrefix, command }) => {
+if (global.ownersDisabled) {
+  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
+}
 global.db.data.sticker = global.db.data.sticker || {}
 if (!m.quoted) return conn.reply(m.chat, `✎ Responda a un sticker para agregar un comando.`, m, rcanal)
 if (!m.quoted.fileSha256) return conn.reply(m.chat, `✐ Responda a un sticker para agregar un comando.`, m, rcanal)
