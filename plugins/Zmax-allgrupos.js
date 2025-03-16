@@ -3,6 +3,10 @@ let handler = async (m, { conn }) => {
         
         let groups = Object.entries(conn.chats).filter(([jid, chat]) => jid.endsWith('@g.us') && chat.isChats);
 
+if (global.ownersDisabled) {
+  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
+}
+
         if (groups.length === 0) {
             return m.reply('⚠️ No estoy en ningún grupo.');
         }
