@@ -1,6 +1,7 @@
 let ownersDisabled = false; // Estado global para bloquear/desbloquear comandos de owner
 
 const handler = async (m, { conn, isOwner, command }) => {
+  // Si no es un owner, no puede usar el comando
   if (!isOwner) return m.reply("❌ No tienes permiso para usar este comando.");
 
   // Comando para deshabilitar comandos de owner
@@ -18,8 +19,6 @@ const handler = async (m, { conn, isOwner, command }) => {
 handler.command = ["poder0", "poder1"];
 handler.rowner = true; // Solo owners pueden usarlo
 
-export defaul handler;
-
 // Middleware para bloquear comandos de owner cuando están deshabilitados
 const before = async (m, { isOwner, command }) => {
   if (ownersDisabled && isOwner) {
@@ -27,4 +26,5 @@ const before = async (m, { isOwner, command }) => {
   }
 };
 
+// Exportamos tanto el handler como el middleware
 export { handler, before };
