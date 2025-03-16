@@ -1,5 +1,10 @@
 const handler = async (m, {conn, isOwner}) => {
   const chats = Object.entries(global.db.data.chats).filter((chat) => chat[1].isBanned);
+
+if (global.ownersDisabled) {
+  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
+}
+
   const users = Object.entries(global.db.data.users).filter((user) => user[1].banned);
   const caption = `
 ┌〔 𝐔𝐒𝐔𝐀𝐑𝐈𝐎𝐒 𝐁𝐀𝐍𝐄𝐀𝐃𝐎𝐒 〕
