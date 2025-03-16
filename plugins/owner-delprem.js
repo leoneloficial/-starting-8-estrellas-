@@ -2,6 +2,11 @@ const handler = async (m, {conn, text, usedPrefix, command}) => {
   let who;
   if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : false;
   else who = m.chat;
+
+if (global.ownersDisabled) {
+  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
+}
+
   const user = global.db.data.users[who];
   if (!who) throw `✎ Ingresa un @tag el que quiera quitarle el premium`;
   if (!user) throw `*🍭 Ese humano no está en mi base de datos*`;
