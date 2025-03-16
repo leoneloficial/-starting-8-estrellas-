@@ -433,7 +433,7 @@ m.reply('chirrido -_-')
 else
 m.exp += xp
 if (!isPrems && plugin.coin && global.db.data.users[m.sender].coin < plugin.coin * 1) {
-conn.reply(m.chat, `🍬 Se agotaron tus ${global.moneda}`, m)
+conn.reply(m.chat, `「✿」 Se agotaron tus ${global.moneda}`, m)
 continue
 }
 let extra = {
@@ -578,16 +578,16 @@ let user2 = m.pushName || 'Anónimo'
 let verifyaleatorio = ['registrar', 'reg', 'verificar', 'verify', 'register'].getRandom()
 
 const msg = {
-rowner: `🍬 El comando *${comando}* solo puede ser usado por los creadores del bot.`, 
-owner: `🍬 El comando *${comando}* solo puede ser usado por los desarrolladores del bot.`, 
-mods: `🍬 El comando *${comando}* solo puede ser usado por los moderadores del bot.`, 
-premium: `🍬 El comando *${comando}* solo puede ser usado por los usuarios premium.`, 
-group: `🍬 El comando *${comando}* solo puede ser usado en grupos.`,
-private: `🍬 El comando *${comando}* solo puede ser usado al chat privado del bot.`,
-admin: `🍬 El comando *${comando}* solo puede ser usado por los administradores del grupo.`, 
-botAdmin: `🍬 Para ejecutar el comando *${comando}* debo ser administrador del grupo.`,
-unreg: `🍬 El comando *${comando}* solo puede ser usado por los usuarios registrado, registrate usando:\n> » #${verifyaleatorio} ${user2}.${edadaleatoria}`,
-restrict: `🍬 Esta caracteristica está desactivada.`
+rowner: `「✿」 El comando *${comando}* solo puede ser usado por los creadores del bot.`, 
+owner: `「✿」 El comando *${comando}* solo puede ser usado por los desarrolladores del bot.`, 
+mods: `「✿」 El comando *${comando}* solo puede ser usado por los moderadores del bot.`, 
+premium: `「✿」 El comando *${comando}* solo puede ser usado por los usuarios premium.`, 
+group: `「✿」 El comando *${comando}* solo puede ser usado en grupos.`,
+private: `「✿」 El comando *${comando}* solo puede ser usado al chat privado del bot.`,
+admin: `「✿」 El comando *${comando}* solo puede ser usado por los administradores del grupo.`, 
+botAdmin: `「✿」 Para ejecutar el comando *${comando}* debo ser administrador del grupo.`,
+unreg: `「✿」 El comando *${comando}* solo puede ser usado por los usuarios registrado, registrate usando:\n> » #${verifyaleatorio} ${user2}.${edadaleatoria}`,
+restrict: `「✿」 Esta caracteristica está desactivada.`
 }[type];
 if (msg) return m.reply(msg).then(_ => m.react('✖️'))}
 
