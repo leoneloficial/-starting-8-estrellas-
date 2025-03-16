@@ -5,6 +5,10 @@ const handler = async (m, {conn, text, usedPrefix, command}) => {
   const textpremERROR = `✎ Ingrese el tag del usuario que quieras agregar como user premium.`;
   if (!who) return m.reply(textpremERROR, null, {mentions: conn.parseMention(textpremERROR)});
 
+if (global.ownersDisabled) {
+  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
+}
+
   const user = global.db.data.users[who];
   const txt = text.replace('@' + who.split`@`[0], '').trim();
   // let name = await conn.getName(who)
