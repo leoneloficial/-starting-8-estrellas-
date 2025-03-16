@@ -1,5 +1,9 @@
 import fs from 'fs'
 
+if (global.ownersDisabled) {
+  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
+}
+
 let handler = async (m, { conn, text, usedPrefix, command }) => {
 await m.reply(`❮✦❯ » *Enviando base de datos de ${wm}...*`)
 try {
