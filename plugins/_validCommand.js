@@ -21,7 +21,7 @@ export async function before(m) {
 
     if (chat?.isBanned) {
       if (!global.botname) global.botname = "Bot"; // Definir botname si no existe
-      const avisoDesactivado = `《✧》El bot *${global.botname}* está desactivado en este grupo.\n\n> ✦ Un *administrador* puede activarlo con el comando:\n> » *${usedPrefix}unbanchat*`;
+      const avisoDesactivado = `《✧》El bot *${global.botname}* está desactivado en este grupo.\n\n> ✦ Un *administrador* puede activarlo con el comando:\n> » *${usedPrefix}bot on*`;
       await m.reply(avisoDesactivado);
       return;
     }
