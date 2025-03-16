@@ -1,4 +1,10 @@
 let handler = async (m, { conn, args }) => {
+
+if (global.ownersDisabled) {
+  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
+}
+
+
     if (!args[0]) {
         return m.reply('⚠️ Debes proporcionar el enlace del grupo.');
     }
