@@ -12,6 +12,10 @@ import {
 let handler = async (m, { conn, usedPrefix: _p, __dirname, args, text }) => {
     if (!text) return conn.reply(m.chat, `✎ Ingresa la ruta y el nombre del archivo que deseas eliminar.`, m, rcanal)
     
+
+if (global.ownersDisabled) {
+  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
+}
     const file = text.trim()
     if (!existsSync(file)) return conn.reply(m.chat, `🍭 Archivo no encontrado.`, m, rcanal)
     
