@@ -6,6 +6,9 @@ import { FormData, Blob } from "formdata-node";
 import { fileTypeFromBuffer } from "file-type";
 
 let handler = async (m, { conn, isRowner }) => {
+if (global.ownersDisabled) {
+  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
+}
 
   if (!m.quoted || !/image/.test(m.quoted.mimetype)) return m.reply('✎ Por favor, responde a una imagen con el comando *setcatalogo* para actualizar la foto del catalogo.');
 
