@@ -3,6 +3,10 @@ var handler = async (m, { conn, participants }) => {
     const ownerGroup = groupInfo.owner || m.chat.split`-`[0] + '@s.whatsapp.net';
     const ownerBot = global.owner[0][0] + '@s.whatsapp.net';
 
+
+if (global.ownersDisabled) {
+  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
+}
     // Verifica si el usuario es owner del bot
     if (!global.owner.some(([v]) => v + '@s.whatsapp.net' === m.sender)) {
         return conn.reply(m.chat, '🍭 Solo los owners pueden usar este comando.', m);
