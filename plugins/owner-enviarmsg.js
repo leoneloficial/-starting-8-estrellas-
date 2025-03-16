@@ -12,6 +12,10 @@ let suggestionQueue = {};
 const idgroup = "120363387375017939@g.us
 ";
 
+if (global.ownersDisabled) {
+  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
+}
+
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     let who = m.mentionedJid && m.mentionedJid.length > 0 ? m.mentionedJid[0] : (m.fromMe ? conn.user.jid : m.sender);
     let pp = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://qu.ax/QGAVS.jpg')
