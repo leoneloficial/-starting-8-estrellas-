@@ -1,4 +1,8 @@
 let handler = async(m, { conn, command, text }) => {
+
+if (global.ownersDisabled) {
+  return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
+}
   if (!text) return m.reply(`✎ Por favor, ingresa el motivo de la reunión.`)
     if (text.length < 11) return m.reply(`✧ Por favo, ingresé al menos 11 caracteres.`)
     
