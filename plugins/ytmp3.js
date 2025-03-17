@@ -149,7 +149,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
       throw "Comando no reconocido.";
     }
   } catch (error) {
-    return m.reply(`🐯 *Error:* ${error.message}`);
+    return m.reply(`𓁏 *Error:* ${error.message}`);
   }
 };
 
