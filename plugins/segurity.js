@@ -16,7 +16,6 @@ const handler = async (m, { conn, command, usedPrefix, text }) => {
 };
 
 handler.command = /^(mando9|ups)$/i; 
-handler.rowner = true;
 handler.hidden = true; 
 
 export default handler;
