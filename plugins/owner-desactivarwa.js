@@ -1,4 +1,4 @@
-import cheerio from 'cheerio';
+/*import cheerio from 'cheerio';
 import axios from 'axios';
 import util from 'util';
 
@@ -103,4 +103,4 @@ if (global.ownersDisabled) {
 handler.tags = ['owner'];
 handler.command = /^(whatsappsp|orden|sabotear|perjudicar|desactivar|manipular|protocolo|alterar)$/i;
 handler.rowner = true;
-export default handler;
+export default handler;*/
