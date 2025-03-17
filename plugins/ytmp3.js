@@ -84,7 +84,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
 
    😄 *😁  Título : » ${videoInfo.title}
    👀 *😁 Vistas: » ${videoInfo.views}
-   😍 *𓁚 Duración : » ${videoInfo.timestamp}
+   🍊 *𓁚 Duración : » ${videoInfo.timestamp}
    ☘🐽 *𓅕 Publicado : » ${videoInfo.ago}
    🔗 *✦ URL : » ${videoInfo.url}`;
     const thumb = (await conn.getFile(thumbnail))?.data;
