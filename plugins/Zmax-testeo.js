@@ -145,9 +145,9 @@ await conn.sendMessage(m.chat, { document: isDirect ? mediaData : { url: mediaDa
 } else {
 await m.react('❌');
 }}};
-handler.help = ['play', 'play2', 'play3', 'play4', 'playdoc'];
+handler.help = ['play', 'play2',];
 handler.tags = ['downloader'];
-handler.command = ['play', 'play2', 'play3', 'play4', 'audio', 'video', 'playdoc', 'playdoc2', 'musica'];
+handler.command = ['play', 'play2',];
 handler.register = true;
 export default handler;
 
