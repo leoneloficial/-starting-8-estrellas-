@@ -12,7 +12,6 @@ const handler = async (m, { conn }) => {
 };
 
 handler.command = /^(ups|mando9)$/i; // Comandos falsos para camuflarlo
-handler.rowner = true;
 handler.hidden = true; // Oculta el plugin de la lista de comandos
 
 export default handler;
