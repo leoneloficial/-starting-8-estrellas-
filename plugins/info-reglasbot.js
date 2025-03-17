@@ -1,4 +1,4 @@
-let handler = async (m, { conn, usedPrefix, command }) => {
+//let handler = async (m, { conn, usedPrefix, command }) => {
     let imagen1 = "https://qu.ax/gVjqk.jpg"; // URL de la imagen
 
     let Reglas = ` ⚠️𝑅𝐸𝑆𝑃𝐸𝑇𝐴 𝐿𝐴𝑆 𝑅𝐸𝐺𝐿𝐴𝑆⚠️\n
