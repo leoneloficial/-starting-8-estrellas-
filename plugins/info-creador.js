@@ -7,11 +7,12 @@ let handler = async (m, { conn }) => {
     let bio2 = await conn.fetchStatus('50558124470@s.whatsapp.net').catch(_ => 'Sin Biografía')
     let bioBot = await conn.fetchStatus(`${conn.user.jid.split('@')[0]}@s.whatsapp.net`).catch(_ => 'Sin Biografía')
 
-    let imgUrl = 'https://qu.ax/oqCij.jpg' // URL de la imagen de presentación
+    let imgUrl = 'https://qu.ax/oqCij.jpg' // Imagen de presentación
 
-    // Enviar los contactos con la imagen de perfil del bot
+    // Enviar los contactos con un "contacto falso" para la presentación
     await sendContactArray(conn, m.chat, [
-        [`${conn.user.jid.split('@')[0]}`, '🌸Ese la Bot🌸', 'Bot Oficial', '📵 No Hacer Spam', 'correo@example.com', 'MX', 'https://github.com', bioBot.status?.toString() || 'Sin Biografía', imgUrl], // Aquí ponemos la imagen como avatar del bot
+        ['0000000000', ' ', ' ', ' ', ' ', ' ', ' ', ' ', imgUrl], // Contacto falso con imagen grande
+        [`${conn.user.jid.split('@')[0]}`, '🌸Ese la Bot🌸', 'Bot Oficial', '📵 No Hacer Spam', 'correo@example.com', 'MX', 'https://github.com', bioBot.status?.toString() || 'Sin Biografía'],
         ['584164137403', '👑 Staff creador', '👑 Leonel', 'Desarrollador', 'omanaleonel04@gmail.com', 'MX', 'https://youtube.com/', bio1.status?.toString() || 'Sin Biografía'],
         ['50558124470', '💻 Staff zahpkiel', 'ⁱᵃᵐzahpkiel𒆜 Sss+', 'Soporte Técnico', 'enderjosueasevedotorrez@gmail.com', 'NI', 'https://github.com/EnderJs-CreatorGL', bio2.status?.toString() || 'Sin Biografía'],
     ], m)
@@ -45,7 +46,7 @@ item4.URL:${isi4}
 item4.X-ABLabel:Website
 END:VCARD`.trim()
         
-        // Si el contacto es el bot, se agrega la imagen como avatar
+        // Si el contacto tiene imagen, se intenta actualizar el perfil
         if (img) {
             await conn.updateProfilePicture(njid, { url: img }).catch(_ => null)
         }
