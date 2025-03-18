@@ -7,12 +7,10 @@ let handler = async (m, { conn }) => {
     let bio2 = await conn.fetchStatus('50558124470@s.whatsapp.net').catch(_ => 'Sin Biografía')
     let bioBot = await conn.fetchStatus(`${conn.user.jid.split('@')[0]}@s.whatsapp.net`).catch(_ => 'Sin Biografía')
 
-    // 🌸 Enviar imagen de presentación antes de los contactos 🌸
-    let imgUrl = 'https://qu.ax/oqCij.jpg' 
-    await conn.sendMessage(m.chat, { image: { url: imgUrl }, caption: '👑 Lista de Owners y Soporte 👑' }, { quoted: m })
+    let imgUrl = 'https://qu.ax/oqCij.jpg' // URL de la imagen de presentación
 
-    // 📝 Enviar contactos después de la imagen
     await sendContactArray(conn, m.chat, [
+        ['', '👑 Presentación 👑', '🌸 Imagen de presentación 🌸', '🔝 Arriba de la lista', imgUrl, '🌍 Ver Imagen', '', ''],
         ['584164137403', '👑 Staff creador', '👑 ৎ୭࠭͢𓆩𝕷͢𝖊𝖔፝֟፝֟፝֟፝֟፝֟፝֟𝖓𝖊𝖑𓆪 👑', 'Desarrollador', 'omanaleonel04@gmail.com', 'MX', 'https://youtube.com/', bio1.status?.toString() || 'Sin Biografía'],
         ['50558124470', '💻 Staff zahpkiel', 'ⁱᵃᵐzahpkiel𒆜 Sss+', 'Soporte Técnico', 'enderjosueasevedotorrez@gmail.com', 'NI', 'https://github.com/EnderJs-CreatorGL', bio2.status?.toString() || 'Sin Biografía'],
         [`${conn.user.jid.split('@')[0]}`, '🌸Ese la Bot🌸', 'Bot Oficial', '📵 No Hacer Spam', 'correo@example.com', 'MX', 'https://github.com', bioBot.status?.toString() || 'Sin Biografía']
@@ -36,7 +34,7 @@ VERSION:3.0
 N:Sy;Bot;;;
 FN:${name.replace(/\n/g, '\\n')}
 item.ORG:${isi}
-item1.TEL;waid=${number}:${PhoneNumber('+' + number).getNumber('international')}
+item1.TEL;waid=${number}:${number ? PhoneNumber('+' + number).getNumber('international') : ''}
 item1.X-ABLabel:${isi1}
 item2.EMAIL;type=INTERNET:${isi2}
 item2.X-ABLabel:📧 Email
@@ -44,8 +42,7 @@ item3.ADR:;;${isi3};;;;
 item3.X-ABADR:ac
 item3.X-ABLabel: 🌍 Ubicación
 item4.URL:${isi4}
-item4.X-ABLabel:Website
-item5.X-ABLabel:${isi5}
+item4.X-ABLabel:${isi5}
 END:VCARD`.trim()
         contacts.push({ vcard, displayName: name })
     }
