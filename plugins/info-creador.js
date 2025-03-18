@@ -22,7 +22,7 @@ let handler = async (m, { conn, usedPrefix, text, args, command }) => {
   await sendContactArray(conn, m.chat, [
     [`${nomorown1}`, `👑 Staff crrador`, `☁️ ⁱᵃᵐLeonel𒆜`, 'leoneloficial@gmail.com', `🏴 Pirata`, `https://github.com/leoneloficial/-starting-8-estrellas-`, bio1],
     [`${nomorown2}`, `💻 Staff Zahpkiel`, `ⁱᵃᵐzahpkiel𒆜`, 'enderjosueasevedotorrez@gmail.com', `🏴 Pirata`, `https://github.com/EnderJs-CreatorGL`, bio2],
-    [`${conn.user.jid.split('@')[0]}`, `🌸Ese la bot🌸`, `${packname}`, `📵 No Hacer Spam`, 'leoneloficial@gmail.com', deloveper`, `https://github.com/leoneloficial`, biobot]
+    [`${conn.user.jid.split('@')[0]}`, `🌸Ese la bot🌸`, `${packname}`, `📵 No Hacer Spam`, 'leoneloficial@gmail.com', deloveper`, `sumi sakurazawa`, biobot]
   ], m)
 }
 
