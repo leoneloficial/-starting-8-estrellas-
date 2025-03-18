@@ -107,7 +107,7 @@ global.fake = { contextInfo: { isForwarded: true, forwardedNewsletterMessageInfo
 }}, { quoted: m }
 
 global.icono = [ 
-'https://qu.ax/cJQxf.jpg',
+'https://qu.ax/gAVKs.jpg',
 'https://qu.ax/LpoSn.jpg',
 'https://qu.ax/ogkkb.jpg',
 'https://qu.ax/fUGlH.jpg',
