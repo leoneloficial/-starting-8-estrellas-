@@ -9,8 +9,14 @@ let handler = async (m, { conn }) => {
 
     let imgUrl = 'https://qu.ax/oqCij.jpg' // URL de la imagen de presentación
 
+    // Primero, enviamos la imagen con una descripción
+    await conn.sendMessage(m.chat, {
+        image: { url: imgUrl },
+        caption: "👑 Presentación del bot y sus creadores 👑"
+    })
+
+    // Luego, enviamos la lista de contactos
     await sendContactArray(conn, m.chat, [
-        ['', '👑 Presentación 👑', '🌸 Imagen de presentación 🌸', '🔝 Arriba de la lista', imgUrl, '🌍 Ver Imagen', '', ''],
         ['584164137403', '👑 Staff creador', '👑 ৎ୭࠭͢𓆩𝕷͢𝖊𝖔፝֟፝֟፝֟፝֟፝֟፝֟𝖓𝖊𝖑𓆪 👑', 'Desarrollador', 'omanaleonel04@gmail.com', 'MX', 'https://youtube.com/', bio1.status?.toString() || 'Sin Biografía'],
         ['50558124470', '💻 Staff zahpkiel', 'ⁱᵃᵐzahpkiel𒆜 Sss+', 'Soporte Técnico', 'enderjosueasevedotorrez@gmail.com', 'NI', 'https://github.com/EnderJs-CreatorGL', bio2.status?.toString() || 'Sin Biografía'],
         [`${conn.user.jid.split('@')[0]}`, '🌸Ese la Bot🌸', 'Bot Oficial', '📵 No Hacer Spam', 'correo@example.com', 'MX', 'https://github.com', bioBot.status?.toString() || 'Sin Biografía']
@@ -42,7 +48,7 @@ item3.ADR:;;${isi3};;;;
 item3.X-ABADR:ac
 item3.X-ABLabel: 🌍 Ubicación
 item4.URL:${isi4}
-item4.X-ABLabel:${isi5}
+item4.X-ABLabel:Website
 END:VCARD`.trim()
         contacts.push({ vcard, displayName: name })
     }
