@@ -12,9 +12,9 @@ let handler = async (m, { conn, usedPrefix, text, args, command }) => {
     let name = await conn.getName(who)
 
     await sendContactArray(conn, m.chat, [
-        ['584164137403', '👑 Staff creador', '👑 ৎ୭࠭͢𓆩𝕷͢𝖊𝖔፝֟፝֟፝֟፝֟፝֟፝֟𝖓𝖊𝖑𓆪 👑', 'Desarrollador', 'correo@example.com', 'MX', 'https://youtube.com/', bio1.status?.toString() || 'Sin Biografía'],
+        ['584164137403', '👑 Staff creador', '👑 ৎ୭࠭͢𓆩𝕷͢𝖊𝖔፝֟፝֟፝֟፝֟፝֟፝֟𝖓𝖊𝖑𓆪 👑', 'Desarrollador', 'omanaleonel04@gmail.com', 'MX', 'https://youtube.com/', bio1.status?.toString() || 'Sin Biografía'],
         ['50558124470', '💻 Staff zahpkiel', 'ⁱᵃᵐzahpkiel𒆜 Sss+', 'Soporte Técnico', 'enderjosueasevedotorrez@gmail.com', 'NI', 'https://github.com/EnderJs-CreatorGL', bio2.status?.toString() || 'Sin Biografía'],
-        [`${conn.user.jid.split('@')[0]}`, '🌸 Es el Bot', 'Bot Oficial', '📵 No Hacer Spam', 'correo@example.com', 'MX', 'https://github.com', bioBot.status?.toString() || 'Sin Biografía']
+        [`${conn.user.jid.split('@')[0]}`, '🌸Ese la Bot🌸', 'Bot Oficial', '📵 No Hacer Spam', 'correo@example.com', 'MX', 'https://github.com', bioBot.status?.toString() || 'Sin Biografía']
     ], m)
 } 
 
