@@ -67,7 +67,7 @@ resultado += segundos + " segundos";
 }
 return resultado;
 }
-let vn = './media/Menu.jpg'
+let vn = './src/menus/Menu.jpg'
 const message = users.map((v, index) => `${index + 1}√
 [🌸]+${v.user.jid.replace(/[^0-9]/g, '')}\n[💐] *Usuario*: ${v.user.name || 'Sub-Bot'}\n[🌻] *Online*: ${ v.uptime ? convertirMsADiasHorasMinutosSegundos(Date.now() - v.uptime) : 'Desconocido'}`).join('\n\n\n\n');
 const replyMessage = message.length === 0 ? `No hay Sub-Bots disponible por el momento, verifique mas tarde.` : message;
