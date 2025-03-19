@@ -18,7 +18,7 @@ async function handler(m, { conn }) {
   try {
     imagen4 = await conn.profilePictureUrl(m.sender);
   } catch (e) {
-    imagen4 = "https://qu.ax/oqCij.jpg"; // Imagen por defecto
+    imagen4 = "https://qu.ax/iwyKl.jpg"; // Imagen por defecto
   }
 
   await conn.sendMessage(m.chat, {
