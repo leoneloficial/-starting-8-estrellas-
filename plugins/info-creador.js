@@ -28,7 +28,7 @@ TITLE: Developer
 TEL;type=CELL;type=VOICE;waid=584164137403:+58 416-4137403
 TEL;type=WORK;type=VOICE:+58 416-4137403
 EMAIL: izumilitee@gmail.com
-ADR;type=WORK:;;Por el dia no hago nada y por la tarde descanso;;;;
+ADR;type=WORK:;;Por el dia no hago nada;;;;
 URL:${canal}
 NOTE:Å,
 BDAY:2025-12-31
@@ -40,7 +40,7 @@ END:VCARD`
       externalAdReply: {
         renderLargerThumbnail: true,
         mediaType: 1,
-        title: 'Corte , Corte ¿Que putas fue eso ?',
+        title: '🪄Somos el Staff🪄',
         body: wm,
         thumbnail: imagen4,
         sourceUrl: canal
