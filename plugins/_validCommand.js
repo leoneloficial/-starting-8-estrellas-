@@ -15,10 +15,13 @@ let handler = async (m, { conn }) => {
   // Obtener la foto de perfil del usuario
   let imagen4;
   try {
-    imagen4 = await conn.profilePictureUrl(m.sender);
+    imagen4 = await conn.profilePictureUrl(m.sender, "image"); // 'image' garantiza calidad
   } catch (e) {
-    imagen4 = "https://qu.ax/oqCij.jpg"; // Imagen por defecto
+    imagen4 = "https://telegra.ph/file/7c4f7a8a6d52b9f3c7f09.jpg"; // Imagen alternativa en Telegra.ph
   }
+
+  // Enviar la imagen antes de la tarjeta de contacto
+  await conn.sendMessage(m.chat, { image: { url: imagen4 }, caption: `👤 ${author} \n💠 *Información de contacto*` }, { quoted: m });
 
   await conn.sendMessage(m.chat, {
     contacts: {
@@ -36,7 +39,6 @@ EMAIL:izumilitee@gmail.com
 ADR;type=WORK:;;Por el día no hago nada;;;;
 URL:${canal}
 BDAY:2025-12-31
-PHOTO;VALUE=URI:${imagen4}
 END:VCARD`
       }]
     },
