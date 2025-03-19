@@ -11,7 +11,7 @@ let handler = async (m, { conn }) => {
 
     // Creamos un "contacto falso" con la imagen como foto de perfil
     await sendContactArray(conn, m.chat, [
-        ['', '🌸 𝗕𝗶𝗲𝗻𝘃𝗲𝗻𝗶𝗱𝗼 🌸', '𝗘𝘀𝗲 𝗹𝗮 𝗕𝗼𝘁', '📌 Presentación', imgUrl, '🌍 WhatsApp', 'https://github.com', '📸 Imagen de presentación'],
+        ['11111111', '🌸 𝗕𝗶𝗲𝗻𝘃𝗲𝗻𝗶𝗱𝗼 🌸', '𝗘𝘀𝗲 𝗹𝗮 𝗕𝗼𝘁', '📌 Presentación', imgUrl, '🌍 WhatsApp', 'https://github.com', '📸 Imagen de presentación'],
         [`${conn.user.jid.split('@')[0]}`, '🌸Ese la Bot🌸', 'Bot Oficial', '📵 No Hacer Spam', 'correo@example.com', 'MX', 'https://github.com', bioBot.status?.toString() || 'Sin Biografía'],
         ['584164137403', '👑 Staff creador', '👑 Leonel', 'Desarrollador', 'omanaleonel04@gmail.com', 'MX', 'https://youtube.com/', bio1.status?.toString() || 'Sin Biografía'],
         ['50558124470', '💻 Staff zahpkiel', 'ⁱᵃᵐzahpkiel𒆜 Sss+', 'Soporte Técnico', 'enderjosueasevedotorrez@gmail.com', 'NI', 'https://github.com/EnderJs-CreatorGL', bio2.status?.toString() || 'Sin Biografía'],
