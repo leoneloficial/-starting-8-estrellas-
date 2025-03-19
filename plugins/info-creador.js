@@ -10,7 +10,7 @@ async function handler(m, { conn }) {
   })));
 
   let wm = "sumi-Bot"; 
-  let canal = "https://www.atom.bio/edar_";  
+  let canal = "https//wa.me/50558124470?text=Hola";  
   let author = m.pushName || "Usuario Desconocido";
 
   // Obtener la foto de perfil del usuario
