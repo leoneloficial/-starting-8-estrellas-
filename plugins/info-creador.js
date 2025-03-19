@@ -1,28 +1,16 @@
 import PhoneNumber from 'awesome-phonenumber'
 
-let handler = async (m, { conn, usedPrefix, text, args, command }) => {
+let handler = async (m, { conn }) => {
     m.react('👑')
-
-    let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
-    let pp = 'https://qu.ax/oqCij.jpg' // Imagen fija
 
     let bio1 = await conn.fetchStatus('584164137403@s.whatsapp.net').catch(_ => 'Sin Biografía')
     let bio2 = await conn.fetchStatus('50558124470@s.whatsapp.net').catch(_ => 'Sin Biografía')
     let bioBot = await conn.fetchStatus(`${conn.user.jid.split('@')[0]}@s.whatsapp.net`).catch(_ => 'Sin Biografía')
 
-    let name = await conn.getName(who)
-
-    // Enviar la imagen primero
-    await conn.sendMessage(m.chat, { image: { url: pp }, caption: 'No molestar, xD - -' }, { quoted: m })
-
-    // Esperar un poco antes de enviar los contactos
-    await new Promise(resolve => setTimeout(resolve, 1000))
-
-    // Enviar el contacto después
     await sendContactArray(conn, m.chat, [
-        ['584164137403', '👑 Staff creador', '👑 ৎ୭࠭͢𓆩𝕷͢𝖊𝖔፝֟፝֟፝֟፝֟፝֟፝֟𝖓𝖊𝖑𓆪 👑', 'Desarrollador', 'omanaleonel04@gmail.com', 'MX', 'https://youtube.com/', bio1.status?.toString() || 'Sin Biografía'],
-        ['50558124470', '💻 Staff zahpkiel', 'ⁱᵃᵐzahpkiel𒆜 Sss+', 'Soporte Técnico', 'enderjosueasevedotorrez@gmail.com', 'NI', 'https://github.com/EnderJs-CreatorGL', bio2.status?.toString() || 'Sin Biografía'],
-        [`${conn.user.jid.split('@')[0]}`, '🌸Ese la Bot🌸', 'Bot Oficial', '📵 No Hacer Spam', 'correo@example.com', 'MX', 'https://github.com', bioBot.status?.toString() || 'Sin Biografía']
+        ['50584972454', '🌸 sumi- bot 🌸', '🤖 Bot Oficial', '📵 No Hacer Spam', 'correo@example.com', 'NI', 'https://github.com', 'No molestar, xD - -'],
+        ['584164137403', '👑 Staff creador', '👑 Leonel', 'Desarrollador', 'omanaleonel04@gmail.com', 'MX', 'https://youtube.com/', bio1.status?.toString() || 'Sin Biografía'],
+        ['50558124470', '💻 Staff zahpkiel', 'ⁱᵃᵐzahpkiel𒆜 Sss+', 'Soporte Técnico', 'enderjosueasevedotorrez@gmail.com', 'NI', 'https://github.com/EnderJs-CreatorGL', bio2.status?.toString() || 'Sin Biografía']
     ], m)
 } 
 
@@ -37,7 +25,6 @@ async function sendContactArray(conn, jid, data, quoted, options) {
     for (let [number, name, isi, isi1, isi2, isi3, isi4, isi5] of data) {
         number = number.replace(/[^0-9]/g, '')
         let njid = number + '@s.whatsapp.net'
-        let biz = await conn.getBusinessProfile(njid).catch(_ => null) || {}
         let vcard = `
 BEGIN:VCARD
 VERSION:3.0
