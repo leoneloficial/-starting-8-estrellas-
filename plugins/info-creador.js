@@ -9,11 +9,17 @@ async function handler(m, { conn }) {
     }, i * 1000);
   })));
 
-  let wm = "Izumi-Bot"; 
-  let imagen4 = "https://mystickermania.com/cdn/stickers/cute/mochi-peach-cat-bread-512x512.png"; 
+  let wm = "sumi-Bot"; 
   let canal = "https://www.atom.bio/edar_";  
-
   let author = m.pushName || "Usuario Desconocido";
+
+  // Obtener la foto de perfil del usuario
+  let imagen4;
+  try {
+    imagen4 = await conn.profilePictureUrl(m.sender, "image");
+  } catch (e) {
+    imagen4 = "https://mystickermania.com/cdn/stickers/cute/mochi-peach-cat-bread-512x512.png"; // Imagen por defecto
+  }
 
   await conn.sendMessage(m.chat, {
     contacts: {
@@ -21,14 +27,14 @@ async function handler(m, { conn }) {
         displayName: author,
         vcard: `BEGIN:VCARD
 VERSION:3.0
-N:Edar;;;
+N:Leonel;;;
 FN:Leonel OFC
 ORG:sumi-Bot Owner
 TITLE: Developer
 TEL;type=CELL;type=VOICE;waid=584164137403:+58 416-4137403
 TEL;type=WORK;type=VOICE:+58 416-4137403
 EMAIL: izumilitee@gmail.com
-ADR;type=WORK:;;Por el dia no hago nada;;;;
+ADR;type=WORK:;;Por el día no hago nada;;;;
 URL:${canal}
 NOTE:Å,
 BDAY:2025-12-31
@@ -48,7 +54,6 @@ END:VCARD`
     }
   }, { quoted: m });
 }
-
 
 handler.command = /^(contactos|\.owner|owner|\.dueño|\.creador|creador)$/i;
 
