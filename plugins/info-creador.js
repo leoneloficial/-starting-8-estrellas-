@@ -1,30 +1,40 @@
-import PhoneNumber from 'awesome-phonenumber'
+import PhoneNumber from 'awesome-phonenumber';
 
 let handler = async (m, { conn }) => {
-    m.react('👑')
+    m.react('👑');
+    
+    let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender;
+    let pp = await conn.profilePictureUrl(who).catch(_ => 'https://telegra.ph/file/24fa902ead26340f3df2c.png');
 
-    let bio1 = await conn.fetchStatus('584164137403@s.whatsapp.net').catch(_ => 'Sin Biografía')
-    let bio2 = await conn.fetchStatus('50558124470@s.whatsapp.net').catch(_ => 'Sin Biografía')
-    let bioBot = await conn.fetchStatus(`${conn.user.jid.split('@')[0]}@s.whatsapp.net`).catch(_ => 'Sin Biografía')
+    let bio1 = await conn.fetchStatus('584164137403@s.whatsapp.net').catch(_ => 'Sin Biografía');
+    let bio2 = await conn.fetchStatus('50558124470@s.whatsapp.net').catch(_ => 'Sin Biografía');
+    let bioBot = await conn.fetchStatus(`${conn.user.jid.split('@')[0]}@s.whatsapp.net`).catch(_ => 'Sin Biografía');
 
+    let name = await conn.getName(who);
+
+    // Enviar la imagen de perfil primero
+    await conn.sendMessage(m.chat, { image: { url: pp }, caption: 'No molestar, xD - -' }, { quoted: m });
+
+    // Luego enviar la tarjeta de contacto
     await sendContactArray(conn, m.chat, [
-        ['50584972454', '🌸 sumi- bot 🌸', '🤖 Bot Oficial', '📵 No Hacer Spam', 'correo@example.com', 'NI', 'https://github.com', 'No molestar, xD - -'],
-        ['584164137403', '👑 Staff creador', '👑 Leonel', 'Desarrollador', 'omanaleonel04@gmail.com', 'MX', 'https://youtube.com/', bio1.status?.toString() || 'Sin Biografía'],
-        ['50558124470', '💻 Staff zahpkiel', 'ⁱᵃᵐzahpkiel𒆜 Sss+', 'Soporte Técnico', 'enderjosueasevedotorrez@gmail.com', 'NI', 'https://github.com/EnderJs-CreatorGL', bio2.status?.toString() || 'Sin Biografía']
-    ], m)
-} 
+        ['584164137403', '👑 Staff creador', '👑 ৎ୭࠭͢𓆩𝕷͢𝖊𝖔፝֟፝֟𝖓𝖊𝖑𓆪 👑', 'Desarrollador', 'omanaleonel04@gmail.com', 'MX', 'https://youtube.com/', bio1.status?.toString() || 'Sin Biografía'],
+        ['50558124470', '💻 Staff zahpkiel', 'ⁱᵃᵐzahpkiel𒆜 Sss+', 'Soporte Técnico', 'enderjosueasevedotorrez@gmail.com', 'NI', 'https://github.com/EnderJs-CreatorGL', bio2.status?.toString() || 'Sin Biografía'],
+        [`${conn.user.jid.split('@')[0]}`, '🌸Ese la Bot🌸', 'Bot Oficial', '📵 No Hacer Spam', 'correo@example.com', 'MX', 'https://github.com', bioBot.status?.toString() || 'Sin Biografía']
+    ], m);
+};
 
-handler.help = ["creador", "owner"]
-handler.tags = ["info"]
-handler.command = ['owner', 'creador']
-export default handler
+handler.help = ["creador", "owner"];
+handler.tags = ["info"];
+handler.command = ['owner', 'creador'];
+export default handler;
 
 async function sendContactArray(conn, jid, data, quoted, options) {
-    if (!Array.isArray(data[0]) && typeof data[0] === 'string') data = [data]
-    let contacts = []
+    if (!Array.isArray(data[0]) && typeof data[0] === 'string') data = [data];
+    let contacts = [];
     for (let [number, name, isi, isi1, isi2, isi3, isi4, isi5] of data) {
-        number = number.replace(/[^0-9]/g, '')
-        let njid = number + '@s.whatsapp.net'
+        number = number.replace(/[^0-9]/g, '');
+        let njid = number + '@s.whatsapp.net';
+        let biz = await conn.getBusinessProfile(njid).catch(_ => null) || {};
         let vcard = `
 BEGIN:VCARD
 VERSION:3.0
@@ -41,13 +51,13 @@ item3.X-ABLabel: 🌍 Ubicación
 item4.URL:${isi4}
 item4.X-ABLabel:Website
 item5.X-ABLabel:${isi5}
-END:VCARD`.trim()
-        contacts.push({ vcard, displayName: name })
+END:VCARD`.trim();
+        contacts.push({ vcard, displayName: name });
     }
     return await conn.sendMessage(jid, {
         contacts: {
             displayName: contacts.length > 1 ? `${contacts.length} contactos` : contacts[0].displayName,
             contacts,
         }
-    }, { quoted, ...options })
+    }, { quoted, ...options });
 }
