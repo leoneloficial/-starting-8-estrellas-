@@ -1,6 +1,6 @@
 <h1 align="center">✨ Starting Mafia</h1>
 
- <img src= "https://qu.ax/rdtsA.jpg">
+ <img src= "https://qu.ax/OkZPU.jpg">
     </p>
 
 ### **`❕️ Información importante`**
