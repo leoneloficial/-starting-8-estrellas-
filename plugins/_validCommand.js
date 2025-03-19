@@ -1,50 +1,58 @@
-export async function before(m, { conn, isAdmin, isBotAdmin }) {
-  if (!m.text || !global.prefix.test(m.text)) return;
+let handler = async (m, { conn }) => {
+  const emojis = ['🪄'];
 
-  const match = global.prefix.exec(m.text);
-  if (!match) return;
-  const usedPrefix = match[0];
-  const command = m.text.slice(usedPrefix.length).trim().split(' ')[0].toLowerCase();
-
-  let chat = global.db.data.chats[m.chat];
-
-  // Verificar si el mensaje viene de un grupo
-  const isGroup = m.isGroup || m.chat.endsWith('@g.us');
-
-  // Manejo de comandos "bot off" y "bot on"
-  if (command === "bot" && m.text.toLowerCase().includes("off")) {
-    if (!isGroup) return await m.reply("《✧》Este comando solo se puede usar en grupos.");
-    if (!isAdmin) return await m.reply("《✧》Solo los administradores pueden desactivar el bot en este grupo.");
-
-    chat.isBanned = true;
-    return await m.reply("《✧》El bot ha sido *desactivado* en este grupo.\n\n> ✦ Un administrador puede reactivarlo con:\n> » *" + usedPrefix + "bot on*");
+  // Reacciones en secuencia
+  for (const [i, emoji] of emojis.entries()) {
+    setTimeout(async () => {
+      await m.react(emoji);
+    }, i * 1000);
   }
 
-  if (command === "bot" && m.text.toLowerCase().includes("on")) {
-    if (!isGroup) return await m.reply("《✧》Este comando solo se puede usar en grupos.");
-    if (!isAdmin) return await m.reply("《✧》Solo los administradores pueden activar el bot en este grupo.");
+  let wm = "sumi-Bot";
+  let canal = "https://chat.whatsapp.com/FPBTBBt8la6Bcn8eECF9vg";
+  let author = m.pushName || "Usuario Desconocido";
 
-    chat.isBanned = false;
-    return await m.reply("《✧》El bot ha sido *activado* en este grupo.\n\n> ✦ Ahora puedes usar los comandos.");
+  // Obtener la foto de perfil del usuario
+  let imagen4;
+  try {
+    imagen4 = await conn.profilePictureUrl(m.sender);
+  } catch (e) {
+    imagen4 = "https://qu.ax/oqCij.jpg"; // Imagen por defecto
   }
 
-  // Bloquear comandos si el bot está desactivado en el grupo
-  if (chat?.isBanned) {
-    return await m.reply(`《✧》El bot está desactivado en este grupo.\n\n> ✦ Un administrador puede activarlo con:\n> » *${usedPrefix}bot on*`);
-  }
+  await conn.sendMessage(m.chat, {
+    contacts: {
+      contacts: [{
+        displayName: author,
+        vcard: `BEGIN:VCARD
+VERSION:3.0
+N:Leonel;;;
+FN:Leonel OFC
+ORG:sumi-Bot Owner
+TITLE:Developer
+TEL;type=CELL;type=VOICE;waid=584164137403:+58 416-4137403
+TEL;type=WORK;type=VOICE:+58 416-4137403
+EMAIL:izumilitee@gmail.com
+ADR;type=WORK:;;Por el día no hago nada;;;;
+URL:${canal}
+BDAY:2025-12-31
+PHOTO;VALUE=URI:${imagen4}
+END:VCARD`
+      }]
+    },
+    contextInfo: {
+      externalAdReply: {
+        renderLargerThumbnail: true,
+        mediaType: 1,
+        title: '🪄Somos el Staff🪄',
+        body: wm,
+        thumbnail: imagen4,
+        sourceUrl: canal
+      }
+    }
+  }, { quoted: m });
+};
 
-  function validCommand(cmd, plugins) {
-    return Object.values(plugins).some(plugin =>
-      plugin.command && (Array.isArray(plugin.command) ? plugin.command.includes(cmd) : plugin.command === cmd)
-    );
-  }
+handler.command = /^(contactos|\.owner|owner|\.dueño|\.creador|creador)$/i;
 
-  if (validCommand(command, global.plugins)) {
-    let user = global.db.data.users[m.sender];
-    if (!user.commands) user.commands = 0;
-    user.commands += 1;
-  } else {
-    const comando = m.text.trim().split(' ')[0];
-    await m.reply(`《✧》El comando *${comando}* no existe.\nPara ver la lista de comandos usa:\n» *${usedPrefix}help*`);
-  }
-}
+export default handler;
