@@ -10,7 +10,7 @@ async function handler(m, { conn }) {
   })));
 
   let wm = "sumi-Bot"; 
-  let canal = "https//wa.me/50558124470?text=Hola";  
+  let canal = https://chat.whatsapp.com/FPBTBBt8la6Bcn8eECF9vg";  
   let author = m.pushName || "Usuario Desconocido";
 
   // Obtener la foto de perfil del usuario
@@ -18,7 +18,7 @@ async function handler(m, { conn }) {
   try {
     imagen4 = await conn.profilePictureUrl(m.sender, "image");
   } catch (e) {
-    imagen4 = "https://mystickermania.com/cdn/stickers/cute/mochi-peach-cat-bread-512x512.png"; // Imagen por defecto
+    imagen4 = "https://qu.ax/oqCij.jpg"; // Imagen por defecto
   }
 
   await conn.sendMessage(m.chat, {
