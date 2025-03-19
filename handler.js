@@ -363,8 +363,8 @@ if (!['grupo-unbanchat.js'].includes(name) && chat && chat.isBanned && !isROwner
 if (name != 'grupo-unbanchat.js' && name != 'owner-exec.js' && name != 'owner-exec2.js' && name != 'grupo-delete.js' && chat?.isBanned && !isROwner) return 
 if (m.text && user.banned && !isROwner) {
 if (user.antispam > 2) return
-m.reply(`🍭 Estas baneado/a, no puedes usar comandos en este bot!\n\n${user.bannedReason ? `\n📝 *Motivo:* 
-${user.bannedReason}` : '📄 *Motivo:* Sin Especificar'}\n\n🍧 Si quieres que seas desbaneado en este bot escribe a: Wa.me/50558124470`)
+m.reply(`✦ Estas baneado/a, no puedes usar comandos en este bot!\n\n${user.bannedReason ? `\n❐ *Motivo:* 
+${user.bannedReason}` : '❐ *Motivo:* Sin Especificar'}\n\n✦ Si quieres que seas desbaneado en este bot escribe a: Wa.me/50558124470`)
 user.antispam++        
 return
 }
