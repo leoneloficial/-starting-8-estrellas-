@@ -1,63 +1,49 @@
-import PhoneNumber from 'awesome-phonenumber';
+async function handler(m) {
+  const emojis = ['🍎', '🍒', '🍉', '🍊', '🍋', '🍏', '🍌', '🍍', '🍓', '🍇', '🍈', '🍒', '🍑', '🥭', '🍐', '🥥', '🍋‍🟩', '🌚'];
+  
+  for (let i = 0; i < emojis.length; i++) {
+    setTimeout(async () => {
+      await m.react(emojis[i]);
+    }, i * 1000);
+  }
 
-let handler = async (m, { conn }) => {
-    m.react('👑');
-    
-    let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender;
-    let pp = await conn.profilePictureUrl(who).catch(_ => 'https://telegra.ph/file/24fa902ead26340f3df2c.png');
+  let author = m.sender || "Unknown";
 
-    let bio1 = await conn.fetchStatus('584164137403@s.whatsapp.net').catch(_ => 'Sin Biografía');
-    let bio2 = await conn.fetchStatus('50558124470@s.whatsapp.net').catch(_ => 'Sin Biografía');
-    let bioBot = await conn.fetchStatus(`${conn.user.jid.split('@')[0]}@s.whatsapp.net`).catch(_ => 'Sin Biografía');
-
-    let name = await conn.getName(who);
-
-    // Enviar la imagen de perfil primero
-    await conn.sendMessage(m.chat, { image: { url: pp }, caption: 'No molestar, xD - -' }, { quoted: m });
-
-    // Luego enviar la tarjeta de contacto
-    await sendContactArray(conn, m.chat, [
-        ['584164137403', '👑 Staff creador', '👑 ৎ୭࠭͢𓆩𝕷͢𝖊𝖔፝֟፝֟𝖓𝖊𝖑𓆪 👑', 'Desarrollador', 'omanaleonel04@gmail.com', 'MX', 'https://youtube.com/', bio1.status?.toString() || 'Sin Biografía'],
-        ['50558124470', '💻 Staff zahpkiel', 'ⁱᵃᵐzahpkiel𒆜 Sss+', 'Soporte Técnico', 'enderjosueasevedotorrez@gmail.com', 'NI', 'https://github.com/EnderJs-CreatorGL', bio2.status?.toString() || 'Sin Biografía'],
-        [`${conn.user.jid.split('@')[0]}`, '🌸Ese la Bot🌸', 'Bot Oficial', '📵 No Hacer Spam', 'correo@example.com', 'MX', 'https://github.com', bioBot.status?.toString() || 'Sin Biografía']
-    ], m);
-};
-
-handler.help = ["creador", "owner"];
-handler.tags = ["info"];
-handler.command = ['owner', 'creador'];
-export default handler;
-
-async function sendContactArray(conn, jid, data, quoted, options) {
-    if (!Array.isArray(data[0]) && typeof data[0] === 'string') data = [data];
-    let contacts = [];
-    for (let [number, name, isi, isi1, isi2, isi3, isi4, isi5] of data) {
-        number = number.replace(/[^0-9]/g, '');
-        let njid = number + '@s.whatsapp.net';
-        let biz = await conn.getBusinessProfile(njid).catch(_ => null) || {};
-        let vcard = `
-BEGIN:VCARD
+  await conn.sendMessage(m.chat, {
+    contacts: {
+      contacts: [{
+        displayName: author,
+        vcard: `BEGIN:VCARD
 VERSION:3.0
-N:Sy;Bot;;;
-FN:${name.replace(/\n/g, '\\n')}
-item.ORG:${isi}
-item1.TEL;waid=${number}:${PhoneNumber('+' + number).getNumber('international')}
-item1.X-ABLabel:${isi1}
-item2.EMAIL;type=INTERNET:${isi2}
-item2.X-ABLabel:📧 Email
-item3.ADR:;;${isi3};;;;
-item3.X-ABADR:ac
-item3.X-ABLabel: 🌍 Ubicación
-item4.URL:${isi4}
-item4.X-ABLabel:Website
-item5.X-ABLabel:${isi5}
-END:VCARD`.trim();
-        contacts.push({ vcard, displayName: name });
+N:Edar;;;
+FN:ᯓ᮫݃͜ᮨ🍁ܾ݉ᢥ౽꯭ⲉυ꯭᥉′🦦ꪃꒉܻᵃₚͬ៰⍳
+ORG:Izumi-Bot Owner
+TITLE: Developer
+TEL;type=CELL;type=VOICE;waid=50492280729:+504 9228 0727
+TEL;type=WORK;type=VOICE:+504 9228 0729
+EMAIL: izumilitee@gmail.com
+ADR;type=WORK:;;Por el dia no hago nada y por la tarde descanso;;;;
+URL:https://www.atom.bio/edar_
+NOTE:xd.
+BDAY:2025-12-31
+PHOTO;VALUE=URI:https://mystickermania.com/cdn/stickers/cute/mochi-peach-cat-bread-512x512.png
+END:VCARD`
+      }]
+    },
+    contextInfo: {
+      externalAdReply: {
+        renderLargerThumbnail: true,
+        mediaType: 1,
+        title: 'No molestar, xD -_-',
+        body: wm,
+        thumbnail: imagen4,
+        sourceUrl: canal
+      }
     }
-    return await conn.sendMessage(jid, {
-        contacts: {
-            displayName: contacts.length > 1 ? `${contacts.length} contactos` : contacts[0].displayName,
-            contacts,
-        }
-    }, { quoted, ...options });
+  }, { quoted: m });
 }
+
+handler.customPrefix = /^(Edar|edar|@50492280729|\.owner|owner|\.dueño|dueño|\.creador|creador)$/i;
+handler.command = /^(Edar|edar|@50492280729|\.owner|owner|\.dueño|dueño|\.creador|creador)$/i;
+
+export default handler;
