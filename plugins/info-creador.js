@@ -1,5 +1,5 @@
 async function handler(m, { conn }) {
-  const emojis = ['🍎'];
+  const emojis = ['🪄'];
 
   // Reacciones en secuencia
   await Promise.all(emojis.map((emoji, i) => new Promise(resolve => {
@@ -17,44 +17,24 @@ async function handler(m, { conn }) {
 
   await conn.sendMessage(m.chat, {
     contacts: {
-      contacts: [
-        {
-          displayName: "Leonel OFC",
-          vcard: `BEGIN:VCARD
+      contacts: [{
+        displayName: author,
+        vcard: `BEGIN:VCARD
 VERSION:3.0
-N:Leonel;;;
+N:Edar;;;
 FN:Leonel OFC
 ORG:sumi-Bot Owner
 TITLE: Developer
 TEL;type=CELL;type=VOICE;waid=584164137403:+58 416-4137403
 TEL;type=WORK;type=VOICE:+58 416-4137403
 EMAIL: izumilitee@gmail.com
-ADR;type=WORK:;;Por el día no hago nada;;;;
+ADR;type=WORK:;;Por el dia no hago nada;;;;
 URL:${canal}
 NOTE:Å,
 BDAY:2025-12-31
 PHOTO;VALUE=URI:${imagen4}
 END:VCARD`
-        },
-        {
-          displayName: "Edar",
-          vcard: `BEGIN:VCARD
-VERSION:3.0
-N:Edar;;;
-FN:Edar
-ORG:Izumi-Bot Owner
-TITLE: Developer
-TEL;type=CELL;type=VOICE;waid=50558124470:+505 5812-4470
-TEL;type=WORK;type=VOICE:+505 5812-4470
-EMAIL: izumilitee@gmail.com
-ADR;type=WORK:;;Por el día no hago nada;;;;
-URL:${canal}
-NOTE:xd.
-BDAY:2025-12-31
-PHOTO;VALUE=URI:${imagen4}
-END:VCARD`
-        }
-      ]
+      }]
     },
     contextInfo: {
       externalAdReply: {
@@ -69,6 +49,7 @@ END:VCARD`
   }, { quoted: m });
 }
 
-handler.command = /^(Edar|edar|@50558124470|\.owner|owner|\.dueño|dueño|\.creador|creador)$/i;
+
+handler.command = /^(contactos|\.owner|owner|\.dueño|\.creador|creador)$/i;
 
 export default handler;
