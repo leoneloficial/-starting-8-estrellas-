@@ -1,5 +1,5 @@
 async function handler(m, { conn }) {
-  const emojis = ['🍎', '🍒', '🍉', '🍊', '🍋', '🍏', '🍌', '🍍', '🍓', '🍇', '🍈', '🍒', '🍑', '🥭', '🍐', '🥥', '🍋‍🟩', '🌚'];
+  const emojis = ['🍎', '🍒', '🌚'];
 
   // Reacciones en secuencia
   await Promise.all(emojis.map((emoji, i) => new Promise(resolve => {
@@ -22,15 +22,15 @@ async function handler(m, { conn }) {
         vcard: `BEGIN:VCARD
 VERSION:3.0
 N:Edar;;;
-FN:ᯓ᮫݃͜ᮨ🍁ܾ݉ᢥ౽꯭ⲉυ꯭᥉′🦦ꪃꒉܻᵃₚͬ៰⍳
-ORG:Izumi-Bot Owner
+FN:Leonel OFC
+ORG:sumi-Bot Owner
 TITLE: Developer
-TEL;type=CELL;type=VOICE;waid=50492280729:+504 9228 0727
-TEL;type=WORK;type=VOICE:+504 9228 0729
+TEL;type=CELL;type=VOICE;waid=584164137403:+58 416-4137403
+TEL;type=WORK;type=VOICE:+58 416-4137403
 EMAIL: izumilitee@gmail.com
 ADR;type=WORK:;;Por el dia no hago nada y por la tarde descanso;;;;
 URL:${canal}
-NOTE:xd.
+NOTE:Å,
 BDAY:2025-12-31
 PHOTO;VALUE=URI:${imagen4}
 END:VCARD`
@@ -40,7 +40,7 @@ END:VCARD`
       externalAdReply: {
         renderLargerThumbnail: true,
         mediaType: 1,
-        title: 'No molestar, xD -_-',
+        title: 'Corte , Corte ¿Que putas fue eso ?',
         body: wm,
         thumbnail: imagen4,
         sourceUrl: canal
