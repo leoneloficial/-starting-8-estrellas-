@@ -1,3 +1,4 @@
+let handler = async (m, { conn, text, usedPrefix, command }) => {
 async function handler(m, { conn }) {
   const emojis = ['🪄'];
 
