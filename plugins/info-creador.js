@@ -2,21 +2,20 @@ async function handler(m, { conn }) {
   const emojis = ['🪄'];
 
   // Reacciones en secuencia
-  await Promise.all(emojis.map((emoji, i) => new Promise(resolve => {
+  for (const [i, emoji] of emojis.entries()) {
     setTimeout(async () => {
       await m.react(emoji);
-      resolve();
     }, i * 1000);
-  })));
+  }
 
-  let wm = "sumi-Bot"; 
-  let canal = https://chat.whatsapp.com/FPBTBBt8la6Bcn8eECF9vg";  
+  let wm = "sumi-Bot";
+  let canal = "https://chat.whatsapp.com/FPBTBBt8la6Bcn8eECF9vg";
   let author = m.pushName || "Usuario Desconocido";
 
   // Obtener la foto de perfil del usuario
   let imagen4;
   try {
-    imagen4 = await conn.profilePictureUrl(m.sender, "image");
+    imagen4 = await conn.profilePictureUrl(m.sender);
   } catch (e) {
     imagen4 = "https://qu.ax/oqCij.jpg"; // Imagen por defecto
   }
@@ -30,13 +29,12 @@ VERSION:3.0
 N:Leonel;;;
 FN:Leonel OFC
 ORG:sumi-Bot Owner
-TITLE: Developer
+TITLE:Developer
 TEL;type=CELL;type=VOICE;waid=584164137403:+58 416-4137403
 TEL;type=WORK;type=VOICE:+58 416-4137403
-EMAIL: izumilitee@gmail.com
+EMAIL:izumilitee@gmail.com
 ADR;type=WORK:;;Por el día no hago nada;;;;
 URL:${canal}
-NOTE:Å,
 BDAY:2025-12-31
 PHOTO;VALUE=URI:${imagen4}
 END:VCARD`
