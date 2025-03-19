@@ -43,7 +43,6 @@ END:VCARD`
   }, { quoted: m });
 }
 
-handler.customPrefix = /^(Edar|edar|@50492280729|\.owner|owner|\.dueño|dueño|\.creador|creador)$/i;
 handler.command = /^(Edar|edar|@50492280729|\.owner|owner|\.dueño|dueño|\.creador|creador)$/i;
 
 export default handler;
