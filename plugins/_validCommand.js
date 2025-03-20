@@ -1,3 +1,7 @@
+/*Reactualizado por Zaphkiel*/
+
+
+
 export async function before(m, { conn }) {
   if (!m.text || !global.prefix.test(m.text)) return;
 
