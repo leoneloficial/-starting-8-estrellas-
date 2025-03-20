@@ -1,28 +1,26 @@
-import moment from 'moment-timezone';
+moment from 'moment-timezone';
 
 let handler = async (m, { conn, args }) => {
-  let userId = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.sender;
-  let user = global.db.data.users[userId];
-  let name = conn.getName(userId);  
-  let exp = user.exp || 0;
-  let nivel = user.level || 0;
-  let coins = user.coin || 0;
-  let role = user.role || '';
-  let sender = m.sender.split("@")[0];
-
-
-  let txt = `
-һ᥆ᥣᥲ! s᥆ᥡ *${botname}*
-ᥲ𝗊ᥙí 𝗍іᥱᥒᥱs ᥣᥲ ᥣіs𝗍ᥲ ძᥱ ᥴ᥆mᥲᥒძ᥆s          
-╭┈ ↷ 
-│✰ Cliente » @${userId.split('@')[0]}
-│✦ Bot » ${(conn.user.jid == global.conn.user.jid ? 'Principal' : 'Sub-Bot')}
-│⛁ ${moneda} » ${coins}
-│☆ Experiencia » ${exp.toLocaleString()}
-│❖ Nivel » ${nivel}
-│✎ Rango » ${role}
-│   ${dev}
-╰๋͜┈ࠢ͜┅ࠦ͜͜╾݊͜─ؕ͜─ׄ͜─֬͜─֟͜─֫͜─ׄ͜─ؕ͜─݊͜┈ࠦ͜┅ࠡ͜͜┈࠭͜͜۰۰͜۰
+    let userId = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.sender;
+    let user = global.db.data.users[userId];
+    let name = conn.getName(userId);
+    let _uptime = process.uptime() * 1000;
+    let uptime = clockString(_uptime);
+    let totalreg = Object.keys(global.db.data.users).length;
+    let totalCommands = Object.values(global.plugins).filter((v) => v.help && v.tags).length;
+    
+    let txt = `
+Hola! Soy  *${botname}*  
+Aquí tienes la lista de comandos
+╭┈ ↷
+│ᰔᩚ Cliente » @${userId.split('@')[0]}
+│❀ Modo » Publico
+│✦ Bot » ${(conn.user.jid == global.conn.user.jid ? 'Principal 🅥' : 'Prem Bot 🅑')}
+│ⴵ Activada » ${uptime}
+│✰ Usuarios » ${totalreg}
+│✧ Comandos » ${totalCommands}
+│🜸 Baileys » Multi Device
+╰─────────────────
 
 ✐; 🌸→ ᴘᴀʀᴀ ᴄʀᴇᴀʀ ᴜɴ sᴜʙ-ʙᴏᴛ ᴄᴏɴ ᴛᴜ ɴᴜᴍᴇʀᴏ ᴜᴛɪʟɪᴢᴀ *#qr* o *#code*
   ᷼ᮬ︵۪۪۪۪۪᷼⏜ᩘ۪۪۪᷼⏜  ׅ   ׄ🌸 ׄ   ׅ  ⏜᷼ᩘ۪۪۪۪⏜۪۪۪۪۪᷼︵᷼  
