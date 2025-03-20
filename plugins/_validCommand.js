@@ -1,4 +1,4 @@
-export async function before(m) {
+export async function before(m, { isAdmin, isGroup }) {
   if (!m.text || !global.prefix.test(m.text)) return;
 
   const match = global.prefix.exec(m.text);
@@ -12,22 +12,27 @@ export async function before(m) {
   let chat = global.db.data.chats[m.chat] || {};
   global.db.data.chats[m.chat] = chat; // Asegurar que se guarde en la base de datos
 
-  // Si el comando es "bot on", activa el bot en el grupo
-  if (command === "bot" && m.text.toLowerCase().includes("on")) {
-    chat.isBanned = false;
-    await m.reply("✅ El bot ha sido activado en este grupo.");
-    return;
+  // Solo en grupos y solo admins pueden activar/desactivar el bot
+  if (isGroup && isAdmin) {
+    if (command === "bot" && m.text.toLowerCase().includes("on")) {
+      chat.isBanned = false;
+      await m.reply(" 《✦》El bot *${botname}* está activo nuevamente en este grupo.\n\n> ✦ puede desactivarlo con el comando:\n> » *${usedPrefix}bot off*`;.");
+      return;
+    }
+
+    if (command === "bot" && m.text.toLowerCase().includes("off")) {
+      chat.isBanned = true;
+      await m.reply("《✦》El bot *${botname}* está desactivado en este grupo.\n\n> ✦ Solo un Admin puede reactivarlo con  el comando:\n> » *${usedPrefix}bot on*`;.");
+      return;
+    }
   }
 
-  // Si el comando es "bot off", desactiva el bot en el grupo
-  if (command === "bot" && m.text.toLowerCase().includes("off")) {
-    chat.isBanned = true;
-    await m.reply("❌ El bot ha sido desactivado en este grupo.");
+  // Si el bot está desactivado en el grupo, enviar mensaje informativo y no procesar comandos
+  if (chat.isBanned) {
+    const avisoDesactivado = `《✦》El bot *${global.botname || 'bot'}* está desactivado en este grupo.\n\n> ✦ Un *administrador* puede activarlo con el comando:\n> » *${usedPrefix}bot on*`;
+    await m.reply(avisoDesactivado);
     return;
   }
-
-  // Si el bot está desactivado en el grupo, no responderá a otros comandos
-  if (chat.isBanned) return;
 
   // Función para verificar si un comando existe en los plugins
   const validCommand = (cmd, plugins) => {
