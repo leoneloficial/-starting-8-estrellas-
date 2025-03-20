@@ -7,7 +7,27 @@ export async function before(m) {
   const usedPrefix = match[0];
   const command = m.text.slice(usedPrefix.length).trim().split(' ')[0].toLowerCase();
 
-  if (!command || command === "bot") return;
+  if (!command) return;
+
+  let chat = global.db.data.chats[m.chat] || {};
+  global.db.data.chats[m.chat] = chat; // Asegurar que se guarde en la base de datos
+
+  // Si el comando es "bot on", activa el bot en el grupo
+  if (command === "bot" && m.text.toLowerCase().includes("on")) {
+    chat.isBanned = false;
+    await m.reply("✅ El bot ha sido activado en este grupo.");
+    return;
+  }
+
+  // Si el comando es "bot off", desactiva el bot en el grupo
+  if (command === "bot" && m.text.toLowerCase().includes("off")) {
+    chat.isBanned = true;
+    await m.reply("❌ El bot ha sido desactivado en este grupo.");
+    return;
+  }
+
+  // Si el bot está desactivado en el grupo, no responderá a otros comandos
+  if (chat.isBanned) return;
 
   // Función para verificar si un comando existe en los plugins
   const validCommand = (cmd, plugins) => {
@@ -17,15 +37,7 @@ export async function before(m) {
   };
 
   if (validCommand(command, global.plugins)) {
-    let chat = global.db.data.chats[m.chat] || {};
     let user = global.db.data.users[m.sender] || {};
-
-    if (chat.isBanned) {
-      const avisoDesactivado = `《✦》El bot *${global.botname || 'bot'}* está desactivado en este grupo.\n\n> ✦ Un *administrador* puede activarlo con el comando:\n> » *${usedPrefix}bot on*`;
-      await m.reply(avisoDesactivado);
-      return;
-    }
-
     user.commands = (user.commands || 0) + 1;
     global.db.data.users[m.sender] = user; // Asegurar que se guarde el cambio
   } else {
