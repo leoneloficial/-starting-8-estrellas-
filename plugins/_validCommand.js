@@ -1,58 +1,41 @@
-let handler = async (m, { conn }) => {
-  const emojis = ['🪄'];
-
-  // Reacciones en secuencia
-  for (const [i, emoji] of emojis.entries()) {
-    setTimeout(async () => {
-      await m.react(emoji);
-    }, i * 1000);
+export async function before(m) {
+  if (!m.text || !global.prefix.test(m.text)) {
+    return;
   }
 
-  let wm = "sumi-Bot";
-  let canal = "https://chat.whatsapp.com/FPBTBBt8la6Bcn8eECF9vg";
-  let author = m.pushName || "Usuario Desconocido";
+  const usedPrefix = global.prefix.exec(m.text)[0];
+  const command = m.text.slice(usedPrefix.length).trim().split(' ')[0].toLowerCase();
 
-  // Obtener la foto de perfil del usuario
-  let imagen4;
-  try {
-    imagen4 = await conn.profilePictureUrl(m.sender);
-  } catch (e) {
-    imagen4 = "https://qu.ax/oqCij.png"; // Imagen por defecto
-  }
-
-  await conn.sendMessage(m.chat, {
-    contacts: {
-      contacts: [{
-        displayName: author,
-        vcard: `BEGIN:VCARD
-VERSION:3.0
-N:Leonel;;;
-FN:Leonel OFC
-ORG:sumi-Bot Owner
-TITLE:Developer
-TEL;type=CELL;type=VOICE;waid=584164137403:+58 416-4137403
-TEL;type=WORK;type=VOICE:+58 416-4137403
-EMAIL:izumilitee@gmail.com
-ADR;type=WORK:;;Por el día no hago nada;;;;
-URL:${canal}
-BDAY:2025-12-31
-PHOTO;VALUE=URI:${imagen4}
-END:VCARD`
-      }]
-    },
-    contextInfo: {
-      externalAdReply: {
-        renderLargerThumbnail: true,
-        mediaType: 1,
-        title: '🪄Somos el Staff🪄',
-        body: wm,
-        thumbnail: imagen4,
-        sourceUrl: canal
+  const validCommand = (command, plugins) => {
+    for (let plugin of Object.values(plugins)) {
+      if (plugin.command && (Array.isArray(plugin.command) ? plugin.command : [plugin.command]).includes(command)) {
+        return true;
       }
     }
-  }, { quoted: m });
-};
+    return false;
+  };
 
-handler.command = /^(contactos|\.owner|owner|\.dueño|\.creador|creador)$/i;
+  if (!command) return;
 
-export default handler;
+  if (command === "bot") {
+    return;
+    }
+  if (validCommand(command, global.plugins)) {
+    let chat = global.db.data.chats[m.chat];
+    let user = global.db.data.users[m.sender];
+    
+    if (chat.isBanned) {
+      const avisoDesactivado = `《✦》El bot *${botname}* está desactivado en este grupo.\n\n> ✦ Un *administrador* puede activarlo con el comando:\n> » *${usedPrefix}bot on*`;
+      await m.reply(avisoDesactivado);
+      return;
+    }
+    
+    if (!user.commands) {
+      user.commands = 0;
+    }
+    user.commands += 1;
+  } else {
+    const comando = m.text.trim().split(' ')[0];
+    await m.reply(`《✧》El comando *${comando}* no existe.\nPara ver la lista de comandos usa:\n» *#help*`);
+  }
+}
