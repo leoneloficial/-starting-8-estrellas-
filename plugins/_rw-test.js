@@ -72,7 +72,7 @@ forwardingScore: 1, isForwarded: true, forwardedNewsletterMessageInfo: { newslet
 title: "✨️ Character Details ✨️",
 body: wm,
 thumbnailUrl: pp, 
-sourceUrl: [nna, nna2, nn, md, yt, tiktok].getRandom(),
+sourceUrl: [rcanal].getRandom(),
 mediaType: 1,
 showAdAttribution: false,
 renderLargerThumbnail: false
