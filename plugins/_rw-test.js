@@ -113,9 +113,9 @@ await conn.sendMessage(m.chat, { text: `🎉 ¡Has comprado a ${character.name} 
 delete global.db.data.tempCharacter;
 }
 };
-handler.help = ['rt'];
+handler.help = ['rww'];
 handler.tags = ['gacha'];
-handler.command = ['rp', 'rt'];
+handler.command = ['rww'];
 handler.register = true;
 
 export default handler;
