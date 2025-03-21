@@ -3,8 +3,8 @@
 import fs from 'fs';
 import path from 'path';
 
-const mainFilePath = path.resolve('./src/per.json');
-const claimedFilePath = path.resolve('./database/harem.json');
+const mainFilePath = path.resolve('./src/database/per.json');
+const claimedFilePath = path.resolve('./src/database/harem.json');
 
 function loadCharacters(filePath) {
   if (!fs.existsSync(filePath)) {
