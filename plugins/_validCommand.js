@@ -33,14 +33,14 @@ export async function before(m, { conn }) {
 
     if (command === "bot" && m.text.toLowerCase().includes("off")) {
       chat.isBanned = true;
-      await m.reply(`《✦》El bot *${botname}* está desactivado en este grupo.\n\n> ✦ Solo un admin puede reactivarlo con el comando:\n> » *${usedPrefix}bot on*`);
+      await m.reply(`《✦》 *${botname}* está desactivado en este grupo.\n\n> ✦ Solo un admin puede reactivarlo con el comando:\n> » *${usedPrefix}bot on*`);
       return;
     }
   }
 
   
   if (chat.isBanned) {
-    const avisoDesactivado = `《✦》El bot *${botname}* está desactivado en este grupo.\n\n> ✦ Un *administrador* puede activarlo con el comando:\n> » *${usedPrefix}bot on*`;
+    const avisoDesactivado = `《✦》 *${botname}* está desactivado en este grupo.\n\n> ✦ Un *administrador* puede activarlo con el comando:\n> » *${usedPrefix}bot on*`;
     await m.reply(avisoDesactivado);
     return;
   }
