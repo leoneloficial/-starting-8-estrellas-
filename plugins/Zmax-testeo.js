@@ -69,7 +69,7 @@ const ddownr = {
 const handler = async (m, { conn, text, usedPrefix, command }) => {
   try {
     if (!text.trim()) {
-      return conn.reply(m.chat, `✎ ingresa el nombre de la música a descargar.`, m);
+      return conn.reply(m.chat, `🍭 Ingrese el nombre De Alguna Música`, m);
     }
 
     const search = await yts(text);
@@ -80,8 +80,8 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
     const videoInfo = search.all[0];
     const { title, thumbnail, timestamp, views, ago, url } = videoInfo;
     const vistas = formatViews(views);
-    const infoMessage = `「✦」Descargando *<${title}>*\n\n> ✦ Canal » *${videoInfo.author.name || 'Desconocido'}*\n> ✰ Vistas » *${views}*\n> ⴵ Duración » *${timestamp}*\n> ✐ Publicación » *${ago}*\n> 🜸 Link » ${url}\n`;
-       const thumb = (await conn.getFile(thumbnail))?.data;
+    const infoMessage = `「❖」Descargando » ${title}\n> ✦ *Duración:* ${timestamp}\n> ✦ *Vistas:* ${vistas}\n> ✦ *Canal:* ${videoInfo.author.name || 'Desconocido'}\n> ✦ *Publicado:* ${ago}\n> ✦ *Enlace:* ${url}\n> ${dev}`;
+    const thumb = (await conn.getFile(thumbnail))?.data;
 
     const JT = {
       contextInfo: {
@@ -98,14 +98,14 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
       },
     };
 
-      await conn.reply(m.chat, infoMessage, m, JT);
+    await conn.reply(m.chat, infoMessage, m, JT);
 
-    if (command === 'play' || command === 'yta' || command === 'mp3') {
+    if (command === 'play') {
         const api = await ddownr.download(url, 'mp3');
         const result = api.downloadUrl;
         await conn.sendMessage(m.chat, { audio: { url: result }, mimetype: "audio/mpeg" }, { quoted: m });
 
-    } else if (command === 'play2' || command === 'ytv' || command === 'mp4') {
+    } else if (command === 'play2' || command === 'ytmp4') {
       let sources = [
         `https://api.siputzx.my.id/api/d/ytmp4?url=${url}`,
         `https://api.zenkey.my.id/api/download/ytmp4?apikey=zenkey&url=${url}`,
@@ -126,7 +126,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
               video: { url: downloadUrl },
               fileName: `${title}.mp4`,
               mimetype: 'video/mp4',
-              caption: `✎﹏Aqui tienes tu video`,
+              caption: `${dev}`,
               thumbnail: thumb
             }, { quoted: m });
             break;
@@ -137,18 +137,18 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
       }
 
       if (!success) {
-        return m.reply(` ✱ *No se pudo descargar el video:* No se encontró un enlace de descarga válido.`);
+        return m.reply(`⚠︎ *No se pudo descargar el video:* No se encontró un enlace de descarga válido.`);
       }
     } else {
       throw "Comando no reconocido.";
     }
   } catch (error) {
-    return m.reply(`𓁏 *Error:* ${error.message}`);
+    return m.reply(`⚠︎ *Error:* ${error.message}`);
   }
 };
 
 handler.command = handler.help = ['play', 'play2', 'mp3', 'yta', 'mp4', 'ytv']; 
-handler.tags = ['downloader'];
+handler.tags = ['descargas'];
 
 export default handler;
 
