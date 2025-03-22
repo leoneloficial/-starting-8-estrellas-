@@ -1,59 +1,57 @@
-let handler = async (m, { conn, text, usedPrefix, command }) => {
-async function handler(m, { conn }) {
-  const emojis = ['🪄'];
+import PhoneNumber from 'awesome-phonenumber'
 
-  // Reacciones en secuencia
-  for (const [i, emoji] of emojis.entries()) {
-    setTimeout(async () => {
-      await m.react(emoji);
-    }, i * 1000);
-  }
+let handler = async (m, { conn, usedPrefix, text, args, command }) => {
+    let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
+    let pp = await conn.profilePictureUrl(who).catch(_ => 'https://telegra.ph/file/24fa902ead26340f3df2c.png')
 
-  let wm = "sumi-Bot";
-  let canal = "https://chat.whatsapp.com/FPBTBBt8la6Bcn8eECF9vg";
-  let author = m.pushName || "Usuario Desconocido";
+    let bio1 = await conn.fetchStatus('584164137403@s.whatsapp.net').catch(_ => 'Sin Biografía')
+    let bio2 = await conn.fetchStatus('50558124470@s.whatsapp.net').catch(_ => 'Sin Biografía')
+    let bioBot = await conn.fetchStatus(`${conn.user.jid.split('@')[0]}@s.whatsapp.net`).catch(_ => 'Sin Biografía')
 
-  // Obtener la foto de perfil del usuario
-  let imagen4;
-  try {
-    imagen4 = await conn.profilePictureUrl(m.sender);
-  } catch (e) {
-    imagen4 = "https://qu.ax/iwyKl.jpg"; // Imagen por defecto
-  }
+    let name = await conn.getName(who)
 
-  await conn.sendMessage(m.chat, {
-    contacts: {
-      contacts: [{
-        displayName: author,
-        vcard: `BEGIN:VCARD
+    await sendContactArray(conn, m.chat, [
+        ['584164137403', '👑 Staff owner', '👑 𝕷͢𝖊𝖔፝֟፝֟፝֟፝֟፝֟፝֟𝖓𝖊𝖑 👑', 'Desarrollador', 'correo@example.com', 'MX', 'https://youtube.com/', bio1.status?.toString() || 'Sin Biografía'],
+        ['50558124470', '💻 Staff zahpkiel', 'ⁱᵃᵐzahpkiel𒆜 Sss+', 'Soporte Técnico', 'enderjosueasevedotorrez@gmail.com', 'NI', 'https://github.com/EnderJs-CreatorGL', bio2.status?.toString() || 'Sin Biografía'],
+        [`${conn.user.jid.split('@')[0]}`, '🌸 Es el Bot', 'Bot Oficial', '📵 No Hacer Spam', 'correo@example.com', 'MX', 'https://github.com', bioBot.status?.toString() || 'Sin Biografía']
+    ], m)
+} 
+
+handler.help = ["creador", "owner"]
+handler.tags = ["info"]
+handler.command = ['owner', 'creador']
+export default handler
+
+async function sendContactArray(conn, jid, data, quoted, options) {
+    if (!Array.isArray(data[0]) && typeof data[0] === 'string') data = [data]
+    let contacts = []
+    for (let [number, name, isi, isi1, isi2, isi3, isi4, isi5] of data) {
+        number = number.replace(/[^0-9]/g, '')
+        let njid = number + '@s.whatsapp.net'
+        let biz = await conn.getBusinessProfile(njid).catch(_ => null) || {}
+        let vcard = `
+BEGIN:VCARD
 VERSION:3.0
-N:Leonel;;;
-FN:Leonel OFC
-ORG:sumi-Bot Owner
-TITLE:Developer
-TEL;type=CELL;type=VOICE;waid=584164137403:+58 416-4137403
-TEL;type=WORK;type=VOICE:+58 416-4137403
-EMAIL:izumilitee@gmail.com
-ADR;type=WORK:;;Por el día no hago nada;;;;
-URL:${canal}
-BDAY:2025-12-31
-PHOTO;VALUE=URI:${imagen4}
-END:VCARD`
-      }]
-    },
-    contextInfo: {
-      externalAdReply: {
-        renderLargerThumbnail: true,
-        mediaType: 1,
-        title: '🪄Somos el Staff🪄',
-        body: wm,
-        thumbnail: imagen4,
-        sourceUrl: canal
-      }
+N:Sy;Bot;;;
+FN:${name.replace(/\n/g, '\\n')}
+item.ORG:${isi}
+item1.TEL;waid=${number}:${PhoneNumber('+' + number).getNumber('international')}
+item1.X-ABLabel:${isi1}
+item2.EMAIL;type=INTERNET:${isi2}
+item2.X-ABLabel:📧 Email
+item3.ADR:;;${isi3};;;;
+item3.X-ABADR:ac
+item3.X-ABLabel: 🌍 Ubicación
+item4.URL:${isi4}
+item4.X-ABLabel:Website
+item5.X-ABLabel:${isi5}
+END:VCARD`.trim()
+        contacts.push({ vcard, displayName: name })
     }
-  }, { quoted: m });
+    return await conn.sendMessage(jid, {
+        contacts: {
+            displayName: contacts.length > 1 ? `${contacts.length} contactos` : contacts[0].displayName,
+            contacts,
+        }
+    }, { quoted, ...options })
 }
-
-handler.command = /^(contactos|\.owner|owner|\.dueño|\.creador|creador)$/i;
-
-export default handler;
