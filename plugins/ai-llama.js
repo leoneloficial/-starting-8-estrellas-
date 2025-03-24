@@ -1,4 +1,4 @@
-import Groq from 'groq-sdk'
+//import Groq from 'groq-sdk'
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
   let groq = new Groq({ apiKey: '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' })
