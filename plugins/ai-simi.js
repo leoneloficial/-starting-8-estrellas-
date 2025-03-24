@@ -1,44 +1,43 @@
-/*import translate from '@vitalets/google-translate-api';
-import axios from 'axios';
-import fetch from 'node-fetch';
+import fs from 'fs';
+import path from 'path';
 
-const handler = async (m, { conn, text, command, args, usedPrefix }) => {
-    if (!text) return conn.reply(m.chat, '🍬 Te faltó el texto para hablar con la Bot.', m);
-
+var handler = async (m, { usedPrefix, command }) => {
     try {
-        // await m.react(emojis);
-        const resSimi = await simitalk(text);
-        conn.sendMessage(m.chat, { text: resSimi.resultado.simsimi }, { quoted: m });
-    } catch {
-        return conn.reply(m.chat, '⚠️ Ocurrió un error', m);
+        await m.react('🕒'); 
+        conn.sendPresenceUpdate('composing', m.chat);
+
+        const pluginsDir = './plugins';
+
+        const files = fs.readdirSync(pluginsDir).filter(file => file.endsWith('.js'));
+
+        let response = `📂 *Revisión de Syntax Errors:*\n\n`;
+        let hasErrors = false;
+
+        for (const file of files) {
+            try {
+                await import(path.resolve(pluginsDir, file));
+            } catch (error) {
+                hasErrors = true;
+                response += `🚩 *Error en:* ${file}\n${error.message}\n\n`;
+            }
+        }
+
+        if (!hasErrors) {
+            response += '✅ ¡Todo está en orden! No se detectaron errores de sintaxis.';
+        }
+
+        await conn.reply(m.chat, response, m);
+        await m.react('✅');
+    } catch (err) {
+        await m.react('✖️'); 
+        console.error(err);
+        conn.reply(m.chat, '🚩 *Ocurrió un fallo al verificar los plugins.*', m);
     }
 };
 
-handler.help = ['yuki', 'bot'];
-handler.tags = ['ai'];
+handler.command = ['detectarsyntax'];
+handler.help = ['detectarsyntax'];
+handler.tags = ['tools'];
 handler.register = true;
-handler.command = ['bot', 'yuki'];
+
 export default handler;
-
-async function simitalk(ask, apikeyyy = "iJ6FxuA9vxlvz5cKQCt3", language = "es") {
-    if (!ask) return { status: false, resultado: { msg: "Debes ingresar un texto para hablar con simsimi." }};
-
-    try {
-        const response1 = await axios.get(`https://delirius-apiofc.vercel.app/tools/simi?text=${encodeURIComponent(ask)}`);
-        const trad1 = await translate(`${response1.data.data.message}`, { to: language, autoCorrect: true });
-        
-        if (trad1.text === 'indefinida' || response1 === '' || !response1.data) {
-            trad1.text = "XD"; // Se usa "XD" para causar error y usar otra opción.
-        }
-
-        return { status: true, resultado: { simsimi: trad1.text } };
-    } catch {
-        try {
-            const response2 = await axios.get(`https://anbusec.xyz/api/v1/simitalk?apikey=${apikeyyy}&ask=${ask}&lc=${language}`);
-            return { status: true, resultado: { simsimi: response2.data.message } };
-        } catch (error2) {
-            return { status: false, resultado: { msg: "Todas las API's fallaron. Inténtalo de nuevo más tarde.", error: error2.message } };
-        }
-    }
-}
-*/
