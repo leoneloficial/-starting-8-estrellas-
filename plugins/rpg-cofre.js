@@ -4,7 +4,7 @@ const handler = async (m, { isPrems, conn }) => {
   }
 
   const lastCofreTime = global.db.data.users[m.sender].lastcofre;
-  const timeToNextCofre = lastCofreTime + 0;
+  const timeToNextCofre = lastCofreTime + 86400000;
 
   if (Date.now() < timeToNextCofre) {
     const tiempoRestante = timeToNextCofre - Date.now();
@@ -13,7 +13,7 @@ const handler = async (m, { isPrems, conn }) => {
     return;
   }
 
-  //const img = 'https://qu.ax/UhXkr.jpg';
+  const img = 'https://qu.ax/UhXkr.jpg';
   const dia = Math.floor(Math.random() * 100);
   const tok = Math.floor(Math.random() * 10);
   const ai = Math.floor(Math.random() * 40);
@@ -38,10 +38,10 @@ const handler = async (m, { isPrems, conn }) => {
 ┃ *${expp} Exp* ✨
 ╰━━━━━━━━━━━━⬣`;
 
- // try {
-   // await conn.sendFile(m.chat, img, 'yuki.jpg', texto, fkontak);
+  try {
+    await conn.sendFile(m.chat, img, 'yuki.jpg', texto, fkontak);
   } catch (error) {
-   // throw `${msm} Ocurrió un error al //enviar el cofre.`;
+    throw `${msm} Ocurrió un error al enviar el cofre.`;
   }
 };
 
