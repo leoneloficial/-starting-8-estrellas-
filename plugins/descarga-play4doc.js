@@ -56,11 +56,11 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     let durationInMinutes = parseFloat(timestamp.split(':')[0]) * 60 + parseFloat(timestamp.split(':')[1]);
 
 
-    let txt = `✦ *Título:* » ${title}\n`;
-    txt += `✦ *Duración:* » ${timestamp}\n`;
-    txt += `✦ *Visitas:* » ${views}\n`;
-    txt += `✦ *Subido:* » ${ago}\n`;
-    txt += `✦ *Tamaño:* » ${sizeHumanReadable}\n\n`;
+    let txt = `> ✦ *Título:* » ${title}\n`;
+    txt += `> ⴵ *Duración:* » ${timestamp}\n`;
+    txt += `> ✰ *Visitas:* » ${views}\n`;
+    txt += `> 🜸 *Subido:* » ${ago}\n`;
+    txt += `> ❒ *Tamaño:* » ${sizeHumanReadable}\n\n`;
     //txt += `> *- ↻ El video se está enviando, espera un momento...*`;
 
 
