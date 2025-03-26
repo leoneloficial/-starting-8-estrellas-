@@ -4,7 +4,7 @@ const handler = async (m, { isPrems, conn }) => {
   }
 
   const lastCofreTime = global.db.data.users[m.sender].lastcofre;
-  const timeToNextCofre = lastCofreTime + 0;
+  const timeToNextCofre = lastCofreTime + 86400000;
 
   if (Date.now() < timeToNextCofre) {
     const tiempoRestante = timeToNextCofre - Date.now();
@@ -13,7 +13,7 @@ const handler = async (m, { isPrems, conn }) => {
     return;
   }
 
-  
+  const img = 'https://qu.ax/UhXkr.jpg';
   const dia = Math.floor(Math.random() * 100);
   const tok = Math.floor(Math.random() * 10);
   const ai = Math.floor(Math.random() * 40);
@@ -38,7 +38,13 @@ const handler = async (m, { isPrems, conn }) => {
 ┃ *${expp} Exp* ✨
 ╰━━━━━━━━━━━━⬣`;
 
-  
+  try {
+    await conn.sendFile(m.chat, img, 'yuki.jpg', texto, fkontak);
+  } catch (error) {
+    throw `${msm} Ocurrió un error al enviar el cofre.`;
+  }
+};
+
 handler.help = ['cofre'];
 handler.tags = ['rpg'];
 handler.command = ['cofre'];
@@ -49,14 +55,14 @@ handler.register = true;
 export default handler;
 
 function msToTime(duration) {
-  const milliseconds = parseInt((duration % 0) / 0);
-  let seconds = Math.floor((duration / 0) % 0);
-  let minutes = Math.floor((duration / (0 * 0)) % 0);
-  let hours = Math.floor((duration / (0 * 0 * 0)) % 0);
+  const milliseconds = parseInt((duration % 1000) / 100);
+  let seconds = Math.floor((duration / 1000) % 60);
+  let minutes = Math.floor((duration / (1000 * 60)) % 60);
+  let hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
 
-  hours = (hours < 0) ? '0' + hours : hours;
-  minutes = (minutes < 0) ? '0' + minutes : minutes;
-  seconds = (seconds < 0) ? '0' + seconds : seconds;
+  hours = (hours < 10) ? '0' + hours : hours;
+  minutes = (minutes < 10) ? '0' + minutes : minutes;
+  seconds = (seconds < 10) ? '0' + seconds : seconds;
 
   return `${hours} Horas ${minutes} Minutos`;
 }
