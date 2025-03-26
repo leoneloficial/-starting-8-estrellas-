@@ -55,7 +55,7 @@ let handler = async (m, { conn: _envio, command, usedPrefix, args, text, isOwner
                 : `> para ser un subbot usa el comando *#code*\n\n> *Sub-Bots conectados: ${users.length}*`;
 
             const responseMessage = isMainBot
-                ? `❖ *𝙎𝙐𝘽𝘽𝙊𝙏 𝗗𝗘 𝗦𝗨𝗠𝗜 *\n${replyMessage}`
+                ? `❖ 𝙎𝙐𝘽𝘽𝙊𝙏 𝗗𝗘 𝗦𝗨𝗠𝗜 𝗦𝗔𝗞𝗨𝗥𝗔𝗦𝗔𝗪𝗔 \n${replyMessage}`
                 : `${emoji} *ESTE ES UN SUB-BOT*\n${replyMessage}`;
 
             await _envio.sendMessage(m.chat, {text: responseMessage, mentions: _envio.parseMention(responseMessage)}, {quoted: m})
