@@ -50,6 +50,6 @@ handler.help = ['tovideo'];
 handler.tags = ['transformador'];
 handler.group = true;
 handler.register = true;
-handler.command = ['tovideo', 'tomp4', 'mp4', 'togif'];
+handler.command = ['tovideo', 'tomp4',  'togif'];
 
 export default handler;
