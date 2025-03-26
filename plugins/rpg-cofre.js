@@ -38,13 +38,7 @@ const handler = async (m, { isPrems, conn }) => {
 ┃ *${expp} Exp* ✨
 ╰━━━━━━━━━━━━⬣`;
 
-  try {
-    await conn.sendFile(m.chat, img, '', texto, fkontak);
-  } catch (error) {
-    throw `${msm} Ocurrió un error al enviar el cofre.`;
-  }
-};
-
+  
 handler.help = ['cofre'];
 handler.tags = ['rpg'];
 handler.command = ['cofre'];
