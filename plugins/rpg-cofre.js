@@ -4,7 +4,7 @@ const handler = async (m, { isPrems, conn }) => {
   }
 
   const lastCofreTime = global.db.data.users[m.sender].lastcofre;
-  const timeToNextCofre = lastCofreTime + 86400000;
+  const timeToNextCofre = lastCofreTime + 0;
 
   if (Date.now() < timeToNextCofre) {
     const tiempoRestante = timeToNextCofre - Date.now();
@@ -13,7 +13,7 @@ const handler = async (m, { isPrems, conn }) => {
     return;
   }
 
-  const img = 'https://qu.ax/UhXkr.jpg';
+  //const img = 'https://qu.ax/UhXkr.jpg';
   const dia = Math.floor(Math.random() * 100);
   const tok = Math.floor(Math.random() * 10);
   const ai = Math.floor(Math.random() * 40);
