@@ -38,10 +38,10 @@ const handler = async (m, { isPrems, conn }) => {
 ┃ *${expp} Exp* ✨
 ╰━━━━━━━━━━━━⬣`;
 
-  try {
+ // try {
    // await conn.sendFile(m.chat, img, 'yuki.jpg', texto, fkontak);
   } catch (error) {
-    throw `${msm} Ocurrió un error al enviar el cofre.`;
+   // throw `${msm} Ocurrió un error al //enviar el cofre.`;
   }
 };
 
