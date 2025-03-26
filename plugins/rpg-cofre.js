@@ -4,7 +4,7 @@ const handler = async (m, { isPrems, conn }) => {
   }
 
   const lastCofreTime = global.db.data.users[m.sender].lastcofre;
-  const timeToNextCofre = lastCofreTime + 86400000;
+  const timeToNextCofre = lastCofreTime + 0;
 
   if (Date.now() < timeToNextCofre) {
     const tiempoRestante = timeToNextCofre - Date.now();
