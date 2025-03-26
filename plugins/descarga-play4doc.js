@@ -78,7 +78,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     let { dl: downloadUrl } = data;
 
     // Enviar el video según el tamaño o la duración
-    if (sizeMB >  || durationInMinutes > 30) {
+    if (sizeMB > limitet || durationInMinutes > 30) {
       // Enviar como documento si el tamaño supera los 100 MB o si dura más de 30 minutos
       await star.sendMessage(
         m.chat,
