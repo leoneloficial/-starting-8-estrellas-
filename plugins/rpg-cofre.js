@@ -13,7 +13,7 @@ const handler = async (m, { isPrems, conn }) => {
     return;
   }
 
-  //const img = 'https://qu.ax/UhXkr.jpg';
+  const img = 'https://qu.ax/UhXkr.jpg';
   const dia = Math.floor(Math.random() * 100);
   const tok = Math.floor(Math.random() * 10);
   const ai = Math.floor(Math.random() * 40);
@@ -39,7 +39,7 @@ const handler = async (m, { isPrems, conn }) => {
 ╰━━━━━━━━━━━━⬣`;
 
   try {
-    //await conn.sendFile(m.chat, img, 'yuki.jpg', texto, fkontak);
+    await conn.sendFile(m.chat, img, '', texto, fkontak);
   } catch (error) {
     throw `${msm} Ocurrió un error al enviar el cofre.`;
   }
