@@ -100,12 +100,12 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
 
     await conn.reply(m.chat, infoMessage, m, JT);
 
-    if (command === 'play' || command === 'yta' || command === 'ytmp3') {
+    if (command === 'play' || command === 'yta' || command === 'mp3') {
       const api = await (await fetch(`https://api.neoxr.eu/api/youtube?url=${url}&type=audio&quality=128kbps&apikey=GataDios`)).json()
       const result = api.data.url
       await conn.sendMessage(m.chat, { audio: { url: result }, mimetype: "audio/mpeg" }, { quoted: m });
 
-    } else if (command === 'play2' || command === 'ytv' || command === 'ytmp4') {
+    } else if (command === 'play2' || command === 'ytv' || command === 'mp4') {
       
       const response = await fetch(`https://api.neoxr.eu/api/youtube?url=${url}&type=video&quality=480p&apikey=GataDios`)
       const json = await response.json()
@@ -130,7 +130,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
   }
 };
 
-handler.command = handler.help = ['play', 'play2', 'ytmp3', 'yta', 'ytmp4', 'ytv'];
+handler.command = handler.help = ['play', 'play2', 'mp3', 'yta', 'mp4', 'ytv'];
 handler.tags = ['downloader'];
 handler.group = true;
 
