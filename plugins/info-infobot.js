@@ -4,74 +4,48 @@ import speed from 'performance-now'
 import { sizeFormatter } from 'human-readable'
 
 let format = sizeFormatter({
-  std: 'JEDEC',
-  decimalPlaces: 2,
-  keepTrailingZeroes: false,
-  render: (literal, symbol) => `${literal} ${symbol}B`,
+    std: 'JEDEC',
+    decimalPlaces: 2,
+    keepTrailingZeroes: false,
+    render: (literal, symbol) => `${literal} ${symbol}B`,
 })
 
 let handler = async (m, { conn, usedPrefix }) => {
-  let bot = global.db.data.settings[conn.user.jid]
-  let _uptime = process.uptime() * 1000
-  let uptime = (_uptime).toTimeString()
-  let totalreg = Object.keys(global.db.data.users).length
-  let totalchats = Object.keys(global.db.data.chats).length
-  let totalf = Object.values(global.plugins).filter(v => v.help && v.tags).length
-  const chats = Object.entries(conn.chats).filter(([id, data]) => id && data.isChats)
-  const groupsIn = chats.filter(([id]) => id.endsWith('@g.us'))
-  const used = process.memoryUsage()
+    let bot = global.db.data.settings[conn.user.jid]
+    let totalStats = Object.values(global.db.data.stats).reduce((total, stat) => total + stat.total, 0)
+    let totalf = Object.values(global.plugins).filter((v) => v.help && v.tags).length
 
-  let timestamp = speed()
-  let latensi = speed() - timestamp
+    let info = `✿  *Informacion de ${global.botname}*\n\n`
+    info += `✎˚₊· ͟͟͞͞➳❥ *Prefijo* : [  ${usedPrefix}  ]\n`
+    info += `✥˚₊· ͟͟͞͞➳❥ *Total Plugins* : ${totalf}\n`
+    info += `✦˚₊· ͟͟͞͞➳❥ *Comandos Ejecutados* : ${toNum(totalStats)} ( *${totalStats}* )\n\n`
+    info += `*◤ Hosts:*\n`
+    info += `✰˚₊· ͟͟͞͞➳❥ *Plataforma* : ${platform()}\n`
+    info += `✿˚₊· ͟͟͞͞➳❥ *Servidor* : ${hostname()}\n`
+    info += `✧˚₊· ͟͟͞͞➳❥ *RAM* : ${format(totalmem() - freemem())} / ${format(totalmem())}\n`
+    info += `⚘˚₊· ͟͟͞͞➳❥ *Free-RAM* : ${format(freemem())}\n\n`
+    info += `❒ *NodeJS Uso de memoria* :\n`
+    info += `${'```' + Object.keys(process.memoryUsage()).map((key) => `${key}: ${format(process.memoryUsage()[key])}`).join('\n') + '```'}`
 
- 
-  var git = 'https://github.com/Leoneloficial'
-  var github = 'https://github.com/Leoneloficial/-Starting-8-estrellas-' 
-  let correo = 'Leoneloficial.com'
-
-  let yuki = `╭─⬣「 *Info De ${botname}* 」⬣\n`
-  yuki += `│ 「𖤓」 *Creador* : @${owner[0][0].split('@s.whatsapp.net')[0]}\n`
-  yuki += `│ 「❁」 *Prefijo* : [ ${usedPrefix} ]\n`
-  yuki += `│ 「✧」 *Total Plugins* : ${totalf}\n`
-  yuki += `│ 「❃」 *Plataforma* : ${platform()}\n`
-  yuki += `│ 「✰」 *Servidor* : ${hostname()}\n`
-  yuki += `│ 「𖤓」 *RAM* : ${format(totalmem() - freemem())} / ${format(totalmem())}\n`
-  yuki += `│ 「♥︎」 *FreeRAM* : ${format(freemem())}\n`
-  yuki += `│ 「✧」 *Speed* : ${latensi.toFixed(4)} ms\n`
-  yuki += `│ 「✿」 *Uptime* : ${uptime}\n`
-  yuki += `│ 「❀」 *Grupos Registrados* : ${groupsIn.length}\n`
-  yuki += `│ 「❁」 *Chats Totales* : ${chats.length}\n`
-  yuki += `╰─⬣\n\n`
-  
-  yuki += `╭─⬣「 *Redes del Creador* 」⬣\n`
-  yuki += `│ 「❆」 *GitHub Personal* : ${git}\n`
-  yuki += `│ 「❃」 *Repositorio Bot* : ${github}\n`
-  yuki += `│ 「✦」 *Correo* : ${correo}\n`
-  yuki += `╰─⬣\n\n`
-
-  yuki += `╭─⬣「 *NodeJS Uso de memoria* 」⬣\n`
-  yuki += `${'```' + Object.keys(used).map((key) => `${key}: ${format(used[key])}`).join('\n') + '```'}\n`
-  yuki += `╰─⬣`
-
-  await conn.reply(m.chat, yuki, fkontak, { 
-    contextInfo: { 
-      mentionedJid: [owner[0][0] + '@s.whatsapp.net'], 
-      externalAdReply: { 
-        mediaUrl: false, 
-        mediaType: 1, 
-        description: false, 
-        title: packname, 
-        body: dev, 
-        previewType: 0, 
-        thumbnail: icons, 
-        sourceUrl: redes
-      }
-    }
-  })
+    await conn.reply(m.chat, info, fkontak, { contextInfo: { mentionedJid: [owner[0][0] + '@s.whatsapp.net'] } })
 }
 
-handler.help = ['infobot']
+handler.help = ['botinfo']
 handler.tags = ['info']
-handler.command = ['info', 'infobot']
+handler.command = ['info', 'botinfo', 'infobot']
 
 export default handler
+
+function toNum(number) {
+    if (number >= 1000 && number < 1000000) {
+        return (number / 1000).toFixed(1) + 'k'
+    } else if (number >= 1000000) {
+        return (number / 1000000).toFixed(1) + 'M'
+    } else if (number <= -1000 && number > -1000000) {
+        return (number / 1000).toFixed(1) + 'k'
+    } else if (number <= -1000000) {
+        return (number / 1000000).toFixed(1) + 'M'
+    } else {
+        return number.toString()
+    }
+}
