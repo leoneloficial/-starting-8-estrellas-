@@ -21,7 +21,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
 
     let video;
     if (isUrl) {
-     
+
       let ytres = await yts({ videoId: query.split('v=')[1] });
       video = ytres.videos[0];
     } else {
@@ -44,26 +44,29 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
 
     let { fileSizeH: sizeHumanReadable, fileSize } = videoInfo;
 
-    
+
     let sizeMB = fileSize / (1024 * 1024); 
 
-    
+
     if (sizeMB >= 700) {
       return star.reply(m.chat, '✦ *El archivo es demasiado pesado (más de 700 MB). Se canceló la descarga.*', m).then(() => m.react('✖️'));
     }
 
-    
+
     let durationInMinutes = parseFloat(timestamp.split(':')[0]) * 60 + parseFloat(timestamp.split(':')[1]);
 
-    
-    「✦」Descargando *<${title}>*\n\n> ✦ Canal » *${videoInfo.author.name || 'Desconocido'}*\n> ✰ Vistas » *${views}*\n> ⴵ Duración » *${timestamp}*\n> ✐ Publicación » *${ago}*\
-    txt += `> ❒ *Tamaño:* » ${sizeHumanReadable}\n\n`;
+
+    let txt = `✦ *Título:* » ${title}\n`;
+    txt += `✦ *Duración:* » ${timestamp}\n`;
+    txt += `✦ *Visitas:* » ${views}\n`;
+    txt += `✦ *Subido:* » ${ago}\n`;
+    txt += `✦ *Tamaño:* » ${sizeHumanReadable}\n\n`;
     //txt += `> *- ↻ El video se está enviando, espera un momento...*`;
 
-    
+
     await star.sendFile(m.chat, thumbnail, 'thumbnail.jpg', txt, m);
 
-   
+
     let api = await fetch(`https://api.siputzx.my.id/api/d/ytmp4?url=${url}`);
     let json = await api.json();
     let { data } = json;
