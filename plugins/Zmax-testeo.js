@@ -126,7 +126,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
               video: { url: downloadUrl },
               fileName: `${title}.mp4`,
               mimetype: 'video/mp4',
-             ccaption: '`,
+              caption: ``,
               thumbnail: thumb
             }, { quoted: m });
             break;
@@ -143,7 +143,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
       throw "Comando no reconocido.";
     }
   } catch (error) {
-    return m.reply(`❀ *Error:* ${error.message}`);
+    return m.reply(`𓁏 *Error:* ${error.message}`);
   }
 };
 
