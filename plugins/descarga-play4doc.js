@@ -57,7 +57,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 
       return conn.sendMessage(m.chat, {
         text: `⚠️ *¡Atención!*\n\n💡 *Por favor ingresa ${
-          command === "play2" ? "un término de búsqueda" : "una URL válida de YouTube"
+          command === "play4" ? "un término de búsqueda" : "una URL válida de YouTube"
         }.*\n\n📌 *Ejemplo:* ${example}`,
       });
     }
