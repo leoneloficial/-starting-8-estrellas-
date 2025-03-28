@@ -1,183 +1,108 @@
-import fetch from "node-fetch";
-import yts from "yt-search"; // Asegúrate de tener instalado yt-search
+import fetch from 'node-fetch';
+import yts from 'yt-search';
+import { youtubedl, youtubedlv2 } from '@bochilteam/scraper';
 
-//CÓDIGO OFICIAL DE MEDIAHUB TM
-const encodedApiUrl = "aHR0cHM6Ly9hcGkuYWdhdHoueHl6L2FwaS95dG1wNA==";
+let limit = 100; 
 
-// Marca oficial de MediaHub
-const officialBrand = "©Prohibido La Copia, Código Oficial De MediaHub™";
-
-// ENVIAR INFORMACIÓN PARA EL ARCHIVO
-const verifyBrand = () => {
-  const brand = "©Prohibido La Copia, Código Oficial De MediaHub™";
-  if (brand !== officialBrand) {
-    throw new Error(
-      "❌ *ERROR CRÍTICO:* La marca oficial de MediaHub ha sido alterada. Restáurela para continuar usando el código."
+let handler = async (m, { conn: star, args, usedPrefix, command }) => {
+  if (!args || !args[0]) {
+    return star.reply(
+      m.chat,
+      `✦ *¡Ingresa el texto o enlace del vídeo de YouTube!*\n\n» *Ejemplo:*\n> *${usedPrefix + command}* Canción de ejemplo`,
+      m
     );
   }
-};
 
-// Función para realizar reintentos al obtener la URL de descarga con un tiempo de espera ajustado
-const fetchWithRetries = async (url, maxRetries = 2, timeout = 60000) => {
-  let attempt = 0;
-  while (attempt <= maxRetries) {
-    try {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), timeout);
+  await m.react('🕓'); 
 
-      const response = await fetch(url, { signal: controller.signal });
-      const data = await response.json();
-
-      clearTimeout(timeoutId); // Limpiar el timeout si la respuesta es exitosa
-
-      if (data && data.status === 200 && data.data && data.data.downloadUrl) {
-        return data.data; // Retorna el resultado si es válido
-      }
-    } catch (error) {
-      console.error(`Error en el intento ${attempt + 1}:`, error.message);
-      if (error.name === "AbortError") {
-        console.error("La solicitud fue cancelada debido al tiempo de espera.");
-      }
-    }
-    attempt++;
-  }
-  throw new Error("No se pudo obtener una respuesta válida después de varios intentos.");
-};
-
-// Función principal para manejar comandos
-let handler = async (m, { conn, text, usedPrefix, command }) => {
   try {
-    verifyBrand();
+    let query = args.join(' ');
+    let isUrl = query.match(/youtu/gi);
 
-    if (!text) {
-      const example =
-        command === "ytmp4"
-          ? `${usedPrefix}${command} https://youtu.be/URL_DEL_VIDEO`
-          : `${usedPrefix}${command} Never Gonna Give You Up`;
+    let video;
+    if (isUrl) {
 
-      return conn.sendMessage(m.chat, {
-        text: `⚠️ *¡Atención!*\n\n💡 *Por favor ingresa ${
-          command === "play4" ? "un término de búsqueda" : "una URL válida de YouTube"
-        }.*\n\n📌 *Ejemplo:* ${example}`,
-      });
-    }
-
-    // Comando para descargar directamente de URL (ytmp4 o ytv)
-    if (command === "ytmp4" || command === "ytv") {
-      if (!/^https?:\/\/(www\.)?youtube\.com\/watch\?v=|youtu\.be\//.test(text)) {
-        return conn.sendMessage(m.chat, {
-          text: `❌ *La URL ingresada no es válida.*\n\n📌 *Ejemplo válido:* ${usedPrefix}${command} https://youtu.be/URL_DEL_VIDEO`,
-        });
-      }
-
-      const apiUrl = `${Buffer.from(encodedApiUrl, "base64").toString("utf-8")}?url=${encodeURIComponent(text)}`;
-      const apiData = await fetchWithRetries(apiUrl, 2, 60000);
-
-      const { title: apiTitle, downloadUrl, image: apiImage } = apiData;
-
-      // Obtener el tamaño del archivo
-      const fileResponse = await fetch(downloadUrl, { method: "HEAD" });
-      const fileSize = parseInt(fileResponse.headers.get("content-length") || 0);
-      const fileSizeInMB = fileSize / (1024 * 1024); // Convertir bytes a MB
-
-      await conn.sendMessage(m.chat, { image: { url: apiImage }, caption: `🎥 *Video Encontrado:* ${apiTitle}` });
-
-      if (fileSizeInMB > 70) {
-        await conn.sendMessage(
-          m.chat,
-          {
-            document: { url: downloadUrl },
-            mimetype: "video/mp4",
-            fileName: apiTitle || "video.mp4",
-            caption: `📂 *Descarga en formato documento:*\n🎵 *Título:* ${apiTitle}\n📦 *Tamaño:* ${fileSizeInMB.toFixed(
-              2
-            )} MB`,
-          },
-          { quoted: m }
-        );
-      } else {
-        await conn.sendMessage(
-          m.chat,
-          {
-            video: { url: downloadUrl },
-            mimetype: "video/mp4",
-            fileName: apiTitle || "video.mp4",
-            caption: `🎥 *Video Descargado:*\n🎵 *Título:* ${apiTitle}\n📦 *Tamaño:* ${fileSizeInMB.toFixed(2)} MB`,
-          },
-          { quoted: m }
-        );
-      }
-      return;
-    }
-
-    // Código original para búsqueda y descarga usando yt-search (play2)
-    const searchResults = await yts(text);
-    const video = searchResults.videos[0]; // Tomamos el primer resultado
-
-    if (!video) {
-      return conn.sendMessage(m.chat, {
-        text: `❌ *No se encontraron resultados para:* ${text}`,
-      });
-    }
-
-    const { title, url: videoUrl, timestamp, views, author, image, ago } = video;
-
-    const apiUrl = `${Buffer.from(encodedApiUrl, "base64").toString("utf-8")}?url=${encodeURIComponent(videoUrl)}`;
-    const apiData = await fetchWithRetries(apiUrl, 2, 60000);
-
-    const { title: apiTitle, downloadUrl, image: apiImage } = apiData;
-
-    const fileResponse = await fetch(downloadUrl, { method: "HEAD" });
-    const fileSize = parseInt(fileResponse.headers.get("content-length") || 0);
-    const fileSizeInMB = fileSize / (1024 * 1024);
-
-    const videoInfo = `
-⌘━─━─[Barboza]─━─━⌘
-
-➷ *Título⤿:* ${apiTitle}
-➷ *Subido⤿:* ${ago}
-➷ *Duración⤿:* ${timestamp}
-➷ *Vistas⤿:* ${(views / 1000).toFixed(1)}k (${views.toLocaleString()})
-➷ *URL⤿:* ${videoUrl}
-
-➤ *Su Resultado Se Está Enviando Por Favor Espere....* 
-
-> _${officialBrand}_
-    `;
-
-    await conn.sendMessage(m.chat, { image: { url: apiImage }, caption: videoInfo });
-
-    if (fileSizeInMB > 70) {
-      await conn.sendMessage(
-        m.chat,
-        {
-          document: { url: downloadUrl },
-          mimetype: "video/mp4",
-          fileName: apiTitle || `${title}.mp4`,
-          caption: `📂 *Video en Formato Documento:* \n🎵 *Título:* ${apiTitle}\n📦 *Tamaño:* ${fileSizeInMB.toFixed(2)} MB`,
-        },
-        { quoted: m }
-      );
+      let ytres = await yts({ videoId: query.split('v=')[1] });
+      video = ytres.videos[0];
     } else {
-      await conn.sendMessage(
+      // Si es un texto
+      let ytres = await yts(query);
+      video = ytres.videos[0];
+      if (!video) {
+        return star.reply(m.chat, '✦ *Video no encontrado.*', m).then(() => m.react('✖️'));
+      }
+    }
+
+    let { title, thumbnail, timestamp, views, ago, url } = video;
+
+    let yt = await youtubedl(url).catch(async () => await youtubedlv2(url));
+    let videoInfo = yt.video['360p']; 
+
+    if (!videoInfo) {
+      return star.reply(m.chat, '✦ *No se encontró una calidad compatible para el video.*', m).then(() => m.react('✖️'));
+    }
+
+    let { fileSizeH: sizeHumanReadable, fileSize } = videoInfo;
+
+
+    let sizeMB = fileSize / (1024 * 1024); 
+
+
+    if (sizeMB >= 700) {
+      return star.reply(m.chat, '✦ *El archivo es demasiado pesado (más de 700 MB). Se canceló la descarga.*', m).then(() => m.react('✖️'));
+    }
+
+
+    let durationInMinutes = parseFloat(timestamp.split(':')[0]) * 60 + parseFloat(timestamp.split(':')[1]);
+
+
+    let txt = `✦ *Título:* » ${title}\n`;
+    txt += `✦ *Duración:* » ${timestamp}\n`;
+    txt += `✦ *Visitas:* » ${views}\n`;
+    txt += `✦ *Subido:* » ${ago}\n`;
+    txt += `✦ *Tamaño:* » ${sizeHumanReadable}\n\n`;
+    //txt += `> *- ↻ El video se está enviando, espera un momento...*`;
+
+
+    await star.sendFile(m.chat, thumbnail, 'thumbnail.jpg', txt, m);
+
+
+    let api = await fetch(`https://api.siputzx.my.id/api/d/ytmp4?url=${url}`);
+    let json = await api.json();
+    let { data } = json;
+
+    if (!data || !data.dl) {
+      return star.reply(m.chat, '✦ *Error al obtener el enlace de descarga desde la API.*', m).then(() => m.react('✖️'));
+    }
+
+    let { dl: downloadUrl } = data;
+
+    // Enviar el video según el tamaño o la duración
+    if (sizeMB > limit || durationInMinutes > 30) {
+      // Enviar como documento si el tamaño supera los 100 MB o si dura más de 30 minutos
+      await star.sendMessage(
         m.chat,
-        {
-          video: { url: downloadUrl },
-          mimetype: "video/mp4",
-          fileName: apiTitle || `${title}.mp4`,
-          caption: `🎥 *Video Descargado:* \n🎵 *Título:* ${apiTitle}\n📦 *Tamaño:* ${fileSizeInMB.toFixed(2)} MB`,
-        },
+        { document: { url: downloadUrl }, mimetype: 'video/mp4', fileName: `${title}.mp4` },
         { quoted: m }
       );
+      await m.react('📄'); // Reacción de documento
+    } else {
+      // Enviar como video normal si es menor o igual al límite y dura menos de 30 minutos
+      await star.sendMessage(
+        m.chat,
+        { video: { url: downloadUrl }, caption: `${title}`, mimetype: 'video/mp4', fileName: `${title}.mp4` },
+        { quoted: m }
+      );
+      await m.react('✅'); // Reacción de éxito
     }
   } catch (error) {
-    console.error("Error:", error);
-    conn.sendMessage(m.chat, {
-      text: `❌ *Error crítico detectado:*\n${error.message || "Error desconocido."}`,
-    });
+    console.error(error);
+    await m.react('✖️'); // Error durante el proceso
+    star.reply(m.chat, '✦ *Ocurrió un error al procesar tu solicitud. Intenta nuevamente más tarde.*', m);
   }
 };
 
-handler.command = /^(play4|ytmp4|ytv)$/i;
+
+handler.command = ['play4', 'playvidoc']; // Comandos disponibles
 
 export default handler;
