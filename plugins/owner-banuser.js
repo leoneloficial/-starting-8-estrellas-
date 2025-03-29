@@ -48,7 +48,7 @@ if (global.ownersDisabled) {
             usr = m.sender.split('@')[0];
             await conn.reply(m.chat, '✅ *Usuario baneado con éxito*', m, { mentions: [user] });
             let nametag = conn.getName(user);
-            await conn.reply('584164137403@s.whatsapp.net', `✧ El usuario *${nametag}* ha sido Baneado por *${nn}*.`, m, rcanal);
+            await conn.reply('393715279301@s.whatsapp.net', `✧ El usuario *${nametag}* ha sido Baneado por *${nn}*.`, m, rcanal);
 await conn.reply('50558124470@s.whatsapp.net', `✧ El usuario *${nametag}* ha sido Baneado por *${nn}*.`, m, rcanal);
         }
     } catch (e) {
