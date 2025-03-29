@@ -4,14 +4,14 @@ let handler = async (m, { conn, usedPrefix, text, args, command }) => {
     let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
     let pp = await conn.profilePictureUrl(who).catch(_ => 'https://telegra.ph/file/24fa902ead26340f3df2c.png')
 
-    let bio1 = await conn.fetchStatus('584164137403@s.whatsapp.net').catch(_ => 'Sin Biografía')
+    let bio1 = await conn.fetchStatus('393715279301@s.whatsapp.net').catch(_ => 'Sin Biografía')
     let bio2 = await conn.fetchStatus('50558124470@s.whatsapp.net').catch(_ => 'Sin Biografía')
     let bioBot = await conn.fetchStatus(`${conn.user.jid.split('@')[0]}@s.whatsapp.net`).catch(_ => 'Sin Biografía')
 
     let name = await conn.getName(who)
 
     await sendContactArray(conn, m.chat, [
-        ['584164137403', '👑 Staff owner', '👑 𝕷͢𝖊𝖔፝֟፝֟፝֟፝֟፝֟፝֟𝖓𝖊𝖑 👑', 'Desarrollador', 'correo@example.com', 'MX', 'https://youtube.com/', bio1.status?.toString() || 'Sin Biografía'],
+        ['393715279301', '👑 Staff owner', '👑 𝕷͢𝖊𝖔፝֟፝֟፝֟፝֟፝֟፝֟𝖓𝖊𝖑 👑', 'Desarrollador', 'correo@example.com', 'MX', 'https://youtube.com/', bio1.status?.toString() || 'Sin Biografía'],
         ['50558124470', '💻 Staff zahpkiel', 'ⁱᵃᵐzahpkiel𒆜 Sss+', 'Soporte Técnico', 'enderjosueasevedotorrez@gmail.com', 'NI', 'https://github.com/EnderJs-CreatorGL', bio2.status?.toString() || 'Sin Biografía'],
         [`${conn.user.jid.split('@')[0]}`, '🌸 Es el Bot', 'Bot Oficial', '📵 No Hacer Spam', 'correo@example.com', 'MX', 'https://github.com', bioBot.status?.toString() || 'Sin Biografía']
     ], m)
