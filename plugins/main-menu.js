@@ -26,85 +26,85 @@ Aquí tienes la lista de comandos
 
 • :･ﾟ⊹˚• \`『 Info-Bot 』\` •˚⊹:･ﾟ•
 
-❍ Comandos para ver estado e información de la Bot.
-ᰔᩚ *#help • #menu*
+❐ Comandos para ver estado e información de la Bot.
+❀ *#help • #menu*
 > ✦ Ver la lista de comandos de la Bot.
-ᰔᩚ *#uptime • #runtime*
+❀ *#uptime • #runtime*
 > ✦ Ver tiempo activo o en linea de la Bot.
-ᰔᩚ *#sc • #script*
+❀ *#sc • #script*
 > ✦ Link del repositorio oficial de la Bot
-ᰔᩚ *#staff • #colaboradores*
+❀ *#staff • #colaboradores*
 > ✦ Ver la lista de desarrolladores de la Bot.
-ᰔᩚ *#serbot • #serbot code*
+❀ *#serbot • #serbot code*
 > ✦ Crea una sesión de Sub-Bot.
-ᰔᩚ *#bots • #sockets*
+❀ *#bots • #sockets*
 > ✦ Ver la lista de Sub-Bots activos.
-ᰔᩚ *#creador*
+❀ *#creador*
 > ✦ Contacto del creador de la Bot.
-ᰔᩚ *#status • #estado*
+❀ *#status • #estado*
 > ✦ Ver el estado actual de la Bot.
 ᰔᩚ *#links • #grupos*
 > ✦ Ver los enlaces oficiales de la Bot.
-ᰔᩚ *#infobot • #infobot*
+❀ *#infobot • #infobot*
 > ✦ Ver la información completa de la Bot.
-ᰔᩚ *#sug • #newcommand*
+❀ *#sug • #newcommand*
 > ✦ Sugiere un nuevo comando.
-ᰔᩚ *#p • #ping*
+❀ *#p • #ping*
 > ✦ Ver la velocidad de respuesta del Bot.
-ᰔᩚ *#reporte • #reportar*
+❀ *#reporte • #reportar*
 > ✦ Reporta alguna falla o problema de la Bot.
-ᰔᩚ *#sistema • #system*
+❀ *#sistema • #system*
 > ✦ Ver estado del sistema de alojamiento.
-ᰔᩚ *#speed • #speedtest*
+❀ *#speed • #speedtest*
 > ✦ Ver las estadísticas de velocidad de la Bot.
-ᰔᩚ *#views • #usuarios*
+❀ *#views • #usuarios*
 > ✦ Ver la cantidad de usuarios registrados en el sistema.
-ᰔᩚ *#funciones • #totalfunciones*
+❀ *#funciones • #totalfunciones*
 > ✦ Ver todas las funciones de la Bot.
-ᰔᩚ *#ds • #fixmsgespera*
+❀ *#ds • #fixmsgespera*
 > ✦ Eliminar archivos de sesión innecesarios.
-ᰔᩚ *#editautoresponder*
+❀ *#editautoresponder*
 > ✦ Configurar un Prompt personalizado de la Bot.
 
 • :･ﾟ⊹˚• \`『 Buscadores 』\` •˚⊹:･ﾟ•
 
-❍ Comandos para realizar búsquedas en distintas plataformas.
-ᰔᩚ *#tiktoksearch • #tiktoks*
+❐ Comandos para realizar búsquedas en distintas plataformas.
+❀ *#tiktoksearch • #tiktoks*
 > ✦ Buscador de videos de tiktok.
-ᰔᩚ *#tweetposts*
+❀ *#tweetposts*
 > ✦ Buscador de posts de Twitter/X.
-ᰔᩚ *#ytsearch • #yts*
+❀ *#ytsearch • #yts*
 > ✦ Realiza búsquedas de Youtube.
-ᰔᩚ *#githubsearch*
+❀ *#githubsearch*
 > ✦ Buscador de usuarios de GitHub.
-ᰔᩚ *#cuevana • #cuevanasearch*
+❀ *#cuevana • #cuevanasearch*
 > ✦ Buscador de películas/series por Cuevana.
-ᰔᩚ *#google*
+❀ *#google*
 > ✦ Realiza búsquedas por Google.
-ᰔᩚ *#pin • #pinterest*
+❀ *#pin • #pinterest*
 > ✦ Buscador de imagenes de Pinterest.
-ᰔᩚ *#imagen • #image*
+❀ *#imagen • #image*
 > ✦ buscador de imagenes de Google.
-ᰔᩚ *#animesearch • #animess*
+❀ *#animesearch • #animess*
 > ✦ Buscador de animes de tioanime.
-ᰔᩚ *#animei • #animeinfo*
+❀ *#animei • #animeinfo*
 > ✦ Buscador de capítulos de #animesearch.
-ᰔᩚ *#infoanime*
+❀ *#infoanime*
 > ✦ Buscador de información de anime/manga.
-ᰔᩚ *#hentaisearch • #searchhentai*
+❀ *#hentaisearch • #searchhentai*
 > ✦ Buscador de capítulos hentai.
-ᰔᩚ #xnxxsearch • #xnxxs*
+❀ #xnxxsearch • #xnxxs*
 > ✦ Buscador de vídeos de Xnxx.
-ᰔᩚ *#xvsearch • #xvideossearch*
+❀ *#xvsearch • #xvideossearch*
 > ✦ Buscador de vídeos de Xvideos.
-ᰔᩚ *#pornhubsearch • #phsearch*
+❀ *#pornhubsearch • #phsearch*
 > ✦ Buscador de videos de Pornhub.
-ᰔᩚ *#npmjs*
+❀ *#npmjs*
 > ✦ Buscandor de npmjs.
 
 • :･ﾟ⊹˚• \`『 Descargas 』\` •˚⊹:･ﾟ•
 
-❍ Comandos de descargas para varios archivos.
+❐ Comandos de descargas para varios archivos.
 ᰔᩚ *#tiktok • #tt*
 > ✦ Descarga videos de TikTok.
 ᰔᩚ *#mediafire • #mf*
