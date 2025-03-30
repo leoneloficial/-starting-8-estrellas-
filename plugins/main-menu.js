@@ -20,7 +20,7 @@ Aquí tienes la lista de comandos
 │✰ Usuarios » ${totalreg}
 │✧ Comandos » ${totalCommands}
 │🜸 Baileys » Multi Device
-╰─────────────────
+╰─╍֟፝۫۫۫۫͜╌͜𑂴♥︎᷒͜ᰰֳ╌⃔--ᆖ᳞֮𝆹𑇊ׁ𝅥۫֟፝𑂳͝🌸҈҉𝆺ׁ𝅥ׅ۫═ᰮ𖫲--╌ׄ♥︎᷒᷼ᰰ╌᷼𑂳֟፝۫۫۫۫╍͞─
 ✐; 🌸→ ᴘᴀʀᴀ ᴄʀᴇᴀʀ ᴜɴ sᴜʙ-ʙᴏᴛ ᴄᴏɴ ᴛᴜ ɴᴜᴍᴇʀᴏ ᴜᴛɪʟɪᴢᴀ *#qr* o *#code*
   ᷼ᮬ︵۪۪۪۪۪᷼⏜ᩘ۪۪۪᷼⏜  ׅ   ׄ🌸 ׄ   ׅ  ⏜᷼ᩘ۪۪۪۪⏜۪۪۪۪۪᷼︵᷼  
 
