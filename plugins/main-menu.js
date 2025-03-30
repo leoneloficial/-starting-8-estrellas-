@@ -24,7 +24,7 @@ Aquí tienes la lista de comandos
 ✐; 🌸→ ᴘᴀʀᴀ ᴄʀᴇᴀʀ ᴜɴ sᴜʙ-ʙᴏᴛ ᴄᴏɴ ᴛᴜ ɴᴜᴍᴇʀᴏ ᴜᴛɪʟɪᴢᴀ *#qr* o *#code*
   ᷼ᮬ︵۪۪۪۪۪᷼⏜ᩘ۪۪۪᷼⏜  ׅ   ׄ🌸 ׄ   ׅ  ⏜᷼ᩘ۪۪۪۪⏜۪۪۪۪۪᷼︵᷼  
 
-»  ⊹˚୨ •(=^●ω●^=)• *info-bot*   ⊹
+»  ⊹˚୨ •(=^●ω●^=)• *info-bot*   🌸
 
 ❐ Comandos para ver estado e información de la Bot.
 ❀ *#help • #menu*
@@ -66,7 +66,7 @@ Aquí tienes la lista de comandos
 ❀ *#editautoresponder*
 > ✦ Configurar un Prompt personalizado de la Bot.
 
-»  ⊹˚୨ •(=^●ω●^=)• *buscadores*  ⊹
+»  ⊹˚୨ •(=^●ω●^=)• *buscadores*  🌸
 
 ❐ Comandos para realizar búsquedas en distintas plataformas.
 ❀ *#tiktoksearch • #tiktoks*
@@ -102,7 +102,7 @@ Aquí tienes la lista de comandos
 ❀ *#npmjs*
 > ✦ Buscandor de npmjs.
 
-»  ⊹˚୨ •(=^●ω●^=)• *descargas*  ⊹
+»  ⊹˚୨ •(=^●ω●^=)• *descargas*  🌸
 
 ❐ Comandos de descargas para varios archivos.
 ❀ *#tiktok • #tt*
@@ -146,7 +146,7 @@ Aquí tienes la lista de comandos
 ❀ *#animelinks • #animedl*
 > ✦ Descarga Links disponibles de descargas.
 
-• :･ﾟ⊹˚• \`『 Economia 』\` •˚⊹:･ﾟ•
+»  ⊹˚୨ •(=^●ω●^=)• *economía*  🌸
 
 ❐ Comandos de economía y rpg para ganar dinero y otros recursos.
 ❀ *#w • #work • #trabajar*
@@ -206,7 +206,7 @@ Aquí tienes la lista de comandos
 ❀ *#christmas • #navidad*
 > ✦ Reclama tu regalo navideño (Solo en Navidad).
 
-• :･ﾟ⊹˚• \`『 Gacha 』\` •˚⊹:･ﾟ•
+»  ⊹˚୨ •(=^●ω●^=)• *Gacha*   🌸
 
 ❐ Comandos de gacha para reclamar y colecciónar personajes.
 ❀ *#rollwaifu • #rw • #roll*
@@ -226,7 +226,7 @@ Aquí tienes la lista de comandos
 ❀ *#waifusboard • #waifustop • #topwaifus*
 > ✦ Ver el top de personajes con mayor valor.
 
-• :･ﾟ⊹˚• \`『 Stickers 』\` •˚⊹:･ﾟ•
+»  ⊹˚୨ •(=^●ω●^=)• *stickers*  🌸
 
 ❐ Comandos para creaciones de stickers etc.
 ❀ *#sticker • #s*
@@ -248,7 +248,7 @@ Aquí tienes la lista de comandos
 ❀ *#wm*
 > ✦ Cambia el nombre de los stickers.
 
-•:･ﾟ⊹˚• \`『 Herramientas 』\` •˚⊹:･ﾟ•
+»  ⊹˚୨ •(=^●ω●^=)• *herramientas*  🌸
 
 ❐ Comandos de herramientas con muchas funciones.
 ❀ *#calcular • #calcular • #cal*
@@ -280,7 +280,7 @@ Aquí tienes la lista de comandos
 ❀ *#translate • #traducir • #trad*
 > ✦ Traduce palabras en otros idiomas.
 
-• :･ﾟ⊹˚• \`『 Perfil 』\` •˚⊹:･ﾟ•
+»  ⊹˚୨ •(=^●ω●^=)• *perfil*   🌸
 
 ❐ Comandos de perfil para ver, configurar y comprobar estados de tu perfil.
 ❀ *#reg • #verificar • #register*
@@ -314,7 +314,7 @@ Aquí tienes la lista de comandos
 ❀ *#confesiones • #confesar*
 > ✦ Confiesa tus sentimientos a alguien de manera anonima.
 
-• :･ﾟ⊹˚• \`『 Grupos 』\` •˚⊹:･ﾟ•
+»  ⊹˚୨ •(=^●ω●^=)• *grupos*  🌸
 
 ❐ Comandos de grupos para una mejor gestión de ellos.
 ❀ *#config • #on*
@@ -382,7 +382,7 @@ Aquí tienes la lista de comandos
 ❀ *#listnum • #kicknum*
 > ✦ Elimine a usuario por el prefijo de país.
 
-• :･ﾟ⊹˚• \`『 Anime 』\` •˚⊹:･ﾟ•
+»  ⊹˚୨ •(=^●ω●^=)• *anime*  🌸
 
 ❐ Comandos de reacciones de anime.
 ❀ *#angry • #enojado* + <mencion>
@@ -454,7 +454,7 @@ Aquí tienes la lista de comandos
 ❀ *#think* + <mencion>
 > ✦ Pensar en algo
 
-• :･ﾟ⊹˚• \`『 NSFW 』\` •˚⊹:･ﾟ•
+»  ⊹˚୨ •(=^●ω●^=)• *Nsfw*  🌸
 
 ❐ Comandos NSFW (Contenido para adultos)
 ❀ *#anal* + <mencion>
@@ -500,7 +500,7 @@ Aquí tienes la lista de comandos
 ❀ *#yuri • #tijeras* + <mencion>
 > ✦ Hacer tijeras.
 
-• :･ﾟ⊹˚• \`『 Juegos 』\` •˚⊹:･ﾟ•
+»  ⊹˚୨ •(=^●ω●^=)• *juegos*  🌸
 
 ❐ Comandos de juegos para jugar con rus amigos.
 ❀ *#amistad • #amigorandom* 
