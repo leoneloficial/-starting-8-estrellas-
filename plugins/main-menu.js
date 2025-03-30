@@ -24,7 +24,7 @@ Aquí tienes la lista de comandos
 ✐; 🌸→ ᴘᴀʀᴀ ᴄʀᴇᴀʀ ᴜɴ sᴜʙ-ʙᴏᴛ ᴄᴏɴ ᴛᴜ ɴᴜᴍᴇʀᴏ ᴜᴛɪʟɪᴢᴀ *#qr* o *#code*
   ᷼ᮬ︵۪۪۪۪۪᷼⏜ᩘ۪۪۪᷼⏜  ׅ   ׄ🌸 ׄ   ׅ  ⏜᷼ᩘ۪۪۪۪⏜۪۪۪۪۪᷼︵᷼  
 
-• :･ﾟ⊹˚• \`『 Info-Bot 』\` •˚⊹:･ﾟ•
+»  ⊹˚୨ •(=^●ω●^=)• *info-bot*   ⊹
 
 ❐ Comandos para ver estado e información de la Bot.
 ❀ *#help • #menu*
@@ -43,7 +43,7 @@ Aquí tienes la lista de comandos
 > ✦ Contacto del creador de la Bot.
 ❀ *#status • #estado*
 > ✦ Ver el estado actual de la Bot.
-ᰔᩚ *#links • #grupos*
+❀ *#links • #grupos*
 > ✦ Ver los enlaces oficiales de la Bot.
 ❀ *#infobot • #infobot*
 > ✦ Ver la información completa de la Bot.
@@ -66,7 +66,7 @@ Aquí tienes la lista de comandos
 ❀ *#editautoresponder*
 > ✦ Configurar un Prompt personalizado de la Bot.
 
-• :･ﾟ⊹˚• \`『 Buscadores 』\` •˚⊹:･ﾟ•
+»  ⊹˚୨ •(=^●ω●^=)• *buscadores*  ⊹
 
 ❐ Comandos para realizar búsquedas en distintas plataformas.
 ❀ *#tiktoksearch • #tiktoks*
@@ -102,7 +102,7 @@ Aquí tienes la lista de comandos
 ❀ *#npmjs*
 > ✦ Buscandor de npmjs.
 
-• :･ﾟ⊹˚• \`『 Descargas 』\` •˚⊹:･ﾟ•
+»  ⊹˚୨ •(=^●ω●^=)• *descargas*  ⊹
 
 ❐ Comandos de descargas para varios archivos.
 ❀ *#tiktok • #tt*
