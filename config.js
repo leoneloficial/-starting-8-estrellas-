@@ -64,7 +64,7 @@ global.textbot = '🌸sumi sakurazawa🌸 • Powered By ৎ୭࠭͢𓆩𝕷͢�
 global.moneda = 'coin'
 global.welcom1 = 'Edita Con #setwelcome'
 global.welcom2 = 'Edita Con #setbye'
-global.banner = 'https://raw.githubusercontent.com/The-King-Destroy/Adiciones/main/Contenido/1743215479429.jpeg'
+global.banner = 'https://raw.githubusercontent.com/The-King-Destroy/Adiciones/main/Contenido/1743300510027.jpeg'
 global.avatar = 'https://raw.githubusercontent.com/The-King-Destroy/Adiciones/main/Contenido/1743215491726.jpeg'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
