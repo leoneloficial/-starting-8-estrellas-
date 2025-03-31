@@ -31,7 +31,7 @@ export async function before(m, { conn }) {
       return;
     }
 
-    if (command === "botp" && m.text.toLowerCase().includes("off")) {
+    if (command === "bot" && m.text.toLowerCase().includes("off")) {
       chat.isBanned = true;
       await m.reply(`《✦》 *${botname}* está desactivado en este grupo.\n\n> ✦ Solo un admin puede reactivarlo con el comando:\n> » *${usedPrefix}bot on*`);
       return;
