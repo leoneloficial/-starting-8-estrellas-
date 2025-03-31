@@ -93,20 +93,6 @@ m.react('🌸')
           mediaUrl: url,
           sourceUrl: url,
           thumbnail: thumb,
-          buttons: [
-        {
-          buttonId: `.ytmp3 ${videoInfo.url}`,
-          buttonText: {
-            displayText: 'ᯓᡣ𐭩 ᥲᥙძі᥆',
-          },
-        },
-        {
-          buttonId: `.ytmp4 ${videoInfo.url}`,
-          buttonText: {
-            displayText: 'ᯓᡣ𐭩 ᥎іძᥱ᥆',
-          },
-        },
-      ],
           renderLargerThumbnail: true,
         },
       },
