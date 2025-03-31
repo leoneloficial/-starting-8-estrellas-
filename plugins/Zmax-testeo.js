@@ -127,6 +127,20 @@ m.react('🌸')
               fileName: `${title}.mp4`,
               mimetype: 'video/mp4',
               caption: ``,
+              buttons: [
+        {
+          buttonId: `.ytmp3 ${videoInfo.url}`,
+          buttonText: {
+            displayText: 'ᯓᡣ𐭩 ᥲᥙძі᥆',
+          },
+        },
+        {
+          buttonId: `.ytmp4 ${videoInfo.url}`,
+          buttonText: {
+            displayText: 'ᯓᡣ𐭩 ᥎іძᥱ᥆',
+          },
+        },
+      ],
               thumbnail: thumb
             }, { quoted: m });
             break;
