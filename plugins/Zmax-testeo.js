@@ -80,9 +80,9 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
     const videoInfo = search.all[0];
     const { title, thumbnail, timestamp, views, ago, url } = videoInfo;
     const vistas = formatViews(views);
-    const infoMessage = `☄ Descargando *${title}*\n\n 💥 Canal  *${videoInfo.author.name || 'Desconocido'}*\n ☄ Vistas  *${views}*\n 💥 Duración » *${timestamp}*\n ☄ Publicación » *${ago}*\n ☄ Link  ${url}\n`;
+    const infoMessage = `「✦」Descargando *<${title}>*\n\n> ✦ Canal » *${videoInfo.author.name || 'Desconocido'}*\n> ✰ Vistas » *${views}*\n> ⴵ Duración » *${timestamp}*\n> ✐ Publicación » *${ago}*\n> 🜸 Link » ${url}\n`;
        const thumb = (await conn.getFile(thumbnail))?.data;
-m.react('🍆')
+m.react('🌸')
     const JT = {
       contextInfo: {
         externalAdReply: {
@@ -126,7 +126,7 @@ m.react('🍆')
               video: { url: downloadUrl },
               fileName: `${title}.mp4`,
               mimetype: 'video/mp4',
-              caption: `✎﹏Aqui tienes tu video`,
+              caption: ``,
               thumbnail: thumb
             }, { quoted: m });
             break;
@@ -143,7 +143,7 @@ m.react('🍆')
       throw "Comando no reconocido.";
     }
   } catch (error) {
-    return m.reply(`𓁏 *Error:* ${error.message}`);
+    return m.reply(`❀ *Error:* ${error.message}`);
   }
 };
 
