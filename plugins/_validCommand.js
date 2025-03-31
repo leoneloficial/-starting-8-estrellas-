@@ -25,22 +25,22 @@ export async function before(m, { conn }) {
 
   
   if (isGroup && isAdmin) {
-    if (command === "sumi" && m.text.toLowerCase().includes("on")) {
+    if (command === "bot" && m.text.toLowerCase().includes("on")) {
       chat.isBanned = false;
-      await m.reply(`《✦》El bot *${botname}* está activo nuevamente en este grupo.\n\n> ✦ Puede desactivarlo con el comando:\n> » *${usedPrefix}sumi off*`);
+      await m.reply(`《✦》El bot *${botname}* está activo nuevamente en este grupo.\n\n> ✦ Puede desactivarlo con el comando:\n> » *${usedPrefix}bot off*`);
       return;
     }
 
-    if (command === "sumi" && m.text.toLowerCase().includes("off")) {
+    if (command === "bot" && m.text.toLowerCase().includes("off")) {
       chat.isBanned = true;
-      await m.reply(`《✦》 *${botname}* está desactivado en este grupo.\n\n> ✦ Solo un admin puede reactivarlo con el comando:\n> » *${usedPrefix}sumi on*`);
+      await m.reply(`《✦》 *${botname}* está desactivado en este grupo.\n\n> ✦ Solo un admin puede reactivarlo con el comando:\n> » *${usedPrefix}bot on*`);
       return;
     }
   }
 
   
   if (chat.isBanned) {
-    const avisoDesactivado = `《✦》 *${botname}* está desactivado en este grupo.\n\n> ✦ Un *administrador* puede activarlo con el comando:\n> » *${usedPrefix}sumi on*`;
+    const avisoDesactivado = `《✦》 *${botname}* está desactivado en este grupo.\n\n> ✦ Un *administrador* puede activarlo con el comando:\n> » *${usedPrefix}bot on*`;
     await m.reply(avisoDesactivado);
     return;
   }
