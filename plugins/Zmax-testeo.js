@@ -36,7 +36,7 @@ const audioMessage = {
 await conn.sendMessage(m.chat, audioMessage, { quoted: m });
 await conn.sendMessage(m.chat, { react: { text: "✅", key: m.key } });
 
-} catch (error) { console.error("Error:", error); await conn.sendMessage(m.chat, { react: { text: "❌", key: m.key } }); await conn.sendMessage(m.chat, { text: ❌ *Error al procesar tu solicitud:*\n${error.message || "Error desconocido"}, }); } };
+} catch (error) { console.error("Error:", error); await conn.sendMessage(m.chat, { react: { text: "❌", key: m.key } }); await conn.sendMessage(m.chat, { text: ❌  *Error al procesar tu solicitud:* \n${error.message || "Error desconocido"}, }); } };
 
 handler.command = ['play']; 
 export default handler;
