@@ -1,12 +1,12 @@
 import fetch from "node-fetch"; import yts from "yt-search";
 
-// API en formato Base64 const encodedApi = "aHR0cHM6Ly9hcGkudnJlZGVuLndlYi5pZC9hcGkveXRtcDM=";
+ const encodedApi = "aHR0cHM6Ly9hcGkudnJlZGVuLndlYi5pZC9hcGkveXRtcDM=";
 
-// Función para decodificar la URL de la API const getApiUrl = () => Buffer.from(encodedApi, "base64").toString("utf-8");
+ const getApiUrl = () => Buffer.from(encodedApi, "base64").toString("utf-8");
 
-// Función para obtener datos de la API con reintentos const fetchWithRetries = async (url, maxRetries = 2) => { for (let attempt = 0; attempt <= maxRetries; attempt++) { try { const response = await fetch(url); const data = await response.json(); if (data?.status === 200 && data.result?.download?.url) { return data.result; } } catch (error) { console.error(Intento ${attempt + 1} fallido:, error.message); } } throw new Error("No se pudo obtener la música después de varios intentos."); };
+ const fetchWithRetries = async (url, maxRetries = 2) => { for (let attempt = 0; attempt <= maxRetries; attempt++) { try { const response = await fetch(url); const data = await response.json(); if (data?.status === 200 && data.result?.download?.url) { return data.result; } } catch (error) { console.error(Intento ${attempt + 1} fallido:, error.message); } } throw new Error("No se pudo obtener la música después de varios intentos."); };
 
-// Handler principal let handler = async (m, { conn, text }) => { if (!text || !text.trim()) { return conn.sendMessage(m.chat, { text: "❗ Ingresa un término de búsqueda para encontrar música.\n\nEjemplo: .play No llores más", }); }
+ let handler = async (m, { conn, text }) => { if (!text || !text.trim()) { return conn.sendMessage(m.chat, { text: "❗ Ingresa un término de búsqueda para encontrar música.\n\nEjemplo: .play No llores más", }); }
 
 try { // Reaccionar al mensaje inicial con 🕒 await conn.sendMessage(m.chat, { react: { text: "🕒", key: m.key } });
 
@@ -15,11 +15,11 @@ const searchResults = await yts(text.trim());
 const video = searchResults.videos[0];
 if (!video) throw new Error("No se encontraron resultados.");
 
-// Obtener datos de descarga
+
 const apiUrl = `${getApiUrl()}?url=${encodeURIComponent(video.url)}`;
 const apiData = await fetchWithRetries(apiUrl);
 
-// Formatear información del video
+
 const infoMessage = `「✦」Descargando *<${video.title}>*\n\n` +
   `> ✦ Canal » *${video.author.name || 'Desconocido'}*\n` +
   `> ✰ Vistas » *${video.views}*\n` +
@@ -29,7 +29,7 @@ const infoMessage = `「✦」Descargando *<${video.title}>*\n\n` +
 
 await conn.sendMessage(m.chat, { text: infoMessage });
 
-// Enviar solo el audio
+
 const audioMessage = {
   audio: { url: apiData.download.url },
   mimetype: "audio/mpeg",
@@ -38,12 +38,12 @@ const audioMessage = {
 
 await conn.sendMessage(m.chat, audioMessage, { quoted: m });
 
-// Reaccionar al mensaje original con ✅
+
 await conn.sendMessage(m.chat, { react: { text: "✅", key: m.key } });
 
 } catch (error) { console.error("Error:", error);
 
-// Reaccionar al mensaje original con ❌
+
 await conn.sendMessage(m.chat, { react: { text: "❌", key: m.key } });
 
 await conn.sendMessage(m.chat, {
@@ -52,6 +52,6 @@ await conn.sendMessage(m.chat, {
 
 } };
 
-// Cambia el Regex para que reconozca ".play" handler.command = /^play$/i;
+ handler.command = /^play$/i;
 
 export default handler;
