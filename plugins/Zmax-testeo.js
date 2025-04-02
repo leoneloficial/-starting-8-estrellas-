@@ -1,4 +1,5 @@
-import fetch from "node-fetch"; import yts from "yt-search";
+import fetch from "node-fetch"; 
+import yts from "yt-search";
 
 const encodedApi = "aHR0cHM6Ly9hcGkudnJlZGVuLndlYi5pZC9hcGkveXRtcDM=";
 
@@ -37,5 +38,6 @@ await conn.sendMessage(m.chat, { react: { text: "✅", key: m.key } });
 
 } catch (error) { console.error("Error:", error); await conn.sendMessage(m.chat, { react: { text: "❌", key: m.key } }); await conn.sendMessage(m.chat, { text: ❌ *Error al procesar tu solicitud:*\n${error.message || "Error desconocido"}, }); } };
 
-handler.command = /^play$/i; export default handler;
+handler.command = ['play']; 
+export default handler;
 
