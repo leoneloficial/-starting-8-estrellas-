@@ -1,6 +1,10 @@
 import fetch from "node-fetch"; 
 import yts from "yt-search";
 
+let handler = async (m, { conn }) => {
+    try {
+
+
 const encodedApi = "aHR0cHM6Ly9hcGkudnJlZGVuLndlYi5pZC9hcGkveXRtcDM=";
 
 const getApiUrl = () => Buffer.from(encodedApi, "base64").toString("utf-8");
