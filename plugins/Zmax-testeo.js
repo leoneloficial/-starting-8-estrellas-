@@ -8,9 +8,9 @@ import fetch from "node-fetch"; import yts from "yt-search";
 
  let handler = async (m, { conn, text }) => { if (!text || !text.trim()) { return conn.sendMessage(m.chat, { text: "❗ Ingresa un término de búsqueda para encontrar música.\n\nEjemplo: .play No llores más", }); }
 
-try { // Reaccionar al mensaje inicial con 🕒 await conn.sendMessage(m.chat, { react: { text: "🕒", key: m.key } });
+try {  con 🕒 await conn.sendMessage(m.chat, { react: { text: "🕒", key: m.key } });
 
-// Buscar en YouTube
+
 const searchResults = await yts(text.trim());
 const video = searchResults.videos[0];
 if (!video) throw new Error("No se encontraron resultados.");
