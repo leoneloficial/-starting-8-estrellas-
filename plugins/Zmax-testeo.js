@@ -61,5 +61,8 @@ await conn.sendMessage(m.chat, { react: { text: "✅", key: m.key } });
 
 } catch (error) { console.error("Error:", error); await conn.sendMessage(m.chat, { react: { text: "❌", key: m.key } }); await conn.sendMessage(m.chat, { text: ❌ *Error al procesar tu solicitud:*\n${error.message || "Error desconocido"} }); } };
 
-handler.command = ['play', 'play2', 'mp3', 'yta', 'mp4', 'ytv']; export default handler;
+handler.command = ['play', 'play2', 'mp3', 'yta', 'mp4', 'ytv'];
+
+
+ export default handler;
 
