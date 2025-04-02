@@ -127,7 +127,8 @@ if (command === 'play' || command === 'yta' || command === 'mp3') {
 
 } catch (error) { return m.reply(𓁏 *Error:* ${error.message}); } };
 
-handler.command = handler.help = ['play', 'play2', 'mp3', 'yta', 'mp4', 'ytv']; handler.tags = ['downloader'];
+handler.command = ['play', 'play2', 'mp3', 'yta', 'mp4', 'ytv']; 
+handler.tags = ['downloader'];
 
 export default handler;
 
