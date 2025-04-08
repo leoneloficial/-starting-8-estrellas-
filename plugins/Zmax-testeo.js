@@ -103,6 +103,6 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
 };
 
 
-handler.command = ['play4, 'playvidoc']; // Comandos disponibles
+handler.command = ['play, 'playvidoc']; // Comandos disponibles
 
 export default handler;
