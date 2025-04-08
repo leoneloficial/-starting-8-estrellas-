@@ -67,7 +67,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     await star.sendFile(m.chat, thumbnail, 'thumbnail.jpg', txt, m);
 
 
-    let api = await fetch(`https://api.siputzx.my.id/api/d/ytmp4?url=${url`);
+    let api = await fetch(`https://delirius-apiofc.vercel.app/download/ytmp3?url=$`);
     let json = await api.json();
     let { data } = json;
 
@@ -103,6 +103,6 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
 };
 
 
-handler.command = ['play', 'playvidoc']; // Comandos disponibles
+handler.command = ['play4, 'playvidoc']; // Comandos disponibles
 
 export default handler;
