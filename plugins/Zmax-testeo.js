@@ -8,7 +8,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
   if (!args || !args[0]) {
     return star.reply(
       m.chat,
-      `✦ *¡Ingresa el texto o enlace del vídeo de YouTube!*\n\n» *Ejemplo:*\n> *${usedPrefix + command}* Canción de ejemplo`,
+      ✦ *¡Ingresa el texto o enlace del vídeo de YouTube!*\n\n» *Ejemplo:*\n> *${usedPrefix + command}* Canción de ejemplo,
       m
     );
   }
@@ -19,16 +19,16 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     let query = args.join(' ');
     let isUrl = query.match(/youtu/gi);
 
-    let video;
+    let audio;
     if (isUrl) {
 
-      let ytres = await yts({ videoId: query.split('v=')[1] });
-      video = ytres.videos[0];
+      let ytres = await yts({ audioId: query.split('v=')[1] });
+      video = ytres.audios[0];
     } else {
       // Si es un texto
       let ytres = await yts(query);
-      video = ytres.videos[0];
-      if (!video) {
+      audio = ytres.audios[0];
+      if (! audio) {
         return star.reply(m.chat, '✦ *Video no encontrado.*', m).then(() => m.react('✖️'));
       }
     }
@@ -56,18 +56,18 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     let durationInMinutes = parseFloat(timestamp.split(':')[0]) * 60 + parseFloat(timestamp.split(':')[1]);
 
 
-    let txt = `✦ *Título:* » ${title}\n`;
-    txt += `✦ *Duración:* » ${timestamp}\n`;
-    txt += `✦ *Visitas:* » ${views}\n`;
-    txt += `✦ *Subido:* » ${ago}\n`;
-    txt += `✦ *Tamaño:* » ${sizeHumanReadable}\n\n`;
-    //txt += `> *- ↻ El video se está enviando, espera un momento...*`;
+    let txt = ✦ *Título:* » ${title}\n;
+    txt += ✦ *Duración:* » ${timestamp}\n;
+    txt += ✦ *Visitas:* » ${views}\n;
+    txt += ✦ *Subido:* » ${ago}\n;
+    txt += ✦ *Tamaño:* » ${sizeHumanReadable}\n\n;
+    //txt += > *- ↻ El video se está enviando, espera un momento...*;
 
 
     await star.sendFile(m.chat, thumbnail, 'thumbnail.jpg', txt, m);
 
 
-    let api = await fetch(`https://delirius-apiofc.vercel.app/download/ytmp3?url=$`);
+    let api = await fetch(https://delirius-apiofc.vercel.app/download/ytmp3?url=$);
     let json = await api.json();
     let { data } = json;
 
@@ -82,7 +82,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
       // Enviar como documento si el tamaño supera los 100 MB o si dura más de 30 minutos
       await star.sendMessage(
         m.chat,
-        { document: { url: downloadUrl }, mimetype: 'video/mp3', fileName: `${title}.mp3` },
+        { document: { url: downloadUrl }, mimetype: 'video/mp3', fileName: ${title}.mp3 },
         { quoted: m }
       );
       await m.react('📄'); // Reacción de documento
@@ -90,7 +90,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
       // Enviar como video normal si es menor o igual al límite y dura menos de 30 minutos
       await star.sendMessage(
         m.chat,
-        { video: { url: downloadUrl }, caption: `${title}`, mimetype: 'video/mp4', fileName: `${title}.mp3` },
+        { video: { url: downloadUrl }, caption: ${title}, mimetype: 'audio/mp3', fileName: ${title}.mp3 },
         { quoted: m }
       );
       await m.react('✅'); // Reacción de éxito
