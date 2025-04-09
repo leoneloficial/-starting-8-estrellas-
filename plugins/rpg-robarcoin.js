@@ -21,7 +21,7 @@ return;
   if (users.coin < rob) return conn.reply(m.chat, `✧ @${who.split`@`[0]} no tiene suficientes *${moneda}* fuera del banco como para que valga la pena intentar robar.`, m, {mentions: [who]});
   global.db.data.users[m.sender].coin += rob;
   global.db.data.users[who].coin -= rob;
-  conn.reply(m.chat, `✎ Le robaste ${rob} ${moneda} a @${who.split`@`[0]}`, m, {mentions: [who]});
+  conn.reply(m.chat, `「✿」 Le robaste ${rob} ${moneda} a @${who.split`@`[0]}`, m, {mentions: [who]});
   global.db.data.users[m.sender].lastrob2 = new Date * 1;
 };
 handler.help = ['rob'];
