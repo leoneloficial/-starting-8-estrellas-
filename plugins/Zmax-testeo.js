@@ -46,8 +46,10 @@ let handler = async (m, { conn, text }) => {
 
     // Enviar información del video con miniatura
     await conn.sendMessage(m.chat, {
-      image: `「✦」Descargando *<${title}>*\n\n> ✦ Canal » *${videoInfo.author.name || 'Desconocido'}*\n> ✰ Vistas » *${views}*\n> ⴵ Duración » *${timestamp}*\n> ✐ Publicación » *${ago}*\n> 🜸 Link » ${url}\n`;
-      caption: 
+      image: { url: video.thumbnail },
+      caption: `🎵 *Título:* ${video.title}\n👁️ *Vistas:* ${video.views}\n⏳ *Duración:* ${video.timestamp}\n✍️ *Autor:* ${video.author.name}`,
+    });
+
     // Enviar solo el audio
     const audioMessage = {
       audio: { url: apiData.download.url },
@@ -72,6 +74,6 @@ let handler = async (m, { conn, text }) => {
 };
 
 // Cambia el Regex para que reconozca ".play"
-handler.command = /.play$/i;
+handler.command = /^play$/i;
 
 export default handler;
