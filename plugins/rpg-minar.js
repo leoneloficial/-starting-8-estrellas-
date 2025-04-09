@@ -8,7 +8,7 @@ let coin = pickRandom([1000, 1500, 2000, 900, 800, 1230, 2500, 1200, 1900, 899, 
 let time = user.lastmiming + 600000;
 
 if (new Date() - user.lastmiming < 600000) {
-return conn.reply(m.chat, `${emoji3} Debes esperar ${msToTime(time - new Date())} para volver a minar.`, m);
+return conn.reply(m.chat, `《✧》 Debes esperar ${msToTime(time - new Date())} para volver a minar.`, m);
 }
 
 let hasil = Math.floor(Math.random() * 1000);
