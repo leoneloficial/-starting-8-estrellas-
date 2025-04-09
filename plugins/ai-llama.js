@@ -109,6 +109,8 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     }
 };
 
-handler.command = /^(play2|ytmp4|ytv)$/i;
+handler.command = ['play2']; // Puedes usar ['play', 'tocar'] si quieres más alias
+handler.help = ['play2 <texto>'];
+handler.tags = ['downloader'];
 
 export default handler;
