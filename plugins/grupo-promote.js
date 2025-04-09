@@ -8,8 +8,8 @@ var number = text.split`@`[1]
 var number = text
 }
 
-if (!text && !m.quoted) return conn.reply(m.chat, `「✿」 Debes mencionar a un usuario para poder promoverlo a administrador.`, m, rcanal)
-if (number.length > 13 || (number.length < 11 && number.length > 0)) return conn.reply(m.chat, `✿ Debe de responder o mensionar a una persona para usar este comando.`, m, fake)
+if (!text && !m.quoted) return conn.reply(m.chat, `《✦》 Debes mencionar a un usuario para poder promoverlo a administrador.`, m, rcanal)
+if (number.length > 13 || (number.length < 11 && number.length > 0)) return conn.reply(m.chat, `《✦》 Debe de responder o mensionar a una persona para usar este comando.`, m, fake)
 
 try {
 if (text) {
@@ -22,7 +22,7 @@ var user = number + '@s.whatsapp.net'
 } catch (e) {
 } finally {
 conn.groupParticipantsUpdate(m.chat, [user], 'promote')
-conn.reply(m.chat, `✎ Fue agregado como admin del grupo con exito.`, m, fake)
+conn.reply(m.chat, `> 《✦》Fue agregado como admin del grupo con exito.`, m, fake)
 }
 
 }
