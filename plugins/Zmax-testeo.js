@@ -23,11 +23,13 @@ const fetchWithRetries = async (url, maxRetries = 2) => {
 };
 
 
-const handler = async (m, { conn, text, usedPrefix, command }) => {
-  try {
-    if (!text.trim()) {
-      return conn.reply(m.chat, `✎ ingresa el nombre de la música a descargar.`, 
- 
+let handler = async (m, { conn, text }) => {
+  if (!text || !text.trim()) {
+    return conn.sendMessage(m.chat, {
+      text: "❗ *Ingresa un término de búsqueda para encontrar música.*\n\n*Ejemplo:* `.play No llores más`",
+    });
+  }
+
   }
 
   try {
