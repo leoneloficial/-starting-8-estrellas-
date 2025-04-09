@@ -80,7 +80,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         const fileSize = parseInt(fileResponse.headers.get("content-length") || 0);
         const fileSizeInMB = fileSize / (1024 * 1024);
 
-        const videoInfo = ` *「✦」 *${apiTitle}*
+        const videoInfo = ` *「✦」${apiTitle}*
 
 > ✐ Publicación » *${ago}*
 > ⴵ Duración » *${timestamp}*
