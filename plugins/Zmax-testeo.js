@@ -42,9 +42,9 @@ let handler = async (m, { conn, text }) => {
 
     await conn.sendMessage(m.chat, {
       image: { url: video.thumbnail },
-      caption: `「✦」*descargando ${video.title}*
+      caption: `*「✦」descargando ${video.title}*
 
-\n> ✰ *Vistas:* ${video.views}\n> ⴵ *Duración:* ${video.timestamp}\n> ✦ *Autor:* ${video.author.name}`,
+\n> ✰ *Vistas:* » ${video.views}\n> ⴵ *Duración:* » ${video.timestamp}\n> ✦ *Autor:* ${video.author.name}`,
  
    });
 
