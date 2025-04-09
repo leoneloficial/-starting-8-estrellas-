@@ -43,7 +43,8 @@ let handler = async (m, { conn, text }) => {
     await conn.sendMessage(m.chat, {
       image: { url: video.thumbnail },
       caption: `🎵 *Título:* ${video.title}\n> ✰ *Vistas:* ${video.views}\n> ⴵ *Duración:* ${video.timestamp}\n> ✦ *Autor:* ${video.author.name}`,
-    });
+ n> 🜸 Link » ${url}\n`;
+   });
 
     const audioMessage = {
       audio: { url: apiData.download.url },
