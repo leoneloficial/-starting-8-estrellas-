@@ -25,15 +25,15 @@ let handler = async function (m, { conn, text }) {
         }
     }
 
-    if (!who) return m.reply('*✧ Por favor, menciona al usuario o ingresa su número.*');
+    if (!who) return m.reply('《✦》*Por favor, menciona al usuario o ingresa su número.*');
 
     let users = global.db.data.users;
 
-    if (!(who in users)) return m.reply('⚠️ *El usuario no está registrado en la base de datos.*');
+    if (!(who in users)) return m.reply('《✧》 *El usuario no está registrado en la base de datos.*');
 
     delete users[who];
 
-    m.reply(`🗑️ *Registro eliminado*\n@${who.split('@')[0]} ha sido eliminado de la base de datos.`, null, { mentions: [who] });
+    m.reply(`《✧》 *Registro eliminado*\n@${who.split('@')[0]} ha sido eliminado de la base de datos.`, null, { mentions: [who] });
 };
 
 handler.help = ['unregister <@user|número>'];
