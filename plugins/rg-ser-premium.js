@@ -9,10 +9,10 @@ let handler = async (m, { conn, text }) => {
   const units = { minuto: 1, minutos: 1, hora: 60, horas: 60, dia: 1440, dias: 1440 };
   if (!units[unit.toLowerCase()]) return conn.reply(m.chat, '✧ Unidad de tiempo no válida. Usa minutos, horas o días.', m);
 
-  let cost = amount * (units[unit.toLowerCase()] / 2000);
+  let cost = amount * (units[unit.toLowerCase()] / 200);
   if (user.coin < cost) return conn.reply(m.chat, `「✿」 *No tienes suficientes ${global.moneda}. Necesitas ${cost} ${global.moneda} para comprar esta membresía*`, m);
 
-  user.coin -= cost;
+  user.coin -= cost 2000;
   user.premium = true;
   user.premiumTime = +new Date() + amount * units[unit.toLowerCase()] * 60 * 1000; 
   
