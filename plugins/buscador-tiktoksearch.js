@@ -15,7 +15,7 @@ const j = Math.floor(Math.random() * (i + 1));
 }
 try {
 await message.react(rwait)
-conn.reply(message.chat, '⏱️ *𝗘𝘀𝗽𝗲𝗿𝗮 𝗨𝗻 𝗠𝗼𝗺𝗲𝗻𝘁𝗼, 𝗦𝗼𝘆 𝗟𝗲𝗻𝘁𝗮 ...* ', message, {
+conn.reply(message.chat, '「✿」 *𝗘𝘀𝗽𝗲𝗿𝗮 𝗨𝗻 𝗠𝗼𝗺𝗲𝗻𝘁𝗼, 𝗦𝗼𝘆 𝗟𝗲𝗻𝘁𝗮 ...* ', message, {
 contextInfo: { externalAdReply :{ mediaUrl: null, mediaType: 1, showAdAttribution: true,
 title: packname,
 body: dev,
@@ -45,7 +45,7 @@ deviceListMetadataVersion: 2
 },
 interactiveMessage: proto.Message.InteractiveMessage.fromObject({
 body: proto.Message.InteractiveMessage.Body.create({ text: '✿ Resultado de: ' + text }),
-footer: proto.Message.InteractiveMessage.Footer.create({ text: '✎﹏Tiktok - Busquedas' }),
+footer: proto.Message.InteractiveMessage.Footer.create({ text: '✿ Tiktok - Busquedas' }),
 header: proto.Message.InteractiveMessage.Header.create({ hasMediaAttachment: false }),
 carouselMessage: proto.Message.InteractiveMessage.CarouselMessage.fromObject({ cards: [...results] })})}}
 }, { quoted: message })
