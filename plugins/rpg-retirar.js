@@ -10,7 +10,7 @@ user.coin += count * 1
 await m.reply(`「✿」 Retiraste *${count} ${moneda}* del banco, ahora podras usarlo pero tambien podran robartelo.`)
 return !0
 }
-if (!Number(args[0])) return m.reply('✧ Debes retirar una cantidad válida.\n > Ejemplo 1 » *#retirar 25000*\n> Ejemplo 2 » *#retirar all*')
+if (!Number(args[0])) return m.reply('《✧》 Debes retirar una cantidad válida.\n > Ejemplo 1 » *#retirar 25000*\n> Ejemplo 2 » *#retirar all*')
 let count = parseInt(args[0])
 if (!user.bank) return m.reply(`✿ No tienes suficientes *${moneda}* en el Banco.`)
 if (user.bank < count) return m.reply(`「✿」  Solo tienes *${user.bank} ${moneda}* en el Banco.`)
