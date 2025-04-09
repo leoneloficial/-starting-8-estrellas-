@@ -32,7 +32,7 @@ const fetchWithRetries = async (url, maxRetries = 2, timeout = 60000) => {
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     try {
         verifyBrand();
-        await m.react('🕓');
+        await m.react('🌸');
 
         if (!text) {
             const example = command === "ytmp4" ? `${usedPrefix}${command} https://youtu.be/URL_DEL_VIDEO` : `${usedPrefix}${command} Never Gonna Give You Up`;
@@ -81,10 +81,8 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         const fileSizeInMB = fileSize / (1024 * 1024);
 
         const videoInfo = `
-    🌸𝙎𝙐𝙈𝙄 𝙎𝘼𝙆𝙐𝙍𝘼𝙕𝘼𝙒𝘼🌸
-· · ─────── ·♥︎· ─────── · ·
+   *「✦」 ${apiTitle}*
 
-•❥⏤͟͟͞͞Título⏤͟͟͞͞❥: ${apiTitle}
 •❥⏤͟͟͞͞Subido⏤͟͟͞͞❥: ${ago}
 •❥⏤͟͟͞͞Duración⏤͟͟͞͞❥: ${timestamp}
 •❥⏤͟͟͞͞Vistas⏤͟͟͞͞❥: ${(views / 1000).toFixed(1)}k (${views.toLocaleString()})
