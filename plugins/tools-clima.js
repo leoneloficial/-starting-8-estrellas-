@@ -2,7 +2,7 @@ import axios from "axios";
 
 let handler = async (m, { conn, args }) => {
   if (!args[0]) {
-    let resp = `✎ Ingrese el nombre de su País o Ciudad.`;
+    let resp = `✿ Ingrese el nombre de su País o Ciudad.`;
     let txt = '';
     let count = 0;
     for (const c of resp) {
