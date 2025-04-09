@@ -30,8 +30,6 @@ let handler = async (m, { conn, text }) => {
     });
   }
 
-  }
-
   try {
     await conn.sendMessage(m.chat, { react: { text: "🌸", key: m.key } });
 
