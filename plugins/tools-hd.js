@@ -4,8 +4,8 @@ const handler = async (m, {conn, usedPrefix, command}) => {
  try {    
   let q = m.quoted ? m.quoted : m;
   let mime = (q.msg || q).mimetype || q.mediaType || "";
-  if (!mime) return m.reply(`𖣘 Envie una imagen o responda a la imagen utilizando el comando: ${usedPrefix + command}`);
-  if (!/image\/(jpe?g|png)/.test(mime)) return m.reply(`🍂 El formato del archivo (${mime}) no es compatible, envía o responda a una imagen`);
+  if (!mime) return m.reply(`《✦》 Envie una imagen o responda a la imagen utilizando el comando: ${usedPrefix + command}`);
+  if (!/image\/(jpe?g|png)/.test(mime)) return m.reply(`《✧》 El formato del archivo (${mime}) no es compatible, envía o responda a una imagen`);
   conn.reply(m.chat, '𖧷 Mejorando la calidad de la imagen....', m, {
   contextInfo: { externalAdReply :{ mediaUrl: null, mediaType: 1, showAdAttribution: true,
   title: packname,
