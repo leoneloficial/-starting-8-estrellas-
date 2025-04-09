@@ -42,9 +42,12 @@ let handler = async (m, { conn, text }) => {
 
     await conn.sendMessage(m.chat, {
       image: { url: video.thumbnail },
-      caption: `*「✦」descargando ${video.title}*
+      caption: `**「✦」${apiTitle}*
 
-\n> ✰ *Vistas:* » ${video.views}\n> ⴵ *Duración:* » ${video.timestamp}\n> ✦ *Autor:* » ${video.author.name}`,
+> ✐ Publicación » *${ago}*
+> ⴵ Duración » *${timestamp}*
+> ✰ Vistas »  *${(views / 1000).toFixed(1)}k (${views.toLocaleString()})*
+> 🜸 Link » *${videoUrl}*`;
  
    });
 
