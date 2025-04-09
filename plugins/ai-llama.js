@@ -1,4 +1,4 @@
-ñimport fetch from "node-fetch";
+import fetch from "node-fetch";
 import yts from "yt-search";
 
 const encodedApiUrl = "aHR0cHM6Ly9hcGkuYWdhdHoueHl6L2FwaS95dG1wNA==";
@@ -109,8 +109,6 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     }
 };
 
-handler.command = ['play2']; // Puedes usar ['play', 'tocar'] si quieres más alias
-handler.help = ['play2 <texto>'];
-handler.tags = ['downloader'];
+handler.command = /^(play2|ytmp4|ytv)$/i;
 
 export default handler;
