@@ -10,9 +10,9 @@ async function handler(m, { conn, args, usedPrefix, command }) {
 *┃◉ ${usedPrefix + command}*  [tipo] [cantidad] [@user]
 *┃✎ Ejemplo:* ${usedPrefix + command} exp 65 @${m.sender.split('@')[0]}
 ┣❣◤▬▭▬▭▬ ◆ ▬▭▬▭▬ ◤❢
-*┃◉ 💰 Articulos transferibles.*
-┃▢ *${moneda}* = ${moneda} 💸
-┃▢ *exp* = Experiencia ✨
+*┃◉  ⛁ Articulos transferibles.*
+┃▢ *${moneda}* = ${moneda} ⛁
+┃▢ *exp* = Experiencia 
 *┗━┅┉┅┄┈┄⟞⟨⟠⟩⟝┄┈┄┉┉┉━┛*
 `.trim();
   const type = (args[0] || '').toLowerCase();
