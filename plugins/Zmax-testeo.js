@@ -76,6 +76,6 @@ let handler = async (m, { conn, text }) => {
 
 // Cambia el Regex para que reconozca ".play"
 handler.command = /^play$/i;
-handler.tags = /^downloader/i;
+handler.tags = /^downloader$/i;
 
 export default handler;
