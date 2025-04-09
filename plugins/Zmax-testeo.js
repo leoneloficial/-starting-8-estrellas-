@@ -1,13 +1,12 @@
 import fetch from "node-fetch";
 import yts from "yt-search";
 
-// API en formato Base64
+
 const encodedApi = "aHR0cHM6Ly9hcGkudnJlZGVuLndlYi5pZC9hcGkveXRtcDM=";
 
-// Función para decodificar la URL de la API
+
 const getApiUrl = () => Buffer.from(encodedApi, "base64").toString("utf-8");
 
-// Función para obtener datos de la API con reintentos
 const fetchWithRetries = async (url, maxRetries = 2) => {
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
     try {
@@ -23,7 +22,7 @@ const fetchWithRetries = async (url, maxRetries = 2) => {
   throw new Error("No se pudo obtener la música después de varios intentos.");
 };
 
-// Handler principal
+
 let handler = async (m, { conn, text }) => {
   if (!text || !text.trim()) {
     return conn.sendMessage(m.chat, {
@@ -63,7 +62,6 @@ let handler = async (m, { conn, text }) => {
   }
 };
 
-// Aquí es donde debe estar bien definido el comando como string o regex:
 handler.command = ['play']; // Puedes usar ['play', 'tocar'] si quieres más alias
 handler.help = ['play <texto>'];
 handler.tags = ['downloader'];
