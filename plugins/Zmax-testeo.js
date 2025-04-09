@@ -44,7 +44,7 @@ let handler = async (m, { conn, text }) => {
       image: { url: video.thumbnail },
       caption: `*「✦」descargando ${video.title}*
 
-> ✐  Canal » *${video.author.name}*\n> ✰ *Vistas:* » ${video.views}\n> ⴵ *Duración:* » ${video.timestamp}\n> ✦ *Autor:* » ${video.author.name}`,
+> ✦ Canal » *${video.author.name}*\n> ✰ *Vistas:* » ${video.views}\n> ⴵ *Duración:* » ${video.timestamp}\n> ✐  *Autor:* » ${video.author.name}`,
 
  
    });
