@@ -23,10 +23,10 @@ const fetchWithRetries = async (url, maxRetries = 2) => {
 };
 
 
-let handler = async (m, { conn, text }) => {
-  if (!text || !text.trim()) {
-    return conn.sendMessage(m.chat, {
-      text: "*✎ ingresa el nombre de la música a descargar.*`",
+const handler = async (m, { conn, text, usedPrefix, command }) => {
+  try {
+    if (!text.trim()) {
+      return conn.reply(m.chat, `✎ ingresa el nombre de la música a descargar.`, 
     });
   }
 
