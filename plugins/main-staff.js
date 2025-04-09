@@ -21,7 +21,7 @@ let handler = async (m, { conn, usedPrefix, text, args, command }) => {
 
   await sendContactArray(conn, m.chat, [
     [`${nomorown1}`, `💻 Equipo Staff`, `☁️Leonel𒆜`, `🎶 Owner Supremo`, bio1],
-    [`${nomorown2}`, `💻 Staff Zahpkiel`, `☁️zahpkiel𒆜`, `🎶 Owner Support`, bio2],
+    [`${nomorown2}`, `💻 Staff Zaphkiel`, `☁️zahpkiel𒆜`, `🎶 Owner Support`, bio2],
     [`${conn.user.jid.split('@')[0]}`, `🎶 Numero bot`, `Bot Oficial`, `📍 Soy tu sanadora`, `https://github.com/leoneloficial/-starting-8-estrellas-`, biobot]
   ], m)
 }
