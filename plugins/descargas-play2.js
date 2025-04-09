@@ -36,7 +36,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 
         if (!text) {
             const example = command === "ytmp4" ? `${usedPrefix}${command} https://youtu.be/URL_DEL_VIDEO` : `${usedPrefix}${command} Never Gonna Give You Up`;
-            return conn.sendMessage(m.chat, { text: `*✎ ingresa el nombre de la música a descargar.*`\n\n*Ejemplo:* `.play No llores más`, });
+            return conn.sendMessage(m.chat, { text: `⚠️ *¡Atención!*\n\n💡 *Por favor ingresa ${command === "play2" ? "un término de búsqueda" : "una URL válida de YouTube"}.*\n\n📌 *Ejemplo:* ${example}` });
         }
 
         if (command === "ytmp4" || command === "ytv") {
