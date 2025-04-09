@@ -13,7 +13,7 @@ return conn.reply(m.chat, `❀ *Elija una opción para configurar el grupo*\n\nE
 await conn.groupSettingUpdate(m.chat, isClose)
 
 if (isClose === 'not_announcement'){
-m.reply(`❀ *Ya pueden escribir en este grupo.*`)
+m.reply(``)
 }
 
 if (isClose === 'announcement'){
