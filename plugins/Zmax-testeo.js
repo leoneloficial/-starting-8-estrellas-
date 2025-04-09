@@ -1,5 +1,6 @@
 import fetch from "node-fetch";
-import yts from "yt-search";
+import yts from 'yt-search';
+import axios from "axios";
 
 // API en formato Base64
 const encodedApi = "aHR0cHM6Ly9hcGkudnJlZGVuLndlYi5pZC9hcGkveXRtcDM=";
