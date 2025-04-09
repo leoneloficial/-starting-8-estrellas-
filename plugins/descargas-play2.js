@@ -83,7 +83,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         const videoInfo = `
    *「✦」 ${apiTitle}*
 
-•❥⏤͟͟͞͞Subido⏤͟͟͞͞❥: ${ago}
+> ✐ Publicación » *${ago}*
 •❥⏤͟͟͞͞Duración⏤͟͟͞͞❥: ${timestamp}
 •❥⏤͟͟͞͞Vistas⏤͟͟͞͞❥: ${(views / 1000).toFixed(1)}k (${views.toLocaleString()})
 ➷ *URL⤿:* ${videoUrl}
