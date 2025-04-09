@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 import {format} from 'util';
 const handler = async (m, {text}) => {
-    if (!/^https?:\/\//.test(text)) return m.reply('🍬 Te faltó el *url* de la pagina.');
+    if (!/^https?:\/\//.test(text)) return m.reply('《✦》 Te faltó el *url* de la pagina.');
 
 
 if (global.ownersDisabled) {
