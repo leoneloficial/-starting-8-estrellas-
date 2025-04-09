@@ -27,11 +27,11 @@ let handler = async (m, { conn, text, args, usedPrefix, command }) => {
 
         let [emoji, emoji2] = text.split`+`;
         if (!emoji || !emoji2) {
-            console.log("⚠️ Entrada inválida, faltan emojis.");
-            return m.reply("⚠️ Debes ingresar dos emojis separados por '+'.");
+            console.log("《✧》 Entrada inválida, faltan emojis.");
+            return m.reply("《✧》 Debes ingresar dos emojis separados por '+'.");
         }
 
-        console.log(`🔍 Buscando combinación: ${emoji} + ${emoji2}`);
+        console.log(`「✿」 Buscando combinación: ${emoji} + ${emoji2}`);
 
         let apiUrl = `https://tenor.googleapis.com/v2/featured?key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&contentfilter=high&media_filter=png_transparent&component=proactive&collection=emoji_kitchen_v5&q=${encodeURIComponent(emoji)}_${encodeURIComponent(emoji2)}`;
 
