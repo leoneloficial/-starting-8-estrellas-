@@ -12,7 +12,7 @@ let handler = async (m, { conn, usedPrefix, text, args, command }) => {
 
     await sendContactArray(conn, m.chat, [
         ['393715279301', '👑 Staff owner', '👑 𝕷͢𝖊𝖔፝֟፝֟፝֟፝֟፝֟፝֟𝖓𝖊𝖑 👑', 'Desarrollador', 'correo@example.com', 'MX', 'https://youtube.com/', bio1.status?.toString() || 'Sin Biografía'],
-        ['50558124470', '💻 Staff zahpkiel', 'ⁱᵃᵐzahpkiel𒆜 Sss+', 'Soporte Técnico', 'enderjosueasevedotorrez@gmail.com', 'NI', 'https://github.com/EnderJs-CreatorGL', bio2.status?.toString() || 'Sin Biografía'],
+        ['50558124470', '💻 Staff zahpkiel', 'ⁱᵃᵐzaphkiel𒆜 Sss+', 'Soporte Técnico', 'enderjosueasevedotorrez@gmail.com', 'NI', 'https://github.com/EnderJs-CreatorGL', bio2.status?.toString() || 'Sin Biografía'],
         [`${conn.user.jid.split('@')[0]}`, '🌸 Es el Bot', 'Bot Oficial', '📵 No Hacer Spam', 'correo@example.com', 'MX', 'https://github.com', bioBot.status?.toString() || 'Sin Biografía']
     ], m)
 } 
