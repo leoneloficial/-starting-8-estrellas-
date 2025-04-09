@@ -25,7 +25,7 @@ if (global.ownersDisabled) {
 }
     
     let txt = text.replace('@' + who.split`@`[0], '').trim();
-    if (!txt) return m.reply('*✿ Por favor, ingresa la cantidad que deseas añadir.*');
+    if (!txt) return m.reply('《✦》*Por favor, ingresa la cantidad que deseas añadir.*');
     if (isNaN(txt)) return m.reply('《✧》 *sólo números*');
     
     let dmt = parseInt(txt);
