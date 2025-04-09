@@ -11,15 +11,15 @@ import fetch from 'node-fetch'
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
 
-    if (!text) return conn.reply(m.chat, `${emoji} Por favor proporciona el nombre de una canci贸n o artista.`, m)
+    if (!text) return conn.reply(m.chat, `${emoji} Por favor proporciona el nombre de una canción o artista.`, m)
 
     try {
         let songInfo = await spotifyxv(text)
-        if (!songInfo.length) throw `${emoji2} No se encontr贸 la canci贸n.`
+        if (!songInfo.length) throw `${emoji2} No se encontró la canción.`
         let song = songInfo[0]
         const res = await fetch(`https://archive-ui.tanakadomp.biz.id/download/spotify?url=${song.url}`)
 
-        if (!res.ok) throw `Error al obtener datos de la API, c贸digo de estado: ${res.status}`
+        if (!res.ok) throw `Error al obtener datos de la API, código de estado: ${res.status}`
 
         const data = await res.json().catch((e) => { 
             console.error('Error parsing JSON:', e)
@@ -28,7 +28,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 
         if (!data || !data.result || !data.result.data || !data.result.data.download) throw "No se pudo obtener el enlace de descarga."
 
-        const info = `「✦」*escargando*: ${data.result.data.title}\n\n> ✦ *Artista:* ${data.result.data.artis}\n> ✰  *Album:* ${song.album}\n> ⴵ *Duracion:* ${timestamp(data.result.data.durasi)}\n > 🜸  *Enlace:* ${song.url}`
+        const info = `「✦」Descargando: ${data.result.data.title}\n\n> 👤 *Artista:* ${data.result.data.artis}\n> 💽 *Álbum:* ${song.album}\n> 🕒 *Duración:* ${timestamp(data.result.data.durasi)}\n> 🔗 *Enlace:* ${song.url}`
 
         await conn.sendMessage(m.chat, { text: info, contextInfo: { forwardingScore: 9999999, isForwarded: false, 
         externalAdReply: {
