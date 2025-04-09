@@ -18,7 +18,7 @@ const handler = async (m, {conn, text, participants, isOwner, isAdmin}) => {
     const isMedia = /image|video|sticker|audio/.test(mime);
     const more = String.fromCharCode(8206);
     const masss = more.repeat(850);
-    const htextos = `${text ? text : '🍬 Debes enviar un texto para hacer un tag.'}`;
+    const htextos = `${text ? text : '《✦》Debes enviar un texto para hacer un tag.'}`;
     if ((isMedia && quoted.mtype === 'imageMessage') && htextos) {
       var mediax = await quoted.download?.();
       conn.sendMessage(m.chat, {image: mediax, mentions: users, caption: htextos, mentions: users}, {quoted: m});
