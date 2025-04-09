@@ -81,6 +81,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         const fileSizeInMB = fileSize / (1024 * 1024);
 
         const videoInfo = ` *「✦」 *${apiTitle}*
+
 > ✐ Publicación » *${ago}*
 > ⴵ Duración » *${timestamp}*
 > ✰ Vistas »  *${(views / 1000).toFixed(1)}k (${views.toLocaleString()})*
