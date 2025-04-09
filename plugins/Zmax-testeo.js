@@ -31,7 +31,7 @@ let handler = async (m, { conn, text }) => {
   }
 
   try {
-    await conn.sendMessage(m.chat, { react: { text: "🕒", key: m.key } });
+    await conn.sendMessage(m.chat, { react: { text: "🌸", key: m.key } });
 
     const searchResults = await yts(text.trim());
     const video = searchResults.videos[0];
