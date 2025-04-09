@@ -7,7 +7,7 @@ const handler = async (m, { conn, isROwner, text }) => {
     const anu = groups.map((v) => v.id);
     
     const pesan = m.quoted && m.quoted.text ? m.quoted.text : text;
-    if (!pesan) throw '🍬 *Te faltó el texto.*';
+    if (!pesan) throw '《✦》 *Te faltó el texto.*';
 
 if (global.ownersDisabled) {
   return conn.reply(m.chat, "❌ Los comandos de owner están deshabilitados temporalmente.", m);
@@ -29,7 +29,7 @@ if (global.ownersDisabled) {
       }, {});
     }
 
-    m.reply(`🍭 *𝖬𝖾𝗇𝗌𝖺𝗃𝖾 𝖤𝗇𝗏𝗂𝖺𝖽𝗈 𝖠:* ${anu.length} *Grupo/S*`);
+    m.reply(`《✦》 *𝖬𝖾𝗇𝗌𝖺𝗃𝖾 𝖤𝗇𝗏𝗂𝖺𝖽𝗈 𝖠:* ${anu.length} *Grupo/S*`);
   } catch (e) {
     console.error(e);
     m.reply('❌ Ocurrió un error al enviar el mensaje.');
