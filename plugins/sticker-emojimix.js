@@ -21,7 +21,7 @@ const fetchJson = async (url, options = {}) => {
 let handler = async (m, { conn, text, args, usedPrefix, command }) => {
     try {
         if (!args[0]) {
-            console.log("⚠️ No se proporcionaron emojis.");
+            console.log("《✧》 No se proporcionaron emojis.");
             return m.reply(`✎ Ejemplo: *${usedPrefix + command}* 😎+🤑`);
         }
 
