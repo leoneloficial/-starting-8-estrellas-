@@ -94,7 +94,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 `;
 
         await conn.sendMessage(m.chat, { image: { url: apiImage }, caption: videoInfo });
-        await m.react('🕓');
+        await m.react('🌸');
 
         if (fileSizeInMB > 70) {
             await conn.sendMessage(m.chat, { document: { url: downloadUrl }, mimetype: "video/mp4", fileName: apiTitle || `${title}.mp4`, caption: `📂 *Video en Formato Documento:* \n🎵 *Título:* ${apiTitle}\n📦 *Tamaño:* ${fileSizeInMB.toFixed(2)} MB` }, { quoted: m });
@@ -109,6 +109,9 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     }
 };
 
-handler.command = /^(play2|ytmp4|ytv)$/i;
+handler.command = ['play2']; // Puedes usar ['play', 'tocar'] si quieres más alias
+handler.help = ['play2 <texto>'];
+handler.tags = ['downloader'];
+
 
 export default handler;
