@@ -27,7 +27,7 @@ const handler = async (m, { conn, text }) => {
     const pjk = Math.ceil(xp * pajak);
     exp += pjk;
     
-    if (exp < 1) return m.reply('✎ El mínimo de experiencia (XP) para añadir es *1*.');
+    if (exp < 1) return m.reply('《✧》 El mínimo de experiencia (XP) para añadir es *1*.');
     
     const users = global.db.data.users;
     users[who].exp += xp;
