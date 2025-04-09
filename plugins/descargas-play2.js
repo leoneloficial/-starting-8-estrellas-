@@ -58,7 +58,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
             if (fileSizeInMB > 70) {
                 await conn.sendMessage(m.chat, { document: { url: downloadUrl }, mimetype: "video/mp4", fileName: apiTitle || "video.mp4", caption: `📂 *Descarga en formato documento:*\n🎵 *Título:* ${apiTitle}\n📦 *Tamaño:* ${fileSizeInMB.toFixed(2)} MB` }, { quoted: m });
             } else {
-               // await conn.sendMessage(m.chat, { video: { url: downloadUrl }, mimetype: "video/mp4", fileName: apiTitle || "video.mp4", //caption: `🎥 *Video Descargado:*\n🎵 *Título:* ${apiTitle}\n📦 *Tamaño:* ${fileSizeInMB.toFixed(2)} MB` }, { quoted: m });
+                await conn.sendMessage(m.chat, { video: { url: downloadUrl }, mimetype: "video/mp4", fileName: apiTitle || "video.mp4", //caption: `🎥 *Video Descargado:*\n🎵 *Título:* ${apiTitle}\n📦 *Tamaño:* ${fileSizeInMB.toFixed(2)} MB` }, { quoted: m });
             }
             return;
         }
@@ -93,7 +93,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         if (fileSizeInMB > 70) {
             await conn.sendMessage(m.chat, { document: { url: downloadUrl }, mimetype: "video/mp4", fileName: apiTitle || `${title}.mp4`, caption: `📂 *Video en Formato Documento:* \n🎵 *Título:* ${apiTitle}\n📦 *Tamaño:* ${fileSizeInMB.toFixed(2)} MB` }, { quoted: m });
         } else {
-           // await conn.sendMessage(m.chat, { video: { url: downloadUrl }, mimetype: "video/mp4", fileName: apiTitle || `${title}.mp4`, //caption: `🎥 *Video Descargado:* \n🎵 *Título:* ${apiTitle}\n📦 *Tamaño:* ${fileSizeInMB.toFixed(2)} MB` }, { quoted: m });
+            await conn.sendMessage(m.chat, { video: { url: downloadUrl }, mimetype: "video/mp4", fileName: apiTitle || `${title}.mp4`, //caption: `🎥 *Video Descargado:* \n🎵 *Título:* ${apiTitle}\n📦 *Tamaño:* ${fileSizeInMB.toFixed(2)} MB` }, { quoted: m });
             await m.react('✅');
         }
     } catch (error) {
