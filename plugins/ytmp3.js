@@ -57,7 +57,9 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
 
 
     let txt = `*「✦」 » ${title}*\n`;
-    txt += `
+ 
+ > ✦ Canal » *${video.author.name}* 
+ txt += `
 > ⴵ *Duración* » ${timestamp}\n`;
     txt += `> ✰ *Vistas* » ${views}\n`;
     txt += `> ✐ *Publicación* » ${ago}\n`;
