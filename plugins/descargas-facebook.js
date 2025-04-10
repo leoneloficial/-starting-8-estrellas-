@@ -39,7 +39,8 @@ const handler = async (m, { text, conn, args }) => {
 
 > ✿  Enviado en 720p (HD)
 
-> © Sumi sakurazawa 2.4 Bot' fileName: 'fb.mp4', mimetype: 'video/mp4' }, { quoted: m })
+> © Sumi sakurazawa 2.4 Bot'.
+ fileName: 'fb.mp4', mimetype: 'video/mp4' }, { quoted: m })
     await m.react(done);
   } catch (e) {
     return conn.reply(m.chat, '⚠️ Error al enviar el video.', m)
