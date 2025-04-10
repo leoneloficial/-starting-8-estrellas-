@@ -9,7 +9,15 @@ try {
    const res = await TwitterDL(text);
  if (res?.result.type == 'video') {
      m.react(done)
-     const caption = res?.result.caption ? res.result.caption : '✎ Aqui tienes ฅ^•ﻌ•^ฅ.';
+     const caption = res?.result.caption ? res.result.caption : '»  ⊹˚୨ •(=^●ω●^=)•🌸
+
+> ✿ 720p (HD)
+> ✿ 360p (SD)
+> ✿ 1080p
+
+> ✿  Enviado en 720p (HD)
+
+> © Sumi sakurazawa 2.4 Bot';
      for (let i = 0; i < res.result.media.length; i++) {
      await conn.sendMessage(m.chat, {video: {url: res.result.media[i].result[0].url}, caption: caption}, {quoted: m});
      };
