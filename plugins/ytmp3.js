@@ -56,9 +56,8 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     let durationInMinutes = parseFloat(timestamp.split(':')[0]) * 60 + parseFloat(timestamp.split(':')[1]);
 
 
-    let txt = `「✦」 » ${title}\n`;
+    let txt = `*「✦」 » ${title}\n*`;
     txt += `
-
 > ⴵ *Duración* » ${timestamp}\n`;
     txt += `> ✰ *Vistas* » ${views}\n`;
     txt += `> ✐ *Publicación* » ${ago}\n`;
