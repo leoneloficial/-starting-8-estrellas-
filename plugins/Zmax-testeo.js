@@ -67,7 +67,7 @@ let handler = async (m, { conn, text }) => {
 };
 
 handler.command = ['playaudio']; // Puedes usar ['play', 'tocar'] si quieres más alias
-handler.help = ['playaudio <texto>'];
+handler.help = ['playaudio <texto>''mp3', 'yta',];
 handler.tags = ['downloader'];
 
 export default handler;
