@@ -64,7 +64,9 @@ txt +=  `
 > ⴵ *Duración* » ${timestamp}\n`;
     txt += `> ✰ *Vistas* » ${views}\n`;
     txt += `> ✐ *Publicación* » ${ago}\n`;
-    txt += `> *Tamaño:* » ${sizeHumanReadable}\n\n`;txt += `> 🜸 *Link* » ${url}`;
+    txt += `> ❒ *Tamaño:* » ${sizeHumanReadable}\n\n`;
+txt += `
+> 🜸 *Link* » ${url}`;
     //txt += `> *- ↻ El video se está enviando, espera un momento...*`;
 
 
