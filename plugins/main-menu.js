@@ -113,8 +113,10 @@ Aquí tienes la lista de comandos
 > ✦ Descargar vídeos de Pinterest. 
 ❀ *#mega • #mg* + [enlacé]
 > ✦ Descargar un archivo de MEGA.
-❀ *#play • #play2*
-> ✦ Descarga música/video de YouTube.
+❀ *#play • #mp3 • #play2 • #mp4*
+> ✦ Descarga en documentos música/video de YouTube.
+❀ *#playaudio • #playvideo*
+> ✦ Descarga en documentos música/video de YouTube.
 ❀ *#ytmp3 • #ytmp4*
 > ✦ Descarga música/video de YouTube mediante url.
 ❀ *#fb • #facebook*
