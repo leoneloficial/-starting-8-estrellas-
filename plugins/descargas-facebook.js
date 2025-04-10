@@ -31,7 +31,15 @@ const handler = async (m, { text, conn, args }) => {
 
   let video = data.url;
   try {
-    await conn.sendMessage(m.chat, { video: { url: video }, caption: ` Aqui tienes ฅ^•ﻌ•^ฅ.`, fileName: 'fb.mp4', mimetype: 'video/mp4' }, { quoted: m })
+    await conn.sendMessage(m.chat, { video: { url: video }, caption: `»  ⊹˚୨ •(=^●ω●^=)•🌸
+
+> ✿ 720p (HD)
+> ✿ 360p (SD)
+> ✿ 1080p
+
+> ✿  Enviado en 720p (HD)
+
+> © Sumi sakurazawa 2.4 Bot`, fileName: 'fb.mp4', mimetype: 'video/mp4' }, { quoted: m })
     await m.react(done);
   } catch (e) {
     return conn.reply(m.chat, `${msm} Error al enviar el video.`, m)
