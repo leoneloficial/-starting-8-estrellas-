@@ -2,7 +2,7 @@ import { igdl } from 'ruhend-scraper'
 
 const handler = async (m, { text, conn, args }) => {
   if (!args[0]) {
-    return conn.reply(m.chat, `${emoji} Por favor, ingresa un enlace de Facebook.`, m)
+    return conn.reply(m.chat, `《✦》Por favor, ingresa un enlace de Facebook.`, m)
   }
 
   let res;
