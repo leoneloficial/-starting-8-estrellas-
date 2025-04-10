@@ -15,7 +15,7 @@ const handler = async (m, { text, conn, args }) => {
 
   let result = res.data;
   if (!result || result.length === 0) {
-    return conn.reply(m.chat, `${emoji2} No se encontraron resultados.`, m)
+    return conn.reply(m.chat, `《✧》 No se encontraron resultados.`, m)
   }
 
   let data;
@@ -26,7 +26,7 @@ const handler = async (m, { text, conn, args }) => {
   }
 
   if (!data) {
-    return conn.reply(m.chat, `${emoji2} No se encontró una resolución adecuada.`, m)
+    return conn.reply(m.chat, `《✧》 No se encontró una resolución adecuada.`, m)
   }
 
   let video = data.url;
