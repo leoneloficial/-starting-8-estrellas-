@@ -11,7 +11,9 @@ let results = api.data[0];
 
 let txt = `*「✦」 ${results.title}*
 
-> ✦ *Canal* » ${results.author.name}\n> ⴵ *Duración:* » ${results.duration}\n> 🜸 *Link* » ${results.url}\n> ✐ Publicación » ${results.publishedAt}`;
+> ✦ *Canal* » ${results.author.name}\n> ⴵ *Duración:* » ${results.duration}
+> \n>Publicación » ${results.publishedAt}
+> \n> 🜸 *Link* » ${results.url} `;
 
 let img = results.image;
 
