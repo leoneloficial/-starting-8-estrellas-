@@ -2,7 +2,7 @@ import { igdl } from 'ruhend-scraper';
 
 const handler = async (m, { args, conn }) => {
   if (!args[0]) {
-    return conn.reply(m.chat, '✎ Por favor, ingresa un enlace de Instagram.', m);
+    return conn.reply(m.chat, `${emoji} Por favor, ingresa un enlace de Instagram.`, m);
   }
 
   try {
@@ -11,19 +11,11 @@ const handler = async (m, { args, conn }) => {
     const data = res.data;
 
     for (let media of data) {
-      await conn.sendFile(m.chat, media.url, 'instagram.mp4', ' »  ⊹˚୨ •(=^●ω●^=)•🌸
-
-> ✿ 720p (HD)
-> ✿ 360p (SD)
-> ✿ 1080p
-
-> ✿  Enviado en 720p (HD)
-
-> © Sumi sakurazawa 2.4 Bot.', m);
+      await conn.sendFile(m.chat, media.url, 'instagram.mp4', `${emoji} Aqui tienes ฅ^•ﻌ•^ฅ.`, m);
     await m.react(done);
     }
   } catch (e) {
-    return conn.reply(m.chat, '⚠️ Ocurrió un error.', m);
+    return conn.reply(m.chat, `${msm} Ocurrió un error.`, m);
     await m.react(error);
   }
 };
@@ -31,7 +23,8 @@ const handler = async (m, { args, conn }) => {
 handler.command = ['instagram', 'ig'];
 handler.tags = ['descargas'];
 handler.help = ['instagram', 'ig'];
-handler.coin = 1;
+handler.group = true;
 handler.register = true;
+handler.coin = 2;
 
 export default handler;
