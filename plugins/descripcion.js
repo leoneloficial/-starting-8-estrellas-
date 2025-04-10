@@ -12,7 +12,7 @@ let results = api.data[0];
 let txt = `*「✦」 ${results.title}*
 
 > ✦ *Canal* » ${results.author.name}\n> ⴵ *Duración:* » ${results.duration}\n> ✐ 
-> ✰ *Vistas:* » ${video.views}
+> ✰ *Vistas:* » ${views}
 Publicación » ${results.publishedAt} \n> 
 
 ❒ *Tamaño:* » ${results.HumanReadable}\n> 🜸 *Link* » ${results.url} `;
