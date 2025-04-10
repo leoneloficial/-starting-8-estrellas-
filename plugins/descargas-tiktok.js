@@ -17,7 +17,7 @@ var handler = async (m, { conn, args, usedPrefix, command }) => {
         const videoURL = tiktokData.data.play;
 
         if (videoURL) {
-            await conn.sendFile(m.chat, videoURL, "tiktok.mp4", `> ✿ Resoluciones disponibles:
+            await conn.sendFile(m.chat, videoURL, "tiktok.mp4", ` Aqui tienes ฅ^•ﻌ•^ฅ.
 
 > ✿ 720p (HD)
 > ✿ 360p (SD)
