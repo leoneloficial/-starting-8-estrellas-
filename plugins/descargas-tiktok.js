@@ -17,13 +17,13 @@ var handler = async (m, { conn, args, usedPrefix, command }) => {
         const videoURL = tiktokData.data.play;
 
         if (videoURL) {
-            await conn.sendFile(m.chat, videoURL, "tiktok.mp4", `✿ Resoluciones disponibles:
+            await conn.sendFile(m.chat, videoURL, "tiktok.mp4", `> ✿ Resoluciones disponibles:
 
-> 720p (HD)
-> 360p (SD)
-> 1080p
-
-> ✿  Enviado en 720p
+> ✿ 720p (HD)
+> ✿ 360p (SD)
+> ✿ 1080p
+>
+> ✿  Enviado en 720p (HD)
 
 > © Sumi sakurazawa 2.4 Bot`, m);
         } else {
