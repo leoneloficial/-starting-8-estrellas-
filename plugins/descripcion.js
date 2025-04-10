@@ -10,7 +10,7 @@ let api = await (await fetch(`https://delirius-apiofc.vercel.app/search/ytsearch
 let results = api.data[0];
 
 let txt = `*「✦」
- ${results.title}*\n> ⴵ *Duración:* » ${results.duration}\n> 🜸 *Link* » ${results.url}\n📆 *Publicado:* ${results.publishedAt}`;
+ ${results.title}*\n> ⴵ *Duración:* » ${results.duration}\n> 🜸 *Link* » ${results.url}\n> ✐ Publicación » ${results.publishedAt}`;
 
 let img = results.image;
 
