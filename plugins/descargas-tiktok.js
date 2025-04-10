@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 
 var handler = async (m, { conn, args, usedPrefix, command }) => {
     if (!args[0]) {
-        return conn.reply(m.chat, `✎ Por favor, ingresa un enlace de TikTok.`, m);
+        return conn.reply(m.chat, `✎ Por favor, ingresa un enlace de Tiktok`, m);
     }
 
     try {
@@ -17,7 +17,15 @@ var handler = async (m, { conn, args, usedPrefix, command }) => {
         const videoURL = tiktokData.data.play;
 
         if (videoURL) {
-            await conn.sendFile(m.chat, videoURL, "tiktok.mp4", `✎ Aquí tienes ฅ^•ﻌ•^ฅ`, m);
+            await conn.sendFile(m.chat, videoURL, "tiktok.mp4", `✿ Resoluciones disponibles:
+
+> 720p (HD)
+> 360p (SD)
+> 1080p
+
+> ✿  Enviado en 720p
+
+> © Sumi sakurazawa 2.4 Bot`, m);
         } else {
             return conn.reply(m.chat, "No se pudo descargar.", m);
         }
