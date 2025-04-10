@@ -2,7 +2,7 @@ import { igdl } from 'ruhend-scraper';
 
 const handler = async (m, { args, conn }) => {
   if (!args[0]) {
-    return conn.reply(m.chat, `${emoji} Por favor, ingresa un enlace de Instagram.`, m);
+    return conn.reply(m.chat, ` Por favor, ingresa un enlace de Instagram.`, m);
   }
 
   try {
