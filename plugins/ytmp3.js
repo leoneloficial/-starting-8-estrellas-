@@ -108,6 +108,6 @@ txt +=  `
 };
 
 
-handler.command = ['playdoc2', 'playvidoc']; // Comandos disponibles
+handler.command = ['play2', 'playvidoc']; // Comandos disponibles
 
 export default handler;
