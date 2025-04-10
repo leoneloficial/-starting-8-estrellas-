@@ -11,7 +11,15 @@ const handler = async (m, { args, conn }) => {
     const data = res.data;
 
     for (let media of data) {
-      await conn.sendFile(m.chat, media.url, 'instagram.mp4', '✎ Aqui tienes ฅ^•ﻌ•^ฅ.', m);
+      await conn.sendFile(m.chat, media.url, 'instagram.mp4', '»  ⊹˚୨ •(=^●ω●^=)•🌸
+
+> ✿ 720p (HD)
+> ✿ 360p (SD)
+> ✿ 1080p
+
+> ✿  Enviado en 720p (HD)
+
+> © Sumi sakurazawa 2.4 Bot', m);
     await m.react(done);
     }
   } catch (e) {
