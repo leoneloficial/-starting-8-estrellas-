@@ -2,16 +2,16 @@ import fetch from 'node-fetch';
 
 var handler = async (m, { conn, args, usedPrefix, command }) => {
     if (!args[0]) {
-        return conn.reply(m.chat, `✎ Por favor, ingresa un enlace de Tiktok`, m);
+        return conn.reply(m.chat, `《✦》 Por favor, ingresa un enlace de Tiktok`, m);
     }
 
     try {
-        await conn.reply(m.chat, `✦ Espere un momento, estoy descargando su video...`, m);
+        await conn.reply(m.chat, `《✦》 Espere un momento, estoy descargando su video...`, m);
 
         const tiktokData = await tiktokdl(args[0]);
 
         if (!tiktokData || !tiktokData.data || !tiktokData.data.play) {
-            return conn.reply(m.chat, "Error: No se pudo obtener el video.", m);
+            return conn.reply(m.chat, "《✧》Error: No se pudo obtener el video.", m);
         }
 
         const videoURL = tiktokData.data.play;
