@@ -58,7 +58,8 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
 
     let txt = `「✦」 » ${title}\n`;
 
-    txt += `> ⴵ *Duración* » ${timestamp}\n`;
+  
+  txt += `> ⴵ *Duración* » ${timestamp}\n`;
     txt += `> ✰ *Vistas* » ${views}\n`;
     txt += `> ✐ *Publicación* » ${ago}\n`;
     txt += `> *Tamaño:* » ${sizeHumanReadable}\n\n`;
