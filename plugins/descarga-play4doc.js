@@ -67,7 +67,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     await star.sendFile(m.chat, thumbnail, 'thumbnail.jpg', txt, m);
 
 
-    let api = await fetch(`https://api.vreden.my.id/api/ytmp4?url=${url}`);
+    let api = await fetch(`https://api.siputzx.my.id/api/d/ytmp4?url=${url}`);
     let json = await api.json();
     let { data } = json;
 
