@@ -216,33 +216,29 @@ opcion = '2'
 if (!conn.authState.creds.registered) {  
 if (MethodMobile) throw new Error('No se puede usar un código de emparejamiento con la API móvil')
 
-let numeroTelefono;
+import PhoneNumber from 'awesome-phonenumber'
 
+let numeroTelefono
 if (!!phoneNumber) {
-  numeroTelefono = phoneNumber.replace(/[^0-9]/g, '');
-  
-  if (!Object.keys(PHONENUMBER_MCC).some(prefix => numeroTelefono.startsWith(prefix))) {
-    console.log(chalk.bgBlack(chalk.bold.greenBright(`🍬 Por favor, Ingrese el número de WhatsApp.\n${chalk.bold.yellowBright(`🍭  Ejemplo: +50558124470`)}\n${chalk.bold.magentaBright('---> ')}`)));
-    process.exit(0);
+  const pn = new PhoneNumber(phoneNumber)
+  if (!pn.isValid()) {
+    console.log(chalk.bgBlack(chalk.bold.greenBright(`🍬 Por favor, Ingrese un número de WhatsApp válido.\n${chalk.bold.yellowBright(`🍭  Ejemplo: +50558124470`)}\n${chalk.bold.magentaBright('---> ')}`)))
+    process.exit(0)
   }
+  numeroTelefono = pn.getNumber('e164').replace('+', '')
 } else {
   while (true) {
-    numeroTelefono = await question(chalk.bgBlack(chalk.bold.greenBright(`🍬 Por favor, escriba su número de WhatsApp.\n🍭  Ejemplo: +50558124470\n`)));
-    numeroTelefono = numeroTelefono.replace(/[^0-9]/g, '');
-    
-    if (
-      typeof numeroTelefono === 'string' &&
-      /^\d+$/.test(numeroTelefono) &&
-      Object.keys(PHONENUMBER_MCC).some(prefix => numeroTelefono.startsWith(prefix))
-    ) {
-      break;
+    let input = await question(chalk.bgBlack(chalk.bold.greenBright(`🍬 Por favor, escriba su número de WhatsApp.\n🍭  Ejemplo: +50558124470\n`)))
+    const pn = new PhoneNumber(input)
+    if (pn.isValid()) {
+      numeroTelefono = pn.getNumber('e164').replace('+', '')
+      break
     } else {
-      console.log(chalk.bgBlack(chalk.bold.greenBright(`🍬 Por favor, escriba un número válido de WhatsApp.\n🍭  Ejemplo: +50558124470\n`)));
+      console.log(chalk.bgBlack(chalk.bold.redBright(`❌ Número inválido. Intente de nuevo.`)))
     }
   }
+  rl.close()
 }
-
-rl.close();
 
 
 setTimeout(async () => {
