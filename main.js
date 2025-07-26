@@ -23,6 +23,33 @@ import {makeWASocket, protoType, serialize} from './lib/simple.js'
 import {Low, JSONFile} from 'lowdb'
 import {mongoDB, mongoDBV2} from './lib/mongoDB.js'
 import store from './lib/store.js'
+const PHONENUMBER_MCC = {
+  '1': 'US/CA',
+  '44': 'UK',
+  '49': 'DE',
+  '34': 'ES',
+  '52': 'MX',
+  '54': 'AR',
+  '55': 'BR',
+  '56': 'CL',
+  '57': 'CO',
+  '58': 'VE',
+  '591': 'BO',
+  '593': 'EC',
+  '595': 'PY',
+  '598': 'UY',
+  '502': 'GT',
+  '503': 'SV',
+  '504': 'HN',
+  '505': 'NI',
+  '506': 'CR',
+  '507': 'PA',
+  '51': 'PE',
+  '591': 'BO',
+  '60': 'MY',
+  '62': 'ID',
+  '91': 'IN'
+  }
 const {proto} = (await import('@whiskeysockets/baileys')).default
 const {DisconnectReason, useMultiFileAuthState, MessageRetryMap, fetchLatestBaileysVersion, makeCacheableSignalKeyStore, jidNormalizedUser, PHONENUMBER_MCC} = await import('@whiskeysockets/baileys')
 import readline from 'readline'
