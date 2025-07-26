@@ -204,24 +204,34 @@ opcion = '2'
 if (!conn.authState.creds.registered) {  
 if (MethodMobile) throw new Error('No se puede usar un código de emparejamiento con la API móvil')
 
-let numeroTelefono
-if (!!phoneNumber) {
-numeroTelefono = phoneNumber.replace(/[^0-9]/g, '')
-if (!Object.keys(PHONENUMBER_MCC).some(v => numeroTelefono.startsWith(v))) {
-console.log(chalk.bgBlack(chalk.bold.greenBright(`🍬 Por favor, Ingrese el número de WhatsApp.\n${chalk.bold.yellowBright(`🍭  Ejemplo: +50558124470`)}\n${chalk.bold.magentaBright('---> ')}`)))
-process.exit(0)
-}} else {
-while (true) {
-numeroTelefono = await question(chalk.bgBlack(chalk.bold.greenBright(`🍬 Por favor, escriba su número de WhatsApp.\n🍭  Ejemplo: +50558124470\n`)))
-numeroTelefono = numeroTelefono.replace(/[^0-9]/g, '')
+let numeroTelefono;
 
-if (numeroTelefono.match(/^\d+$/) && Object.keys(PHONENUMBER_MCC).some(v => numeroTelefono.startsWith(v))) {
-break 
+if (!!phoneNumber) {
+  numeroTelefono = phoneNumber.replace(/[^0-9]/g, '');
+  
+  if (!Object.keys(PHONENUMBER_MCC).some(prefix => numeroTelefono.startsWith(prefix))) {
+    console.log(chalk.bgBlack(chalk.bold.greenBright(`🍬 Por favor, Ingrese el número de WhatsApp.\n${chalk.bold.yellowBright(`🍭  Ejemplo: +50558124470`)}\n${chalk.bold.magentaBright('---> ')}`)));
+    process.exit(0);
+  }
 } else {
-console.log(chalk.bgBlack(chalk.bold.greenBright(`🍬 Por favor, escriba su número de WhatsApp.\n🍭  Ejemplo: +50558124470\n`)))
-}}
-rl.close()  
-} 
+  while (true) {
+    numeroTelefono = await question(chalk.bgBlack(chalk.bold.greenBright(`🍬 Por favor, escriba su número de WhatsApp.\n🍭  Ejemplo: +50558124470\n`)));
+    numeroTelefono = numeroTelefono.replace(/[^0-9]/g, '');
+    
+    if (
+      typeof numeroTelefono === 'string' &&
+      /^\d+$/.test(numeroTelefono) &&
+      Object.keys(PHONENUMBER_MCC).some(prefix => numeroTelefono.startsWith(prefix))
+    ) {
+      break;
+    } else {
+      console.log(chalk.bgBlack(chalk.bold.greenBright(`🍬 Por favor, escriba un número válido de WhatsApp.\n🍭  Ejemplo: +50558124470\n`)));
+    }
+  }
+}
+
+rl.close();
+
 
 setTimeout(async () => {
 let codigo = await conn.requestPairingCode(numeroTelefono)
