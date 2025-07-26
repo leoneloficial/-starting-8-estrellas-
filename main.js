@@ -50,8 +50,20 @@ const PHONENUMBER_MCC = {
   '62': 'ID',
   '91': 'IN'
   }
-const {proto} = (await import('@whiskeysockets/baileys')).default
-const {DisconnectReason, useMultiFileAuthState, MessageRetryMap, fetchLatestBaileysVersion, makeCacheableSignalKeyStore, jidNormalizedUser, PHONENUMBER_MCC} = await import('@whiskeysockets/baileys')
+const baileys = await import('@whiskeysockets/baileys')
+const baileysDefault = baileys.default
+
+const { proto } = baileysDefault
+const {
+  DisconnectReason,
+  useMultiFileAuthState,
+  MessageRetryMap,
+  fetchLatestBaileysVersion,
+  makeCacheableSignalKeyStore,
+  jidNormalizedUser
+} = baileys
+
+const { PHONENUMBER_MCC } = baileysDefault
 import readline from 'readline'
 import NodeCache from 'node-cache'
 const {CONNECTING} = ws
